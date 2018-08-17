@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1223998620
-# UTC EPOCH of last modified time
-1223998620
-# CATEGORY
-Programming
-# TITLE
-Compiling a C++ Windows executable with embedded version information and icon
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1223998620
+lastmod-epoch: 1223998620
+categories: Programming
+title: Compiling a C++ Windows executable with embedded version information and icon
+---
+
 This example shows how to compile your C++ program with custom version information embedded (shows up as Version tab when you view the exe properties).
 <ol>
 <li>Create a resource file (say project.rc) following a similiar format as below:

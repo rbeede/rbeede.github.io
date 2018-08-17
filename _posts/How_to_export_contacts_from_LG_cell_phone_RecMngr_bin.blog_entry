@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1320019531
-# UTC EPOCH of last modified time
-1320019531
-# CATEGORY
-Tech Tricks
-# TITLE
-How to export contacts from LG cell phone RecMngr.bin
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1320019531
+lastmod-epoch: 1320019531
+categories: Tech Tricks
+title: How to export contacts from LG cell phone RecMngr.bin
+---
+
 So you managed to copy the RecMngr.bin file from your LG cell phone using EFS Tool or Bitpim or whatever.  I wrote a quick and dirty Perl script that can parse the contact names and phone numbers out.  It was tested on an AT&T LG CU920 phone.
 
 <p>

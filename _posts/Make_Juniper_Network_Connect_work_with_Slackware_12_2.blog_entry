@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1233077220
-# UTC EPOCH of last modified time
-1233077220
-# CATEGORY
-Computer Problems
-# TITLE
-Make Juniper Network Connect work with Slackware 12.2
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1233077220
+lastmod-epoch: 1233077220
+categories: Computer Problems
+title: Make Juniper Network Connect work with Slackware 12.2
+---
+
 My work uses Juniper Network connection for the VPN solution.  I have Slackware 12.2 at home.  Assuming you install all the packages for Slackware the VPN doesn't work out of the box.  Here are the steps I took to get it working:
 <ol>
 <li>Make sure you have Java 1.6 JRE installed</li>

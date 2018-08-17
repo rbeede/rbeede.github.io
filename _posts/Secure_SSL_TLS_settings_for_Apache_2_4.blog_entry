@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1395082742
-# UTC EPOCH of last modified time
-1395082742
-# CATEGORY
-Security
-# TITLE
-Secure SSL/TLS settings for Apache 2.4
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1395082742
+lastmod-epoch: 1395082742
+categories: Security
+title: Secure SSL/TLS settings for Apache 2.4
+---
+
 The following is my Apache SSL settings that earn me an A+ score on the Qualys SSL Labs <a href="https://www.ssllabs.com/ssltest/">SSL Test</a>.  It enforces forward secrecy by limiting to only strong ciphers.  Most end-point clients are supported and TLS v1.2 is preferred but TLS v1.0 is supported for older clients.
 
 <pre>

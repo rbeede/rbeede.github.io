@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1291135881
-# UTC EPOCH of last modified time
-1291135881
-# CATEGORY
-Security
-# TITLE
-reCAPTCHA weakened
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1291135881
+lastmod-epoch: 1291135881
+categories: Security
+title: reCAPTCHA weakened
+---
+
 So for my Computer Vision graduate class at the University of Colorado I choose to do an analysis of reCAPTCHA and algorithms used to defeat it.
 
 <p>

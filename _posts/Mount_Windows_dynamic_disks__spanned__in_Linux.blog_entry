@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1316024537
-# UTC EPOCH of last modified time
-1316024537
-# CATEGORY
-Tech Tricks
-# TITLE
-Mount Windows dynamic disks (spanned) in Linux
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1316024537
+lastmod-epoch: 1316024537
+categories: Tech Tricks
+title: Mount Windows dynamic disks (spanned) in Linux
+---
+
 I found this helpful website that gives the necessary details:  <a href="http://bigli.ch/howto-access-windows-spanned-dynamic-disks-with-ubuntu/">http://bigli.ch/howto-access-windows-spanned-dynamic-disks-with-ubuntu/</a>
 
 <p>

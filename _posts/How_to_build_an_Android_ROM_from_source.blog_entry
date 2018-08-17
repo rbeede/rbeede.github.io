@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1319233586
-# UTC EPOCH of last modified time
-1320097725
-# CATEGORY
-Programming
-# TITLE
-How to build an Android ROM from source
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1319233586
+lastmod-epoch: 1320097725
+categories: Programming
+title: How to build an Android ROM from source
+---
+
 <p>
 You can find many useful details on Google's official site at <a href="http://source.android.com/source/">http://source.android.com/source/</a>.  They have updated a lot if it recently and those steps are basically all the ones I used.
 </p>

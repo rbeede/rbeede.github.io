@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1272034354
-# UTC EPOCH of last modified time
-1272034354
-# CATEGORY
-Tech Tricks
-# TITLE
-Install Linux System Rescue CD to USB drive using Windows batch script
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1272034354
+lastmod-epoch: 1272034354
+categories: Tech Tricks
+title: Install Linux System Rescue CD to USB drive using Windows batch script
+---
+
 The original version can be found at <a href="http://www.sysresccd.org/forums/viewtopic.php?p=7544&sid=2968dbd27934ac96c3b4749fe570864f">System Rescue CD forum topic</a>.
 
 <p>

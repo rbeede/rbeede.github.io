@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1353013762
-# UTC EPOCH of last modified time
-1354300820
-# CATEGORY
-Security
-# TITLE
-Good explanation of when and why to use HMAC
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1353013762
+lastmod-epoch: 1354300820
+categories: Security
+title: Good explanation of when and why to use HMAC
+---
+
 <a href="http://benlog.com/articles/2008/06/19/dont-hash-secrets"/>http://benlog.com/articles/2008/06/19/dont-hash-secrets/</a>
 
 <p>

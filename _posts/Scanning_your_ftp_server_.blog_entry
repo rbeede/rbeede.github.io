@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1347996445
-# UTC EPOCH of last modified time
-1347996445
-# CATEGORY
-Security
-# TITLE
-Scanning your ftp server?
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1347996445
+lastmod-epoch: 1347996445
+categories: Security
+title: Scanning your ftp server?
+---
+
 So many organizations that care about their web presence will have security scans run against their web servers.  I wonder though how many have thought to have their public ftp servers scanned as well?
 
 <p>

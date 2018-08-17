@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1355600559
-# UTC EPOCH of last modified time
-1355600692
-# CATEGORY
-Computer Problems
-# TITLE
-Wrong times on SD Card from digital Camera or Camcorder (FAT file system)
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1355600559
+lastmod-epoch: 1355600692
+categories: Computer Problems
+title: Wrong times on SD Card from digital Camera or Camcorder (FAT file system)
+---
+
 So I was looking at my SD card from my camcorder and digital camera when I noticed the times were different than the copies on my computer.  Turns out the FAT (FAT16, FAT32) file systems do not store time zone information.  Whatever file you create on such a file system is marked with the current local time.  When viewed on another system the time stamp is treated as that system's local time.
 
 <p>

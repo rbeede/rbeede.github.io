@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1377806709
-# UTC EPOCH of last modified time
-1377806861
-# CATEGORY
-Computer Problems
-# TITLE
-Install Windows 7 (boot) 64-bit to RAID array 3TB on Gigabyte Hybrid EFI motherboard
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1377806709
+lastmod-epoch: 1377806861
+categories: Computer Problems
+title: Install Windows 7 (boot) 64-bit to RAID array 3TB on Gigabyte Hybrid EFI motherboard
+---
+
 Short Answer:  You can't.  Not with a RAID array with more than 2.2TB of a single volume disk.  The FakeRAID on the Gigabyte motherboard with Hybrid EFI does not have a ROM that supports <span style="font-weight: bold;">booting</span> from a volume larger than 2.2TB in EFI mode.  This means you can't install Windows 7 (or later) 64-bit onto a RAID array.
 
 <p>

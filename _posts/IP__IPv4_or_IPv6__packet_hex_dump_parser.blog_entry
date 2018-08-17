@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1331317330
-# UTC EPOCH of last modified time
-1331317330
-# CATEGORY
-Programming
-# TITLE
-IP (IPv4 or IPv6) packet hex dump parser
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1331317330
+lastmod-epoch: 1331317330
+categories: Programming
+title: IP (IPv4 or IPv6) packet hex dump parser
+---
+
 <script type="text/javascript">
 	function parseHexDump(hexdump) {
 		var resultMessage = "<pre>";

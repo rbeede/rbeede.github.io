@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1231449000
-# UTC EPOCH of last modified time
-1231449000
-# CATEGORY
-Tech Tricks
-# TITLE
-How to install Apache Continuum
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1231449000
+lastmod-epoch: 1231449000
+categories: Tech Tricks
+title: How to install Apache Continuum
+---
+
 Apache Continuum is an automated build and reporting system for Maven or Ant Java projects.  It is nice because it will automatically check out from source control a project and build it.  Any errors found during the build process can then be e-mailed to you.  This is nice because it allows an automated build to run every X hours (or whatever you want) with the latest code from source control.  This allows one to catch an error that breaks the build a developer may have made when checking in code.  It also provides a web interface for viewing build history and reports.
 <p>
 Unfortunately the documentation on setting up Continuum isn't very good.  Below is my quick start guide to getting Continuum running.  This assumes Windows XP, but the instructions should work on Linux as well.

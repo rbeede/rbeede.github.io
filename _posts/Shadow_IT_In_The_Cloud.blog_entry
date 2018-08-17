@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1494450762
-# UTC EPOCH of last modified time
-1494450762
-# CATEGORY
-Security
-# TITLE
-Shadow IT In The Cloud
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1494450762
+lastmod-epoch: 1494450762
+categories: Security
+title: Shadow IT In The Cloud
+---
+
 Copy of a public presentation I've made on the topic of Shadow IT in the cloud and how to detect or block it.
 
 <p>

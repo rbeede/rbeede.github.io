@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1221971400
-# UTC EPOCH of last modified time
-1221971400
-# CATEGORY
-Tech Tricks
-# TITLE
-CD Burn rights in XP for non-admin users
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1221971400
+lastmod-epoch: 1221971400
+categories: Tech Tricks
+title: CD Burn rights in XP for non-admin users
+---
+
 I found a way to allow Power Users or Interactive Users to burn CD/DVD discs without administrator rights.
 <p>
 Microsoft has instructions at <a href="http://msdn.microsoft.com/en-us/library/bb540662(VS.85).aspx">http://msdn.microsoft.com/en-us/library/bb540662(VS.85).aspx</a> that detail the steps you need to take.

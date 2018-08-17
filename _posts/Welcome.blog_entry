@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-4133980799
-# UTC EPOCH of last modified time
-1452711523
-# CATEGORY
-Welcome
-# TITLE
-Welcome
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 4133980799
+lastmod-epoch: 1452711523
+categories: Welcome
+title: Welcome
+---
+
 Please use the navigation menu to the left.  Click on a category to expand the list of topics underneath.
 
 <p>

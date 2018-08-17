@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1508208885
-# UTC EPOCH of last modified time
-1508208885
-# CATEGORY
-Curriculum Vitae
-# TITLE
-Conferences I've presented at
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1508208885
+lastmod-epoch: 1508208885
+categories: Curriculum Vitae
+title: Conferences I've presented at
+---
+
 <ul>
 
 <li><a href="https://github.com/rbeede/aws-api-key-auto-rotator/blob/master/Cloud%20API%20Service%20Accounts%20and%20Managing%20a%20Jungle%20of%20Credentials%3B%20InnoTech%20Oklahoma%3B%20October%205%2C%202017.pdf">Cloud API Service Accounts and Managing a Jungle of Credentials</a>; <a href="http://www.innotechconferences.com/okc/">InnoTech</a> Oklahoma; October 5, 2017</li>

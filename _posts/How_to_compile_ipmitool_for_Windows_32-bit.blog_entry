@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1406824044
-# UTC EPOCH of last modified time
-1406824087
-# CATEGORY
-Tech Tricks
-# TITLE
-How to compile ipmitool for Windows 32-bit
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1406824044
+lastmod-epoch: 1406824087
+categories: Tech Tricks
+title: How to compile ipmitool for Windows 32-bit
+---
+
 Here is how to compile ipmitool for Windows.  It requires a dependency on Cygwin, but you can copy the Cygwin DLLs and built binary into a separate directory for a standalone install on other systems.
 
 <p>

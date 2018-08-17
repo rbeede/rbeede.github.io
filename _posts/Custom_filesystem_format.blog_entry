@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1216246200
-# UTC EPOCH of last modified time
-1216246200
-# CATEGORY
-Misc
-# TITLE
-Custom filesystem format
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1216246200
+lastmod-epoch: 1216246200
+categories: Misc
+title: Custom filesystem format
+---
+
 Some musings on what my own custom file system would look like:
 <table border="1">
 <tr>

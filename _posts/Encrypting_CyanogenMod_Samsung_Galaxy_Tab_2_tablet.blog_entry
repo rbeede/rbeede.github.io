@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1479162603
-# UTC EPOCH of last modified time
-1479162603
-# CATEGORY
-Computer Problems
-# TITLE
-Encrypting CyanogenMod Samsung Galaxy Tab 2 tablet
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1479162603
+lastmod-epoch: 1479162603
+categories: Computer Problems
+title: Encrypting CyanogenMod Samsung Galaxy Tab 2 tablet
+---
+
 Ran into an issue since CyanogenMod 11 (and also now 13) that my Samsung Galaxy Tab 2 7.0" (GT-P113) wifi tablet would not encrypt.  Using this method of manual encryption fixed it:
 
 <p>

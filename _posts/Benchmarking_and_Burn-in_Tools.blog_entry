@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1241793543
-# UTC EPOCH of last modified time
-1486958029
-# CATEGORY
-Tech Tricks
-# TITLE
-Benchmarking and Burn-in Tools
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1241793543
+lastmod-epoch: 1486958029
+categories: Tech Tricks
+title: Benchmarking and Burn-in Tools
+---
+
 <p>For Windows, Linux, etc a good disk benchmark problem is <a href="http://www.iozone.org/">http://www.iozone.org/</a>.
 </p>
 

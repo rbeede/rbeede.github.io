@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1415162295
-# UTC EPOCH of last modified time
-1415162295
-# CATEGORY
-Tech Tricks
-# TITLE
-How to get around the 2.2TB with MBR partitions
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1415162295
+lastmod-epoch: 1415162295
+categories: Tech Tricks
+title: How to get around the 2.2TB with MBR partitions
+---
+
 Most sites advise you to use GPT which I recommend as well.  However, I ended up with an odd situations where my external USB 4TB and 5TB drives were not using GPT and still had single partitions that were 4TB and 5TB or well over the 2.2TB limit.
 
 <p>

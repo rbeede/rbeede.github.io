@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1342723360
-# UTC EPOCH of last modified time
-1342723403
-# CATEGORY
-Tech Tricks
-# TITLE
-LUKS on SSD with TRIM enabled
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1342723360
+lastmod-epoch: 1342723403
+categories: Tech Tricks
+title: LUKS on SSD with TRIM enabled
+---
+
 <a href="http://worldsmostsecret.blogspot.com/2012/04/how-to-activate-trim-on-luks-encrypted.html">How to Activate TRIM on LUKS Encrypted Partitions</a>
 
 <p>

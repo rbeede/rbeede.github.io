@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1339424463
-# UTC EPOCH of last modified time
-1339424463
-# CATEGORY
-Tech Tricks
-# TITLE
-sudo sudoers quick reference
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1339424463
+lastmod-epoch: 1339424463
+categories: Tech Tricks
+title: sudo sudoers quick reference
+---
+
 The man page (http://www.sudo.ws/sudo/sudo.html) has lots of good info, but is a little hard to read.
 
 <p>

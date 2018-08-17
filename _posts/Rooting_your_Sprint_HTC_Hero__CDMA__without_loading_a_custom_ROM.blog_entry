@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1296435173
-# UTC EPOCH of last modified time
-1305039402
-# CATEGORY
-Tech Tricks
-# TITLE
-Rooting your Sprint HTC Hero (CDMA) without loading a custom ROM
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1296435173
+lastmod-epoch: 1305039402
+categories: Tech Tricks
+title: Rooting your Sprint HTC Hero (CDMA) without loading a custom ROM
+---
+
 These instructions tell you how to root the stock firmware on your HTC Hero (CDMA Sprint) Android phone without replacing the stock firmware.  This is useful if you want the ability to run "root" only apps and wish to keep the same interface.  You can also copy apps to your SDCard and run them from that to save on storage space.
 
 <h1>You will need:</h1>

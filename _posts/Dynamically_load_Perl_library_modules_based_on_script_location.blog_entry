@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1240592802
-# UTC EPOCH of last modified time
-1426885447
-# CATEGORY
-Programming
-# TITLE
-Dynamically load Perl library modules based on script location
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1240592802
+lastmod-epoch: 1426885447
+categories: Programming
+title: Dynamically load Perl library modules based on script location
+---
+
 I have some useful code that I use for scripts that need to load Perl library modules from a sub-folder in the directory where the script resides.
 <p>
 This works well when for example you need to run a script on a machine where you can't install Perl modules into the system Perl.  It's also nice in that you can bundle your script and libraries into a single archive for distribution and only have to decompress the archive to install everything.

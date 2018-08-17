@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1368411291
-# UTC EPOCH of last modified time
-1368411291
-# CATEGORY
-Security
-# TITLE
-LastPass security bug on Android
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1368411291
+lastmod-epoch: 1368411291
+categories: Security
+title: LastPass security bug on Android
+---
+
 I discovered a security bug with LastPass Android application.  LastPass is a password vault solution that syncs your passwords in the cloud and can help you use a different password for each site.
 
 <p>

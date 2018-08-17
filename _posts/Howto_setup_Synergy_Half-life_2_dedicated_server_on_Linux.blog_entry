@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1519699930
-# UTC EPOCH of last modified time
-1526406047
-# CATEGORY
-Games
-# TITLE
-Howto setup Synergy Half-life 2 dedicated server on Linux
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1519699930
+lastmod-epoch: 1526406047
+categories: Games
+title: Howto setup Synergy Half-life 2 dedicated server on Linux
+---
+
 <h1>Pre-reqs</h1>
 
 <ol>

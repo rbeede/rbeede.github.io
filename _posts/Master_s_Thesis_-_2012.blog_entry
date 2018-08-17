@@ -1,10 +1,8 @@
-# UTC EPOCH of original creation time
-1494733999
-# UTC EPOCH of last modified time
-1494733999
-# CATEGORY
-Curriculum Vitae
-# TITLE
-Master's Thesis - 2012
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1494733999
+lastmod-epoch: 1494733999
+categories: Curriculum Vitae
+title: Master's Thesis - 2012
+---
+
 <a href="downloads/A%20Framework%20for%20Benevolent%20Computer%20Worms;%20Master's%20Thesis%20in%20Computer%20Science;%20University%20of%20Colorado;%20Rodney%20Beede;%202012-04.pdf">A Framework for Benevolent Computer Worms; Master's Thesis in Computer Science; University of Colorado; Rodney Beede; 2012-04.pdf</a>

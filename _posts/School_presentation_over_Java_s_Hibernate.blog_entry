@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1320088062
-# UTC EPOCH of last modified time
-1320088062
-# CATEGORY
-Programming
-# TITLE
-School presentation over Java's Hibernate
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1320088062
+lastmod-epoch: 1320088062
+categories: Programming
+title: School presentation over Java's Hibernate
+---
+
 I had to do a graduate presentation over Java's Hibernate framework.  Below you can find links to the presentation I wrote along with sample code.
 
 <ul>

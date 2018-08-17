@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1380727840
-# UTC EPOCH of last modified time
-1380897620
-# CATEGORY
-Security
-# TITLE
-McAfee Denial of Service bug I found
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1380727840
+lastmod-epoch: 1380897620
+categories: Security
+title: McAfee Denial of Service bug I found
+---
+
 I discovered a DoS bug in McAfee's enterprise client "FrameworkService.exe" that I reported in September, 2013.  McAfee just released a public Security Bulletins about it at:
 
 <p>

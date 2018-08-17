@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1429215290
-# UTC EPOCH of last modified time
-1429215372
-# CATEGORY
-Misc
-# TITLE
-How sudo sets the PATH value when secure_path is not defined
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1429215290
+lastmod-epoch: 1429215372
+categories: Misc
+title: How sudo sets the PATH value when secure_path is not defined
+---
+
 Ran across an interesting technical detail while working on a PATH configuration problem in my /etc/profile.  When no PATH is defined (such as when you do sudo -i) the sudo command will inject a standard one that is compiled into its code.  This applies when you do not have a secure_path option either in your config or built-in as a compile option at build time.
 
 <p>

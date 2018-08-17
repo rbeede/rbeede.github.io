@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1309548105
-# UTC EPOCH of last modified time
-1462476599
-# CATEGORY
-Programming
-# TITLE
-Embedding Tomcat 7 in a war file
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1309548105
+lastmod-epoch: 1462476599
+categories: Programming
+title: Embedding Tomcat 7 in a war file
+---
+
 <p>
 All code is Copyright 2016 Rodney Beede<br />
 Permission to use is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE, Version 3, <a href="http://www.gnu.org/licenses/agpl.txt">http://www.gnu.org/licenses/agpl.txt</a>

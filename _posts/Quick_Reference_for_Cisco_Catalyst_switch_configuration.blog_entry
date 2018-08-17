@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1310592735
-# UTC EPOCH of last modified time
-1331137782
-# CATEGORY
-Tech Tricks
-# TITLE
-Quick Reference for Cisco Catalyst switch configuration
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1310592735
+lastmod-epoch: 1331137782
+categories: Tech Tricks
+title: Quick Reference for Cisco Catalyst switch configuration
+---
+
 Below have been tested on Cisco Catalyst 2900XL (IOS version 12.0(5)WC17) and 3750 (IOS version 12.2(55)SE3).
 
 <h2>Quick Tips</h2>

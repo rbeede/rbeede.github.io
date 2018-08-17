@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1267641526
-# UTC EPOCH of last modified time
-1267645819
-# CATEGORY
-Tech Tricks
-# TITLE
-Dual monitor in Ubuntu 9.10 64-bit rotated 90 degrees
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1267641526
+lastmod-epoch: 1267645819
+categories: Tech Tricks
+title: Dual monitor in Ubuntu 9.10 64-bit rotated 90 degrees
+---
+
 After I just installed Ubuntu 9.10 64-bit on my dual-monitor (DVI) machine I needed to rotate the display 90 degrees left for my monitor orientation.
 
 <p>

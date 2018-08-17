@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1257999658
-# UTC EPOCH of last modified time
-1257999658
-# CATEGORY
-Misc
-# TITLE
-My Computer Stand
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1257999658
+lastmod-epoch: 1257999658
+categories: Misc
+title: My Computer Stand
+---
+
 Here is a picture of my cool computer stand my dad made for me:
 <p>
 <img src="images/my_pc_2009.jpg" />

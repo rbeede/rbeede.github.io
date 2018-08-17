@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1238987741
-# UTC EPOCH of last modified time
-1238987741
-# CATEGORY
-Computer Problems
-# TITLE
-MySQL 5, Hibernate 3, Connection timeouts
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1238987741
+lastmod-epoch: 1238987741
+categories: Computer Problems
+title: MySQL 5, Hibernate 3, Connection timeouts
+---
+
 I was getting a lot of connection timeouts with MySQL and Hibernate.  I played with my hibernate.cfg.xml until I finally got it to use C3P0 (c THREE p ZERO) for managing the database connections.  It wasn't easy to find all the necessary documentation on how to get Hibernate to not use its own internal database pool connector versus an external one.
 <p>
 Add the following to your Maven dependencies:

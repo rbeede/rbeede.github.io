@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1299018134
-# UTC EPOCH of last modified time
-1299093518
-# CATEGORY
-Computer Problems
-# TITLE
-How to fix NFS (v4) not mounting /etc/fstab entries on boot
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1299018134
+lastmod-epoch: 1299093518
+categories: Computer Problems
+title: How to fix NFS (v4) not mounting /etc/fstab entries on boot
+---
+
 You want to auto-mount on boot an NFS (I was using nfs4), but for some reason when you place it in /etc/fstab it just won't.
 
 <p>

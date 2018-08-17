@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1238643155
-# UTC EPOCH of last modified time
-1238643155
-# CATEGORY
-Computer Problems
-# TITLE
-MySQL created user cannot connect via localhost
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1238643155
+lastmod-epoch: 1238643155
+categories: Computer Problems
+title: MySQL created user cannot connect via localhost
+---
+
 I had an issue where I created a new MySQL user that would be allowed from any host.  Whenever I tried to connect via localhost the user was always denied.
 <p>
 This is a common error due to the configuration of MySQL out of the box.  The "anonymous" user matches first because it is defined as ‘’@% and ‘’@localhost.  Since I was connecting as the new user that didn't have a specific @localhost entry the host part was being matched to the anonymous user first and denied.

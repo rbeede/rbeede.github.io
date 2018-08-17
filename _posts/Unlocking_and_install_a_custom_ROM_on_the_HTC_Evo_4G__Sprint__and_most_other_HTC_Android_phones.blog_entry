@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1348364680
-# UTC EPOCH of last modified time
-1348364680
-# CATEGORY
-Tech Tricks
-# TITLE
-Unlocking and install a custom ROM on the HTC Evo 4G (Sprint) and most other HTC Android phones
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1348364680
+lastmod-epoch: 1348364680
+categories: Tech Tricks
+title: Unlocking and install a custom ROM on the HTC Evo 4G (Sprint) and most other HTC Android phones
+---
+
 Just some rough notes.  I wanted an official way versus using hacks and exploits to avoid viruses and what not.
 
 <p>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1375922267
-# UTC EPOCH of last modified time
-1375922760
-# CATEGORY
-Computer Problems
-# TITLE
-Windows 7 USB and No compatible USB devices detected
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1375922267
+lastmod-epoch: 1375922760
+categories: Computer Problems
+title: Windows 7 USB and No compatible USB devices detected
+---
+
 Using the Windows 7 USB/DVD Download Tool and run into "Windows 7 USB and No compatible USB devices detected"?
 
 <p>

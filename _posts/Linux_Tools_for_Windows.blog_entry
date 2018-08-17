@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1252429910
-# UTC EPOCH of last modified time
-1501535706
-# CATEGORY
-Tech Tricks
-# TITLE
-Linux Tools for Windows
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1252429910
+lastmod-epoch: 1501535706
+categories: Tech Tricks
+title: Linux Tools for Windows
+---
+
 Below you can download some Linux tools that have been compiled for Windows care of the GnuWin32 project. These are some common tools I use on Linux all the time and find very useful for use on Windows as well.<br /><br />
 I grabbed most of the builds from the <a href="http://gnuwin32.sourceforge.net/">GnuWin32</a> project. I prefer to use just this minimum set of tools instead of installing lots of packages from the GnuWin32.  I also don't use the Cygwin set because you have to manage conflicts with the cygwin.dll.<br />
 <br />

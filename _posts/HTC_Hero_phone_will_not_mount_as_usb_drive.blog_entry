@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1263487026
-# UTC EPOCH of last modified time
-1263487026
-# CATEGORY
-Computer Problems
-# TITLE
-HTC Hero phone will not mount as usb drive
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1263487026
+lastmod-epoch: 1263487026
+categories: Computer Problems
+title: HTC Hero phone will not mount as usb drive
+---
+
 <p>So Windows 7 (and reported Vista) (tested 64-bit) have an issue where the Windows Updates detects that there is an updated "HTC Dream" driver when your phone is plugged in via usb cable.
 </p>
 

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1224557280
-# UTC EPOCH of last modified time
-1224557280
-# CATEGORY
-Misc
-# TITLE
-Debugging a computer literally
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1224557280
+lastmod-epoch: 1224557280
+categories: Misc
+title: Debugging a computer literally
+---
+
 I discovered a bug had crawed onto my motherboard.  Fortunately it didn't do any damage.
 <p>
 <img src="./images/debugging-board.jpg" />

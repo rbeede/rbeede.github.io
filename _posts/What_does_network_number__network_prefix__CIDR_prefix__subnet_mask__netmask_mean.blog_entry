@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1395427202
-# UTC EPOCH of last modified time
-1395434360
-# CATEGORY
-Misc
-# TITLE
-What does network number, network prefix, CIDR prefix, subnet mask, netmask mean
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1395427202
+lastmod-epoch: 1395434360
+categories: Misc
+title: What does network number, network prefix, CIDR prefix, subnet mask, netmask mean
+---
+
 Doing some research on the origins of some common Internet terms for networking.  Not a lot to go on as formal definitions in standard documents versus common usage vary.  The terms themselves are used in different forms even in the same RFC document.
 
 <h4><a href="https://tools.ietf.org/html/rfc4632">RFC4632 - Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan.</a></h4>

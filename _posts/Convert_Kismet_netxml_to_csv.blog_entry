@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1340401588
-# UTC EPOCH of last modified time
-1340401670
-# CATEGORY
-Tech Tricks
-# TITLE
-Convert Kismet netxml to csv
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1340401588
+lastmod-epoch: 1340401670
+categories: Tech Tricks
+title: Convert Kismet netxml to csv
+---
+
 The latest version drops CSV output support in Kismet.  I just need some basic information for the scan results.  A quick and easy way without having to write a script in Perl or Java was to use xslt transformation.
 
 <ol>

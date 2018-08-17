@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1376589744
-# UTC EPOCH of last modified time
-1376589744
-# CATEGORY
-Programming
-# TITLE
-Repeat template text with inserted lines generator
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1376589744
+lastmod-epoch: 1376589744
+categories: Programming
+title: Repeat template text with inserted lines generator
+---
+
 Use this handy utility to text a template text in the Template box and generate an output based on the Line Separated Input box below.  This is all done client-side in JavaScript so large amounts of text may generate slowly.  Tested in Google Chrome.
 
 <p>

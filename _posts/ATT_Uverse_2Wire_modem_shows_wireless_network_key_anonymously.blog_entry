@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1377305528
-# UTC EPOCH of last modified time
-1377305528
-# CATEGORY
-Security
-# TITLE
-ATT Uverse 2Wire modem shows wireless network key anonymously
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1377305528
+lastmod-epoch: 1377305528
+categories: Security
+title: ATT Uverse 2Wire modem shows wireless network key anonymously
+---
+
 I noticed after a firmware upgrade on my AT&T Uverse service that my 2wire modem shows the clear-text password for the wireless network key on the anonymous status page that anyone can navigate to on your local network.  It also does so over a non-secure HTTP connection.
 
 <p>

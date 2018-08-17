@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1223997840
-# UTC EPOCH of last modified time
-1223997840
-# CATEGORY
-Tech Tricks
-# TITLE
-USB Key Drives, To Partition Or Not?
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1223997840
+lastmod-epoch: 1223997840
+categories: Tech Tricks
+title: USB Key Drives, To Partition Or Not?
+---
+
 I was recently working with making some USB key drives bootable with Linux.  I noticed that some of my drives had single primary partitions on them while others had no partitions at all.
 <p>
 All of them use the FAT filesystem.  In my attempt to install grub on one it failed because it had no partitions.

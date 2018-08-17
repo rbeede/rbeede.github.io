@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1304086181
-# UTC EPOCH of last modified time
-1304086181
-# CATEGORY
-Security
-# TITLE
-CAPTCHA used to cause worse security
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1304086181
+lastmod-epoch: 1304086181
+categories: Security
+title: CAPTCHA used to cause worse security
+---
+
 I noticed on Facebook the other day an odd post by one of my friends:
 
 <p>

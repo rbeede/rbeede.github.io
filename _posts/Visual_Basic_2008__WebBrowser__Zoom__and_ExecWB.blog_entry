@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1213290780
-# UTC EPOCH of last modified time
-1213290780
-# CATEGORY
-Programming
-# TITLE
-Visual Basic 2008, WebBrowser, Zoom, and ExecWB
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1213290780
+lastmod-epoch: 1213290780
+categories: Programming
+title: Visual Basic 2008, WebBrowser, Zoom, and ExecWB
+---
+
 So I discovered today how to use a WebBrowser object on a Form in Visual Basic 2008 that would zoom the page just like you can in IE7.<br /><br />
 <u>First Method</u><br />
 <br />

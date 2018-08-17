@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1233677220
-# UTC EPOCH of last modified time
-1233677220
-# CATEGORY
-Computer Problems
-# TITLE
-XHTML 1.0, Internet Explorer, application/xhtml+xml
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1233677220
+lastmod-epoch: 1233677220
+categories: Computer Problems
+title: XHTML 1.0, Internet Explorer, application/xhtml+xml
+---
+
 So Internet Explorer 6, 7, and 8 do not support XHTML whereas pretty much every other browser does.  This is unfortunate because XHTML provides a nice well formed document layout.
 <p>
 One can simply set the mime type to text/html to get IE to work around the problem, but you lose some advantages of the XML validation.

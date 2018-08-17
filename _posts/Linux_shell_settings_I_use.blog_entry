@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1262643083
-# UTC EPOCH of last modified time
-1391631204
-# CATEGORY
-Tech Tricks
-# TITLE
-Linux shell settings I use
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1262643083
+lastmod-epoch: 1391631204
+categories: Tech Tricks
+title: Linux shell settings I use
+---
+
 Assuming a bash shell.
 
 <h1>~/.bash_profile</h1>

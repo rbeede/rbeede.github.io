@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1240593267
-# UTC EPOCH of last modified time
-1240593267
-# CATEGORY
-Programming
-# TITLE
-VBS script for creating Windows Shortcuts (lnk)
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1240593267
+lastmod-epoch: 1240593267
+categories: Programming
+title: VBS script for creating Windows Shortcuts (lnk)
+---
+
 Save the following into a file with the extension vbs or wsh with the appropriate edits:
 <pre>
 'Create a WshShell Object

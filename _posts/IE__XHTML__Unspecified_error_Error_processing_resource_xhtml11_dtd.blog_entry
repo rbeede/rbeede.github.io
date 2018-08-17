@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1291157060
-# UTC EPOCH of last modified time
-1291157060
-# CATEGORY
-Computer Problems
-# TITLE
-IE, XHTML, Unspecified error Error processing resource xhtml11.dtd
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1291157060
+lastmod-epoch: 1291157060
+categories: Computer Problems
+title: IE, XHTML, Unspecified error Error processing resource xhtml11.dtd
+---
+
 Unspecified error Error processing resource 'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'. 
 
 <p>

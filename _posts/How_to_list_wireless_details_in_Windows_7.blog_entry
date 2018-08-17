@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1352230081
-# UTC EPOCH of last modified time
-1352230081
-# CATEGORY
-Tech Tricks
-# TITLE
-How to list wireless details in Windows 7
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1352230081
+lastmod-epoch: 1352230081
+categories: Tech Tricks
+title: How to list wireless details in Windows 7
+---
+
 <ol>
 <li>Open an elevated command prompt
   <ul><li>Start, "cmd" in Search, ctrl+shift+center</li></ul>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1328729213
-# UTC EPOCH of last modified time
-1346517881
-# CATEGORY
-Security
-# TITLE
-Installing Linux (OpenWRT) on a home router with remote VPN access
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1328729213
+lastmod-epoch: 1346517881
+categories: Security
+title: Installing Linux (OpenWRT) on a home router with remote VPN access
+---
+
 My previous method used PPTP as a VPN server because of ease of use with Windows clients.  While MSCHAPv2 with MPPE and pptp and a long password used to be sufficient it is now possible to decrypt the session with a cluster of hardware in 23 hours (you still may not get the actual password or access, but you can get a sessions content).  See <a href="http://www.h-online.com/security/news/item/Microsoft-says-don-t-use-PPTP-and-MS-CHAP-1672257.html">Microsoft says don't use PPTP and MS-CHAP</a>
 
 <p>

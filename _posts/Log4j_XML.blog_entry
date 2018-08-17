@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1290613426
-# UTC EPOCH of last modified time
-1443732508
-# CATEGORY
-Programming
-# TITLE
-Log4j XML
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1290613426
+lastmod-epoch: 1443732508
+categories: Programming
+title: Log4j XML
+---
+
 Just notes on how I like to use log4j.
 
 <h3>log4j.xml</h3>

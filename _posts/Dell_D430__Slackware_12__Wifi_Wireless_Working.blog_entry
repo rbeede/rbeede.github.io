@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1233292080
-# UTC EPOCH of last modified time
-1233292080
-# CATEGORY
-Computer Problems
-# TITLE
-Dell D430, Slackware 12, Wifi Wireless Working
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1233292080
+lastmod-epoch: 1233292080
+categories: Computer Problems
+title: Dell D430, Slackware 12, Wifi Wireless Working
+---
+
 I have a Dell D430 laptop with a Dell Wireless 1505 draft-N MiniCard.  I wanted to get wireless working in Slackware 12.2.  These are the steps I took to enable the device:
 <h2>Installation</h2>
 

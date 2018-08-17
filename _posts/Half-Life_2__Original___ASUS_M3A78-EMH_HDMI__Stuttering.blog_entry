@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1219518600
-# UTC EPOCH of last modified time
-1219518600
-# CATEGORY
-Computer Problems
-# TITLE
-Half-Life 2 (Original), ASUS M3A78-EMH HDMI, Stuttering
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1219518600
+lastmod-epoch: 1219518600
+categories: Computer Problems
+title: Half-Life 2 (Original), ASUS M3A78-EMH HDMI, Stuttering
+---
+
 So the full version of Half-Life 2 has the same problem as the demo on my machine.  The audio stutters, and the video lags very slowly for about 5-10 seconds at seemingly random times.
 <p>
 I tried all the tricks on the Internet to resolve this:

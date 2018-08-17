@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1516643134
-# UTC EPOCH of last modified time
-1516643134
-# CATEGORY
-Tech Tricks
-# TITLE
-Linux script show VM IP on logon screen
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1516643134
+lastmod-epoch: 1516643134
+categories: Tech Tricks
+title: Linux script show VM IP on logon screen
+---
+
 <pre>
 #!/bin/sh
 

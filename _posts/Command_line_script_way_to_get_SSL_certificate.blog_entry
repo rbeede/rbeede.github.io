@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1489681261
-# UTC EPOCH of last modified time
-1489681261
-# CATEGORY
-Tech Tricks
-# TITLE
-Command line script way to get SSL certificate
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1489681261
+lastmod-epoch: 1489681261
+categories: Tech Tricks
+title: Command line script way to get SSL certificate
+---
+
 <pre>
 echo quit | openssl s_client -connect www.rodneybeede.com:443 2&gt;/dev/null| sed -ne '/BEGIN CERT/,/END CERT/p'
 </pre>

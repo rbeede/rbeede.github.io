@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1376190655
-# UTC EPOCH of last modified time
-1432346296
-# CATEGORY
-Tech Tricks
-# TITLE
-Windows 7 drivers for Samsung NP365E5C-S02UB
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1376190655
+lastmod-epoch: 1432346296
+categories: Tech Tricks
+title: Windows 7 drivers for Samsung NP365E5C-S02UB
+---
+
 I didn't like Windows 8 on a new laptop purchase (Samsung NP365E5C-S02UB) and wanted to go back to Windows 7.  Samsung doesn't even have a support or product page for the actual model (NP365E5C-S02UB, purchased from BestBuy) nor any Windows 7 support or drivers for similiar model numbers.  Samsung's official support response is that only Windows 8 is available.  To get BIOS updates you must use the Samsung SW Update utility, and it will download any needed driver updates for Windows 8.
 
 <p>

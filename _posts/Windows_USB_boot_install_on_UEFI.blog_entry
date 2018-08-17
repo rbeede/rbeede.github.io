@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1377717022
-# UTC EPOCH of last modified time
-1377795736
-# CATEGORY
-Computer Problems
-# TITLE
-Windows USB boot install on UEFI
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1377717022
+lastmod-epoch: 1377795736
+categories: Computer Problems
+title: Windows USB boot install on UEFI
+---
+
 I discovered that your USB drives must be FAT formatted as some (like mine) UEFI systems won't boot from NTFS formatted drives.
 
 <p>

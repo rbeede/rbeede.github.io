@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1322618913
-# UTC EPOCH of last modified time
-1322618913
-# CATEGORY
-Programming
-# TITLE
-Customize an Android system.img
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1322618913
+lastmod-epoch: 1322618913
+categories: Programming
+title: Customize an Android system.img
+---
+
 
 I needed to customize the system.img for a generic build (emulator) of an Android 2.3.7b1 ROM.  I wanted to add Google Maps to it (as well as Market, etc) and run it in the emulator for a school project of a custom ROM.
 

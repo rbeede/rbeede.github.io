@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1275940280
-# UTC EPOCH of last modified time
-1481515455
-# CATEGORY
-Free Stuff
-# TITLE
-My favorite Google Android free apps
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1275940280
+lastmod-epoch: 1481515455
+categories: Free Stuff
+title: My favorite Google Android free apps
+---
+
 These are my favorite apps for my Google Android phone.  Just search the market by the name to find them.
 
 <ul>

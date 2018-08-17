@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1240867728
-# UTC EPOCH of last modified time
-1426885488
-# CATEGORY
-Programming
-# TITLE
-Dynamically obtain Perl script's directory and filename
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1240867728
+lastmod-epoch: 1426885488
+categories: Programming
+title: Dynamically obtain Perl script's directory and filename
+---
+
 Note that this only works if you didn't use the perl -e or someprog | perl piping method.
 
 <p>

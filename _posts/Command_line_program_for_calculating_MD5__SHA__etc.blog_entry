@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1224522120
-# UTC EPOCH of last modified time
-1224522120
-# CATEGORY
-Free Stuff
-# TITLE
-Command line program for calculating MD5, SHA, etc
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1224522120
+lastmod-epoch: 1224522120
+categories: Free Stuff
+title: Command line program for calculating MD5, SHA, etc
+---
+
 I found a U.S. government developed  (and thus no copyright) program to generate and compare MD5 (or SHA, tiger, whirlpool) sums.
 <p>
 The project has source code that works under Windows, Linux, Max, Solaris, etc.

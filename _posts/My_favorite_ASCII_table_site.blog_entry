@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1292620660
-# UTC EPOCH of last modified time
-1292620726
-# CATEGORY
-Programming
-# TITLE
-My favorite ASCII table site
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1292620660
+lastmod-epoch: 1292620726
+categories: Programming
+title: My favorite ASCII table site
+---
+
 <a href="http://www.ascii-code.com/">http://www.ascii-code.com/</a>
 
 <p>

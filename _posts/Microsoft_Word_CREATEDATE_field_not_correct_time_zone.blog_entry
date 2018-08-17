@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1341343150
-# UTC EPOCH of last modified time
-1341343183
-# CATEGORY
-Tech Tricks
-# TITLE
-Microsoft Word CREATEDATE field not correct time zone
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1341343150
+lastmod-epoch: 1341343183
+categories: Tech Tricks
+title: Microsoft Word CREATEDATE field not correct time zone
+---
+
 When a document that contains a CREATEDATE (or DOCPROPERTY CreateTime) is opened on another machine with a different local time zone setting the information in the field is not populated with the correct time.  Word has a bug which simply doesn't update the CREATEDATE after the first time it is populated.  It will only be correct if you "Update Field" then it will update to the correct local time.
 
 <p>

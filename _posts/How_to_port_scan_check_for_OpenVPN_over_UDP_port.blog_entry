@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1377529807
-# UTC EPOCH of last modified time
-1377529807
-# CATEGORY
-Security
-# TITLE
-How to port scan check for OpenVPN over UDP port
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1377529807
+lastmod-epoch: 1377529807
+categories: Security
+title: How to port scan check for OpenVPN over UDP port
+---
+
 Useful way to test if your firewall is blocking a connection to your OpenVPN server.
 
 <p>

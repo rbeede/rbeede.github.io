@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1492111133
-# UTC EPOCH of last modified time
-1492111133
-# CATEGORY
-Security
-# TITLE
-BSides Oklahoma 2017
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1492111133
+lastmod-epoch: 1492111133
+categories: Security
+title: BSides Oklahoma 2017
+---
+
 Link to the presentation I gave at BSides OK2017.
 
 <p>

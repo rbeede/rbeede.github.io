@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1375721454
-# UTC EPOCH of last modified time
-1375901652
-# CATEGORY
-Tech Tricks
-# TITLE
-Creating Samsung recovery disc on a Windows 8 laptop
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1375721454
+lastmod-epoch: 1375901652
+categories: Tech Tricks
+title: Creating Samsung recovery disc on a Windows 8 laptop
+---
+
 <p>
 <span style="font-weight:bold;">Update 7 Aug. 2013</span>
 </p>

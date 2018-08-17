@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1510007575
-# UTC EPOCH of last modified time
-1525366340
-# CATEGORY
-Tech Tricks
-# TITLE
-Custom preseed Ubuntu SERVER iso from usb
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1510007575
+lastmod-epoch: 1525366340
+categories: Tech Tricks
+title: Custom preseed Ubuntu SERVER iso from usb
+---
+
 I wanted a bootable USB that could install Ubuntu <b>Server</b> edition automatically.  Normally I use a non-extracted iso method (i.e. casper), but that is only available with Ubuntu Desktop and not in the server iso.
 
 <p>

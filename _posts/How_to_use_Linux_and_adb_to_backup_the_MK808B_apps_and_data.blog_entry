@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1373384794
-# UTC EPOCH of last modified time
-1373384794
-# CATEGORY
-Tech Tricks
-# TITLE
-How to use Linux and adb to backup the MK808B apps and data
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1373384794
+lastmod-epoch: 1373384794
+categories: Tech Tricks
+title: How to use Linux and adb to backup the MK808B apps and data
+---
+
 I wanted a backup of the OEM apps and data since the manufacturer of the device doesn't have an official support site with original ROM downloads.  There were some sites that sold the devices that provided some factory update ROMs, but I wanted a sure backup of how my device shipped.  I also wanted to do it from Linux using adb.  Android 4 makes doing app and data backups easy as adb supports it built-in.  adb does not make a complete backup of the ROM itself nor image partitions.
 
 <p>

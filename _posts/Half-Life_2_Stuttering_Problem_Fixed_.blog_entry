@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1220110860
-# UTC EPOCH of last modified time
-1220110860
-# CATEGORY
-Computer Problems
-# TITLE
-Half-Life 2 Stuttering Problem Fixed!
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1220110860
+lastmod-epoch: 1220110860
+categories: Computer Problems
+title: Half-Life 2 Stuttering Problem Fixed!
+---
+
 So I got my new CPU fan in the other day.  It is a XIGMATEK HDT-S1283 that I got on newegg.com for $35 (shipping included).  It was the recommended fan by tomshardware.com.
 <p>
 The fan is very, very large.  I'm going to have to extend my custom wood case in order to put the plexiglass cover back on.  However the fan does its job very, very well!!!

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1391627602
-# UTC EPOCH of last modified time
-1391627711
-# CATEGORY
-Tech Tricks
-# TITLE
-How bash reads startup files on various distros
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1391627602
+lastmod-epoch: 1391627711
+categories: Tech Tricks
+title: How bash reads startup files on various distros
+---
+
 Some notes on how bash reads startup files.  Some distros compile with the SYS_BASHRC flag which can add some startup files.
 
 <p>

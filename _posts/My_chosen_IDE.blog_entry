@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1329776878
-# UTC EPOCH of last modified time
-1329776924
-# CATEGORY
-Programming
-# TITLE
-My chosen IDE
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1329776878
+lastmod-epoch: 1329776924
+categories: Programming
+title: My chosen IDE
+---
+
 I have done mostly Java development.  I've used Eclipse historically because it had better performance than NetBeans.
 
 <p>

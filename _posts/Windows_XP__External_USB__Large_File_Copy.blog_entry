@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1222463040
-# UTC EPOCH of last modified time
-1222463040
-# CATEGORY
-Computer Problems
-# TITLE
-Windows XP, External USB, Large File Copy
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1222463040
+lastmod-epoch: 1222463040
+categories: Computer Problems
+title: Windows XP, External USB, Large File Copy
+---
+
 So I was copying some large files (2GB+) from my computer to an external usb hard drive.  The filesystem on the usb drive is NTFS.  I ran into a problem where my computer was getting very slow.
 <p>
 It turns out my available memory was running all the way down to zero.  This only happened while the large file copy was in progress.  I was using xcopy to move a bunch of files over.

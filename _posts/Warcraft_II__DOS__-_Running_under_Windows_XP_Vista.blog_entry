@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1214611200
-# UTC EPOCH of last modified time
-1214611200
-# CATEGORY
-Games
-# TITLE
-Warcraft II (DOS) - Running under Windows XP/Vista
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1214611200
+lastmod-epoch: 1214611200
+categories: Games
+title: Warcraft II (DOS) - Running under Windows XP/Vista
+---
+
 If you have the original WarCraft II DOS Edition game and have tried to play it under Windows XP/Vista you may have run into some problems.
 <p>
 Note that you cannot play multi-player games over a LAN via the IPX protocol in Windows XP/Vista.  The DOS edition simply can't use the new IPX protocol of Windows XP/Vista.

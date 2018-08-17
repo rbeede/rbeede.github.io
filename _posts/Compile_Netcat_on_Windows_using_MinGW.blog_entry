@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1252429130
-# UTC EPOCH of last modified time
-1424212640
-# CATEGORY
-Security
-# TITLE
-Compile Netcat on Windows using MinGW
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1252429130
+lastmod-epoch: 1424212640
+categories: Security
+title: Compile Netcat on Windows using MinGW
+---
+
 I wanted a way to compile Netcat on Windows using MinGW so I could have a version without the GAPING_SECURITY_HOLE option (-e command line option).  This helps to avoid the annoyance of anti-virus tools reporting it as a virus/trojan and also gives me a binary I know isn't infected with something.
 <p>
 Doing so on Windows is a real pain since there isn't a straight forward make file for MinGW.  It seemed mostly geared at Microsoft VC.

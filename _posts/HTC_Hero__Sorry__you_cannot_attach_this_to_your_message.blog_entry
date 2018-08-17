@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1264514769
-# UTC EPOCH of last modified time
-1264514769
-# CATEGORY
-Computer Problems
-# TITLE
-HTC Hero, Sorry, you cannot attach this to your message
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1264514769
+lastmod-epoch: 1264514769
+categories: Computer Problems
+title: HTC Hero, Sorry, you cannot attach this to your message
+---
+
 Sorry, you cannot attach this to your message
 <p>
 That was the message I got on my phone when trying to send a photo via MMS (text).  The problem was the image was 5 megapixels which is too large for any MMS message.  I did some research and found that you could either retake the picture at a lower quality setting or use a handy app instead.
