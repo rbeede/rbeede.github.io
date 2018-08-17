@@ -1,0 +1,40 @@
+# UTC EPOCH of original creation time
+1374763785
+# UTC EPOCH of last modified time
+1374763785
+# CATEGORY
+Computer Problems
+# TITLE
+How to use command line arguments with shebang /usr/bin/env python
+# CONTENT in fragment XHTML until EOF
+A lot of Python scripts for Unix systems have a starting line like:
+
+<p>
+#!/usr/bin/env python
+</p>
+
+<p>
+This allows more portable support to ensure the python interpreter can be found without having to specify an absolute path that may be different depending on the OS distribution.  E.g. not having to use /usr/bin/python or /usr/local/bin/python, etc.
+</p>
+
+<p>
+The problem is if you want to add parameters (e.g. python -tt) you will get an error like "/usr/bin/env: python -tt: No such file or directory" due to how the OS parses the shebang line arguments and passes them to the env program.
+</p>
+
+<p>
+The solution:
+</p>
+
+<p>
+<pre>
+#!/bin/sh
+''':'
+exec python -tt "$0" "$@"
+'''
+# The above shell shabang trick is more portable than /usr/bin/env and supports adding arguments to the interpreter (python -tt)
+</pre>
+</p>
+
+<p>
+The '' is just an empty string ignored by /bin/sh.  : means noop to /bin/sh.  Python sees the ''' as just a docstring so it effectively ignores the shebang line.
+</p>

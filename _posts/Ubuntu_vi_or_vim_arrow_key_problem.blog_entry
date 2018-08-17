@@ -1,0 +1,22 @@
+# UTC EPOCH of original creation time
+1267808331
+# UTC EPOCH of last modified time
+1267808331
+# CATEGORY
+Tech Tricks
+# TITLE
+Ubuntu vi or vim arrow key problem
+# CONTENT in fragment XHTML until EOF
+After installing Ubuntu 9.10 64-bit I had problems with my arrow keys in VI.  I thought at first the problem was my remote ssh session over putty, but then a terminal on my local console did the same thing.
+
+<p>
+When in text insert/append mode pressing the arrow keys would insert A B C D into the document instead of moving the cursor.
+</p>
+
+<p>
+The fix was found at <a href="http://ubuntuforums.org/archive/index.php/t-286963.html">http://ubuntuforums.org/archive/index.php/t-286963.html</a>
+</p>
+
+<p>
+In short vi-tiny was installed instead of the complete vim.  Just install vim and it will be fixed.
+</p>

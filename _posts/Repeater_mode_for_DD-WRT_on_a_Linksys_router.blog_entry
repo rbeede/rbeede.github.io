@@ -1,0 +1,104 @@
+# UTC EPOCH of original creation time
+1267045455
+# UTC EPOCH of last modified time
+1267045580
+# CATEGORY
+Tech Tricks
+# TITLE
+Repeater mode for DD-WRT on a Linksys router
+# CONTENT in fragment XHTML until EOF
+Here is the method I used to get DD-WRT on a Linksys router to run in repeater mode so I could have it wireless connect as a client to a remote AP and also allow wireless clients on it to connect as well.
+
+<p>
+My setup:
+</p>
+
+<ul>
+	<li>Linksys WRT54GS2 V1 (I would have preferred the WRT54GL)</li>
+	<li>Cat-6 network cable (straight through not cross-over) for laptop (1 gigabit network) to LAN port on Linksys router</li>
+	<li>DD-WRT v24-sp2 (10/10/09) micro [build 13064] for WRT54GS2 V1</li>
+	<li>Remote access point is Cisco</li>
+</ul>
+
+<p>
+What you need before hand:
+</p>
+
+<ol>
+	<li>SSID (name) of remote wireless access point <b>spelled exactly and case sensitive</b></li>
+	<li>Security settings and type of remote access point</li>
+	<li>What normal client IP address the remote network usually gives out (ex: 192.168.1.100)</li>
+</ol>
+
+<p>
+Steps:
+</p>
+
+<ol>
+	<li>Hold down the Reset button on the back of your router to clear all settings</li>
+	<li>Install DD-WRT (see <a href="http://www.dd-wrt.com/">http://www.dd-wrt.com/</a>)</li>
+	<li>Hold down the Reset button on the back of your router to clear all settings (yes again)</li>
+	<li>Hook up the network cable from your computer to the wireless router (<b>REQUIRED</b> - you can't do it all over wireless)</li>
+	<li>Reset your computer TCP/IP settings to DHCP assigned (when you installed DD-WRT you changed it to a static one)</li>
+	<li>Login to your router via http://192.168.1.1/</li>
+	<li>Enter in a new username and password as required</li>
+	<li>Click on Change Password</li>
+	<li>Setup tab
+		<ol>
+			<li>You should be in the sub-tab Basic Setup</li>
+			<li>Under Router IP change Local IP Address to <b>192.168.101.1</b>
+				<ul>
+					<li>Make it something different if the remote network usually gives out an IP starting with 192.168.101</li>
+				</ul>
+			</li>
+			<li>Scroll to bottom and click on Apply Settings (not Save)</li>
+			<li>Your connection to the router will probably drop and then reconnect or sit forever at the progress bar</li>
+			<li>A quick way to reconnect is to unplug the network cable and plug it in again</li>
+			<li>Close your web browser and reopen it to http://192.168.101.1/</li>
+		</ol>
+	</li>
+	<li>Wireless tab
+		<ol>
+			<li>sub-tab Basic Settings
+				<ol>
+					<li>Wireless Mode = Repeater</li>
+					<li>Wireless Network Mode = G-Only (if remote supports G speed, otherwise use Mixed)</li>
+					<li>Wireless Network Name (SSID) = <i>SSID (name) of remote wireless access point <b>spelled exactly and case sensitive</b></i></li>
+					<li>Wireless Channel = ignore leave at whatever it already is</li>
+					<li>Wireless SSID Broadcast = leave at Enable</li>
+					<li>Sensitivity Range (ACK Timing) = leave at 2000</li>
+					<li>Network Configuration = leave at Bridged</li>
+					<li>Virtual Interfaces, click on Add</li>
+					<li>Wireless Network Name (SSID) = <i>whatever name you want for your computer to connect to</i></li>
+					<li>Wireless SSID Broadcast = leave at Enabled</li>
+					<li>AP Isolation = leave at Disabled</li>
+					<li>Network Configuration = leaved at Bridged</li>
+					<li>Click on <b>Apply Settings</b> (not Save)</li>
+				</ol>
+			</li>
+			<li>sub-tab Wireless Security
+				<ol>
+					<li>Physical Interface wl0 SSID</li>
+					<li>Security Mode = <i>whatever settings remote network requires</i></li>
+					<li>Virtual Interfaces wl0.1 SSID</li>
+					<li>Security Mode = <i>whatever settings you want your local wireless network to use</i>
+						<ul><li>I recommend WPA2 Personal</li></ul>
+					</li>
+					<li>Apply Settings (not Save)</li>
+				</ol>
+			</li>				
+		</ol>
+	</li>
+	<li>Status tab
+		<ol>
+			<li>WAN sub-tab
+				<ol>
+					<li>Verify that under Configuration Type, IP Address you have a valid IP address from the remote network</li>
+					<li>Verify you have a Gateway and DNS</li>
+					<li>It may take your router a couple of minutes to connect so just refresh the page</li>
+				</ol>
+			</li>
+		</ol>
+	</li>
+	<li>Connect your computer to your local wireless network</li>
+</ol>

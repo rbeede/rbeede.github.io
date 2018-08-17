@@ -1,0 +1,56 @@
+# UTC EPOCH of original creation time
+1299018134
+# UTC EPOCH of last modified time
+1299093518
+# CATEGORY
+Computer Problems
+# TITLE
+How to fix NFS (v4) not mounting /etc/fstab entries on boot
+# CONTENT in fragment XHTML until EOF
+You want to auto-mount on boot an NFS (I was using nfs4), but for some reason when you place it in /etc/fstab it just won't.
+
+<p>
+I modified some network settings on a machine, and it stopped working.  Ubuntu Server 10.10 64-bit with nfs-common 1.2.2 installed.  It worked fine for a while.
+</p>
+
+<p>
+My /etc/fstab:
+<pre>
+# non-nfs stuff removed
+
+192.168.0.1:/users   /home   nfs4       _netdev,auto    0       0
+
+</pre>
+</p>
+
+<p>
+The fix:
+</p>
+
+<ol>
+     <li>Use the <b>_netdev</b> option in the /etc/fstab even though during boot the system doesn't really wait for the network to be configured with an IP, it just skips that mount and goes on hence the problem.  See <a href="https://help.ubuntu.com/community/Fstab">Ubuntu's Fstab documentation</a> for details on why _netdev doesn't work with nfs4</li>
+     <li>Create a file called <b>/etc/init.d/mount_netdev.sh</b> with the following
+          <ul><li><pre>
+#!/bin/bash
+
+# Have to ping the NFS server to know when the network is actually configured
+# This is the only way to use /etc/fstab although you may be better off using Autofs Automounter instead
+# It's just a limitation of NFS and Linux booting.  If your network was Wifi you'd have this problem even worse
+# It may take a few seconds after boot (you get a login prompt on your local console) before this gets to mount too
+while [ ping 192.168.0.1 -c 2 2>/dev/null >/dev/null ]
+do
+        sleep 1
+done
+
+mount -a -O _netdev
+</pre></li></ul>
+     </li>
+     <li><b>chmod 755 /etc/init.d/mount_netdev.bash</b></li>
+     <li><b>ln -s /etc/init.d/mount_netdev.bash /etc/rcS.d/S99mountall.sh </b></li>
+</ol>
+
+<p>
+See also:
+<ul>
+<li><a href="https://bugs.launchpad.net/ubuntu/+source/sysvinit/+bug/285013?comments=all">https://bugs.launchpad.net/ubuntu/+source/sysvinit/+bug/285013?comments=all</a></li>
+</ul>

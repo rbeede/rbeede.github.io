@@ -1,0 +1,49 @@
+# UTC EPOCH of original creation time
+1429215290
+# UTC EPOCH of last modified time
+1429215372
+# CATEGORY
+Misc
+# TITLE
+How sudo sets the PATH value when secure_path is not defined
+# CONTENT in fragment XHTML until EOF
+Ran across an interesting technical detail while working on a PATH configuration problem in my /etc/profile.  When no PATH is defined (such as when you do sudo -i) the sudo command will inject a standard one that is compiled into its code.  This applies when you do not have a secure_path option either in your config or built-in as a compile option at build time.
+
+<p>
+This was important because when using bash and before your /etc/profile configures your PATH variable there will be an already existing value setup by the sudo -i command (or sudo -s env).  This mostly affected me due to some invocations creating a PATH with two colons (::) in it which was a security issue for root since that implies the current working directory is in root's PATH.
+</p>
+
+<p>
+Testing was done on a Red Hat 6.  Sudo version 1.8.6p3 with 1.8.6p3-12.el6.
+</p>
+
+<h4>
+Regular (non-root) user logged in via ssh:
+</h4>
+
+<p>
+Before /etc/profile the sshd process sets PATH=/usr/local/bin:/bin:/usr/bin  (or whatever value your OpenSSH was configured and compiled to use).
+</p>
+
+<h4>
+sudo -i  OR  sudo -s env
+</h4>
+
+<p>
+Before /etc/profile the sudo process sets PATH=/usr/bin:/bin:/usr/sbin:/sbin
+</p>
+
+<h3>
+Sudo source code that shows the value it uses
+</h4>
+
+<pre>
+sudo-1.8.6p3.tar/sudo-1.8.6p3/sudo-1.8.6p3/pathnames.h.in:#define _PATH_STDPATH         "/usr/bin:/bin:/usr/sbin:/sbin"
+
+sudo-1.8.6p3.tar/sudo-1.8.6p3/sudo-1.8.6p3/plugins/sudoers/env.c: 
+    /* Provide default values for $TERM and $PATH if they are not set. */
+    if (!ISSET(didvar, DID_TERM))
+	sudo_putenv("TERM=unknown", false, false);
+    if (!ISSET(didvar, DID_PATH))
+	sudo_setenv2("PATH", _PATH_STDPATH, false, true);
+</pre>

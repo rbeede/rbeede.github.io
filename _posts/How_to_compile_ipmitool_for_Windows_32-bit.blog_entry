@@ -1,0 +1,49 @@
+# UTC EPOCH of original creation time
+1406824044
+# UTC EPOCH of last modified time
+1406824087
+# CATEGORY
+Tech Tricks
+# TITLE
+How to compile ipmitool for Windows 32-bit
+# CONTENT in fragment XHTML until EOF
+Here is how to compile ipmitool for Windows.  It requires a dependency on Cygwin, but you can copy the Cygwin DLLs and built binary into a separate directory for a standalone install on other systems.
+
+<p>
+I did the build on a Windows Server 2008 Standard Edition 32-bit with SP2 system.  This creates a 32-bit version of the ipmitool.exe file which should work on both 32-bit and 64-bit Windows platforms.
+</p>
+
+<h4>All ***32-bit***</h4>
+
+<ol>
+	<li><a href="https://cygwin.com/setup-x86.exe">https://cygwin.com/setup-x86.exe</a></li>
+	<li>Cygwin packages
+		<ol>
+			<li>gcc-core	(inside Devel category)</li>
+			<li>make	(inside Devel category)</li>
+			<li>openssl-devel</li>
+			<li>A bunch more will get auto-required at the next prompt for "Resolving Dependencies"</li>
+		</ol>
+	</li>
+	<li>Download the source for <a href="http://sourceforge.net/projects/ipmitool/files/ipmitool/">ipmitool</a></li>
+	<li>Extract the source tarball</li>
+	<li>From your Cygwin Terminal go into the source directory</li>
+	<li style="white-space: pre">./configure --enable-intf-lanplus</li>
+	<li style="white-space: pre">make</li>
+	<li>The real exe binary is found in ipmitool-x.y.zz/src/.libs/ipmitool.exe
+		<ul>
+			<li>You also need the supporting DLL files</li>
+			<li>The one in ipmitool-x.y.zz/src/ipmitool.exe is only a wrapper script</li>
+		</ul>
+	</li>
+	<li>For a standalone copy you can pass around to systems without Cygwin installed copy all of the following (version numbers in the name may vary):
+		<ol>
+			<li>./src/.libs/ipmitool.exe</li>
+			<li>C:\cygwin\bin\cygcrypto-1.0.0.dll</li>
+			<li>C:\cygwin\bin\cygwin1.dll</li>
+			<li>C:\cygwin\bin\cygz.dll</li>
+			<li>C:\cygwin\bin\cyggcc_s-1.dll</li>
+		</ol>
+	</li>
+	<li>Test with <span style="white-space: pre">ipmitool -I lanplus -H <span style="font-style: italic">hostname</span> -U <span style="font-style: italic">username</span> fru</span></li>
+</ol>

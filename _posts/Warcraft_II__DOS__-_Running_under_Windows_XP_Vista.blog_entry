@@ -1,0 +1,29 @@
+# UTC EPOCH of original creation time
+1214611200
+# UTC EPOCH of last modified time
+1214611200
+# CATEGORY
+Games
+# TITLE
+Warcraft II (DOS) - Running under Windows XP/Vista
+# CONTENT in fragment XHTML until EOF
+If you have the original WarCraft II DOS Edition game and have tried to play it under Windows XP/Vista you may have run into some problems.
+<p>
+Note that you cannot play multi-player games over a LAN via the IPX protocol in Windows XP/Vista.  The DOS edition simply can't use the new IPX protocol of Windows XP/Vista.
+</p>
+
+<p>
+You can try a DOS emulator such as dosbox, but I found that setup of IPX networking was very difficult, and the game ran so slowly that it wasn't worth it.  I tested this on a 2GHz machine with lots of memory, and dosbox simply couldn't keep up.
+</p>
+
+<p>
+For single-player campaigns or modem based multi-player you can play it just fine.  If you are having difficulties with the game starting try the following:
+</p>
+
+<ol>
+ <li>Run "setup" in your WarCraft II folder.  Accept all the defaults</li>
+ <li>Run "uvconfig" in your WarCraft II folder</li>
+ <li>Delete any .pif files in your WarCraft II folder</li>
+</ol>
+
+Your last best option is to try to find a copy of WarCraft II BNE which was designed to run on Windows 95 and later.  This edition has all the expansions from WarCraft II plus it works with IPX networking.  It also has battle.net which supports TCP networking for Internet play.  Sadly Blizzard no longer sells it so you will have to do a web search to find a copy you can buy.

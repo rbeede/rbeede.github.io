@@ -1,0 +1,42 @@
+# UTC EPOCH of original creation time
+1267201359
+# UTC EPOCH of last modified time
+1267475386
+# CATEGORY
+Computer Problems
+# TITLE
+Boot USB drive on older BIOS
+# CONTENT in fragment XHTML until EOF
+Some older BIOS have early USB boot support, but it doesn't alway seem to work.
+
+<p>
+I have a EliteGroup K7S5A Pro motherboard that detects a 1GB USB flash drive as "USB-RFD" that will not boot from a normally formatted and partitioned USB drive.  I found the following solutions to handle older BIOS with legacy USB boot methods.
+</p>
+
+<p>
+BIOS settings to use:
+</p>
+
+<ol>
+<li>USB Function Support = Enabled</li>
+<li>USB Function for DOS = Disabled</li>
+<li>Thumb = Disabled</li>
+<li>Hit F8 to bring up the boot menu or configure it in your bios if you like</li>
+</ol>
+
+<p>
+Making the USB drive bootable:
+</p>
+
+<ol>
+<li>Plug the USB drive into a Linux machine</li>
+<li>Wipe the drive with <b>dd if=/dev/zero of=/dev/sd<i>X</i> bs=64k</b></li>
+<li><b>mkdiskimage -4 /dev/sd<i>X</i> 0 64 32</b>
+    <ul>
+          <li>This creates a single partition as the "4th" partition which allows the older BIOS to boot the usb drive like a ZIP drive which it expects since it uses an older boot method</li>
+          <li>You can also use another partition program and mkfs just make sure to create it as the 4th partition with 64 heads, 32 sectors</li>
+     </ul>
+</li>
+<li><b>mkfs.msdos /dev/sd<i>X</i>4</b> (Important that it is made FAT16)</li>
+<li><b>syslinux /dev/sd<i>X</i>4</b> to make it bootable</li>
+</ol>

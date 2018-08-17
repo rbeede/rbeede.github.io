@@ -1,0 +1,249 @@
+#!/usr/bin/perl -T -W
+#
+# e-card.pl
+#
+# Author:  Rodney Beede
+#
+# Version:  2009-02-22
+#
+# Copyright/License:
+#
+#    © 2009 Rodney Beede
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Lesser General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Lesser General Public License for more details.
+#
+#    You should have received a copy of the GNU Lesser General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Written for the Norman Oklahoma Stake of The Church of Jesus Christ of Latter-day Saints
+#
+# Sends an HTML formatted e-mail from the given sender to the given recepient with an
+# invitation to attend the June 27 Mormon Tabernacle Concert in Norman, Oklahoma.
+#
+#
+
+BEGIN {
+	use File::Basename;
+
+	my $cgilib = dirname($0) . "/../cgi-lib";
+
+	push @INC, $cgilib; 
+}
+
+
+require 5.008;
+
+use strict;
+use CGI;
+use Email::Valid;
+#	DEBUG ONLY, DO DISABLE use CGI::Carp qw(fatalsToBrowser);
+
+
+use constant MESSAGE_MAX_LENGTH => 6000;  # Yes form page and preview say 1000, but this will have html encoding &#000; in it
+
+use constant MESSAGE_SUBJECT => "Mormon Tabernacle Choir performance invitation";
+
+
+# Where this script is located
+use File::Basename;
+my $SCRIPT_DIRECTORY = dirname($0);  # Perl always fills in $0 for us if script is a real file :)
+
+
+
+main();
+
+
+sub main {
+	my $cgiQuery = new CGI;
+
+
+	# DON'T FORGET TO htmlEntityEncode() EVERYTHING TO AVOID XSS ATTACKS
+	my $fromAddress = $cgiQuery->param("from address");
+	my @toAddresses = split(/\n/, $cgiQuery->param("to addresses"));  # \n separated
+	my $personalMessage = htmlEntityEncode($cgiQuery->param("personal message"));
+
+
+	# Validate the e-mail addresses look valid
+	#	REMEMBER THEY ARE NOT SAFE FOR HTML (XSS ATTACKS)
+	validateEmail($fromAddress, "From");
+        foreach my $toAddress (@toAddresses) {
+                $toAddress =~ s/^\s+|\s+$//g;  # Incase \r or other trailing whitespace
+
+                if("" eq $toAddress) {
+                        next;
+                }
+
+                validateEmail($toAddress, "To");
+        }
+
+
+	# Make some HTML safe forms of the e-mail addresses
+	my $htmlFromAddress = htmlEntityEncode($fromAddress);
+	my $htmlToAddresses = htmlEntityEncode(join("\n", @toAddresses));
+
+	# Is the given message too long?
+	if(length($personalMessage) > MESSAGE_MAX_LENGTH) {
+		# User was warned on the form so just truncate it
+		$personalMessage = substr($personalMessage, 0, MESSAGE_MAX_LENGTH);
+	}
+
+
+	# Form the e-mail content
+	my $mergedContent = getMessageContentTemplate();
+	$mergedContent =~ s/INSERT-FROM-ADDRESS/$htmlFromAddress/g;
+	$mergedContent =~ s/INSERT-IP-ADDRESS/$ENV{"REMOTE_ADDR"}/g;
+	$mergedContent =~ s/INSERT-PERSONAL-MESSAGE/$personalMessage/g;
+
+
+	# Send the actual message
+	foreach my $toAddress (@toAddresses) {
+                $toAddress =~ s/^\s+|\s+$//g;  # Incase \r or other trailing whitespace
+
+                if("" eq $toAddress) {
+                        next;
+                }
+
+		if(!sendEmail($fromAddress, $toAddress, MESSAGE_SUBJECT, $mergedContent)) {
+			response_error();
+		}
+	}
+
+	# No failures so report back
+	response_success();
+}
+
+
+
+# Still not safe for any open or system commands, just HTML
+sub htmlEntityEncode {
+	my $tainted = shift;
+
+	my $htmlEntityEncoded = "";
+
+	# Go through each character and encode it (valid ascii only)
+	my @charAsciiCodes = unpack("C*", $tainted);
+
+	foreach my $currAscii (@charAsciiCodes) {
+		if(($currAscii >= 32 && $currAscii <= 126) || $currAscii == 10) {
+			$htmlEntityEncoded .= "&#" . $currAscii . ";";
+		}
+	}
+
+	return $htmlEntityEncoded;
+}
+
+
+sub validateEmail {
+	my $emailAddress = shift;
+	my $addressType = shift;  # From / To / etc.
+
+	unless(Email::Valid->address($emailAddress)) {
+		printResponseHeader();
+
+		print "$addressType e-mail address was not valid.  Please go back and correct it.";
+
+		exit(1);
+	}
+}
+
+
+# A technical error has goofed things up
+#	We could try e-mailing the admin, but most likely e-mail isn't working
+sub response_error {
+	printResponseHeader();
+
+	print "We're sorry, but due to a server error your message was not sent.  Please try again later.\n";
+	print "\n";
+	print "You may also try contacting the web site administrator at " . $ENV{"SERVER_ADMIN"} . "\n";
+
+	exit(2);
+}
+
+sub response_success {
+	# Redirect to the success page
+	#	We don't quote back content to avoid XSS
+	my $cgiQuery = new CGI;
+	print $cgiQuery->redirect( -URL => "/e-card_success.html");
+	exit(0);
+}
+
+sub printResponseHeader {
+        print "Content-Type: text/plain; charset=UTF-8\n";
+        print "\n";
+}
+
+
+# Always in text/html mime type for content
+#
+# Also always attaches the panoramic image
+#
+# Returns:  0 if send failed.  !0 otherwise.
+#
+sub sendEmail {
+	my $fromAddress = shift;
+	my $toAddress = shift;
+	my $subject = shift;
+	my $htmlContent = shift;
+
+
+	# We must untaint PATH in env
+	$ENV{"PATH"} =~ /(.*)/;
+	$ENV{"PATH"} = $1;
+
+	use MIME::Lite;
+
+	my $msg = MIME::Lite->new(
+		From	=>	$fromAddress,
+		To	=>	$toAddress,
+		Subject	=>	$subject,
+		Type	=>	"multipart/related",
+		);
+
+	$msg->attach(
+		Type	=> 'text/html',
+		Data	=> $htmlContent,
+		);
+
+	$msg->attach(
+		Type	=> 'image/jpg',
+		Id	=> 'panoramic.jpg',
+		Path	=> $SCRIPT_DIRECTORY . "/../images/e-card/panoramic.jpg",
+		);
+
+
+	$msg->send();
+
+	if(!$msg->last_send_successful()) {
+		return 0;
+	} else {
+		return !0;  # true
+	}
+}
+
+
+sub getMessageContentTemplate {
+	# open the template
+	#	never stored in cgi-bin to avoid malicious execution
+	open(TEMPLATE_FH, "<", $SCRIPT_DIRECTORY . "/../e-card.template")
+		or response_error();
+
+	my $fileContents;
+
+	{
+		local $/=undef;
+		$fileContents = <TEMPLATE_FH>;  # not very big so not too slow
+	}
+
+	close(TEMPLATE_FH);
+
+	return $fileContents;
+}
+

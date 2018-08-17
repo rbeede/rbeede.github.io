@@ -1,0 +1,59 @@
+# UTC EPOCH of original creation time
+1217262360
+# UTC EPOCH of last modified time
+1217262360
+# CATEGORY
+Tech Tricks
+# TITLE
+Installing Ubuntu 8 from usb key
+# CONTENT in fragment XHTML until EOF
+I needed to install Ubuntu on a laptop without a CDROM drive.  I followed the guide on <a href="https://help.ubuntu.com/community/Installation/FromUSBStick">https://help.ubuntu.com/community/Installation/FromUSBStick</a> for directions to install via a USB drive.
+<p>
+I copied all the files to the usb key and made it bootable as per instructions on the web, but the installer doesn't seem to work.  I can boot from the USB key and get a live session working, but installing to hard disk just doesn't seem to work.
+</p>
+
+<p>
+I keep getting the following error:
+[Errno 5] Input/output error 
+</p>
+
+<p>
+My guess is that it cannot find some file on the usb key or something.  If I figure it out I'll post an update here.
+</p>
+
+<p>
+My setup:
+</p>
+
+<ul>
+<li>Ubuntu 8.04</li>
+<li>Dell D430 laptop</li>
+<li>1GB generic USB key drive</li>
+</ul>
+
+<p>
+<b>Update</b>
+</p>
+
+<p>
+I looked into the system's log and noticed a bunch of these errors:
+[  254.136906] SQUASHFS error: sb_bread failed reading block 0x73aef<br />
+[  254.136910] SQUASHFS error: Unable to read page, block 1ceb2f80, size 8e6c<br />
+[  254.136958] SQUASHFS error: zlib_inflate returned unexpected result 0xfffffffd, srclength 131072, avail_in 126, avail_out 131072
+</p>
+
+<p>
+Most people report that is due to a faulty iso or cd, but I am using a usb key drive and have downloaded the iso multiple times with no change.  Others have suggested possible faulty memory on the machine, so I'm going to test that next.
+</p>
+
+<p>
+<b>Resolved!</b>
+</p>
+
+<p>
+Turns out I have a usb key drive that is damaged.  Even though I ran chkdsk and also used HDTune disk scan it still didn't work.  I ran Linux's badblocks to find the defective sectors.
+</p>
+
+<p>
+Either way I used a different usb key drive, and it worked just fine.
+</p>

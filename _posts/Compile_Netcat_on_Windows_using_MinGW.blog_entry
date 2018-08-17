@@ -1,0 +1,53 @@
+# UTC EPOCH of original creation time
+1252429130
+# UTC EPOCH of last modified time
+1424212640
+# CATEGORY
+Security
+# TITLE
+Compile Netcat on Windows using MinGW
+# CONTENT in fragment XHTML until EOF
+I wanted a way to compile Netcat on Windows using MinGW so I could have a version without the GAPING_SECURITY_HOLE option (-e command line option).  This helps to avoid the annoyance of anti-virus tools reporting it as a virus/trojan and also gives me a binary I know isn't infected with something.
+<p>
+Doing so on Windows is a real pain since there isn't a straight forward make file for MinGW.  It seemed mostly geared at Microsoft VC.
+</p>
+
+<p>
+Just copy and paste the following text into a "makewin.cmd" file in the same directory as the source.  A good place to get source for Windows is <a href="http://joncraton.org/blog/46#comment-14590181">http://joncraton.org/blog/46#comment-14590181</a> (this also includes a binary for Netcat for Windows but the -e option is still turned on).  I also have a build of Netcat that you can download <a href="./downloads/nc111nt_rodneybeede.zip">here</a>.  In addition you can find other sites that provide mirrors at <a href="http://www.thaoh.net/Tools/Netcat/">http://www.thaoh.net/Tools/Netcat/</a>
+</p>
+
+<p>
+You'll need MinGW with gcc version 3.4.5 (I used MinGW 5.1.4.  Modify the paths in the batch script as needed and run it.  You should get a nc.exe file if all went well.
+</p>
+
+<pre>
+@REM	Build script to compile Netcat on WIN32 using MinGW
+@REM
+@REM	Rodney Beede	(http://www.rodneybeede.com)
+@REM
+@REM	2009-09-02
+@REM
+@REM	Tested with gcc 3.4.5 and MinGW version 5.1.4
+
+SET COMPILER=c:\MinGW\bin\gcc.exe
+SET LIB_DIR=c:\MinGW\lib
+
+@REM	not needed? SET COMPILE_OPTIONS=-c -DWIN32 -DNDEBUG -D_CONSOLE -DTELNET
+SET COMPILE_OPTIONS=-c
+
+del *.o
+del nc.exe
+
+"%COMPILER%" %COMPILE_OPTIONS% getopt.c
+
+"%COMPILER%" %COMPILE_OPTIONS% doexec.c
+
+"%COMPILER%" %COMPILE_OPTIONS% netcat.c
+
+@REM Note that the -l libraries MUST come at the very end or linking will fail
+"%COMPILER%" getopt.o doexec.o netcat.o --output nc.exe -Wl,-L"%LIB_DIR%",-lkernel32,-luser32,-lwinmm,-lws2_32
+</pre>
+
+<h1>Download my Netcat build</h1>
+
+<a href="./downloads/nc111nt_rodneybeede.zip">Netcat 1.11 for Windows</a> (32-bit build, works on 64-bit too).  The -e option is not enabled.

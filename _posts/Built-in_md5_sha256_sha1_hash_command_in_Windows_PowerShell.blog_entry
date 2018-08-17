@@ -1,0 +1,10 @@
+# UTC EPOCH of original creation time
+1519166846
+# UTC EPOCH of last modified time
+1519166846
+# CATEGORY
+Tech Tricks
+# TITLE
+Built-in md5 sha256 sha1 hash command in Windows PowerShell
+# CONTENT in fragment XHTML until EOF
+Get-FileHash -Path .\calc.exe -Algorithm sha256

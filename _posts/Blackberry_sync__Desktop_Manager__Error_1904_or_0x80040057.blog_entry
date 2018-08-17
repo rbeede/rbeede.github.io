@@ -1,0 +1,29 @@
+# UTC EPOCH of original creation time
+1247107593
+# UTC EPOCH of last modified time
+1247107593
+# CATEGORY
+Computer Problems
+# TITLE
+Blackberry sync, Desktop Manager, Error 1904 or 0x80040057
+# CONTENT in fragment XHTML until EOF
+So I have a Blackberry 8130 (Pearl) now that I was hoping to sync my phone book from my computer in order to import all my contacts.
+<p>
+In short not going to happen.
+</p>
+
+<p>
+The install on my Vista SP2 64-bit machine gives me the 1904 error message.  When running the sync I get the 0x80040057 error.  I did a web search and tried some things, but like many others nothing worked.
+</p>
+
+<p>
+I ended up syncing my contacts via Google Mobile and my Google Apps account.  <a href="http://m.google.com/sync">http://m.google.com/sync</a>.
+</p>
+
+<p>
+It worked okay enough.  I imported all my contacts into my e-mail account (useful place to have them, but I need to adjust my csv column names) and then synced them.
+</p>
+
+<p>
+Now I just need a way to get the group names from Google to create groups on my phone.  I also wish pulling up the address book list could be configured to only list groups and not every contact.  I might try writing my own address book app for the Blackberry to do that.
+</p>

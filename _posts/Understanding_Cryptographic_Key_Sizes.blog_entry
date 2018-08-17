@@ -1,0 +1,14 @@
+# UTC EPOCH of original creation time
+1383229959
+# UTC EPOCH of last modified time
+1383229959
+# CATEGORY
+Security
+# TITLE
+Understanding Cryptographic Key Sizes
+# CONTENT in fragment XHTML until EOF
+I found a blog site that nicely explains why you see 1024, 2048, 128, or 256 key sizes.
+
+<p>
+<a href="http://blog.cloudflare.com/why-are-some-keys-small">Why some cryptographic keys are much smaller than others</a> - John Graham-Cumming, cloudflare.com, September 20, 2013
+</p>

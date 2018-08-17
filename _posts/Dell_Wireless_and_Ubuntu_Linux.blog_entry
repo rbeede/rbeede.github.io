@@ -1,0 +1,74 @@
+# UTC EPOCH of original creation time
+1232992020
+# UTC EPOCH of last modified time
+1232992020
+# CATEGORY
+Computer Problems
+# TITLE
+Dell Wireless and Ubuntu Linux
+# CONTENT in fragment XHTML until EOF
+I found a great thread that details how to get your wireless network card in a Dell laptop working under Ubuntu Linux (8.04, not 8.10).
+<p>
+<a href="http://ubuntuforums.org/showthread.php?t=297092">http://ubuntuforums.org/showthread.php?t=297092</a>
+</p>
+
+<p>
+I tried it running Ubuntu Live with a Dell D430 and a Dell 1500 draft n wireless card.  I ignored the part where I was told to reboot (Ubuntu Live doesn't remember across reboots), and it still worked fine.
+</p>
+
+<p style="color: red; font-weight: bold;">
+Easy Setup Alternative for Ubuntu 8
+</p>
+
+<p>
+If you
+<ul>
+ <li>Run Ubunut 8.04 (not 8.10 which doesn't work)</li>
+ <li>Have a Dell D430</li>
+ <li>Have a Dell 1500 draft-N wireless card</li>
+</ul>
+
+You can use this alternative method for easier setup to get your wireless working:
+<ol>
+ <li>Download the latest Dell wireless driver
+ (Try <a href="ftp://ftp.us.dell.com/network/Dell_multi-device_A17_R174291.exe">ftp://ftp.us.dell.com/network/Dell_multi-device_A17_R174291.exe</a>)
+ </li>
+ <li>mkdir /opt/DellWireless</li>
+ <li>chdir /opt/DellWireless</li>
+ <li>unzip Dell_multi-device_A17_R174291.exe</li>
+ <li>
+ Install ndiswrapper
+ <ol>
+  <li>System menu</li>
+  <li>Administration</li>
+  <li>Synaptic Package Manager</li>
+  <li>Search</li>
+  <li>ndiswrapper</li>
+  <li>Select ndisgtk</li>
+  <li>Select ndiswrapper-common</li>
+  <li>Select ndiswrapper-utils-X.Y</li>
+  <li>Click on Apply on the tool bar</li>
+  <li>Follow remaining prompts to install the packages</li>
+ </ol>
+ </li>
+ <li>System menu</li>
+ <li>Administration</li>
+ <li>Windows Wireless Drivers</li>
+ <li>Install New Driver</li>
+ <li>Select inf file location is /opt/DellWireless/DRIVER_US/bcmwl5.inf</li>
+ <li>Click on Install</li>
+ <li>bcmwl5 should show up in "Currently Installed Windows Drivers" list</li>
+ <li>You should also see Hardware present: Yes</li>
+ <li>Configure Network will show profiles, but may be disabled</li>
+ <li>Click on Close</li>
+ <li>
+ Connect to a wireless network
+ <ol>
+  <li>Open nm-applet (icon to left of audio icon on top of screen)</li>
+  <li>Select a wireless network from the list</li>
+  <li>You can also select Connect to Other Wireless Network...</li>
+ </ol>
+ </li>
+ <li>If you get a "No network configuration tool" error then install gnome-network-admin</li>
+</ol>
+</p>

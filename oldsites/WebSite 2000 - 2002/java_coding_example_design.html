@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+	<TITLE>Java Coding Example:  Design</TITLE>
+</HEAD>
+
+<BODY>
+
+<A NAME="#TOP"></A>
+
+<FONT SIZE=+1><A HREF="./java_coding_example.html">Back</A> | <A HREF="./index.html">Contents</A></FONT>
+<HR>
+
+<H3>Java Coding Example:  Design</H3>
+
+<PRE>
+<B>CheckBookMain</B> -- does min amount.  Starts the controller
+and does nothing else.  This could be morifed into a app
+that does checking accounts or loans or whatever
+for now just starts the "check" area
+
+
+<B>CheckBookController</B> -- does all of interfacing with the user
+asks to create books & title them.
+handles each book & each check in each one
+it will  A.  create or delete checkbooks
+            1. title each checkbook; (see Check class)
+            2. offer a printout of each one
+            3. (optional) save & read stored books
+         B.  manage a particular book
+            <S>1. add or delete checks</S>
+            1. use CheckBook to add or delete (void) checks
+            2. (optional) modify checks; recreate internally
+            3. deposit or withdraw (see B-1)
+            4. calculate new balances (see B-1)
+            5. pick check nums on creation (pass to CheckBook)
+         B-2.
+            1. give a reister of all transactions using
+               OutputBox for each Book & CheckBook register
+         D.
+            1. allow user to quit
+            2. when user quits, dump a bank statement
+               for all the books to a file
+               Dump the outputBox objects
+
+<U>Margin Notes:</U>
+check num
+write check
+void
+withdraw
+deposit
+register
+
+Quit - dump Output Boxes
+use savetoFile
+
+
+<B>CheckBook</B> -- has methods to add checks, void checks,
+    make withdraw and deposits.  It also calculates new
+    balances based on transactions.  Also have an array
+    with all transactions recorded (like a register).  Voided checks are
+    marked, <S>it should be a structure?</S> (maybe new object?)
+    Creates and destories registers;  Searches for checks?
+
+
+<B>Check</B> -- holds info on chekcs, creates new ones
+     check number - define on creation or defaulted by CheckBook
+     <S>Owners Name on check</S> (moved to CheckBook)
+     Date
+     PayTo
+     Written Amount
+     Numerical Amount
+     <S>Name of Bank</S> (moved to CheckBook)
+     Memo, sig not important
+
+
+<B>CheckBookRegister</B>
+<S>
+    holds info on a checkbook; it's index will match
+    CheckBook's index array.
+    Controlled by CheckBook.  CheckBook creates one when made,
+      and removes it when destroyed
+
+    NOTES:  Checks can get out of order, maybe resort them
+      or allow user to sort by check num or date or amount?
+</S>
+
+</PRE>
+
+
+<P>
+<HR WIDTH="50%" ALIGN=LEFT>
+<A HREF="./contact.html">Rodney Beede</A> <A HREF="./copyright.html">© 1999-2000</A> | <A HREF="#Top">Top</A>
+
+</BODY>
+</HTML>

@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<meta NAME="Template" CONTENT="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<title>Project#7</title>
+</head>
+
+<body LINK="#0000ff" VLINK="#800080">
+<font SIZE="5"><b>
+
+<p ALIGN="left">CS 1323, PROJECT # 7</p>
+</b></font>
+
+<table border="0" width="623">
+  <tr>
+    <td width="617"><b><strong>Project #7: </strong>&nbsp;&nbsp; </b>Turn in the following
+    files: CheckBookMain.java, CheckBookController.java, CheckBook.java, Check,java<p><b><strong>Due
+    Date:</strong> &nbsp;&nbsp; </b>Midnight, Friday, April 7, 2000</p>
+    <p><b><strong>Assignment:&nbsp; </strong></b>Write a checkbook application program that
+    maintains N number of checkbook objects in an array (where N is the number of checkbooks
+    the user would like to maintain).&nbsp; Allow the user to choose a title for each
+    checkbook.&nbsp; For each checkbook, the user can deposit, write a check, and withdraw,
+    displaying the total balance after each transaction.&nbsp; It is possible for the balance
+    to become negative in a checkbook.&nbsp; When a new check is written, a CheckBook object
+    will automatically assign the next available check number.&nbsp; The user will have the
+    options of voiding a check and overriding the automatically assigned check number.
+    &nbsp;&nbsp; The beginning check number (chosen by the user) is set when the object is
+    initially created.&nbsp; In addition, maintain N number of OutputBox objects in an array
+    (one for each checkbook) and output every individual transaction for that checkbook to the
+    corresponding OutputBox object.&nbsp; Allow the user to continue to work on the checkbooks
+    (just like the PersonalAddressBook program) until they desire to quit.&nbsp; When the user
+    chooses to quit, call the saveToFile method for all OutputBox objects such that the output
+    for each separate checkbook appears in a unique file, whose format closely resembles a
+    bank statement.&nbsp; Remember to make the CheckBook and Check classes reusable!</p>
+    <p><strong>Note:&nbsp; </strong>Declare, instantiate and use objects from the other
+    classes as needed.</td>
+  </tr>
+</table>
+
+<dl>
+  <table border="1" width="623">
+    <tr>
+      <td width="617" colspan="2" bgcolor="#C0C0C0"><strong>Design Document</strong></td>
+    </tr>
+    <tr>
+      <td valign="top" width="191" bgcolor="#C0C0C0"><strong>CLASS</strong></td>
+      <td width="420" bgcolor="#C0C0C0"><strong>Purpose</strong></td>
+    </tr>
+    <tr>
+      <td width="191" valign="top"><strong>CheckBookMain</strong></td>
+      <td width="420">The main class of the program</td>
+    </tr>
+    <tr>
+      <td width="191" valign="top"><strong>CheckBookController</strong></td>
+      <td width="420" valign="top">The top level control object that manages other objects in
+      the program.</td>
+    </tr>
+    <tr>
+      <td width="191" valign="top"><strong>CheckBook</strong></td>
+      <td width="420" valign="top">A CheckBook application logic object contains a list of Check
+      objects.</td>
+    </tr>
+    <tr>
+      <td width="191" valign="top"><strong>Check</strong></td>
+      <td width="420" valign="top">A Check application logic object is used to represent a
+      single check.</td>
+    </tr>
+    <tr>
+      <td width="191" valign="top"><strong>&lt;interface classes&gt;</strong></td>
+      <td width="420" valign="top">Use other objects from the javabook or the standard java
+      packages for handling the user interface of the program.</td>
+    </tr>
+  </table>
+  <dd><small><small><small><small><small><small>&nbsp;&nbsp; </small></small></small></small></small></small></dd>
+  <dd>&nbsp;</dd>
+</dl>
+
+<p><small><small><small><small><small><small>&nbsp; </small></small></small></small></small></small></p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+# UTC EPOCH of original creation time
+1387476008
+# UTC EPOCH of last modified time
+1427299099
+# CATEGORY
+Security
+# TITLE
+Chapter I wrote for the OpenStack Security Guide
+# CONTENT in fragment XHTML until EOF
+I wrote a chapter about securing object storage in an OpenStack cloud.  It has been submitted, reviewed, accepted, and published to the OpenStack website!
+
+<p>
+<a href="http://docs.openstack.org/sec/">OpenStack Security Guide</a>
+</p>
+
+<p>
+    <a href="http://docs.openstack.org/security-guide/content/object-storage.html">My Chapter - Object Storage</a>
+</p>
+
+<p>
+    <a href="http://docs.openstack.org/security-guide/content/why-and-how-we-wrote-this-book.html">Chapter with credits including my name and company</a>
+</p>
+
+<p>
+    <a href="https://github.com/openstack/openstack-manuals/commit/46b357573c65a0af67fd098a3245eefd578e8527">OpenStack's GitHub commit</a>
+</p>
+
+<p>
+The above links accessed on Dec. 19, 2013.
+</p>

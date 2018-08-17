@@ -1,0 +1,121 @@
+/*
+ * Main.java
+ *
+ * Created on February 25, 2005, 9:32 PM
+ */
+
+package javaapplication1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+/**
+ *
+ * @author unknown
+ */
+public class Main {
+    
+    /** Creates a new instance of Main */
+    public Main() {
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+		SSLSocket sckSecure = null;
+		BufferedReader buffIn = null;
+		OutputStream out = null;
+
+		System.out.println("Connecting to " + "localhost" + " on port " + 10009);
+		initSSLSocketFactory();
+		try {
+                    
+                    sckSecure = (SSLSocket) _factory.createSocket("127.0.0.1", 10009);
+                    
+                    sckSecure.setSoTimeout(2000);
+		} catch(Exception e) {
+			System.err.println("Error occured connecting socket");
+			System.err.println(e);
+			System.exit(1);
+		}
+		
+
+		//Setup a socket reader and writer
+		try {
+			buffIn = new BufferedReader(new InputStreamReader(sckSecure.getInputStream()));
+			out = sckSecure.getOutputStream();
+		} catch(IOException e) {
+			System.err.println("Error creating input/output streams for connection with " + sckSecure.getRemoteSocketAddress());
+			System.err.println(e);
+			System.exit(1);
+		}
+
+			
+
+		//First we must send the keystore password for auth
+		try {
+			out.write(new String("invalid").getBytes());
+			out.write('\r');
+			out.write('\n');
+sckSecure.close();
+                } catch(IOException e) {
+			System.err.println("Error sending keystore password");
+			System.err.println(e);
+			System.exit(1);
+		}
+
+
+    }
+    
+    static SSLSocketFactory _factory;
+    
+    // Create a trust manager that does not validate certificate chains 
+     private static TrustManager[] _trustAllCerts = new TrustManager[]{ 
+         new X509TrustManager() { 
+             public java.security.cert.X509Certificate[] 
+getAcceptedIssuers() { 
+                 return null; 
+             } 
+             public void 
+checkClientTrusted(java.security.cert.X509Certificate[] certs, String 
+authType) { 
+             } 
+             public void 
+checkServerTrusted(java.security.cert.X509Certificate[] certs, String 
+authType) { 
+             } 
+         } 
+     }; 
+
+
+     private static void initSSLSocketFactory() { 
+         try { 
+             SSLContext sc = SSLContext.getInstance("SSL"); 
+             sc.init(null, _trustAllCerts, new 
+java.security.SecureRandom()); 
+             _factory = (SSLSocketFactory)sc.getSocketFactory(); 
+         } catch (NoSuchAlgorithmException nsae) { 
+             //_logger.severe("NoSuchAlgorithmException setting up SSL support: " + nsae); 
+             _factory = null; 
+         } catch (KeyManagementException kme) { 
+             //_logger.severe("KeyManagementException setting up SSL support: " + kme); 
+             _factory = null; 
+         } 
+     } 
+
+
+
+    
+}

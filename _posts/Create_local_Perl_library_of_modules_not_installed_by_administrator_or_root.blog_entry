@@ -1,0 +1,14 @@
+# UTC EPOCH of original creation time
+1372778889
+# UTC EPOCH of last modified time
+1372778889
+# CATEGORY
+Programming
+# TITLE
+Create local Perl library of modules not installed by administrator or root
+# CONTENT in fragment XHTML until EOF
+<a href="http://search.cpan.org/~ether/local-lib-1.008010/lib/local/lib.pm">Local::Lib</a> is the Perl module you want.  Combine that with <a href="./Dynamically_load_Perl_library_modules_based_on_script_location.html">Dynamically load Perl library modules based on script location</a> to get local-lib into your Perl script, and you should find it easier to download a missing module along with all of its dependencies.
+
+<p>
+Note that for modules that have compiled code you are still looking at platform specific builds.
+</p>

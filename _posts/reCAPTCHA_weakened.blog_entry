@@ -1,0 +1,18 @@
+# UTC EPOCH of original creation time
+1291135881
+# UTC EPOCH of last modified time
+1291135881
+# CATEGORY
+Security
+# TITLE
+reCAPTCHA weakened
+# CONTENT in fragment XHTML until EOF
+So for my Computer Vision graduate class at the University of Colorado I choose to do an analysis of reCAPTCHA and algorithms used to defeat it.
+
+<p>
+With a success rate of up to 23% automated software using vision algorithms can successfully get around the CAPTCHA.  This still allows a large amount of SPAM to get through.  There are other CAPTCHA systems that fair a little better, but it is only a matter of time before those are broken too.  We'll have to wait and see what comes along next to thwart spammers.
+</p>
+
+<p>
+You can access my paper <a href="./downloads/CSCI5722%20-%20Computer%20Vision,%20Final%20Paper,%20Rodney%20Beede,%20Fall%202010.pdf">here</a> and all of my research data and materials <a href="./downloads/CSCI5722%20-%20Computer%20Vision,%20Final%20Paper%20&%20Presentation,%20Rodney%20Beede,%20Fall%202010.7z">here</a>.
+</p>

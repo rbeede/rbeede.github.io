@@ -1,0 +1,511 @@
+<HTML>
+<HEAD>
+	<TITLE>Making your own web page and other neat things to do with a web page (Javascript)</TITLE>
+</HEAD>
+
+<BODY BACKGROUND="background5.gif">
+
+<P>
+<HR>
+<A HREF="index.html">Contents</A>
+<HR>
+
+<H3>Making your own web page and other neat things to do with a web page (Javascript)</H3>
+
+<U>The Basics</U>
+
+<P>
+Web pages (like the one you are looking at now) are written in a language called HTML (HyperText Mark-Up Language).  Web pages can contain all kinds of information about anything you can think of.  A typical web page will usually have images and links to other things on the internet.  You can download programs to help you write web pages or you can make one from scratch yourself.  I will show you step-by-step how to make a very basic web page with images and links on it.
+
+<P>
+Step 1:  Make a directory called MyPages (or anything else you would like to name it, I will reference to MyPages).
+
+<P>
+Step 2:  Open up a text editor or word processor and create a new text document.  (If you use a word processor make sure to save the file as plain ASCII text)
+
+<P>
+Step 3:  On the first line type in <B>&LTHTML></B>.  This tells the web browser that it is reading a html file.
+
+<P>
+Step 4:  On the next line type in <B>&LTHEAD></B>.  This tells the web browser that it is reading heading information.
+
+<P>
+Step 5:  On the next line type in <B>&LTTITLE></B> and right after that type in <B>This is my web page title</B>.  Next type in <B>&LT/TITLE></B>.  The &LTTITLE> tag tells the web browser that it is reading the web page title and that is should put that in the title bar at the top.  The &LT/TITLE> tag tells the web browser that it is done reading the title of the page.  Any text that appears inbetween those tags is put into the title.
+
+<P>
+Step 6:  On the next line type in <B>&LT/HEAD></B>.  This tells the web browser that it is finished reading the header information.
+
+<P>
+Step 7:  Leave one line blank and on the next line type in <B>&LTBODY></B>.  This tells the web browser that the body of the web page is starting.  The body is where you have all you text and images at.
+
+<P>
+Step 8:  On the next line type in <B>This is text on my web page.&LTBR></B>  The &LTBR> tag tells the web browser to break the line and go to the beginning of the next one.
+
+<P>
+Step 9:  On the next line type in <B>&LTIMG SRC="image.gif"></B>.  This tells the web browser to show a image on the web page.  To see this work <A HREF="background0.gif">right click here</A> and select Save.  Save the file in the MyPages directory with the filename <B>image.gif</B>.  The <I>image.gif</I> part in the &LTIMG SRC="image.gif"> tag is where you would enter the name of the graphic file you want to show.  The file must be a gif or jpeg.
+
+<P>
+Step 10:  On the next line type in <B>&LTA HREF="index.html">This is a link&LT/A></B>.  This will make a link on your web page.  The <I>index.hmtl</I> can be replaced by any other web file you want to reference to when they click on the link.  The text inbetween the tags is what the user sees underlined in the web page.  You can make a picture a link by using the &LTIMG> tag inbetween the two link tags.
+
+<P>
+Step 11:  On the next line type in <B>&LT/BODY></B>.  This tells the web browser that you are done with the body.
+
+<P>
+Step 12:  On the next line type in <B>&LT/HTML></B>.  This tells the web browser that the file is ending.
+
+<P>
+Step 13:  Save the file in the MyPages directory with the name <B>index.html</B>.
+
+<P>
+Step 14:  Look at your new page in the web browser by opening the web browser and typing in the address <B>\MyPages\index.html</B>.
+
+<P>
+When you have completed all these steps you should get something that looks like this in the text editor:<BR>
+<PRE>
+&LTHTML>
+&LTHEAD>
+&LTTITLE>This is my web page title&LT/TITLE>
+&LT/HEAD>
+
+&LTBODY>
+This is text on my web page.&LTBR>
+&LTIMG SRC="image.gif">
+&LTA HREF="index.html">This is a link&LT/A>
+&LT/BODY>
+&LT/HTML>
+
+</PRE>
+
+<P>
+<U>Beyond the basics</U>
+
+<P>
+I am going to take the <A HREF="http://www.w3.org" TARGET="new">HTML 4.0 specifications</A> and give you an example and way to use most tags that are in the specifications that will work for IE4.  I don't use Netscape because I always have had trouble with it giving kernal faults.  Disclamier:  I take no responsibility for any damage or loss caused directly or indirectly by the use of this documentation.  I am not responsible for any errors or mistakes.
+
+<P>
+Web pages are made in a language called HTML.  Elements in a web page are defined by tags.  Tags are commands enclosed in brackets.  Web pages have a header section and a body section.  The header section holds information like a description of the file and the title of the page.  The body holds all the text and images of the web page.
+
+<P>
+The first tag that begins a HTML file is the &LTHTML> tag.  It tells the web browser that it is reading a HTML file.  The last tag in a HTML file is the &LT/HTML> tag.  It tells the web browser that it is done reading HTML from the file.  This tag is almost always the last tag in the file.
+
+<P>
+After the &LTHTML> tag usually comes the &LTHEAD> tag.  The &LTHEAD> tag tells the web browser that it is reading the header section of the HTML file.  The &LT/HEAD> tag tells the web browser that the header section of the web page is ending.
+
+<P>
+Inbetween the &LTHEAD> tag and the &LT/HEAD> tag their is the &LTTITLE> tag.  It tells the web browser that the following text is to be placed in the title bar of the web browser.  The &LT/TITLE> tag tells the web browser that it has reached the end of the title.  You cannot use other tags inside the &LTTITLE> tag and &LT/TITLE> tag.
+
+<P>
+After the &LT/HEAD> tag comes the &LTBODY> tag.  The &LTBODY> tag tells the web browser that the body of the web page is starting.  The body is where all the text, images, and links are located in the web page.  The &LT/BODY> tag tells the web browser that the body is ending.  This tag is usually at the bottom of the web page right above the &LT/HTML> tag.  The &LTBODY> tag also has extra parameters that can be set along with it.  To use a tiled picture in the background the tag would look like this:  &LTBODY BACKGROUND="<I>image file name here</I>">.  You can also change the color of the background, text, links, visited links, and active links.  Here is a list of the extra parameters to put inside the tag:
+<PRE>
+&LTBODY BGCOLOR="<I>hex color code here</I>"> -- Background Color
+&LTBODY TEXT="<I>hex color code here</I>"> -- Text Color
+&LTBODY LINK="<I>hex color code here</I>"> -- Link Color
+&LTBODY VLINK="<I>hex color code here</I>"> -- Visited Link
+&LTBODY ALINK="<I>hex color code here</I>"> -- Active Link
+</PRE>
+Go to <A HREF="http://werbach.com/web/wwwhelp.html#color" TARGET="new">this web site</A> for more information on getting the hex codes for colors.<BR>
+You can combine any of these parameters together.  Example:  &LTBODY BGCOLOR="000000" TEXT="000000">.
+
+<P>
+<I>The following tags are used inbetween the &LTBODY> tag and the &LT/BODY> tag.</I>
+
+<P>
+The &LTH<I>#</I>> tag.  This tag indicates that the following text is a header.  Fill in a number from one to six in place of the <I>#</I> to indicate the size of the header.  One is the biggest and six is the smallest.  The &LT/H<I>#</I>> tag indicates that you are closing the header.  Replace the <I>#</I> with the number you used in the &LTH> tag.  You can put other tags inside these to format the text more.  To align the header add the parameter ALIGN=LEFT|CENTER|RIGHT.  Examples:
+<PRE>
+&LTH1 ALIGN=LEFT>Left aligned header&LT/H1>
+&LTH1 ALIGN=CENTER>Center aligned header&LT/H1>
+&LTH1 ALIGN=RIGHT>Right aligned header&LT/H1>
+</PRE>
+
+<P>
+The &LTADDRESS> tag.  This tag indicates that the following text is the address of the author of the web page.  Usually the text will be italicized.  The &LT/ADDRESS> tag indicates the close of the address.  Usually this is at the top or bottom of the page with a link to the author's e-mail address.  You can put other tags inside these.
+
+<P>
+The following tags format the text as described when that text is surrounded by the open and closing tag:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTEM> &LT/EM> -- Indicates emphasis<BR>
+&LTSTRONG> &LT/STRONG> -- Indicates stronger emphasis<BR>
+&LTCITE> &LT/CITE> -- Contains a citation or a reference to other sources<BR>
+&LTDFN> &LT/DFN> -- Indicates that this is the defining instance of the enclosed term<BR>
+&LTCODE> &LT/CODE> -- Designates a fragment of computer code<BR>
+&LTSAMP> &LT/SAMP> -- Designates sample output from programs, scripts, etc<BR>
+&LTKBD> &LT/KBD> -- Indicates text to be entered by the user<BR>
+&LTVAR> &LT/VAR> -- Indicates an instance of a variable or program argument<BR>
+&LTABBR> &LT/ABBR> -- Indicates an abbreviated form (e.g., WWW, HTTP, URI, Mass., etc.)<BR>
+&LTACRONYM> &LT/ACRONYM> -- Indicates an acronym (e.g., WAC, radar, etc.)<BR>
+</FONT>
+<BR>
+You can use other tags inside any of these tags.
+
+<P>
+The &LTBLOCKQUOTE> tag.  This tag is for long quotations.  You enclose the text with the &LTBLOCKQUOTE> tag and the &LT/BLOCKQUOTE> tag.  Usually browsers will indent the text with these tags.  You can include other tags on the inside of these tags.
+
+<P>
+The &LTQ> tag.  This tag is for short quotations.  You enclose the text with the &LTQ> tag and the &LT/Q> tag.  Usually browsers will not indent the text with these tags.  You can include other tags on the inside of these tags.
+
+<P>
+The &LTSUB> &LT/SUB> tags and the &LTSUP> &LT/SUP> tags.  The &LTSUB> &LT/SUB> tags will format the text inbetween them as a subscript.  The &LTSUP> &LT/SUP> tags will format the text inbetween them as a superscript.  You can use other tags inbetween these tags.
+
+<P>
+The &LTP> tag.  The &LTP> tag makes a paragraph break in the web page.  It is a double spaced break from where you insert the code.  You can use a &LT/P> tag but it is not needed.  You can use a ALIGN parameter to align the paragraph text.  Here are some examples:
+<PRE>
+&LTP ALIGN=LEFT> -- Left alignment
+&LTP ALIGN=CENTER> -- Center alignment
+&LTP ALIGN=RIGHT> -- Right alignment
+</PRE>
+
+<P>
+The &LTBR> tag.  This tag will force a line break to the next line.  Unless you are using the &LTPRE> &LT/PRE> tags a line return in the HTML web file will not cause a line break.  The web browser will just stick it together.
+
+<P>
+The &AMPNBSP code.  This code will stop a line break from happening between the words where it appears.  Example:  No &nbspBreak can happen between the words No Break.
+
+<P>
+The &AMPSHY code.  This code tells the browser that it can break the line at that point and put a soft-hypen on the first line where the break occured.
+
+<P>
+The &LTPRE> &LT/PRE> tags.  The &LTPRE> tag indicates that the following text is preformatted and that all line breaks and spaces should be shown exactly like they are in the HTML document.  The &LT/PRE> tag indicates that the preformmating is over.  You can use other tags inbetween these tags.
+
+<P>
+The &LTOL> &LT/OL> tags.  These tags indicate the beginning and end of a ordered list.  You use the &LTLI> tag to make items in this type of list.  Here are some parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTOL TYPE=<I>numbering style here</I>> -- Sets the numbering style; numbers=1, lowercase letters=a, uppercase letters=A, lower roman=i, upper roman=I<BR>
+&LTOL START=<I>number to start at</I>> -- Sets the number to start at; for characters number corresponds to position in alphabet<BR>
+</FONT>
+<BR>
+You can combine multiple parameters together.
+
+<P>
+The &LTUL> &LT/UL> tags.  These tags indicate the beginning and end of a unordered (bulleted) list.  You use the &LTLI> tag to make items in this type of list.  Here are some parameters:
+<PRE>
+&LTUL TYPE=DISC> -- gives a disc shape to the list items
+&LTUL TYPE=CIRCLE> -- gives a hollow circle shape to the list items
+&LTUL TYPE=SQUARE> -- gives a hollow square shape to the list items
+</PRE>
+
+<P>
+The &LTLI> &LT/LI> tags.  These tags indicate that the text inbetween them is a list item.  It is used inbetween &LTUL> &LT/UL> tags or &LTOL> &LT/OL> tags.  You can set one parameter to set the current number of the item:  &LTLI VALUE=<I>number</I>>.  To make indented items add another set of &LTOL> &LT/OL> or &LTUL> &LT/UL> tags.  Example:
+<PRE>
+&LTUL>
+&LTLI>Level 1&LT/LI>
+	&LTUL>
+	&LTLI>Level 2&LT/LI>
+	&LT/UL>
+&LT/UL>
+</PRE>
+You can put other tags inbetween the &LTLI> &LT/LI> tags.
+
+<P>
+The &LTDL>, &LTDT>, and &LTDD> tags.  These tags are used to make definition lists.  The &LTDL> tag indicates the beginning of a definition list and is closed witht the &LT/DL> tag.  Inbetween those tags would be the &LTDT> and &LTDD> tags.  The &LTDT> tag indicates the beginning of a definition term.  The &LT/DT> tag indicates that the definition term is ending.  The &LTDD> tag indicates the beginning of a definition.  The &LT/DD> tag indicates the end of a definition.  You can put other tags inbetween any of these tags.
+
+<P>
+The &LTTABLE> tag.  This tag indicates that a table is beginning.  The &LT/TABLE> tag indicates that a table is ending.  Here is a list of parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTTABLE ALIGN=LEFT> -- Aligns the table to the left<BR>
+&LTTABLE ALIGN=CENTER> -- Aligns the table to the center<BR>
+&LTTABLE ALIGN=RIGHT> -- Aligns the table to the right<BR>
+&LTTABLE WIDTH=<I>desired width here</I>> -- Sets the width of the table.  Value may be in <B><I>pixels</I></B> or <B><I>number</I>%</B> percent space.<BR>
+&LTTABLE BORDER=<I>border size here</I>> -- Sets the size of the border.  Setting of 0 shows no border.  Numbers valid only.<BR>
+</FONT>
+<BR>
+You can combine multiple parameters.
+
+<P>
+The &LTCAPTION> tag.  This tag indicates that a table caption is beginning.  This tag must appear right after the &LTTABLE> tag.  The &LT/CAPTION> tag indicates the closing of the table caption.  Here are the extra parameters:
+<PRE>
+&LTCAPTION ALIGN=TOP> -- Caption is at the top of the table
+&LTCAPTION ALIGN=BOTTOM> -- Caption is at the bottom of the table
+&LTCAPTION ALIGN=LEFT> -- Caption is at the left of the table
+&LTCAPTION ALIGN=RIGHT> -- Caption is at the right of the table
+</PRE>
+You can use other tags inbetween these.
+
+<P>
+The &LTTR> tag.  This tag indicates the beginning of a table row.  The ALIGN and VALIGN parameters align the text in the cells.  Here is the possible values:
+<PRE>
+&LTTR ALIGN=LEFT> -- Aligns the text to the left
+&LTTR ALIGN=CENTER> -- Aligns the text to the center
+&LTTR ALIGN=RIGHT> -- Aligns the text to the right
+&LTTR VALIGN=TOP> -- Aligns the text to the top
+&LTTR VALIGN=MIDDLE> -- Aligns the text to the middle
+&LTTR VALIGN=BOTTOM> -- Aligns the text to the bottom
+</PRE>
+You end a table row with the &LT/TR> tag.  You can combine multiple parameters.
+
+<P>
+The &LTTH> tag.  This tag is used inbetween the &LTTR> &LT/TR> tags.  It indicates a table header cell in the current row and current column.  Each set of &LTTH> &LT/TH> inside a table row are in a different column.  It formats the text to be in a bold font.  The &LT/TH> tag indicates the closing of the table header cell.  Here is a list of the parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTTH ROWSPAN=<I>number</I>> -- Indicates the number of rows this cell occupies.  Zero means all rows from current to the last row of the table.<BR>
+&LTTH COLSPAN=<I>number</I>> -- Indicates the number of columns this cell occupies.  Zero means all columns from current to the last column of the table.<BR>
+&LTTH NOWRAP> -- Indicates that text should not be wrapped inside the cell.<BR>
+&LTTH WITDH=<I>pixels</I>> -- Indicates the recommended width of the cell.<BR>
+&LTTH HEIGHT=<I>pixels</I>> -- Indicates the recommended height of the cell.<BR>
+&LTTH BGCOLOR=<I>hex number</I>> -- Indicates the background color for the cell.  Go to <A HREF="http://werbach.com/web/wwwhelp.html#color" TARGET="new">this web site</A> for more information on getting the hex codes for colors.<BR>
+&LTTH ALIGN=<I>horizontal alignment</I>> -- Sets the text alignment.  Possible values are LEFT, CENTER, or RIGHT.<BR>
+&LTTH VALIGN=<I>vertical alignment</I>> -- Sets the text alignment.  Possible values are TOP, MIDDLE, or BOTTOM.<BR>
+</FONT>
+<BR>
+You can combine any of these parameters together.
+
+<P>
+The &LTTD> tag.  This tag is used inbetween the &LTTR> &LT/TR> tags.  It indicates a table cell in the current row and current column.  Each set of &LTTD> &LT/TD> inside a table row are in a different column.  The &LT/TD> tag indicates the closing of the table cell.  Here is a list of the parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTTD ROWSPAN=<I>number</I>> -- Indicates the number of rows this cell occupies.  Zero means all rows from current to the last row of the table.<BR>
+&LTTD COLSPAN=<I>number</I>> -- Indicates the number of columns this cell occupies.  Zero means all columns from current to the last column of the table.<BR>
+&LTTD NOWRAP> -- Indicates that text should not be wrapped inside the cell.<BR>
+&LTTD WIDTH=<I>pixels</I>> -- Indicates the recommended width of the cell.<BR>
+&LTTD HEIGHT=<I>pixels</I>> -- Indicates the recommended height of the cell.<BR>
+&LTTD BGCOLOR=<I>hex number</I>> -- Indicates the background color for the cell.  Go to <A HREF="http://werbach.com/web/wwwhelp.html#color" TARGET="new">this web site</A> for more information on getting the hex codes for colors.<BR>
+&LTTD ALIGN=<I>horizontal alignment</I>> -- Sets the text alignment.  Possible values are LEFT, CENTER, or RIGHT.<BR>
+&LTTD VALIGN=<I>vertical alignment</I>> -- Sets the text alignment.  Possible values are TOP, MIDDLE, or BOTTOM.<BR>
+</FONT>
+<BR>
+You can combine any of these parameters together.
+
+<P>
+The &LTA> tag.  This tag is used for links to other web pages or mark a place for links to go.  Here are some examples of how to use this tag:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTA NAME=<I>anchor name here</I>> &LT/A> -- This makes a name anchor.  This allows you to skip to the section in a html document where you have placed this link.<BR>
+&LTA HREF=<I>url</I>><I>link text here</I>&LT/A> -- This make a hyper-link to the url your specifiy.  To link to a name anchor use <B>#<I>anchor name here</I></B> for the url.  You can also append that to a url.  The link text inbetween the two tags it usually underlined.  To make a image be a link use the &LTIMG> tag inbetween the &LTA HREF> &LT/A> tags.<BR>
+</FONT>
+<BR>
+You can use other tags within these.
+
+<P>
+The &LTIMG> tag.  This tag indicates that a image is to be shown.  Here are the parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTIMG SRC=<I>url and picture name here</I>> -- SRC sets the image filename.  Usually you can use relative url's and provide just the image filename.  Most browsers only support gif and jpeg format pictures.<BR>
+&LTIMG ALT=<I>short description of picture here</I>> -- ALT sets a description of the picture for text-only browsers.<BR>
+&LTIMG LONGDESC=<I>url to description</I>> -- Optional link to a longer description of the image.<BR>
+&LTIMG HEIGHT=<I>pixels</I>> -- Sets height of image in pixels.  Usually used to speed up display of web page in browsers.<BR>
+&LTIMG WIDTH=<I>pixels</I>> -- Sets width of image in pixels.  Usually used to speed up display of web page in browsers.<BR>
+&LTIMG BORDER=<I>border size</I>> -- Sets the size of the outside border of the image.  A setting of 0 means no border.<BR>
+&LTIMG ALIGN=<I>alignment</I>> -- Sets the image alignment with the text around it.  Possible values are LEFT, RIGHT, TOP, MIDDLE, and BOTTOM.<BR>
+&LTIMG USEMAP=<I>url</I>> -- Sets image to be a client-side image map.<BR>
+&LTIMG ISMAP> -- Sets image to be a server-side image map.<BR>
+</FONT>
+<BR>
+You can combine any of these parameters together except for the two image map ones.
+
+<P>
+The Font Format tags.  You use the font tags to format the text enclosed in the tags to a specific manner.  Here is a list of the tags:
+<PRE>
+&LTTT> &LT/TT> -- Renders as teletype or monospaced text
+&LTI> &LT/I> -- Renders as italic text style
+&LTB> &LT/B> -- Renders as bold text style
+&LTBIG> &LT/BIG> -- Renders text in a "large" font
+&LTSMALL> &LT/SMALL> -- Renders text in a "small" font
+&LTSTRIKE> &LT/STRIKE> or &LTS> &LT/S> -- Render strike-through style text
+&LTU> &LT/U> -- Renders underlined text. 
+</PRE>
+You can use other tags inside these.
+
+<P>
+The &LTFONT> tag.  This tag changes the color and size of the font.  Here are its parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTFONT SIZE=<I>size</I>> &LT/FONT> -- You can set the size to a fixed size from 1 to 7 or a relative size by setting the size equal to <B>-<I>number</I></B> or <B>+<I>number</I></B>.<BR>
+&LTFONT COLOR=<I>hex code</I>> &LT/FONT> -- Sets the color of the text.  Go to <A HREF="http://werbach.com/web/wwwhelp.html#color" TARGET="new">this web site</A> for more information on getting the hex codes for colors.<BR>
+&LTFONT FACE=<I>font name</I>> &LT/FONT> -- Sets the font to use for the text.  The other person has to have that font for this to work.
+</FONT>
+<BR>
+You can combine any of these tags together.  Any other tags can be used inbetween these.
+
+<P>
+The &LTHR> tag.  This tag indicates that a horizontal rule is to be inserted.  Here is a list of parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTHR ALIGN=<I>alignment</I>> -- Sets the alignment of the ruler.  Possible values are LEFT, CENTER, and RIGHT.<BR>
+&LTHR NOSHADE> -- Sets the the ruler as a single color.<BR>
+&LTHR SIZE=<I>pixels</I>> -- Size of the ruler in pixels<BR>
+&LTHR WIDTH=<I>number%</I>> -- Width of the ruler in percent<BR>
+</FONT>
+<BR>
+You can combine multiple parameters.
+
+<P>
+The &LTFRAMESET> tag.  This tag indicates that a frameset is beginning.  You can put other framesets inside each other to divide up frames ever more.  The break order is left to right and top to bottom.  Here are some parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTFRAMESET ROWS=<I>row list here</I>> -- Defines rows.  Each row is seperated by a comma and you specify row size in pixels or percent.  Example:  &LTFRAMESET ROWS=20%,250> would define two rows, the first occupying 20% and the second occupying 250 pixels.<BR>
+&LTFRAMESET COLS=<I>col list here</I>> -- Defines columns.  Each column is seperated by a comma and you specify column size in pixels or percent.  Example:  &LTFRAMESET COLS=20%,250> would define two columns, the first occupying 20% and the second occupying 250 pixels.
+</FONT>
+<BR>
+You can combine both parameters.  You usually will have these right after the &LT/HEAD> tag.
+
+<P>
+The &LTFRAME> tag.  This tag indicates that a frame is to be filled in.  You place this inside the &LTFRAMESET> &LT/FRAMESET> tags.  You will have multiple &LTFRAME> tags when you have more then one column or row.  The fill order is left to right and top to bottom.  Here are the parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTFRAME LONGDESC=<I>url to long description here</I>> -- Link to long description<BR>
+&LTFRAME NAME=<I>name of frame</I>> -- Name of frame for targetting<BR>
+&LTFRAME SRC=<I>url to content</I>> -- File to be shown in frame<BR>
+&LTFRAME FRAMEBORDER=<I>1 or 0</I>> -- Show border around frame if 1 and don't show border around frame if 0<BR>
+&LTFRAME MARGINWIDTH=<I>pixels</I>> -- Margin width in pixels<BR>
+&LTFRAME MARGINHEIGHT=<I>pixels</I>> -- Margin height in pixels<BR>
+&LTFRAME NORESIZE> -- Disables user from resizing the frame<BR>
+&LTFRAME SCROLLING=<I>YES, NO, AUTO</I>> -- Yes=show scrollbars,No=hide scrollbars,Auto=choose best<BR>
+</FONT>
+<BR>
+To change the current contents of a frame give the frame a name using the NAME parameter.  Create a link to the new page and add this parameter to the link code <B>TARGET=<I>frame name here</I></B>.  Example:  &LTA HREF=newpage.html TARGET=frameb>CLICK HERE&LT/A>.
+
+<P>
+The &LTNOFRAMES> tag.  This tag is used to show the user something when their browser doesn't support frames.  Place some text after this tag (like a link to a non-frames version) and close it with the &LT/NOFRAMES> tag.
+
+<P>
+The &LTFORM> tag.  This tag indicates the beginning of a form.  The &LT/FORM> tag indicates the closing of the form.  Here are the parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTFORM ACTION=<I>url</I>> -- Specifies the address of where to put the form data on a submit<BR>
+&LTFORM METHOD=<I>method</I>> -- Specifies the method of posting the data.  GET appends the data to the url and POST sends the data to a agent.<BR>
+&LTFORM ENCTYPE=<I>encode type</I>> -- Specifies the type of encoding<BR>
+&LTFORM ACCEPT=<I>content-type-list</I>> -- Specifies the files to filter out when sending files<BR>
+</FONT>
+<BR>
+You can combine multiple parameters together and use other tags inbetween these.
+
+<P>
+The &LTINPUT> tag.  This tag indicates the type of input in a form.  Here are the parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTINPUT TYPE=<I>type</I>> -- Indicates the type of input.  Valid values are:  TEXT - creates a single line text input, PASSWORD - like "TEXT" but the input is masked, CHECKBOX - creates a checkbox, RADIO - creates a radio button, SUBMIT - creates a submit button, IMAGE - creates a graphical submit button (the value of SRC sets the image), RESET - creates a reset button, BUTTON - creates a push button, HIDDEN - creates a hidden control, FILE - file selection control.<BR>
+&LTINPUT NAME=<I>name</I>> -- Indicates the name of the control.<BR>
+&LTINPUT SIZE=<I>size</I>> -- Sets the width in pixels unless "TYPE" is "TEXT" or "PASSWORD", then it indicates the number of characters.<BR>
+&LTINPUT MAXLENGTH=<I>maximum number of characters</I>> -- Sets the maximum number of characters that can be entered into a "TEXT" or "PASSWORD" control.<BR>
+&LTINPUT CHECKED> -- Indicates if a "RADIO" or "CHECKBOX" is checked<BR>
+&LTINPUT SRC=<I>url</I>> -- Indicates the URL to the image for a graphical button<BR>
+&LTINPUT ALIGN=<I>alignment</I>> -- Sets the alignment of the control.  Valid values are LEFT, CENTER, and RIGHT<BR>
+&LTINPUT READONLY> -- Sets the control to be read-only<BR>
+&LTINPUT DISABLED> -- Sets the control to be disabled<BR>
+&LTINPUT TABINDEX=<I>number</I>> -- Sets the order in which a "tab" hits this control<BR>
+&LTINPUT ACCESSKEY=<I>key</I>> -- Gives the control a short-cut key<BR>
+</FONT>
+<BR>
+You can combine multiple parameters together.
+
+<P>
+The &LTBUTTON> tag.  This tag indicates that a button is being made.  Although the &LTINPUT> tag can provide buttons as well, this tag allows for more content to be placed inside the button.  To indicate the closing of the button use the &LT/BUTTON> tag.  Here are the parameters:<BR>
+<FONT SIZE=-1>
+<BR>
+&LTBUTTON NAME=<I>name</I>> -- Assigns the control a name<BR>
+&LTBUTTON VALUE=<I>intial value</I>> -- Sets a button as the default, usually "VALUE" is the same as the "TYPE"<BR>
+&LTBUTTON TYPE=<I>button type</I>> -- Sets the button type, values are SUBMIT for a submit button, RESET for a reset button, and BUTTON for a push button<BR>
+&LTBUTTON DISABLED> -- Makes the button disabled<BR>
+&LTBUTTON ACCESSKEY=<I>key</I>> -- Give the control a short-cut key<BR>
+&LTBUTTON TABINDEX=<I>number</I>> -- Sets the tab stop number of the control<BR>
+</FONT>
+<BR>
+You can combine multiple parameters together.  You can use other tags inbetween these.
+
+<P>
+The &LTSELECT> tag.  This tag indicates the beginning of a select combo or list.  Here are the parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTSELECT NAME=<I>name</I>> -- Sets the control name<BR>
+&LTSELECT SIZE=<I>number of rows</I>> -- Sets the number of rows to show for a list<BR>
+&LTSELECT MULTIPLE> -- Indicates that multiple selections (list) are allowed<BR>
+&LTSELECT DISABLED> -- Indicates that the control is disabled<BR>
+&LTSELECT TABINDEX=<I>number</I>> -- Sets the tab stop position<BR>
+</FONT>
+<BR>
+
+You can combine multiple parameters together.  You use the &LT/SELECT> tag to indicate the close of the selection.
+
+<P>
+The &LTOPTGROUP> tag.  This tag indicates the beginning of a group of options.  It makes a cascading menu with the options inbetween it.  You close this tag with the &LT/OPTGROUP> tag.  You cannot nest option groups.  Here are the parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTOPTGROUP DISABLED> -- Indicates that the control is disabled<BR>
+&LTOPTGROUP LABEL=<I>name of group</I>> -- Sets the name of the group<BR>
+</FONT>
+<BR>
+You can combine both parameters.
+
+<P>
+The &LTOPTION> tag.  This tag is used either inbetween the &LTSELECT> &LT/SELECT> tags or the &LTOPTGROUP> &LT/OPTGROUP> tags.  It indicates the beginning of a option that can be selected from a list.  Here are the parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTOPTION SELECTED> -- Indicates if the current option is selected by default<BR>
+&LTOPTION DISABLED> -- Indicates that the current option is disabled<BR>
+&LTOPTION LABEL=<I>short label</I>> -- Specifies a short label<BR>
+&LTOPTION VALUE=<I>option value</I>> -- Sets the value returned<BR>
+</FONT>
+<BR>
+You can combine multiple parameters together.  You indicate the closing of the option with the &LT/OPTION> tag.  Any text inbetween the &LTOPTION> &LT/OPTION> tags is the text shown to the user.
+
+<P>
+The &LTTEXTAREA> tag.  This tag indicates the beginning of a text area.  You close this tag with the &LT/TEXTAREA> tag.  Here are the parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTTEXTAREA NAME=<I>control name</I>> -- Sets the name of the control<BR>
+&LTTEXTAREA ROWS=<I>number</I>> -- Sets the number of visible rows<BR>
+&LTTEXTAREA COLS=<I>number</I>> -- Sets the number of visible columns<BR>
+&LTTEXTAREA DISABLED> -- Indicates that the control is disabled<BR>
+&LTTEXTAREA READONLY> -- Indicates that the control is readonly<BR>
+&LTTEXTAREA TABINDEX=<I>number</I>> -- Sets the tab stop position<BR>
+&LTTEXTAREA ACCESSKEY=<I>key</I>> -- Gives the control a shortcut key<BR>
+</FONT>
+<BR>
+You can combine multiple parameters.  Any text inbetween these tags is set as initial text and preserved.
+
+<P>
+The &LTSCRIPT> tag.  This tag indicates the beginning of a script.  Enclose the script with the comments tags so non-compatible browsers won't display the script.  You close a script with the &LT/SCRIPT> tag.  Here are the parameters:<BR>
+<BR>
+<FONT SIZE=-1>
+&LTSCRIPT SRC=<I>url</I>> -- Source of the external script file<BR>
+&LTSCRIPT TYPE=<I>script type</I>> -- Indicates the type of script, example:  Javascript<BR>
+&LTSCRIPT DEFER> -- Indicates that no document content will be made<BR>
+</FONT>
+<BR>
+You can combine multiple parameters.
+
+<P>
+The &LTNOSCRIPT> tag.  This tag is referenced to when a browser cannot use a script.  You close it with the &LT/NOSCRIPT> tag.
+
+<P>
+Character Reference Codes.  For characters that you wish to display without HTML catching (like to display a less than sign) use these:<BR>
+<BR>
+<FONT SIZE=-1>
+<B>&AMPAMP</B> -- amperstand<BR>
+<B>&AMPLT</B> -- less than sign<BR>
+<B>&AMPGT</B> -- greater than sign<BR>
+<B>&AMPTILDE</B> -- tilde<BR>
+
+
+<P>
+<U>Javascript</U>
+
+<P>
+Javascript is a language that can be added into your web page to give it extra features (like changing images, random backgrounds, ...).
+
+<P>
+I have written a Windows 95 programs that allows you make the any of the following tricks of javascript.  To download it <A HREF="../Infinisoft/legal.html" TARGET="NEW">click here</A>.  When you are brought to the download page look for the program named Javascript Code Maker.
+
+<P>
+Here is what the program can make:<BR>
+<UL>
+<LI>Random Background Picture -- Picks from a list of background graphics and chooses one at random to be displayed</LI>
+<LI>Random Background Sound -- Picks from a list of background sounds and chooses one at random to be played</LI>
+<LI>Date & Time Display -- Displays the date and time on your webpage and constantly updates</LI>
+</UL>
+
+<P>
+<U>Uploading files</U>
+
+<P>
+I wrote an example of how to use Windows FTP to upload your webpage files.  The pictures are examples of what I did to upload files to Cameron University.  <A HREF="web-page-making-upload.html">Click here for the example</A>.
+
+<P>
+<HR>
+Rodney Beede © 1998<BR>
+Nothing on any of these web pages may be copied without my written permission.
+
+</BODY>
+</HTML>

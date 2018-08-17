@@ -1,0 +1,207 @@
+# UTC EPOCH of original creation time
+1233265680
+# UTC EPOCH of last modified time
+1354312958
+# CATEGORY
+Programming
+# TITLE
+Maven 2 project as Eclipse Dynamic Web Project
+# CONTENT in fragment XHTML until EOF
+I used:
+<ul>
+<li>Maven 2.2.1</li>
+<li>Java 1.6.0_22</li>
+<li>Eclipse IDE for Java EE Developers, Helios SR1, 3.6.1 (Build id: 20100917-0705)</li>
+</ul>
+
+<h2>Creating the project</h2>
+
+<ol>
+<li>mvn archetype:create -DgroupId=<b>com.mycompany.app</b> -DartifactId=<b>my-webapp</b> -DarchetypeArtifactId=maven-archetype-webapp</li>
+<li>Project is created</li>
+</ol>
+
+<h2>Create the Eclipse project</h2>
+
+<ol>
+<li>Change into the project folder</li>
+<li>Modify the pom.xml with:
+   <ol>
+      <li>under &lt;build> &lt;plugins><pre>
+			&lt;plugin>
+				&lt;groupId>org.apache.maven.plugins&lt;/groupId>
+				&lt;artifactId>maven-eclipse-plugin&lt;/artifactId>
+				&lt;configuration>
+					&lt;downloadSources>true&lt;/downloadSources>
+					&lt;downloadJavadocs>true&lt;/downloadJavadocs>
+					&lt;wtpversion>2.0&lt;/wtpversion>
+				&lt;/configuration>
+			&lt;/plugin>
+</pre></li>
+      <li>Or do <b>mvn eclipse:eclipse -Dwtpversion=2.0</b></li>
+   </ol>
+</li>
+<li>mvn eclipse:eclipse</li>
+<li>Import the project in Eclipse with "Existing Projects into Workspace"</li>
+</ol>
+
+<h2>Sample pom.xml</h2>
+
+<a href="http://code.google.com/p/distributed-wpa-cracking/source/browse/trunk/src/distributed-wpa-cracking-master/pom.xml">Old web project I did in school</a>
+
+<p>
+A helpful list of how to resolve servlet-api newer versions (it is very inconsistent on all the Maven repos) can be found at <a href="http://maven.apache.org/guides/mini/guide-coping-with-sun-jars.html">http://maven.apache.org/guides/mini/guide-coping-with-sun-jars.html</a>, but beware that newer releases of the servlet apis don't seem to follow these recommendations anymore.
+</p>
+
+<p>
+Another sample POM:
+</p>
+
+<pre>
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;
+	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+	&lt;groupId&gt;com.rodneybeede&lt;/groupId&gt;
+	&lt;artifactId&gt;TODO-ARTIFACT&lt;/artifactId&gt;
+	&lt;packaging&gt;war&lt;/packaging&gt;
+	&lt;version&gt;-SNAPSHOT&lt;/version&gt;
+	
+	&lt;name&gt;TODO&lt;/name&gt;
+	&lt;url&gt;http://TODO/&lt;/url&gt;
+	&lt;inceptionYear&gt;2012&lt;/inceptionYear&gt;
+	&lt;licenses&gt;
+		&lt;license&gt;
+			&lt;name&gt;&lt;/name&gt;
+			&lt;url&gt;&lt;/url&gt;
+			&lt;distribution&gt;repo&lt;/distribution&gt;
+			&lt;comments&gt;&lt;/comments&gt;
+		&lt;/license&gt;
+	&lt;/licenses&gt;
+	&lt;organization&gt;
+		&lt;name&gt;TODO&lt;/name&gt;
+		&lt;url&gt;http://www.TODO.com/&lt;/url&gt;
+	&lt;/organization&gt;
+	&lt;developers&gt;
+		&lt;developer&gt;
+			&lt;id&gt;rbeede&lt;/id&gt;
+			&lt;name&gt;Rodney Beede&lt;/name&gt;
+			&lt;email&gt;nospam_see_project_website@127.0.0.1&lt;/email&gt;
+			&lt;url&gt;http://www.rodneybeede.com/&lt;/url&gt;
+			&lt;organization&gt;TODO&lt;/organization&gt;
+			&lt;roles&gt;
+				&lt;role&gt;architect&lt;/role&gt;
+				&lt;role&gt;developer&lt;/role&gt;
+				&lt;role&gt;tester&lt;/role&gt;
+			&lt;/roles&gt;
+		&lt;/developer&gt;
+	&lt;/developers&gt;
+	&lt;contributors&gt;
+		&lt;contributor&gt;
+			&lt;name&gt;&lt;/name&gt;
+			&lt;email&gt;nospam_see_project_website@127.0.0.1&lt;/email&gt;
+			&lt;url&gt;&lt;/url&gt;
+			&lt;organization&gt;TODO&lt;/organization&gt;
+			&lt;organizationUrl&gt;http://www.TODO.com/&lt;/organizationUrl&gt;
+			&lt;roles&gt;
+				&lt;role&gt;TODO&lt;/role&gt;
+			&lt;/roles&gt;
+		&lt;/contributor&gt;
+	&lt;/contributors&gt;
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;log4j&lt;/artifactId&gt;
+			&lt;version&gt;1.2.17&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;apache-log4j-extras&lt;/artifactId&gt;
+			&lt;version&gt;1.1&lt;/version&gt;
+		&lt;/dependency&gt;
+		
+		&lt;!-- Maven Central and other repos don't have consisent locations for versions of the J2EE APIs
+			This guide was helpful for older versions, but it doesn't seem to be followed anymore in repos:  http://maven.apache.org/guides/mini/guide-coping-with-sun-jars.html
+			You can also search http://jcp.org/en/jsr/all to get the middle point (x.'#'.z) latest JSR spec version
+		--&gt;
+		
+		&lt;!-- http://www.java.net/forum/topic/glassfish/glassfish/javaxservlet-api-version --&gt;
+		&lt;!-- http://java.net/projects/servlet-spec --&gt;
+		&lt;!-- Found in Maven central repository --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+			&lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+			&lt;version&gt;3.0.1&lt;/version&gt;
+			&lt;scope&gt;provided&lt;/scope&gt;
+		&lt;/dependency&gt;
+		
+		&lt;!-- http://jsp.java.net/downLoad.html --&gt;
+		&lt;!-- Found in Maven central repository --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;javax.servlet.jsp &lt;/groupId&gt;
+			&lt;artifactId&gt;javax.servlet.jsp-api&lt;/artifactId&gt;
+			&lt;version&gt;2.2.1&lt;/version&gt;
+			&lt;scope&gt;provided&lt;/scope&gt;
+		&lt;/dependency&gt;
+		
+		&lt;!-- Find the latest version with groupId and artifactId per http://jstl.java.net/download.html --&gt;
+		&lt;!-- Found in Maven central repository --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.glassfish.web.javax.servlet.jsp&lt;/groupId&gt;
+			&lt;artifactId&gt;jstl&lt;/artifactId&gt;
+			&lt;version&gt;1.2.1&lt;/version&gt;
+		&lt;/dependency&gt;
+	&lt;/dependencies&gt;
+	&lt;build&gt;
+		&lt;finalName&gt;TODO-DEFAULT-WEBAPP-CONTEXT-NAME&lt;/finalName&gt;
+		&lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-eclipse-plugin&lt;/artifactId&gt;
+				&lt;configuration&gt;
+					&lt;downloadSources&gt;true&lt;/downloadSources&gt;
+					&lt;downloadJavadocs&gt;true&lt;/downloadJavadocs&gt;
+					&lt;wtpversion&gt;2.0&lt;/wtpversion&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+			&lt;plugin&gt;
+				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+				&lt;configuration&gt;
+					&lt;source&gt;1.6&lt;/source&gt;
+					&lt;target&gt;1.6&lt;/target&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+	&lt;/build&gt;
+
+&lt;/project&gt;
+
+</pre>
+
+<h2>Get it to actually run</h2>
+
+<p>
+Next we must modify some variables in Eclipse in order to get it to actually run the project.
+</p>
+
+<ol>
+<li>Window menu, Preferences</li>
+<li>Server, Runtime Environments</li>
+<li>Add...</li>
+<li>Pick your web container server</li>
+<li>Next to follow setup then Finish</li>
+<li>Java, Build Path, Classpath Variables</li>
+<li>New...</li>
+<li>Name (case sensitive) of <b>M2_REPO</b></li>
+<li>Path of C:/Users/youruser/.m2/repository</li>
+<li>OK to save</li>
+<li>Say yes to the full rebuild</li>
+<li>Run/Debug, String Substitution</li>
+<li>New...</li>
+<li>Name (case sensitive) of <b>M2_REPO</b></li>
+<li>Value of <b>%USERPROFILE%\.m2\repository</b></li>
+<li>OK to save</li>
+<li>Right click on your project in the Project Explorer</li>
+<li>Run As</li>
+<li>Run on Server</li>
+<li>Pick your server and run your app</li>
+</ol>

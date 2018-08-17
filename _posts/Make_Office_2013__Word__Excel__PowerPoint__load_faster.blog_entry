@@ -1,0 +1,20 @@
+# UTC EPOCH of original creation time
+1393263731
+# UTC EPOCH of last modified time
+1393263731
+# CATEGORY
+Tech Tricks
+# TITLE
+Make Office 2013 (Word, Excel, PowerPoint) load faster
+# CONTENT in fragment XHTML until EOF
+I found that if you disable the "Startup Screen" for Word, Excel, PowerPoint, etc. in Office 2013 it goes from taking 5+ seconds to load to only a second.  You must do the following for each one:
+
+<ol>
+<li>Launch the Office application</li>
+<li>File tab</li>
+<li>Options</li>
+<li>In the General section</li>
+<li>Start up options pane</li>
+<li>Uncheck "Show the Start screen when this application starts"</li>
+<li>OK button</li>
+<li>Repeat for any other Office applications</li>

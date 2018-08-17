@@ -1,0 +1,20 @@
+# UTC EPOCH of original creation time
+1232242800
+# UTC EPOCH of last modified time
+1232242800
+# CATEGORY
+Computer Problems
+# TITLE
+P4G533-LA motherboard, Drivers, Windows 98
+# CONTENT in fragment XHTML until EOF
+I have this motherboard that was pulled from an HP computer.  I was trying to find drivers so I searched on the Internet.  One person provided a link via HP that listed the drivers I would need, but they are out of date.
+<p>
+I decided to grab the drivers directly from the chipset maker's website instead.  For reference these are what you need for Windows 98 (XP detects most of the stuff, don't bother with Vista).
+</p>
+
+<ul>
+<li>Video - Intel Extreme Graphics - Intel 82845G Graphics Controller - <a href="http://downloadcenter.intel.com/Product_Filter.aspx?ProductID=865">Chipset Manufactor Download</a></li>
+<li>Audio - Realtek AC'97 - AC'97 Audio Codecs - <a href="http://www.realtek.com.tw/downloads/downloadsCheck.aspx?Langid=1&PNid=14&PFid=23&Level=4&Conn=3&DownTypeID=3">Chipset Manufactor Download</a></li>
+<li>BIOS - <b>UNTESTED</b> - HP's Website - <a href="http://h10025.www1.hp.com/ewfrf/wc/softwareList?lc=en〈=en&cc=us&product=362754&dlc=en&sw_lang=8&os=228">HP Download</a></li>
+<li>LAN - Realtek RTL8139/810x Family Fast Ethernet NIC - <a href="http://www.realtek.com.tw/downloads/downloadsView.aspx?Langid=1&PNid=14&PFid=6&Level=5&Conn=4&DownTypeID=3&GetDown=false">www.realtek.com.tw, Downloads, Network ICs, 10/100M Fast Ethernet, PCI, Software</a> (Thanks Bradley)</li>
+</ul>

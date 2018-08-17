@@ -1,0 +1,111 @@
+# UTC EPOCH of original creation time
+1234411800
+# UTC EPOCH of last modified time
+1234411800
+# CATEGORY
+Programming
+# TITLE
+Java Hibernate 3, Maven 2, and pom.xml
+# CONTENT in fragment XHTML until EOF
+I decided to try using Hibernate 3 in a Java project managed by Maven.  The documentation and public Maven repo for Hibernate were not very good.  Even downloading the official Hibernate distribution didn't include all the necessary 3rd party libraries.  Below is the dependencies I used for my Maven 2 pom.xml to get Hibernate to work:
+<pre>
+      &lt;!-- Hibernate's Core pom distro is lacking since it fails to actually
+
+                  include all dependencies.  We must manually setup the
+
+                  needed dependencies based on the version of Hibernate
+
+                 
+
+                  We get most of these from the complete hibernate-core distribution
+
+                  from hibernate-distribution-X.Y.Z.GA\lib\required\
+
+                 
+
+                  Others you simply have to web search for since Hibernate's
+
+                  documentation simply doesn't provide clear instructions on them.
+
+       --&gt;
+
+      &lt;dependency&gt;
+
+        &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+
+        &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+
+        &lt;version&gt;3.3.1.GA&lt;/version&gt;
+
+      &lt;/dependency&gt;
+
+      &lt;dependency&gt;
+
+        &lt;groupId&gt;antlr&lt;/groupId&gt;
+
+        &lt;artifactId&gt;antlr&lt;/artifactId&gt;
+
+        &lt;version&gt;2.7.6&lt;/version&gt;
+
+      &lt;/dependency&gt;
+
+      &lt;dependency&gt;
+
+        &lt;groupId&gt;commons-collections&lt;/groupId&gt;
+
+        &lt;artifactId&gt;commons-collections&lt;/artifactId&gt;
+
+        &lt;version&gt;3.1&lt;/version&gt;
+
+      &lt;/dependency&gt;
+
+      &lt;dependency&gt;
+
+        &lt;groupId&gt;dom4j&lt;/groupId&gt;
+
+        &lt;artifactId&gt;dom4j&lt;/artifactId&gt;
+
+        &lt;version&gt;1.6.1&lt;/version&gt;
+
+      &lt;/dependency&gt;
+
+      &lt;dependency&gt;
+
+        &lt;groupId&gt;javassist&lt;/groupId&gt;
+
+        &lt;artifactId&gt;javassist&lt;/artifactId&gt;
+
+        &lt;version&gt;3.4.GA&lt;/version&gt;
+
+      &lt;/dependency&gt;
+
+      &lt;dependency&gt;
+
+        &lt;groupId&gt;javax.transaction&lt;/groupId&gt;
+
+        &lt;artifactId&gt;jta&lt;/artifactId&gt;
+
+        &lt;version&gt;1.1&lt;/version&gt;
+
+      &lt;/dependency&gt;
+
+      &lt;dependency&gt;
+
+        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+
+        &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+
+        &lt;version&gt;1.5.6&lt;/version&gt;
+
+      &lt;/dependency&gt;
+
+      &lt;dependency&gt;
+
+        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+
+        &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+
+        &lt;version&gt;1.5.6&lt;/version&gt;
+
+      &lt;/dependency&gt;
+</pre>

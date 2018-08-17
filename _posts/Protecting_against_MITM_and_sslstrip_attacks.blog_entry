@@ -1,0 +1,22 @@
+# UTC EPOCH of original creation time
+1328981433
+# UTC EPOCH of last modified time
+1328981433
+# CATEGORY
+Security
+# TITLE
+Protecting against MITM and sslstrip attacks
+# CONTENT in fragment XHTML until EOF
+I was playing with sslstrip and discovered that Google's Chrome and Mozilla's Firefox web browsers actually protect some popular web sites against it.  sslstrip works by changing any requests of SSL (HTTPS) secure URLs into insecure ones.  This would allow an attacker on the same network to trick users machines into using it for accessing sites (send network traffic to it) and rewriting the site code.
+
+<p>
+This isn't a problem if the user types in the URL with https:// first, but most users don't so usually a site like your bank or gmail or whatever will redirect you to the secure site.  sslstrip takes advantage of this and stops the secure redirect which most servers.
+</p>
+
+<p>
+The solution to stopping this is called <a href="http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS</a>.  Basically the server responds telling the web browser to never use insecure URLs no matter what the server's response HTML says.  Neat idea.
+</p>
+
+<p>
+One thing of course is that sslstrip or another program could just remove the HSTS from the <a href="http://forums.hak5.org/index.php?showtopic=25322">server response</a>.  Google prevents this currently by simply hard-coding in web sites that should reply with the HSTS headers (ex: paypal, gmail).  This isn't scalable so one proposal is to have the HSTS required moved into DNS with DNSSEC instead.
+</p>

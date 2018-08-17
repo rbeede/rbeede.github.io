@@ -1,0 +1,35 @@
+# UTC EPOCH of original creation time
+1497410699
+# UTC EPOCH of last modified time
+1497410699
+# CATEGORY
+Computer Problems
+# TITLE
+Windows Firewall - Block all incoming connections - Breaks IPv6
+# CONTENT in fragment XHTML until EOF
+<a href="https://superuser.com/questions/1217840/windows-10-firewall-block-all-incoming-connections-breaks-ipv6">https://superuser.com/questions/1217840/windows-10-firewall-block-all-incoming-connections-breaks-ipv6</a>
+
+<p>
+Customize settings for Windows Firewall with Block all incoming connections, including those in the list of allowed apps
+</p>
+
+<p>
+Transmit from the Windows system some IPv6 packets
+</p>
+
+<p>
+<code>ping -t -6 www.google.com    *(or your router even)*</code><br />
+Notice that the packets get dropped.
+</p>
+
+<p>
+Now, disable the Windows Firewall and you get responses.
+</p>
+
+<p>
+A bug in Microsoft Windows 7 & 10 code it would appear.  It fails to handle packets (tested both DNS and ICMP) originating from the Windows system going out.
+</p>
+
+<p>
+Using IPv4 everything works fine.
+</p>

@@ -1,0 +1,56 @@
+# UTC EPOCH of original creation time
+1328984295
+# UTC EPOCH of last modified time
+1328984582
+# CATEGORY
+Security
+# TITLE
+sslstrip on OpenWRT (Linux) wireless router
+# CONTENT in fragment XHTML until EOF
+I wanted to play with sslstrip but have it on my actual wireless router instead of a separate machine on the wireless or LAN.  This avoids the requirement of having to get arpspoof to work correctly and is a little simpler since I control the evil wireless router.
+
+<h2>Steps</h2>
+
+<ol>
+	<li>Router with Linux and Python
+		<ul>
+			<li>I have a Buffalo WZR-HP-AG300H which I really like</li>
+			<li>I used OpenWRT version r29484</li>
+		</ul>
+	</li>
+	<li>Sufficient space for all the software (you may need an external drive/share mounted)
+		<ul><li>My setup uses 11MB for OS, Python, and sslstrip</li></ul>
+	</li>
+	<li>Sufficient RAM on your router
+		<ul><li>My router has 128MB.  Probably need at least 16MB</li></ul>
+	</li>
+	<li><a href="http://www.thoughtcrime.org/software/sslstrip/">sslstrip python program</a> by Moxie
+		<ul>
+			<li>I had to use version 0.8 due to bugs in 0.9</li>
+			<li>I didn't use the OpenWRT repository version because it was only version 0.6</li>
+		</ul>
+	</li>
+	<li>iptables
+		<ul>
+			<li>For OpenWRT I installed all the iptables packages (which includes modules) and the kernel (kmod-ipt) modules</li>
+			<li>A package search on "ipt" should get you them all</li>
+		</ul>
+	</li>
+	<li>Extract the sslstrip tarball to any directory you like
+		<ul><li>I didn't separate it into the system or run the installer.  I just used the stand-alone version.</li></ul>
+	</li>
+	<li>Start it with <code>python sslstrip</code>
+		<ul><li>Just the defaults.  Use -h for other choices</li></ul>
+	</li>
+	<li>Set your iptables to redirect all HTTP (port 80) traffic to sslstrip
+		<ol>
+			<li><code>iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 127.0.0.1:10000</code></li>
+			<li>I tried using -j REDIRECT, but my version of OpenWRT didn't have it compiled.  The above is just the long form of it anyway.</li>
+		</ol>
+	</li>
+	<li>Bring up the login page for a site like <a href="http://www.facebook.com/">Facebook</a></li>
+	<li>Enter in login credentials (fake if you want)</li>
+	<li>Look in the sslstrip.log file for the credentials</li>
+	<li>Note that Facebook will be effectively broken as it won't accept a non-secure login.  You still get the credentials though, but users will notice Facebook isn't working after trying to login.  A custom version of sslstrip could probably allow the user to login as normal.</li>
+	<li>Google has implemented new security measures to block this attack, but only for a hard-coded list of sites (ex: gmail, paypal).  As of 2012-02-11 Facebook is still vulnerable.  See <a href="./Protecting_against_MITM_and_sslstrip_attacks.html">Protecting against MITM and sslstrip attacks</a> for details.</li>
+</ol>

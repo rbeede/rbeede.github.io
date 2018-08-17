@@ -1,0 +1,38 @@
+# UTC EPOCH of original creation time
+1240592802
+# UTC EPOCH of last modified time
+1426885447
+# CATEGORY
+Programming
+# TITLE
+Dynamically load Perl library modules based on script location
+# CONTENT in fragment XHTML until EOF
+I have some useful code that I use for scripts that need to load Perl library modules from a sub-folder in the directory where the script resides.
+<p>
+This works well when for example you need to run a script on a machine where you can't install Perl modules into the system Perl.  It's also nice in that you can bundle your script and libraries into a single archive for distribution and only have to decompress the archive to install everything.
+</p>
+
+<p>
+A common method available since perl 5.8:  <a href="http://perldoc.perl.org/FindBin.html">FindBin</a>
+</p>
+
+<p>
+An alternative method:
+</p>
+
+<pre>
+# This will dyanmically load the script directory as a perl library path
+# This allows us to not require installing external libaries into perl
+BEGIN {
+	my $myScriptLoc = "";
+	use File::Spec::Functions qw(rel2abs);
+	use File::Basename qw(dirname);
+	# Perl always makes $0 work if it is actually a file (and not perl -e code)
+	$myScriptLoc = dirname(rel2abs($0));
+	push(@INC, "$myScriptLoc/lib");
+}
+</pre>
+
+<p>
+Note that if you try this in a CGI script you may get an error if taint checking is enforced.  You have to use use lib qw(.) instead.
+</p>

@@ -1,0 +1,35 @@
+# UTC EPOCH of original creation time
+1248478321
+# UTC EPOCH of last modified time
+1248478321
+# CATEGORY
+Tech Tricks
+# TITLE
+Partition a usb key drive under Windows
+# CONTENT in fragment XHTML until EOF
+This guide will tell you how to create a single partition on a usb key drive under Windows XP.  This does not allow you to have multiple drive letters for a usb drive.  You can do a web search for tools that do that.
+<p>
+The main reason you would want to do this is if you needed the usb drive to have a valid partition versus a raw file system.  Some USB drives come with no partitions and just a raw file system.  Since the drive is marked as "Removable" in Windows you can't partition it with Disk Management in Windows.  It is always possible to create the partitions in Linux, but you may not have a Linux machine handy.  So if all you have is Windows, and you need the drive to have a valid partition table (for creating a bootable key later perhaps) then do the following:
+</p>
+
+<ol>
+<li>Download the <a href="http://www.google.com/search?hl=en&q=HP+Drive+Key+Boot+Utility+site%3Ahp.com">HP Drive Key Boot Utility from HP</a></li>
+<li>Install or extract the HP utility</li>
+<li>Run <b>hpdkbu.exe</b> from where you installed the utility</li>
+<li>Click on Next after the welcome screen</li>
+<li>Select the drive letter of the usb key you wish to <b>ERASE</b></li>
+<li>Click on Next</li>
+<li>Create New or Replace Existing Configuration</li>
+<li>Click on Next</li>
+<li>Hard Drive</li>
+<li>Click on Next</li>
+<li>Create New Filesystem</li>
+<li>Click on Next</li>
+<li>Wait a little bit</li>
+<li>After it is doing formatting just Cancel (you don't need the flash utilities)</li>
+<li>You are done</li>
+</ol>
+
+<h2>Alternative Method</h2>
+
+Windows Vista and later come with a tool called diskpart that will partition USB drives.  See <a href="http://technet.microsoft.com/en-us/magazine/dd535816.aspx">Microsoft's Technet - Tip: Use a USB Key to Install Windows 7Even on a Netbook</a>.  You can only seem to partition to usb key using Vista if you use the diskpart tool.  The one you can download doesn't seem to support removable drives.

@@ -1,0 +1,62 @@
+# UTC EPOCH of original creation time
+1292881579
+# UTC EPOCH of last modified time
+1309364066
+# CATEGORY
+Programming
+# TITLE
+HTML 4.01 Strict compliant meta redirect
+# CONTENT in fragment XHTML until EOF
+This has been validated with <a href="http://validator.w3.org/check">http://validator.w3.org/check</a>
+
+<pre>
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+&lt;html&gt;
+        &lt;head&gt;
+                &lt;meta http-equiv=&quot;Content-type&quot; content=&quot;text/html;charset=UTF-8&quot;&gt;
+                &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;url=/ENTER-URL-HERE/&quot;&gt;
+                &lt;title&gt;Redirect&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+                &lt;p&gt;
+                        &lt;a href=&quot;/ENTER-URL-HERE/&quot;&gt;/ENTER-URL-HERE/&lt;/a&gt;
+                &lt;/p&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<hr />
+
+<p>
+If you want to use this in a Java JSP web application with a way to dynamically pass in the redirect URL from a servlet (not a request parameter as that would be insecure) you can use the following code below in a your-redirect.jspx file (note that this uses XML syntax for compile time parsing validation):
+</p>
+
+<p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;jsp:root xmlns:jsp=&quot;http://java.sun.com/JSP/Page&quot; version=&quot;2.1&quot;&gt;
+    &lt;jsp:directive.page language=&quot;java&quot;
+        contentType=&quot;text/html; charset=UTF-8&quot; pageEncoding=&quot;UTF-8&quot; /&gt;
+        
+    &lt;jsp:text&gt;&lt;![CDATA[&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;]]&gt;&lt;/jsp:text&gt;
+
+&lt;!-- We use JSPX (xml) for our coding, but this is technically Strict HTML 4.01 versus XHTML to support old browsers
+	Since the web container wants to parse valid XML we must escape HTML entities that are self-closing like &lt;meta&gt;
+ --&gt;
+
+&lt;html&gt;
+        &lt;head&gt;
+                &lt;jsp:text&gt;&lt;![CDATA[&lt;meta http-equiv=&quot;Content-type&quot; content=&quot;text/html;charset=UTF-8&quot;&gt;]]&gt;&lt;/jsp:text&gt;
+                &lt;jsp:text&gt;&lt;![CDATA[&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;url=${requestScope.redirectUrl}&quot;&gt;]]&gt;&lt;/jsp:text&gt;
+                &lt;title&gt;Redirect&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+                &lt;p&gt;
+                        &lt;a href=&quot;${requestScope.redirectUrl}&quot;&gt;${requestScope.redirectUrl}&lt;/a&gt;
+                &lt;/p&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+
+&lt;/jsp:root&gt;
+</pre>
+</p>

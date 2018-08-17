@@ -1,0 +1,33 @@
+# UTC EPOCH of original creation time
+1238642890
+# UTC EPOCH of last modified time
+1238642890
+# CATEGORY
+Tech Tricks
+# TITLE
+Running MySQL from your Home Directory
+# CONTENT in fragment XHTML until EOF
+I was needing to setup a test MySQL installation on a Linux server but didn't have root access.  I decided to just run the copy under my user name in my home folder instead.
+<p>
+Do all of the following with the current directory as the folder where you decompressed MySQL.
+</p>
+
+<p>
+MySQL 5 was used.
+</p>
+
+<h3>Creating the database the first time</h3>
+
+<pre>./scripts/mysql_install_db --basedir=$PWD --datadir=./data/</pre>
+
+<h3>Starting</h3>
+
+<pre>./bin/mysqld -b $PWD --datadir=./data --socket=/tmp/mysql.sock &</pre>
+
+<h3>Stopping</h3>
+
+<pre>mysqladmin shutdown --socket=/tmp/mysql.sock -u root</pre>
+
+<h3>Starting listening over TCP/IP only via localhost connections</h3>
+
+<pre>./bin/mysqld -b $PWD --datadir=./data --socket=/tmp/mysql.sock –bind-address=127.0.0.1 &</pre>

@@ -1,0 +1,45 @@
+# UTC EPOCH of original creation time
+1291604431
+# UTC EPOCH of last modified time
+1495050805
+# CATEGORY
+Free Stuff
+# TITLE
+My Favorite Free Software
+# CONTENT in fragment XHTML until EOF
+<ul>
+<li><a href="http://www.7-zip.org/">7-Zip</a> - Fastest archive program, smallest 7z archive, supports AES256 encryption</li>
+<li><a href="http://aria2.sourceforge.net/">Aria 2</a> - Nice alternative to wget and cross-platform compliant.  Also supports download acceleration through splitting.  I use aria2c -s 10 -j 10 -x 10 URL for my options.</li>
+<li><a href="http://crystalmark.info/?lang=en">Crystal Disk Mark</a> - Good for benchmarking drive performance in Windows.  Good for both SSD and mechanical tests</li>
+<li><a href="http://eraser.heidi.ie/">Eraser</a> - Wipes free space on disk drives or securely deletes individual files.  For USB/SSD the free space wipe works, but I'm not sure about single file deletes.</li>
+<li><span style="text-decoration: line-through;">FileZilla</span> - 2014-07 INSTALLED LOADED WITH AD-WARE AND JUNK, use WinSCP instead. - SFTP and FTP transfers with SSH key pair support and proxy support.  Doesn't have auto-sync recursive like WinSCP.</li>
+<li><a href="http://www.freedownloadmanager.org/">Free Download Manager</a> - Faster downloads with resume support.  Works with Google Chrome too.</li>
+<li><a href="https://support.google.com/installer/answer/126299?hl=en">Google Chrome</a> - Standalone or offline installer</li>
+<li><a href="http://googsystray.sourceforge.net/">Google System Tray</a> - Notifies of new e-mails, calendar events, etc.  Google Talk always ate up 100% CPU, Google Notifier never remembered my login.  This one is much better and supports regular Google accounts and Google Apps accounts.</li>
+<li><a href="http://handbrake.fr/">HandBrake</a> - Nice video format conversion software</li>
+<li><a href="http://mh-nexus.de/en/hxd/">HxD</a> - Hex editor</li>
+<li><a href="http://www.ltr-data.se/opencode.html/#ImDisk">ImDisk</a> - GPLv2 Free Ram Disk that works in Windows 7 64-bit and many other Windows versions</li>
+<li><a href="http://infrarecorder.org/">InfraRecorder - Create DVD/CD images and burn them</a></li>
+<li><a href="http://www.itunesextractor.com/" style="text-decoration: line-through;">iPhone Backup Extractor - by JihoSoft</a> -- Only version 6.0.3 has free contact and SMS extraction.  Version 7 changed to require payment for that feature :(  You may have luck with old URL at <a href="http://www.jihosoft.com/itunes/itunes-backup-extractor-free.html">http://www.jihosoft.com/itunes/itunes-backup-extractor-free.html</a></li>
+<li><a href="https://lastpass.com/f?231406">LastPass - Nice password manager for PC (multiple browsers) or mobile devices</a></li>
+<li><a href="http://www.offisync.com/">http://www.offisync.com/</a> - Allows you to open Google Docs (and Google Apps) in Microsoft Office.  It downloads and uploads automatically.</li>
+<li><a href="http://md5deep.sourceforge.net/">md5deep</a> - Hash program for Windows or Linux</li>
+<li><a href="http://notepad-plus-plus.org/">Notepad++</a> - Useful text editor especially when you add the Hex editor plugin</li>
+<li><a href="http://www.plop.at/en/bootmanager/download.html">Plop Bootmanager</a> - Allows you to boot from USB by using a CD or ISO</li>
+<li><a href="http://sourceforge.net/projects/pdfcreator/">PDFCreator</a> - Print to PDF from any application.  Save dialog is nicer than CutePDF.  Like CutePDF has adware in the installer so you have to be careful during the install.  <span style="font-weight:bold">WARNING - Has Ad Ware in installer</span> - I haven't found any free solutions that don't have adware in the installer now.</li>
+<li><a href="http://www.ch-software.de/popman/">PopMan</a> - E-mail notification in system tray.  Supports IMAP and is the only one I could get to work well.</li>
+<li><a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> - SSH client or raw COM port</li>
+<li><a href="http://www.microsoft.com/technet/sysinternals/Security/SDelete.mspx">SDelete</a> - A free tool from Microsoft that is useful for zero filling free space.  Very useful for preparing to shrink virtual machine disks.</li>
+<li><a href="http://strawberryperl.com/">Strawberry Perl</a> - for Windows</li>
+<li>TrueCrypt - Disk encryption.  R.I.P.</li>
+<li><a href="http://www.videolan.org/index.html">VideoLan</a> - Plays every media type</li>
+<li><a href="http://winscp.net/">WinSCP</a> - Great tool for doing SFTP and FTP transfers.  Also supports recursive auto-sync from local to remote.</li>
+
+<!--
+
+
+<li><a href=""></a> - </li>
+<li><a href=""></a> - </li>
+-->
+
+</ul>

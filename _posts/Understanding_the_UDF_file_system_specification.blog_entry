@@ -1,0 +1,199 @@
+# UTC EPOCH of original creation time
+1230138540
+# UTC EPOCH of last modified time
+1230138540
+# CATEGORY
+Programming
+# TITLE
+Understanding the UDF file system specification
+# CONTENT in fragment XHTML until EOF
+I've been working on a project to write a Java program that can create UDF ISO using the 2.01 specification. My main desire is to utilize filename lengths of 254 characters which is the longest length you can get for an optical file system such as UDF. All the other ISO creators I've tried either only supported ISO9660 with extensions up to 207 characters or UDF with only 127 characters.
+<p>
+I want the longer filename support so I can burn things to CD without having to worry about truncation of long names. This commonly happens with photos and MP3's.
+</p>
+
+<p>
+I thought about modifying the source to mkisofs, but it doesn't provide true UDF support.
+</p>
+
+<p>
+So I've been reading the specification for the UDF file system along with some helpful sites on how to parse through it. Below is a table of what I've understood thus far from the specification. I can't promise it isn't without errors yet.
+</p>
+
+    <table cellspacing="0" width="0" border="1">
+      <tbody>
+        <tr valign="top">
+          <td width="17%">
+            <b>Byte Offset</b>
+          </td>
+          <td width="82%">
+            <b>Content</b>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td>
+            Start of Media
+          </td>
+          <td>
+            Volume Recognition Space (aka base)
+          </td>
+        </tr>
+        <tr valign="top">
+          <td></td>
+          <td>
+            Empty Gap? &ndash; 32KB in size
+          </td>
+        </tr>
+        <tr valign="top">
+          <td>
+            32769
+          </td>
+          <td>
+            Volume Recognition Sequence (VRS)
+            <p>
+              Contains the following 3 contiguous sectors:
+            </p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td></td>
+          <td>
+            Beginning Extended Area Descriptor (BEA)
+          </td>
+        </tr>
+        <tr valign="top">
+          <td></td>
+          <td>
+            Volume Sequence Descriptor (VSD) with id "NSR02" or "NSR03"
+          </td>
+        </tr>
+        <tr valign="top">
+          <td></td>
+          <td>
+            Terminating Extended Area Descriptor (TEA)
+          </td>
+        </tr>
+        <tr valign="top">
+          <td>
+            Sector 256
+          </td>
+          <td>
+            Anchor Volume Descriptor Pointer (AVDP)
+            <p>
+              Contains start address &amp; size of Volume Descriptor Sequence (VDS) and reserve VDS
+            </p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td>
+            ? &ndash; Depends
+          </td>
+          <td>
+            VDS
+            <p>
+              Contains many descriptors that are all sector aligned (see next below)
+            </p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td>
+             Sector Aligned
+          </td>
+          <td>
+            Descriptors inside VDS with each start address sector aligned
+            <p>
+              Types: PD, LVD, TD
+            </p>
+            <ul>
+             <li>Most are smaller than a sector</li>
+       <li>Some have pointers to other descriptors</li>
+       <li>Chained together in a certain order</li>
+      </ul>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td></td>
+          <td>
+            Partition Descriptor (PD)
+
+            <p>
+              Attributes:
+              <ul>
+               <li>Partition Number</li>
+               <li>Partition Start LSN</li>
+               <li>Partition Length</li>
+               <li>Access Type:  Read-only, write-once, rewritable, or over-writable</li>
+              </ul>
+            </p>
+
+            <p>
+              Normally you have 1 PD, but you can have 2 PD (ex: read-only and overwritable)
+            </p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td></td>
+          <td>
+            Logical Volume Descriptor (LVD)
+
+            <p>
+             Contents:
+             <ul>
+              <li>Name of the volume care of Logical Volume Identifier</li>
+               <li>Partition Map &ndash; all physical &amp; logical partitions</li>
+               <li>File Set &ndash; location of the root directory</li>
+               <li>Integrity Sequence Extent &ndash; address of LVID
+                <ul>
+                 <li>LVID may be replaced with Virtual Allocation Table (VAT) File Entry (FE) for write-once media</li>
+                </ul>
+               </li>
+              </ul>
+            </p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td></td>
+          <td>
+            Partition Map (inside LVD)
+            <p>
+              PD #
+            </p>
+            <p>
+              Type: 1 or 2
+            </p>
+            <p>
+              Various Attributes if type 2
+            </p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td>
+            End VDS
+          </td>
+          <td>
+            Terminating Descriptor (TD)
+          </td>
+        </tr>
+        <tr valign="top">
+          <td>
+            ? &ndash; Varies
+          </td>
+          <td>
+            Partitions with data
+            <p>
+              TODO: File and directory descriptors
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+<p>
+Some helpful sites:
+</p>
+
+<p>Credits to Wenguang Wang explanation
+of UDF at <a href="http://homepage.mac.com/wenguangwang/myhome/udf.html" target="_blank">http://homepage.mac.com/<wbr>wenguangwang/myhome/udf.html</a></p>
+<p>Useful specifications for UDF:</p>
+<p><a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-167.pdf" target="_blank">http://www.ecma-international.<wbr>org/publications/files/ECMA-<wbr>ST/Ecma-167.pdf</a></p>
+<p><a href="http://www.osta.org/specs/index.htm" target="_blank">http://www.osta.org/specs/<wbr>index.htm</u></a></p>

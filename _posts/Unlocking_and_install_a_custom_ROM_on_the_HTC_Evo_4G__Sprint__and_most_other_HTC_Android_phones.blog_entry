@@ -1,0 +1,82 @@
+# UTC EPOCH of original creation time
+1348364680
+# UTC EPOCH of last modified time
+1348364680
+# CATEGORY
+Tech Tricks
+# TITLE
+Unlocking and install a custom ROM on the HTC Evo 4G (Sprint) and most other HTC Android phones
+# CONTENT in fragment XHTML until EOF
+Just some rough notes.  I wanted an official way versus using hacks and exploits to avoid viruses and what not.
+
+<p>
+I skip rooting your existing ROM since I assume you will be overwritting it with a custom ROM anyway.  Rooting would just involve installing the SU and Superuser.apk anyway.
+</p>
+
+<h2>Pre-requistes</h2>
+
+<ol>
+	<li>HTC Phone with SD Card and 300MB free space</li>
+	<li>Okay with wiping all data and settings from the device!</li>
+	<li><a href="http://developer.android.com/sdk/index.html">Android SDK</a>
+		<ul><li>You just need the fastboot command and not the platform-tools or anything else really</li></ul>
+	</li>
+	<li><a href="http://www.htc.com/">HTC Sync</a> if you are using Windows since you'll need the drivers</li>
+	<li>A Recovery Image
+		<ul>
+			<li><a href="http://www.clockworkmod.com/rommanager">ClockworkMod</a></li>
+			<li>For HTC Evo 4G just pick the one for "HTC Evo"</li>
+			<li>Look in the second column for the download link</li>
+		</ul>
+	</li>
+	<li>A custom ROM
+		<ul>
+			<li><a href="http://www.cyanogenmod.com/devices">CyanogenMod</a></li>
+			<li>You may also want GApps</li>
+		</ul>
+	</li>
+	<li><a href="https://www.htcdev.com/register/">An HTCDev.com account</a> - free and home of the official HTC developers</li>
+</ol>
+
+
+<h2>Unlocking</h2>
+
+<ol>
+	<li>Download your custom rom zip and store it on your phone's sdcard in the root of the sdcard</li>
+	<li>Download and include the gapps zip if you want it</li>
+	<li>Power off your phone</li>
+	<li>Remove the battery (or disable fastboot in the OEM firmware: home screen, menu, settings, Power, Fastboot or settings, Applications, Fastboot)</li>
+	<li>Hold down the Volume Down button and Power button until the phone turns on</li>
+	<li>Ensure your USB cable is connected</li>
+	<li>Follow the instructions at <a href="http://www.htcdev.com/bootloader/">HTCDev</a>
+		<ul><li>For the HTC Evo 4G use "All Other Supported Models"</li></ul>
+	</li>
+	<li>Once unlocked don't reboot, continue to next section</li>
+</ol>
+
+
+<h2>Booting custom recovery and flashing the custom rom</h2>
+
+<ol>
+	<li>fastboot boot customrecovery.img
+		<ul><li>Where customrecovery.img is the name of the local image on your computer</li></ul>
+	</li>
+	<li>Use the custom recovery to flash the zip custom rom copy on your sdcard to your device</li>
+	<li>Make sure to wipe all data and cache with the custom recovery you booted otherwise you will probably get an endless boot error</li>
+	<li>You don't have to flash the custom recovery image if you don't want too.  I did so after I booted my custom ROM as that was easier.</li>
+	<li>Reboot and enjoy</li>
+</ol>
+
+
+<h2>Troubleshooting</h2>
+
+<ol>
+	<li>If you get errors with fastboot not finding your device try running it with administrator privelege</li>
+</ol>
+
+
+<h2>References</h2>
+
+<ul>
+	<li><a href="http://www.komodocontacts.com/page/how-to-unlock-and-install-superuser-su-on-android-without-breaking-ota-updates">http://www.komodocontacts.com/page/how-to-unlock-and-install-superuser-su-on-android-without-breaking-ota-updates</a>
+</ul>

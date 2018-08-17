@@ -1,0 +1,24 @@
+# UTC EPOCH of original creation time
+1481749321
+# UTC EPOCH of last modified time
+1481749321
+# CATEGORY
+Tech Tricks
+# TITLE
+Belkin Wireless G USB Network Adapter in OpenWrt
+# CONTENT in fragment XHTML until EOF
+Trick is finding the right kernel module to install.
+
+<p>
+Kudos to <a href="http://opensource.bureau-cornavin.com/belkin/">http://opensource.bureau-cornavin.com/belkin/</a> for providing some chipset info.  I just tried each one until it worked.
+</p>
+
+<p>
+My adapter is a F5D7050 v4xxx with a chipset of Zydas 1211B
+</p>
+
+<p>
+OpenWrt command was
+</p>
+
+<pre>opkg install kmod-zd1211rw</pre>

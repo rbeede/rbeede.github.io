@@ -1,0 +1,77 @@
+# UTC EPOCH of original creation time
+1376589744
+# UTC EPOCH of last modified time
+1376589744
+# CATEGORY
+Programming
+# TITLE
+Repeat template text with inserted lines generator
+# CONTENT in fragment XHTML until EOF
+Use this handy utility to text a template text in the Template box and generate an output based on the Line Separated Input box below.  This is all done client-side in JavaScript so large amounts of text may generate slowly.  Tested in Google Chrome.
+
+<p>
+This improved version will let you use delimited text to fill in multiple template values.  You can also set the delimited to nothing to just use the entire line of input.  Any \r\n or \n are used for the split and do not show up in the template insert values.
+</p>
+
+<p>
+<table>
+	<tr>
+		<th>Template:  (Use ~~~MARKER#~~~ for where you want input inserted where # is the line input split index starting at 0 to n-1)</th>
+		<th>Line Separated Input:  (\r\n or \n accepted)</th>
+	</tr>
+	<tr>
+		<td><textarea id="template" cols="80" rows="35"></textarea></td>
+		<td><textarea id="lineSeparatedInput" cols="80" rows="35"></textarea></td>
+	</tr>
+</table>
+</p>
+
+<hr />
+
+<p>
+Delimiter character:  <input type="text" id="delimiter" value=":" /> (for tab you have to copy + paste)
+</p>
+
+<hr />
+
+<!-- Normally inside the head tags, but this is more portable for blogs -->
+<script type="text/javascript">
+	function generate() {
+		var templateText = document.getElementById("template").value;
+		var delimiter = document.getElementById("delimiter").value;
+		var inputText = document.getElementById("lineSeparatedInput").value;
+		
+		var element_output = document.getElementById("output");
+		
+		
+		element_output.value = "";
+
+		
+		var inputLinesArray = inputText.split(/\r?\n/);
+
+		for(var i = 0; i < inputLinesArray.length; i++) {
+			var currentInputLineResult = templateText;  // Copy of template
+
+			var inputValuesArray = inputLinesArray[i].split(delimiter);
+			for(var j = 0; j < inputValuesArray.length; j++) {
+				var currentMarker = new RegExp("[~][~][~]MARKER" + j + "[~][~][~]", "g");  // Regex that indicates to global replace
+			
+				currentInputLineResult = currentInputLineResult.replace(currentMarker, inputValuesArray[j]);
+			}
+			
+			element_output.value += currentInputLineResult;
+		}
+		
+		element_output.select();  // select all text for easy copy
+	}
+</script>
+
+<button onclick="generate()">Generate</button>
+
+<hr />
+
+<p>GENERATED OUTPUT</p>
+
+<p>
+<textarea id="output" cols="80" rows="35"></textarea>
+</p>

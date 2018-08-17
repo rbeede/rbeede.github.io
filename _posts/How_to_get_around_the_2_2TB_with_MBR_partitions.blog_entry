@@ -1,0 +1,96 @@
+# UTC EPOCH of original creation time
+1415162295
+# UTC EPOCH of last modified time
+1415162295
+# CATEGORY
+Tech Tricks
+# TITLE
+How to get around the 2.2TB with MBR partitions
+# CONTENT in fragment XHTML until EOF
+Most sites advise you to use GPT which I recommend as well.  However, I ended up with an odd situations where my external USB 4TB and 5TB drives were not using GPT and still had single partitions that were 4TB and 5TB or well over the 2.2TB limit.
+
+<p>
+How?  Turns out using newer versions of fdisk (cfdisk does not work so well) (fdisk in Ubuntu 12.04) results in it using 4096 byte (4KiB) sector sizes and thus allowing larger partitions.  Evidence of this is in the following output from my actual Linux system:
+</p>
+
+<pre>
+root@nas:~# dd if=/dev/zero of=/dev/sdc bs=1G count=1
+1+0 records in
+1+0 records out
+1073741824 bytes (1.1 GB) copied, 9.97826 s, 108 MB/s
+root@nas:~# sfdisk -R /dev/sdc
+root@nas:~# cat /proc/partitions
+major minor  #blocks  name
+
+   8        0    7831552 sda
+   8        1    7831521 sda1
+   8       16 3907018580 sdb
+   8       17 3907017556 sdb1
+   8       32 4883770580 sdc
+root@nas:~# fdisk /dev/sdc
+
+WARNING: GPT (GUID Partition Table) detected on '/dev/sdc'! The util fdisk doesn't support GPT. Use GNU Parted.
+
+Note: sector size is 4096 (not 512)
+Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
+Building a new DOS disklabel with disk identifier 0x870e9389.
+Changes will remain in memory only, until you decide to write them.
+After that, of course, the previous content won't be recoverable.
+
+Warning: invalid flag 0x0000 of partition table 4 will be corrected by w(rite)
+
+Command (m for help): n
+Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p):
+Using default response p
+Partition number (1-4, default 1):
+Using default value 1
+First sector (256-1220942644, default 256):
+Using default value 256
+Last sector, +sectors or +size{K,M,G} (256-1220942644, default 1220942644):
+Using default value 1220942644
+
+Command (m for help): w
+The partition table has been altered!
+
+Calling ioctl() to re-read partition table.
+Syncing disks.
+root@nas:~# parted -l
+Model: hp v125w (scsi)
+Disk /dev/sda: 8020MB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+
+Number  Start   End     Size    Type     File system  Flags
+ 1      31.7kB  8020MB  8019MB  primary  ext2         boot
+
+
+Model: Seagate Expansion Desk (scsi)
+Disk /dev/sdb: 4001GB
+Sector size (logical/physical): 4096B/4096B
+<b>Partition Table: msdos</b>
+
+Number  Start   End     Size    Type     File system  Flags
+ 1      1049kB  4001GB  4001GB  primary
+
+
+Model: Seagate Expansion Desk (scsi)
+Disk /dev/sdc: 5001GB
+Sector size (logical/physical): <b>4096B/4096B</b>
+<b>Partition Table: msdos</b>
+
+Number  Start   End     Size    Type     File system  Flags
+ 1      1049kB  5001GB  5001GB  primary
+
+root@nas:~# uname -a
+Linux nas 3.5.0-23-generic #35~precise1-Ubuntu SMP Fri Jan 25 17:13:26 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
+root@nas:~# cat /etc/os-release
+NAME="Ubuntu"
+VERSION="12.04.4 LTS, Precise Pangolin"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu precise (12.04.4 LTS)"
+VERSION_ID="12.04"
+</pre>

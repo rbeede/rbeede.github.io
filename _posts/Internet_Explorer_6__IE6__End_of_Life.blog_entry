@@ -1,0 +1,26 @@
+# UTC EPOCH of original creation time
+1264020854
+# UTC EPOCH of last modified time
+1396536027
+# CATEGORY
+Tech Tricks
+# TITLE
+Internet Explorer 6 (IE6) End of Life
+# CONTENT in fragment XHTML until EOF
+Internet Explorer 6 will no longer be supported by Microsoft by <strike>8 April 2014</strike> make that 8 April 2015!  Microsoft has granted Windows XP extended support to the UK government.  This also includes Office 2003 and Exchange 2003.  See <a href="http://www.telegraph.co.uk/technology/microsoft/10741243/Government-pays-Microsoft-5.5m-to-extend-Windows-XP-support.html">Government pays Microsoft to extend Windows XP support</a>.
+<p>
+This means Microsoft will no longer provide any security updates or other fixes for the browser after that date.  I care because at work we always have to provide so many bug fixes for the browser.  It is such a head ache to make things work in it.  After that date businesses will be forced to update or be caught using a browser with unpatched security vulnerabilities which will cause them to fail IT audits and risk compromise of security.
+</p>
+
+<p>
+Also of note is that Internet Explorer 7 will also be past its life cycle.
+</p>
+
+<p>
+References:
+</p>
+
+<ul>
+     <li><a href="http://support.microsoft.com/lifecycle/?LN=en-us&x=15&y=13&p1=3223">Windows XP EOL care of microsoft.com</a></li>
+     <li><a href="http://support.microsoft.com/gp/lifesupsps/#Internet_Explorer">Internet Explorer EOL care of microsoft.com</a></li>
+</ul>

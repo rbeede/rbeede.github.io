@@ -1,0 +1,56 @@
+# UTC EPOCH of original creation time
+1306163811
+# UTC EPOCH of last modified time
+1306163909
+# CATEGORY
+Programming
+# TITLE
+Perl issues with opendir (or File::Find) on Windows file systems with Junction directories
+# CONTENT in fragment XHTML until EOF
+So I had a simple Perl script that was recursively search through directories with opendir and throwing "Invalid argument" errors on some of the child folders.
+
+<p>Below is some sample code:</p>
+
+<p>
+<pre>
+# Tested on Windows 7
+#
+# Strawberry Perl
+# perl 5, version 12, subversion 3 (v5.12.3) built for MSWin32-x64-multi-thread
+
+
+use strict;
+use warnings;
+
+
+# Either style of slashes fails
+#	my $junctionDir = "C:/Users/rbeede/Documents/My Pictures/";
+
+	my $junctionDir = "C:\\Users\\rbeede\\Documents\\My Pictures";
+
+
+print "$junctionDir is a symbolic link?  " . (-l $junctionDir ? 'yes' : 'no') . "\n";
+print "\n";
+
+opendir(DH, $junctionDir) || die("$!\n");
+
+print readdir DH;
+
+close(DH);
+
+</pre>
+</p>
+
+<p>
+Turns out the issue is with Windows NTFS "junction" links.  These are not real directories, but instead point to other ones.  They are similar to Linux's hard links.  On Windows the normal "-l pathname" can't detect these as such so it isn't easy to skip over them.
+</p>
+
+<p>
+I discovered that opendir fails because by default Windows 7 has very restrictive permissions on the folder.  FILE_LIST_DIRECTORY is denied to Everyone so this seems to cause Perl to just fail with "Invalid argument."  I wish the Perl error would have been more descriptive.  See <a href="http://dabermania.blogspot.com/2011/05/windows-7-junction-directories-why-you.html">http://dabermania.blogspot.com/2011/05/windows-7-junction-directories-why-you.html</a> for a good explanation.
+</p>
+
+<h2>Solution:</h2>
+
+<p>
+I just chose to ignore the error since I knew the junction existed and didn't need to traverse it.  If you want something that is platform dependent you could use the output from the "dir" command or possibly (untested) CPAN Win32::Symlink.
+</p>

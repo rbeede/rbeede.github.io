@@ -1,0 +1,82 @@
+# UTC EPOCH of original creation time
+1222470720
+# UTC EPOCH of last modified time
+1288295662
+# CATEGORY
+Programming
+# TITLE
+Windows Batch Script - Getting Script Location (Directory/Path)
+# CONTENT in fragment XHTML until EOF
+Inside a Windows batch file (.bat or .cmd) you can reference the drive and folder where the batch file is located by:
+
+<p>
+<b>%~D0</b><br />
+<b>CHDIR %~DP0</b>
+</p>
+
+<p>
+The first line causes the script to change to the drive where the script is located.
+</p>
+
+<p>
+The second line causes the script to change to the directory where the script is located.
+</p>
+
+<p>
+See <a href="http://technet.microsoft.com/en-us/library/cc732835.aspx">Call</a> command for further information.
+</p>
+
+<h1 style="color: red;">Windows 7 Bug</h1>
+
+Windows 7 has a bug in the handling of %~dp0 and %~f0 which can cause this to fail.
+
+<p>
+When running a .cmd or .bat script and using %~f0 or %~dp0 to resolve the batch script name if the batch script name has spaces (ex: "my script.cmd") and you chdir within the script then further references to %~dp0 will incorrectly resolve to the new cwd instead of the correct batch script location.
+</p>
+
+<p>
+This does not happen if the script name has no spaces in it.
+</p>
+
+<p>
+Example script below:
+</p>
+<pre>
+@REM When this script is named "test.cmd" (no spaces) it works as expected for the value of %~f0
+
+@REM When this script is named "test with spaces.cmd" it does not work
+
+echo "Stage 1:  dp0 == %~dp0"
+
+SET STAGE1=%~dp0
+
+
+%~d0
+cd "%~dp0"
+mkdir TestSubFolder
+cd TestSubFolder
+
+echo "Stage 2:  dp0 == %~dp0"
+echo Should have gotten value %STAGE1%
+</pre>
+
+<h2>Work Around</h2>
+
+I've filed a bug with Microsoft at <a href="https://connect.microsoft.com/PowerShell/feedback/details/617705/windows-shell-bug-with-how-dp0-is-resolved">https://connect.microsoft.com/PowerShell/feedback/details/617705/windows-shell-bug-with-how-dp0-is-resolved</a>.
+
+<p>
+In the mean time if you make the FIRST statements in your batch as follows you can still use this trick:
+</p>
+
+<pre>
+@REM Must set these first thing due to bug in Windows 7 when batch script filename has spaces in it
+SET BATCH_SCRIPT_DRIVE=%~d0
+SET BATCH_SCRIPT_FOLDER_PATHNAME=%~dp0
+</pre>
+
+<p>
+You could then do<br />
+%BATCH_SCRIPT_DRIVE%<br />
+CD "%BATCH_SCRIPT_FOLDER_PATHNAME%"<br />
+to make the current working drive and directory the same as your scripts.
+</p>

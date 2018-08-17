@@ -1,0 +1,31 @@
+# UTC EPOCH of original creation time
+1502938338
+# UTC EPOCH of last modified time
+1503343009
+# CATEGORY
+Computer Problems
+# TITLE
+rsync, write protected read-only dest directory, mkstemp Permission denied
+# CONTENT in fragment XHTML until EOF
+Doing an rsync from Ubuntu 14 to a remote rsyncd daemon (not ssh but rsync protocol).
+
+<p>
+Keep getting mkstemp Permission denied (13) errors.
+</p>
+
+<p>
+I had an rsync.d with <code>incoming chmod = F400,D500</code> so backed up files would be read-only.
+</p>
+
+<p>
+For some transfers (smaller size) rsync is temporarily changing the dest folder permissions to allow write and make the transfer, but for other transfers (usually larger files multi-gigabytes) it would keep failing.
+</p>
+
+<p>
+Looks like known design limitation causes this to occur. 
+ <a href="https://bugzilla.samba.org/show_bug.cgi?id=6788">Skip file transfer if destination file cannot be opened for writing (6788)</a>
+</p>
+
+<p>
+My solution was to allow owner write on all files and directories to avoid the wasted transfers.  <code>incoming chmod = F600,D700</code> and do a chmod -R u+w over the entire rsync share to allow user write.
+</p>

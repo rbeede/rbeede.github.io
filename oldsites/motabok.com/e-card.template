@@ -1,0 +1,40 @@
+<html>
+<head>
+<style type='text/css'>
+p {
+	max-width: 763px;
+	width: 763px;
+}
+</style>
+</head>
+<body style='background-color: #EFE4CE; color: 8D7835;'>
+<img src='cid:panoramic.jpg' border='0'>
+
+<p>
+You are invited to attend a musical performance by the Mormon Tabernacle Choir and Orchestra at Temple Square to be held on June 27, 2009
+at the Lloyd Noble Center in Norman, Okahoma at 7:30PM in the evening.
+</p>
+
+<p>
+You are receiving this invitation because your friend INSERT-FROM-ADDRESS requested you receive it.  A personal
+message from your friend follows:
+</p>
+
+<p>
+INSERT-PERSONAL-MESSAGE
+</p>
+
+<p>
+To obtain further information about the concert please visit <a href='http://www.motabok.com/'>http://www.motabok.com/</a>.
+</p>
+
+<p>
+P.S. Your e-mail address was provided by your friend.  It will not be used for any purpose other than this communication.
+Your e-mail address has not been added to any mailing lists through this mechanism.  If you desire to receive notices about
+information related to the performance you must visit the web site to submit your e-mail address.  The sender submitted
+this e-card request from the IP address INSERT-IP-ADDRESS.
+
+</p>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+# UTC EPOCH of original creation time
+1328729213
+# UTC EPOCH of last modified time
+1346517881
+# CATEGORY
+Security
+# TITLE
+Installing Linux (OpenWRT) on a home router with remote VPN access
+# CONTENT in fragment XHTML until EOF
+My previous method used PPTP as a VPN server because of ease of use with Windows clients.  While MSCHAPv2 with MPPE and pptp and a long password used to be sufficient it is now possible to decrypt the session with a cluster of hardware in 23 hours (you still may not get the actual password or access, but you can get a sessions content).  See <a href="http://www.h-online.com/security/news/item/Microsoft-says-don-t-use-PPTP-and-MS-CHAP-1672257.html">Microsoft says don't use PPTP and MS-CHAP</a>
+
+<p>
+So I no longer recommend using PPTP as a VPN server.  It does possibly have support for <a href="http://en.wikipedia.org/wiki/Protected_Extensible_Authentication_Protocol">PEAP</a>, but you must use patched versions which requires a recompile on most platforms.  See <a href="http://www.nikhef.nl/~janjust/ppp/README.eap-tls">http://www.nikhef.nl/~janjust/ppp/README.eap-tls</a>
+</p>
+
+<p>
+I removed my earlier directions on using PPTP with OpenWRT and now recommend you use OpenVPN instead.  IPSec is another option, but only if your clients are on networks that can support tunneling it (some have NAT that do but most are flaky).
+</p>
+
+
+<!-- Begin old content which I left here for those who really wanted it and know to view source to find it!  Remember this has effectively NO encryption or privacy!
+
+
+I have a Buffalo WZR-HP-AG300H wireless router for my home network.  I like it because it supports Linux and has a USB port for my network backup drive as well.  It came with DD-WRT, but it was too buggy for stable use as a network drive server and VPN server.  I opted for OpenWRT instead which while it requires more configuration effort has worked out very nicely.  I've included the steps below I used for setting up a PPTP VPN server I can access remotely.  This works out really nice as well for playing video games with friends and family since they just VPN into my network and appear on my local LAN.  I choose PPTP over OpenVPN or other solutions because Windows 7 has native support for the client which is easier for others to configure.  For security I used passwords that were 30+ characters long which alleviates brute force attacks.
+
+<p>
+I used OpenWrt Firmware Attitude Adjustment (r29484) / LuCI Trunk (trunk+svn8073) and kernel version 2.6.39.4.
+</p>
+
+<h1>Steps</h1>
+
+<ol>
+	<li>Install the following packages (I used the LuCI System, Software page):
+		<li>pptpd</li>
+		<li>luci-proto-pptp</li>
+		<li>pptp</li>
+	</li>
+	<li>The LuCI web interface doesn't have a page for doing configuration for PPTP VPNs</li>
+	<li>ssh into your router (root@ipaddress)</li>
+	<li>vi /etc/pptpd.conf  (or whatever editor/method you prefer)</li>
+	<li>Content of pptpd.conf
+<pre>
+option /etc/ppp/options.pptpd
+
+# Set IPs to something not in your DHCP allocated LAN but on the same subnet
+localip 10.1.1.2
+remoteip 10.1.1.3-10
+
+#debug
+</pre>
+	</li>
+	<li>vi /etc/ppp/options.pptpd</li>
+	<li>Content of options.pptpd
+<pre>
+# Tested against Windows 7 client
+
+auth
+name "pptp-server"
+
+#debug
+#dump
+# pppd logfile option
+#logfile "/tmp/log/pptpd.log"
+
+refuse-pap
+refuse-chap
+refuse-mschap
+
+require-mschap-v2
+# PLEASE NOTE THAT ON OpenWRT (or DD-WRT, etc) distribution builds the pppd is special patched
+#	The MPPC flag builds a non-standard PPP that uses different options.
+# So don't rely on most pptpd or pppd examples since you need the special version one
+mppe required,no40,no56,stateless
+
+# Makes clients look like they are on the lan
+proxyarp
+
+# Client alive check
+lcp-echo-failure 3
+lcp-echo-interval 60
+</pre>
+	</li>
+	<li>vi /etc/ppp/chap-secrets</li>
+	<li>Content of chap-secrets
+<pre>
+#USERNAME  PROVIDER  PASSWORD  IPADDRESS
+#	* for IPADDRESS means dynamically assign from the remoteip range in options.pptpd
+rbeede pptp-server ProvideAReallyLongPasswordHere *
+gamer pptp-server ProvideAReallyLongPasswordHere *
+</pre>
+	</li>
+	<li>Set firewall rules to allow outside Internet connections to VPN into you and for VPN users to talk to the full LAN
+		<ol>
+			<li>In the LuCI web interface</li>
+			<li>Network tab</li>
+			<li>Firewall subtab</li>
+			<li>Custom Rules sub-subtab</li>
+			<li>Add the following for your custom rules:
+<pre>
+# This file is interpreted as shell script.
+# Put your custom iptables rules here, they will
+# be executed with each firewall (re-)start.
+
+WAN=eth1
+
+# Allow VPN server
+iptables -t nat -A prerouting_rule -i $WAN -p tcp --dport 1723 -j ACCEPT
+iptables        -A input_rule      -i $WAN -p tcp --dport 1723 -j ACCEPT
+iptables        -A output_rule             -p 47               -j ACCEPT
+iptables        -A input_rule              -p 47               -j ACCEPT
+
+# Allow VPN pptpd connections access to the lan
+iptables        -A forwarding_rule -s 10.1.1.0/24 -d 10.1.1.0/24 -j ACCEPT
+iptables        -A output_rule     -o ppp+ -s 10.1.1.0/24 -d 10.1.1.0/24 -j ACCEPT
+iptables        -A input_rule      -i ppp+ -s 10.1.1.0/24 -d 10.1.1.0/24 -j ACCEPT
+
+# Allow VPN pptpd connections Internet access
+iptables        -A forwarding_rule -i ppp+ -o $WAN -j ACCEPT
+</pre>
+			</li>
+			<li>You may have to adjust IP addresses in the above as needed</li>
+		</ol>
+	</li>
+	<li>/etc/init.d/pptpd enable</li>
+	<li>/etc/init.d/pptpd start</li>
+	<li>You should now be able to connect using your public IP</li>
+	<li>You may find enabling dyndns on your router useful</li>
+	<li>You may also want to enable a time server client in OpenWrt to ensure you don't have issues with connecting</li>
+</ol>
+
+-->

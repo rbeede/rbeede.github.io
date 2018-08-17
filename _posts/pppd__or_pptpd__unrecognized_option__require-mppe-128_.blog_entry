@@ -1,0 +1,30 @@
+# UTC EPOCH of original creation time
+1328651830
+# UTC EPOCH of last modified time
+1328651830
+# CATEGORY
+Tech Tricks
+# TITLE
+pppd (or pptpd) unrecognized option 'require-mppe-128'
+# CONTENT in fragment XHTML until EOF
+Was playing with my PPTP (pptpd) server on my OpenWRT router.  I was having problems hand-creating a configuration that would work with a Windows 7 client.
+
+<p>
+<pre>pppd: In file /etc/ppp/options.pptpd: unrecognized option 'require-mppe-128'</pre>
+</p>
+
+<p>
+Yet I had pppd version 2.4.5 which says that option is valid.  Turns out there are 3 different possible versions of which my 2.4.5 had a non-standard pppd version.
+</p>
+
+<p>
+<a href="http://comments.gmane.org/gmane.comp.misc.pptpclient.devel/2097">The following site</a> (expand the comments) led me to this answer "The MPPC flag builds a non-standard PPP that uses different options."
+</p>
+
+<p>
+Try something along the lines of the following instead:
+</p>
+
+<p>
+<pre>mppe required,no40,no56,stateless</pre>
+</p>

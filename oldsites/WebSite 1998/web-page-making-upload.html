@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<TITLE>Uploading Files Example</TITLE>
+</HEAD>
+
+<BODY BACKGROUND="background1.gif">
+
+<P>
+<HR>
+<A HREF="web-page-making.html">Back</A> | <A HREF="index.html">Contents</A>
+<HR>
+
+<H3>Uploading Files Example</H3>
+
+This example shows how to upload files to a web server with the Windows FTP program.
+<P>
+Start your FTP program.  (Windows 95 has one, to run it click the start button and then select the Run option.  Type in <B>"C:\WINDOWS\FTP"</B> and click on ok.  If you are using a Linux system then login and type <B>FTP</B>.  Their are other programs that have a graphical interface.
+
+<P>
+Type in the command <B>open</B> <I>web server's URL here</I>.  That tells the ftp program to talk to a remote server.  After connected provide your login information.<BR>
+<IMG SRC="open.gif" ALT="open command picture">
+
+<P>
+Type in the command <B>lcd</B> <I>path and directory were web page files and program file(s) are stored</I> and press enter.<BR>
+<IMG SRC="lcd.gif" ALT="lcd command picture">
+
+<P>
+Type in the command <B>bin</B> and press enter.  This tells the FTP program that you are sending a binary file.  You can send your HTML and Image files using Binary mode.  You must use Binary mode when uploading programs and image files.<BR>
+<IMG SRC="bin.gif" ALT="bin command picture">
+
+<P>
+Type in the command <B>cd</B> <I>directory where web files go</I>.  It changes to the directory where files need to go.<BR>
+<IMG SRC="cd.gif" ALT="cd command picture">
+
+<P>
+I just upload everything in one directory on my machine to the server since I save all my files their.  If you just want to add a couple of files use the <B>put</B> <I>name of file on local machine</I> command.
+
+<P>
+Type in the command <B>mput *</B>.  That puts every file in the local directory on the hard drive to the server.  You will have to confirm each upload unless you give the command <B>prompt</B> before you begin uploading and it says Interactive mode Off.<BR>
+<IMG SRC="mput.gif" ALT="mput command picture">
+
+<P>
+If you want to confirm that the files are on the server issue the command <B>ls</B>.  That will give a listing of all the files on the server.<BR>
+<IMG SRC="ls.gif" ALT="ls command picture">
+
+<P>
+Once the upload(s) are complete you are done and can give the command <B>bye</B>.<BR>
+<IMG SRC="bye.gif" ALT="bye command picture">
+
+<P>
+<HR>
+Rodney Beede © 1998<BR>
+Nothing on any of these web pages may be copied without my written permission.
+
+</BODY>
+</HTML>

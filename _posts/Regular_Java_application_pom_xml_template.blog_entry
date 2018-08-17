@@ -1,0 +1,122 @@
+# UTC EPOCH of original creation time
+1315675824
+# UTC EPOCH of last modified time
+1315675824
+# CATEGORY
+Programming
+# TITLE
+Regular Java application pom.xml template
+# CONTENT in fragment XHTML until EOF
+Below is a template I use for regular Java application projects with Maven.  Folder structure is typically as follows:
+
+<p>
+<pre>
+	pom.xml
+	src/main/java/com/rodneybeede/...
+	src/test/java/com/rodneybeede/...
+</pre>
+</p>
+
+<p>
+<pre>
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;
+	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+	&lt;groupId&gt;com.rodneybeede.groupid&lt;/groupId&gt;
+	&lt;artifactId&gt;project-codename&lt;/artifactId&gt;
+	&lt;packaging&gt;jar&lt;/packaging&gt;
+	&lt;version&gt;SNAPSHOT&lt;/version&gt;
+
+	&lt;name&gt;Project Name&lt;/name&gt;
+	&lt;url&gt;http://www.rodneybeede.com/&lt;/url&gt;
+	&lt;inceptionYear&gt;2011&lt;/inceptionYear&gt;
+
+	&lt;licenses&gt;
+		&lt;license&gt;
+			&lt;name&gt;GNU GENERAL PUBLIC LICENSE&lt;/name&gt;
+			&lt;url&gt;http://www.gnu.org/licenses/gpl-3.0.txt&lt;/url&gt;
+			&lt;distribution&gt;repo&lt;/distribution&gt;
+			&lt;comments&gt;GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007&lt;/comments&gt;
+		&lt;/license&gt;
+	&lt;/licenses&gt;
+
+	&lt;organization&gt;
+		&lt;name&gt;rodneybeede.com&lt;/name&gt;
+		&lt;url&gt;http://www.rodneybeede.com/&lt;/url&gt;
+	&lt;/organization&gt;
+
+	&lt;developers&gt;
+		&lt;developer&gt;
+			&lt;id&gt;rbeede&lt;/id&gt;
+			&lt;name&gt;Rodney Beede&lt;/name&gt;
+			&lt;email&gt;nospam_contactme_no$pam@removethistoo@rodneybeede.com&lt;/email&gt;
+			&lt;url&gt;http://www.rodneybeede.com/&lt;/url&gt;
+			&lt;organization&gt;rodneybeede.com&lt;/organization&gt;
+			&lt;organizationUrl&gt;http://www.rodneybeede.com/&lt;/organizationUrl&gt;
+			&lt;roles&gt;
+				&lt;role&gt;architect&lt;/role&gt;
+				&lt;role&gt;developer&lt;/role&gt;
+				&lt;role&gt;tester&lt;/role&gt;
+			&lt;/roles&gt;
+			&lt;timezone&gt;-7&lt;/timezone&gt;
+		&lt;/developer&gt;
+	&lt;/developers&gt;
+
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;log4j&lt;/artifactId&gt;
+			&lt;version&gt;1.2.16&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;apache-log4j-extras&lt;/artifactId&gt;
+			&lt;version&gt;1.0&lt;/version&gt;
+		&lt;/dependency&gt;
+	&lt;/dependencies&gt;
+
+	&lt;build&gt;
+		&lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-eclipse-plugin&lt;/artifactId&gt;
+				&lt;configuration&gt;
+					&lt;downloadSources&gt;true&lt;/downloadSources&gt;
+					&lt;downloadJavadocs&gt;true&lt;/downloadJavadocs&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+			&lt;plugin&gt;
+				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+				&lt;configuration&gt;
+					&lt;source&gt;1.6&lt;/source&gt;
+					&lt;target&gt;1.6&lt;/target&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+			&lt;plugin&gt;
+				&lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+				&lt;version&gt;2.2.1&lt;/version&gt;
+				&lt;configuration&gt;
+					&lt;descriptorRefs&gt;
+						&lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;
+					&lt;/descriptorRefs&gt;
+					&lt;archive&gt;
+						&lt;manifest&gt;
+							&lt;mainClass&gt;com.rodneybeede.groupid.Main&lt;/mainClass&gt;
+						&lt;/manifest&gt;
+					&lt;/archive&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+	&lt;/build&gt;
+
+	&lt;repositories&gt;
+		&lt;repository&gt;
+			&lt;id&gt;javaNet2&lt;/id&gt;
+			&lt;name&gt;java.net Maven 2 Repository&lt;/name&gt;
+			&lt;url&gt;http://download.java.net/maven/2/&lt;/url&gt;
+			&lt;layout&gt;default&lt;/layout&gt;
+		&lt;/repository&gt;
+	&lt;/repositories&gt;
+&lt;/project&gt;
+</pre>
+</p>

@@ -1,0 +1,45 @@
+# UTC EPOCH of original creation time
+1223997840
+# UTC EPOCH of last modified time
+1223997840
+# CATEGORY
+Tech Tricks
+# TITLE
+USB Key Drives, To Partition Or Not?
+# CONTENT in fragment XHTML until EOF
+I was recently working with making some USB key drives bootable with Linux.  I noticed that some of my drives had single primary partitions on them while others had no partitions at all.
+<p>
+All of them use the FAT filesystem.  In my attempt to install grub on one it failed because it had no partitions.
+</p>
+
+<p>
+Linux has no problem mounting drives with no partitions (referred to as raw devices).  Windows XP doesn't have issues either, but for "Removable" drives it does have the following behavior:
+</p>
+
+<ul>
+<li>
+If no partitions exist read the beginning sectors for a formatted filesystem.
+<ul>
+<li>If found then mount the raw filesystem and assign a drive letter</li>
+<li>If not found then show a drive letter, but prompt for a disk to be inserted</li>
+<li>If no partitions exist Disk Management also allows for one to create a single partition and format it</li>
+</ul>
+</li>
+<li>If any number of partitions exist read the first known partition type (FAT, FAT32, NTFS) and ignore any others</li>
+<li>If no partitions exist but a valid filesystem was found don't allow any partition on the drive since it is "removable"</li>
+</ul>
+
+<p>
+I've noticed the following about making a usb drive bootable for Linux:
+</p>
+
+<ul>
+<li>
+If using SYSLINUX then I don't have to have any partitions
+<ul>
+<li>However some buggy BIOSes (Award) do need at least one partition</li>
+</ul>
+</li>
+<li>If using GRUB you'd better have at least one partition</li>
+<li>If booting with NTLDR (Windows boot loader) you need at least 1 partition which may need to be a special fourth partition (see BartPE)</li>
+</ul>

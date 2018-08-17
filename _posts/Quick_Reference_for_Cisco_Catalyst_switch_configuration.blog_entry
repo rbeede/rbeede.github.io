@@ -1,0 +1,120 @@
+# UTC EPOCH of original creation time
+1310592735
+# UTC EPOCH of last modified time
+1331137782
+# CATEGORY
+Tech Tricks
+# TITLE
+Quick Reference for Cisco Catalyst switch configuration
+# CONTENT in fragment XHTML until EOF
+Below have been tested on Cisco Catalyst 2900XL (IOS version 12.0(5)WC17) and 3750 (IOS version 12.2(55)SE3).
+
+<h2>Quick Tips</h2>
+
+<ul>
+	<li>Type in <span style="font-weight: bold;">exit</span> multiple times if needed to get back to the welcome screen.</li>
+	<li><span style="font-weight: bold;">enable</span> and <span style="font-weight: bold;">config terminal</span> are common needed starts</li>
+	<li><span style="font-weight: bold;">dir flash:</span></li>
+	<li>Console serial settings:  9600, 8, No parity, 1 Stop bit, No flow  (<a href="http://www.cisco.com/en/US/tech/tk801/tk36/technologies_tech_note09186a0080094465.shtml">Applying Correct Terminal Emulator Settings for Console Connections</a>)</li>
+	<li><a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a> is good for the serial console, but lacks XMODEM for flash recovery.  Try <a href="http://www.google.com/url?sa=t&source=web&cd=4&ved=0CC0QFjAD&url=http%3A%2F%2Fttssh2.sourceforge.jp%2F&ei=t_QdTsWPB-XYiAKc74iACQ&usg=AFQjCNG9ZykZdvzV0oSDgcP_s8-Tqz5u2w">Tera Term</a> instead.</li>
+	<li>Most confirm dialogs don't want you to type in 'y' or 'n', just press enter.</li>
+	<li><span style="font-weight: bold;">show vlan</span> also gets you a list of vlan configurations (except trunk mode)</li>
+	<li><span style="font-weight: bold;">show interface GigabitEthernet 1/0/1 switchport</span> - Display configuration (including if trunking) for a particular interface</li>
+	<li><span style="font-weight: bold;">show interface status</span> - Show current status of each interface along with vlan or trunk mode</li>
+	<li><span style="font-weight: bold;">show interfaces trunk</span> - Show which interfaces are in trunk mode.  Note that if the interface is in a notconnect state it won't show up as being in trunk mode but instead in vlan 1.</li>
+</ul>
+
+
+<h2>Reset to defaults (leaves vlan config alone)</h2>
+
+<pre>
+enable
+write erase
+<span style="font-style: italic;">(press enter to confirm)</span>
+reload
+<span style="font-style: italic;">(press enter to confirm)</span>
+</pre>
+
+
+<h2>Reset VLAN settings</h2>
+
+<pre>
+enable
+delete flash:vlan.dat
+<span style="font-style: italic;">(press enter to confirm)</span>
+<span style="font-style: italic;">(press enter again to confirm)</span>
+reload
+<span style="font-style: italic;">(press enter to confirm)</span>
+</pre>
+
+If after the reload your vlan.dat shows back up your IOS version does VLANs differently (auto-creation of VLAN for interface assignment).  Repeat the steps again, but before doing "reload" issue the command <span style="font-weight: bold;">write erase</span> to reset everything.  This behavior occurs in Cisco IOS version 12.0(5)WC17 for my 2900XL.  Another option is to delete each vlan manually by hand or if you have a newer IOS use "no vlan range #-#".
+
+
+<h2>Create VLAN</h2>
+
+<pre>
+enable
+vlan database
+vlan 10 name vlan10	<span style="font-style: italic;">(name vlan10 is optional)</span>
+exit
+</pre>
+
+<p>Some versions of IOS mark this method as deprecated.  This is another way</p>
+
+<pre>
+enable
+configure terminal
+vlan ###  <span style="font-style: italic;">(### is the vlan number you want)</span>
+name VLAN####  <span style="font-style: italic;">(name for the vlan)</span>
+state active
+exit
+exit
+show vlan
+write
+exit
+</pre>
+
+<h2>Assign single port to VLAN</h2>
+
+<pre>
+enable
+configure terminal
+interface FastEthernet 0/1	<span style="font-style: italic;">(where /# is port number, also GigabitEthernet)</span>
+switchport access vlan 10
+exit
+exit
+write memory
+</pre>
+
+
+<h2>Assign multiple ports to VLAN at once (3750 only or IOS 12.1+)</h2>
+
+<pre>
+enable
+configure terminal
+interface range GigabitEthernet 1/0/1-24</span>
+switchport access vlan 10
+exit
+exit
+write memory
+</pre>
+
+
+<h2>Setup port to trunk with 802.1q</h2>
+
+<pre>
+enable
+configure terminal
+interface GigabitEthernet 1/0/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+no shutdown
+exit
+exit
+write memory
+reload
+</pre>
+
+<p>
+Note that the switch may not automatically carry tagged traffic for a VLAN unless you define the VLAN first.  You don't have to set a particular port to the VLAN, it just has to exist.  See <a href="#Create VLAN">Create VLAN</a>.
+</p>

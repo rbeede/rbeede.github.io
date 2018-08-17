@@ -1,0 +1,10 @@
+# UTC EPOCH of original creation time
+1292205980
+# UTC EPOCH of last modified time
+1292205980
+# CATEGORY
+Tech Tricks
+# TITLE
+Identify hardware models without opening the case
+# CONTENT in fragment XHTML until EOF
+The CPU-Z utility at <a href="http://www.cpuid.com/softwares/cpu-z.html">http://www.cpuid.com/softwares/cpu-z.html</a> is a nice tool for getting the motherboard and other hardware information without having to pop open the case.

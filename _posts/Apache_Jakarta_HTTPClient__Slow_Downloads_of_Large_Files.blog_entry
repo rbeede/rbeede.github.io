@@ -1,0 +1,27 @@
+# UTC EPOCH of original creation time
+1227651000
+# UTC EPOCH of last modified time
+1227651000
+# CATEGORY
+Computer Problems
+# TITLE
+Apache Jakarta HTTPClient, Slow Downloads of Large Files
+# CONTENT in fragment XHTML until EOF
+So I was writing a Java application that used HTTPClient 3.1.  For some reason downloading a 32MiB file from my local web server on the same machine was taken at least 16 seconds to complete whereas in a web browser it took less than a second.
+<p>
+After many hours of writing Java socket test code and trying different web servers I discovered the issue.  It wasn't related to any of my buffer sizes (I tried all kinds of buffers and sizes).
+</p>
+
+<p>
+Turns out that because I didn't initialize log4j (I didn't use it) that the logging mechanism on Windows for HTTPClient was wasting lots of time with internal errors from the library logging code.  Turning on trace logging actually made things go faster.
+</p>
+
+<p>
+A quick fix since I didn't care about the logging for HTTPClient was to do
+</p>
+System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog");
+<p>
+
+<p>
+This disables all logging.  You should set this up before creating any HTTPClient instances.
+</p>

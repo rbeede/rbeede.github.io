@@ -1,0 +1,144 @@
+# UTC EPOCH of original creation time
+1233292080
+# UTC EPOCH of last modified time
+1233292080
+# CATEGORY
+Computer Problems
+# TITLE
+Dell D430, Slackware 12, Wifi Wireless Working
+# CONTENT in fragment XHTML until EOF
+I have a Dell D430 laptop with a Dell Wireless 1505 draft-N MiniCard.  I wanted to get wireless working in Slackware 12.2.  These are the steps I took to enable the device:
+<h2>Installation</h2>
+
+<ol>
+<li>Make sure your Wifi switch is on</li>
+<li>Open a shell as root</li>
+<li>Download the Dell Windows XP (32-bit) driver
+   <ul><li><a href="http://support.dell.com/support/topics/global.aspx/support/downloads/en/downloads_splash?c=us&l=en&s=gen&~mode=popup&file=281722">Download the "Dell Driver - Applies To 1390, 13xx, 14xx, 1505, Draft, ... Download the single pack and not the invidiaul," 11/20/2008, Version A22, R202477.exe</a></li></ul>
+</li>
+<li><b>mkdir /opt/DellWireless</b></li>
+<li><b>cd /opt/DellWireless</b></li>
+<li><b>unzip <i>~/Desktop/R202477.exe</i></b></li>
+<li><b>cd /usr/src</b></li>
+<li>Download ndiswrapper (latest stable)
+   <ul>
+   <li>I don't recommend using a packaged distro build</li>
+   <li>I used version <a href="http://sourceforge.net/project/downloading.php?group_id=93482&use_mirror=&filename=ndiswrapper-1.54.tar.gz&47193341">1.54</a></li>
+   <li>The project is <a href="http://sourceforge.net/projects/ndiswrapper/">on SourceForget.net</a></li>
+   </ul>
+</li>
+<li>Decompress the archive into /usr/src</li>
+<li><b>cd /usr/src/ndiswrapper-<i>1.54</i></b></li>
+<li>Verify that you have your current Linux kernel sources available
+   <ol>
+   <li><b>ls -la /lib/modules/`uname -r`/build/</b></li>
+   <li>You should see a <b>include</b> directory and a <b>.config</b> file</li>
+   </ol>
+</li>
+<li>Unload any old ndiswrapper by running <b>/sbin/modprobe -r ndiswrapper</b></li>
+<li>Clean out any old ndiswrapper by running <b>make uninstall</b></li>
+<li>Build ndiswrapper with <b>make</b></li>
+<li>As root install ndiswrapper with <b>make install</b>
+   <ul><li>It should be placed into /usr/sbin</li></ul>
+</li>
+<li><b>cd /opt/DellWireless/DRIVER_US</b></li>
+<li><b>/usr/sbin/ndiswrapper -i bcmwl5.inf</b></li>
+<li><b>/usr/sbin/ndiswrapper -l</b>
+   <ul>
+   <li>Verify that you see a line like <pre>bcmwl5 : driver installed</pre></li>
+   <li>Verify that you see a line like <pre>device (<i>14E4:4328</i>) <b>present</b> (alternate driver: <i>ssb</i>)</pre></li>
+   <li>If you do not see "driver installed" nor "device ... present" something is wrong.  See below for hints</li>
+   </ul>
+</li>
+<li><b>/sbin/modprobe ndiswrapper</b></li>
+<li><b>dmesg</b>
+   <ul>
+   <li>Verify that you see <b>wlan<i>0</i></b> towards the end</li>
+   </ul>
+</li>
+<li><b>iwlist scanning</b> will run a test wireless network scan</li>
+</ol>
+
+
+<h2>Make your wireless card load properly during boot</h2>
+
+Normally you would need to modprobe blacklist the b43 and b43legacy modules, but Slackware comes with those modules turned on by default during boot.  Adding them to /etc/modprobe.d/blacklist doesn't work for some reason.  Also not even "install b43 /bin/true" seems to work even though the modules don't show up loaded from the output of lsmod.  To properly get modprobe ndiswrapper to work during boot do the following:
+
+<ol>
+<li><b>echo install ndiswrapper /sbin/modprobe -r b43 b43legacy; /sbin/modprobe --ignore-install ndiswrapper>> /etc/modprobe.d/ndiswrapper</b></li>
+<li>Edit "/etc/rc.d/rc.modules" and add <b>/sbin/modprobe ndiswrapper</b></li>
+</ol>
+
+<h2>How to connect to an open (no encryption) wireless network</h2>
+
+<ol>
+<li>ifconfig wlan0 up</li>
+<li>iwlist wlan0 scanning</li>
+<li><b>iwconfig wlan0 essid "<i>NET_NAME_SID</i>"</b>
+   <ul>
+   <li>Example:  iwconfig wlan0 essid "ANY"
+      <ul><li>Connect to any available open network</li></ul>
+   </li>
+   <li>Example:  iwconfig wlan0 essid "My Network"
+      <ul><li>Connect to network with name My Network</li></ul>
+   </li>
+   <li>Example:  iwconfig wlan0 essid -- "ANY"
+      <ul><li>Connect to network that has the actual name "ANY"</li></ul>
+   </li>
+   </ul>
+</li>
+<li>Confirm association with the network with the command <b>iwconfig</b></li>
+<li>Get an IP address via DHCP
+   <ol>
+   <li><b>dhcpcd -k wlan0</b></li>
+   <li><b>dhcpcd wlan0</b></li>
+   </ol>
+</li>
+<li>Everything should be up and going</li>
+</ol>
+
+<h2>How to connect to a WEP encrypted network</h2>
+
+<ol>
+<li>Change your network settings to use WPA2.  WEP isn't secure.</li>
+<li>If you must use WEP then read up on iwconfig with <b>man iwconfig</b></li>
+</ol>
+
+<h2>How to connect to a WPA/WPA2 encrypted network</h2>
+
+<ol>
+<li><b>/usr/sbin/wpa_passphrase <i>NET_NAME_SID</i> <i>Network Passphrase</i> &gt; /wpa.conf</b></li>
+<li>Edit the /wpa.conf file
+   <ol>
+   <li>Comment out the psk=6801d... (bunch of hex digits)</li>
+   <li>Uncomment the pks="your plain text password"</li>
+   <li>Save the changes</li>
+   </ol>
+</li>
+<li><b>/usr/sbin/wpa_supplicant -Dwext -i<i>wlan0</i> -c /wpa.conf <span style="color: blue;">&amp;</span></b></li>
+<li>Follow the directions above for connecting to an open wireless network</li>
+</ol>
+
+
+<h2>Hints for fixing problems</h2>
+
+<ol>
+<li>For the Dell D430 try upgrading to the latest BIOS
+   <ul><li>I used Bios A08</li></ul>
+</li>
+<li>Try a clean reset of your system
+   <ol>
+   <li>Reboot</li>
+   <li>Unload any old ndiswrapper by running <b>/sbin/modprobe -r ndiswrapper</b></li>
+   <li><b>/sbin/modprobe -r b43</b></li>
+   <li><b>/sbin/modprobe -r b43legacy</b></li>
+   <li>Reinstall ndiswrapper following the directions above
+      <ul>
+      <li>Do use the latest stable sources from the project's home page</li>
+      <li>Remember to <b>make uninstall</b> multiple times in a row</li>
+      </ul>
+   </li>
+   <li>ndiswrapper -m should be unnecessary.  Remove any changes it made if you did that.</li>
+   </ol>
+</li>
+</ol>

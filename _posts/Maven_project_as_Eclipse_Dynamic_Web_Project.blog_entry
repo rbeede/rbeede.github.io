@@ -1,0 +1,248 @@
+# UTC EPOCH of original creation time
+1378927986
+# UTC EPOCH of last modified time
+1378928135
+# CATEGORY
+Programming
+# TITLE
+Maven project as Eclipse Dynamic Web Project
+# CONTENT in fragment XHTML until EOF
+I used:
+<ul>
+  <li>Maven 3.1.0</li>
+  <li>Java 1.7.0_40</li>
+  <li>Eclipse IDE for Java EE Developers, Version: Juno Service Release 2, Build id: 20130225-0426</li>
+</ul>
+
+<h1>Creating the project</h1>
+
+<ol>
+  <li>mvn archetype:create -DgroupId=<b>com.mycompany.app</b> -DartifactId=<b>my-webapp</b> -DarchetypeArtifactId=maven-archetype-webapp</li>
+  <li>Project is created</li>
+</ol>
+
+<h1>Create the Eclipse project</h1>
+
+<ol>
+  <li>Change into the project folder</li>
+  <li>Modify the pom.xml with:
+     <ol>
+        <li>under &lt;build> &lt;plugins><pre>
+        &lt;plugin>
+          &lt;groupId>org.apache.maven.plugins&lt;/groupId>
+          &lt;artifactId>maven-eclipse-plugin&lt;/artifactId>
+          &lt;configuration>
+            &lt;downloadSources>true&lt;/downloadSources>
+            &lt;downloadJavadocs>true&lt;/downloadJavadocs>
+            &lt;wtpversion>2.0&lt;/wtpversion>
+          &lt;/configuration>
+        &lt;/plugin>
+  </pre></li>
+        <li>Or do <b>mvn eclipse:eclipse -Dwtpversion=2.0</b></li>
+     </ol>
+  </li>
+  <li>mvn eclipse:eclipse</li>
+  <li>Import the project in Eclipse with "Existing Projects into Workspace"</li>
+</ol>
+
+
+<h1>Get it to actually run</h1>
+
+<p>
+Next we must modify some variables in Eclipse in order to get it to actually build and run the project.
+</p>
+
+<ol>
+  <li>Window menu, Preferences</li>
+  <li>Server, Runtime Environments</li>
+  <li>Add...</li>
+  <li>Pick your web container server</li>
+  <li>Next to follow setup then Finish</li>
+  <li>Java, Build Path, Classpath Variables</li>
+  <li>New...</li>
+  <li>Name (case sensitive) of <b>M2_REPO</b></li>
+  <li>Path of C:/Users/youruser/.m2/repository</li>
+  <li>OK to save</li>
+  <li>Say yes to the full rebuild</li>
+  <li>Right click on your project in the Project Explorer</li>
+  <li>Run As</li>
+  <li>Run on Server</li>
+  <li>Pick your server and run your app</li>
+</ol>
+
+<h1>Maven servlet dependencies</h1>
+
+<p>
+A helpful list of how to resolve servlet-api names for newer versions (it is very inconsistent on all the Maven repos) can be found at <a href="http://maven.apache.org/guides/mini/guide-coping-with-sun-jars.html">http://maven.apache.org/guides/mini/guide-coping-with-sun-jars.html</a>, but beware that newer releases of the servlet apis don't seem to follow these recommendations anymore.
+</p>
+
+
+<h1>Sample pom.xml</h1>
+
+<pre>
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;TLD.EXAMPLE.GROUP&lt;/groupId&gt;
+  &lt;artifactId&gt;YOUR-ARTIFICAT-ID&lt;/artifactId&gt;
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  &lt;version&gt;-SNAPSHOT&lt;/version&gt;
+  
+  &lt;name&gt;YOUR-PROJECT-NAME Maven Webapp&lt;/name&gt;
+  &lt;url&gt;http://www.rodneybeede.com&lt;/url&gt;
+  &lt;inceptionYear&gt;2013&lt;/inceptionYear&gt;
+	&lt;licenses&gt;
+		&lt;license&gt;
+			&lt;name&gt;&lt;/name&gt;
+			&lt;url&gt;&lt;/url&gt;
+			&lt;distribution&gt;repo&lt;/distribution&gt;
+			&lt;comments&gt;&lt;/comments&gt;
+		&lt;/license&gt;
+	&lt;/licenses&gt;
+  &lt;organization&gt;
+		&lt;name&gt;SOME ORG&lt;/name&gt;
+		&lt;url&gt;http://www.example.com/&lt;/url&gt;
+	&lt;/organization&gt;
+  &lt;developers&gt;
+		&lt;developer&gt;
+			&lt;id&gt;rbeede&lt;/id&gt;
+			&lt;name&gt;Rodney Beede&lt;/name&gt;
+			&lt;email&gt;nospam_see_project_website@localhost&lt;/email&gt;
+			&lt;url&gt;http://www.rodneybeede.com/&lt;/url&gt;
+			&lt;organization&gt;TODO&lt;/organization&gt;
+			&lt;roles&gt;
+				&lt;role&gt;architect&lt;/role&gt;
+				&lt;role&gt;developer&lt;/role&gt;
+				&lt;role&gt;tester&lt;/role&gt;
+			&lt;/roles&gt;
+		&lt;/developer&gt;
+	&lt;/developers&gt;
+	&lt;contributors&gt;
+		&lt;contributor&gt;
+			&lt;name&gt;&lt;/name&gt;
+			&lt;email&gt;nospam_see_project_website@localhost&lt;/email&gt;
+			&lt;organization&gt;&lt;/organization&gt;
+			&lt;roles&gt;
+				&lt;role&gt;tester&lt;/role&gt;
+			&lt;/roles&gt;
+		&lt;/contributor&gt;
+	&lt;/contributors&gt;
+  
+  	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;log4j&lt;/artifactId&gt;
+			&lt;version&gt;1.2.17&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;apache-log4j-extras&lt;/artifactId&gt;
+			&lt;version&gt;1.1&lt;/version&gt;
+		&lt;/dependency&gt;
+		
+		&lt;!-- Maven Central and other repos don't have consisent locations for versions of the J2EE APIs
+			This guide was helpful for older versions, but it doesn't seem to be followed anymore in repos:
+			http://maven.apache.org/guides/mini/guide-coping-with-sun-jars.html
+			You can also search http://jcp.org/en/jsr/all to get the middle point (x.'#'.z) latest JSR spec version
+		--&gt;
+		
+		&lt;!-- http://www.java.net/forum/topic/glassfish/glassfish/javaxservlet-api-version --&gt;
+		&lt;!-- http://java.net/projects/servlet-spec --&gt;
+		&lt;!-- Found in Maven central repository --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+			&lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+			&lt;version&gt;3.1.0&lt;/version&gt;
+			&lt;scope&gt;provided&lt;/scope&gt;
+		&lt;/dependency&gt;
+		
+		&lt;!-- http://jsp.java.net/downLoad.html --&gt;
+		&lt;!-- Found in Maven central repository --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;javax.servlet.jsp &lt;/groupId&gt;
+			&lt;artifactId&gt;javax.servlet.jsp-api&lt;/artifactId&gt;
+			&lt;version&gt;2.3.1&lt;/version&gt;
+			&lt;scope&gt;provided&lt;/scope&gt;
+		&lt;/dependency&gt;
+		
+		&lt;!-- Find the latest version with groupId and artifactId per http://jstl.java.net/download.html --&gt;
+		&lt;!-- Found in Maven central repository --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.glassfish.web&lt;/groupId&gt;
+        &lt;artifactId&gt;javax.servlet.jsp.jstl&lt;/artifactId&gt;
+        &lt;version&gt;1.2.2&lt;/version&gt;
+    &lt;/dependency&gt;
+	&lt;/dependencies&gt;
+  
+  &lt;build&gt;
+    &lt;finalName&gt;YOUR_WEBAPP_CONTEXT_PATH_NAME&lt;/finalName&gt;
+    
+    &lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-eclipse-plugin&lt;/artifactId&gt;
+				&lt;configuration&gt;
+					&lt;downloadSources&gt;true&lt;/downloadSources&gt;
+					&lt;downloadJavadocs&gt;true&lt;/downloadJavadocs&gt;
+					&lt;wtpversion&gt;2.0&lt;/wtpversion&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+			&lt;plugin&gt;
+				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+				&lt;configuration&gt;
+					&lt;source&gt;1.7&lt;/source&gt;
+					&lt;target&gt;1.7&lt;/target&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+  &lt;/build&gt;
+&lt;/project&gt;
+</pre>
+
+
+<h1>Sample web.xml</h1>
+
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!-- Java Servlet Specification version 3.1 final document has an old example 
+	of only version 2.5. This website (http://antoniogoncalves.org/2013/06/04/java-ee-7-deployment-descriptors/) 
+	provided the updated example of the web-app tag --&gt;
+&lt;web-app xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd&quot;
+	version=&quot;3.1&quot;&gt;
+
+	&lt;display-name&gt;YOUR_WEBAPP_NAME&lt;/display-name&gt;
+
+	&lt;context-param&gt;
+		&lt;description&gt;Location where the web application configuration can be found.  We keep the configuration
+		options separate from the web.xml because it makes redeployment easier to avoid having to update web.xml for
+		each environment.&lt;/description&gt;
+		&lt;param-name&gt;Pathname to configuration file&lt;/param-name&gt;
+		&lt;param-value&gt;/etc/WebAppConfig.xml&lt;/param-value&gt;
+	&lt;/context-param&gt;
+
+	&lt;listener&gt;
+		&lt;description&gt;Responsible for initializing the web application at startup&lt;/description&gt;
+		&lt;listener-class&gt;TLD.DOMAIN.WEBAPP.servlets.InitializationListener&lt;/listener-class&gt;
+	&lt;/listener&gt;
+
+	&lt;servlet&gt;
+		&lt;servlet-name&gt;SomeServlet&lt;/servlet-name&gt;
+		&lt;servlet-class&gt;TLD.DOMAIN.WEBAPP.servlets.SomeServlet&lt;/servlet-class&gt;
+	&lt;/servlet&gt;
+	&lt;servlet-mapping&gt;
+		&lt;servlet-name&gt;SomeServlet&lt;/servlet-name&gt;
+		&lt;url-pattern&gt;/servlets/SomeServlet&lt;/url-pattern&gt;
+	&lt;/servlet-mapping&gt;
+
+	&lt;security-constraint&gt;
+		&lt;web-resource-collection&gt;
+			&lt;web-resource-name&gt;HTTP Method Security&lt;/web-resource-name&gt;
+			&lt;description&gt;Restricts HTTP methods to only allowed methods for best security practice&lt;/description&gt;
+			&lt;url-pattern&gt;/&lt;/url-pattern&gt;
+			&lt;http-method-omission&gt;GET&lt;/http-method-omission&gt;
+			&lt;http-method-omission&gt;POST&lt;/http-method-omission&gt;
+		&lt;/web-resource-collection&gt;
+	&lt;/security-constraint&gt;
+&lt;/web-app&gt;
+</pre>

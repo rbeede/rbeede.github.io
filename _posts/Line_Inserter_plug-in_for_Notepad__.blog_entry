@@ -1,0 +1,29 @@
+# UTC EPOCH of original creation time
+1297031021
+# UTC EPOCH of last modified time
+1297031021
+# CATEGORY
+Programming
+# TITLE
+Line Inserter plug-in for Notepad++
+# CONTENT in fragment XHTML until EOF
+NotePad++ Line Inserter Plug-in
+
+So I've written a plug-in that will insert " at the beginning and end of all lines in the current document.
+
+<p>
+You need to (manually) install the NppScripting plug-in by Kremer Eugen (http://www.softwarecanoe.de/data/nppscripting.zip) and copy the lineinserter.js file into the "includes" folder for that plug-in.
+</p>
+
+<p>
+I wanted to make it prompt for the text to insert, but there isn't a good API in the NppScripting plug-in for doing so.  I tried the provided Dialog class, but the IE window wouldn't open with focus on Windows 7.  Any ideas on how to prompt the user for input?
+</p>
+
+<p>
+Downloads:
+</p>
+
+<ul>
+<li><a href="http://www.softwarecanoe.de/data/nppscripting.zip">http://www.softwarecanoe.de/data/nppscripting.zip</a></li>
+<li><a href="http://www.rodneybeede.com/downloads/lineinserter.7z">http://www.rodneybeede.com/downloads/lineinserter.7z</a></li>
+</ul>

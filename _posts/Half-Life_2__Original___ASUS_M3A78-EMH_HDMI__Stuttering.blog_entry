@@ -1,0 +1,67 @@
+# UTC EPOCH of original creation time
+1219518600
+# UTC EPOCH of last modified time
+1219518600
+# CATEGORY
+Computer Problems
+# TITLE
+Half-Life 2 (Original), ASUS M3A78-EMH HDMI, Stuttering
+# CONTENT in fragment XHTML until EOF
+So the full version of Half-Life 2 has the same problem as the demo on my machine.  The audio stutters, and the video lags very slowly for about 5-10 seconds at seemingly random times.
+<p>
+I tried all the tricks on the Internet to resolve this:
+</p>
+
+<ul>
+<li>Install latest video drivers from ASUS</li>
+<li>Install latest game patch</li>
+<li>Install latest video drivers from ATI (Catalyist 8.8)</li>
+<li>Install oldest video drivers from ASUS</li>
+<li>Update to latest bios</li>
+<li>Tweak PCI latency in bios (not applicable for my video card)</li>
+<li>Stop all background services</li>
+<li>Install Windows XP instead of Vista (problem was worse)</li>
+<li>Add flags like snd_async_fullyasync, heapsize, cl_forcepreload, forcepreload, sv_autosave, nosound</li>
+<li>Put all video & sound details to low</li>
+<li>Disable autosave</li>
+<li>Defrag game cache and hard drive</li>
+</ul>
+
+I tried it all, but nothing has even made the issue a little better.
+
+<p>
+Here are my computer specifications:
+</p>
+
+<ul>
+<li>AMD Athlon(tm) 64 X2 Dual Core Processor 6000+ (3.0Ghz)</li>
+<li>ASUS M3A78-EMH HDMI</li>
+<li>ATI Radeon HD 3200 (integrated)</li>
+<li>2GB 800Mhz DDR2 Samsung RAM</li>
+<li>2x 750GB Seagate Barricuda 7200.1 32MB Cache Hard Disks in RAID0</li>
+<li>5 system fans</li>
+<li>620 Watt Power Supply</li>
+<li>Windows Vista Business Edition w/SP1</li>
+<li>ATI Catalyst 8.8</li>
+<li>Video Driver Packaging Version 8.522-080731a-067980C-ATI</li>
+</ul>
+
+<p>
+Here is an old site with some consolidated info on fixes:  <a href="http://www.blep.net/hl2stutter/">http://www.blep.net/hl2stutter/</a>
+</p>
+
+<p>
+I'm going to try contacting VAVLe support to see if they have anything else or know about issues with my specific motherboard.
+</p>
+
+<p style="font-weight: bold; color: red;">
+Possible Cause Found
+</p>
+
+<p>
+I believe the stuttering is caused by my CPU reaching its maximum temperature and the motherboard freezing the CPU in order to cool it.  I installed ASUS Cool & Quiet and ASUS Probe II utilities.  Each time my CPU reached 62°C the stuttering would occur and continue until the temperature dropped.
+</p>
+
+<p>
+I tried reseating my processor, removing and replacing the thermal compound, but my CPU still hits 62°C.  Looks like I'm going to have to buy an expensive cooler to keep the CPU cold enough.  Sad thing is I bought the "upgraded" fan when I purchased the motherboard and cpu combo.
+</p>

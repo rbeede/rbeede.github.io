@@ -1,0 +1,113 @@
+# UTC EPOCH of original creation time
+1296435173
+# UTC EPOCH of last modified time
+1305039402
+# CATEGORY
+Tech Tricks
+# TITLE
+Rooting your Sprint HTC Hero (CDMA) without loading a custom ROM
+# CONTENT in fragment XHTML until EOF
+These instructions tell you how to root the stock firmware on your HTC Hero (CDMA Sprint) Android phone without replacing the stock firmware.  This is useful if you want the ability to run "root" only apps and wish to keep the same interface.  You can also copy apps to your SDCard and run them from that to save on storage space.
+
+<h1>You will need:</h1>
+
+<ol>
+	<li>Windows 7 Home Premium Edition 64-bit
+		<ul><li>Actually any version of Windows XP or later or Linux could work, but these instructions were written using a machine with Windows 7</li></ul>
+	</li>
+	<li>Java 6 JDK
+		<ul>
+			<li>Download latest from <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">java.sun.com</a></li>
+			<li>Make sure you download the <span style="font-weight: bold;">JDK</span></li>
+			<li>Download the 32-bit or 64-bit version based on your OS</li>
+		</ul>
+	</li>
+	<li><a href="http://developer.android.com/sdk/index.html">Google Android SDK</a> (Zip or Installer)</li>
+	<li>
+		<a href="http://www.htc.com/us/support/hero-sprint/downloads/">HTC SYNC UPDATE</a>
+		<ul><li>You may also just try the USB drivers only by downloading them from <a href="http://developer.htc.com/">http://developer.htc.com/</a></li></ul>
+	</li>
+	<li>If your phone isn't on version 2.27.651.6 or newer
+		<ol>
+			<li>You will have to erase all data on the phone</li>
+			<li>Download <a href="http://www.htc.com/us/support/hero-sprint/downloads/">HTC HERO (SPRINT) 2.1 SOFTWARE UPDATE</a></li>
+			<li>After installing turn your phone off and on and trigger Sprint's over the air update to the latest version</li>
+		</ol>
+	</li>
+	<li><a href="http://android.d3xt3r01.tk/cyanogen/common/rageagainstthecage-arm5.zip">Cyanogen Community Root Exploit</a></li>
+	<li>An SD card in your phone with some free space (at least 20MB)</li>
+</ol>
+
+<h1>Steps</h1>
+
+<ol>
+	<li>Backup everything on your phone!
+		<ul>
+			<li>I like SMS Backup (Christoph Studer) for backing up my SMS and MMS messages to my Google Mail</li>
+			<li>If you have a Google account you can login to it on your phone to backup all your contacts</li>
+			<li>Remember to backup your SDCard contents too</li>
+		</ul>
+	</li>
+	<li>If you need to update your phone software version do so now
+		<ul><li>Installing HTC SYNC before running the RUU update works best</li></ul>
+	</li>
+	<li>Uninstall any old version of Java
+		<ol>
+			<li>Start</li>
+			<li>Control Panel</li>
+			<li>Programs and Features</li>
+			<li>Look for any Java... entries</li>
+			<li>Uninstall</li>
+			<li>Reboot if asked</li>
+		</ol>
+	</li>
+	<li>Install the latest Java JDK you downloaded</li>
+	<li>Install HTC SYNC if not already installed</li>
+	<li>Install or unzip the Android SDK
+		<ul>
+			<li>Make sure to note which directory you install it in</li>
+			<li>You don't need to install anything from the SDK Manager</li>
+		</ul>
+	</li>
+	<li>Plug in your phone via a USB cable
+		<ul>
+			<li>Make sure your phone is in charge only mode and NOT USB Disk mode (don't mount the SDCard as a drive in Windows)</li>
+		</ul>
+	</li>
+	<li>Turn on USB Debugging on your phone
+		<ol>
+			<li>Home Screen</li>
+			<li>Menu button</li>
+			<li>Settings</li>
+			<li>Applications</li>
+			<li>Development</li>
+			<li>USB debugging checked</li>
+		</ol>
+	</li>
+	<li>Open a command prompt</li>
+	<li>Go into the Android SDK directory</li>
+	<li>Go into the <span style="font-weight: bold;">tools</span> sub-directory</li>
+	<li>Place the Java JDK bin folder in your path
+		<ul>
+			<li>In the command prompt type <span style="font-weight: bold;">set PATH=%PATH%;C:\Program Files\Java\jdk1.6.0_23\bin</span> (may vary slightly)</li>
+			<li>Type in <span style="font-weight: bold;">java -version</span> to verify</li>
+		</ul>
+	</li>
+	<li>At the command prompt type:  <span style="font-weight: bold;">android</span> and press enter</li>
+	<li>Available Packages menu</li>
+	<li>Click into Android Repository</li>
+	<li>Select Android SDK Platform-tools ...</li>
+	<li>Install Selected button (bottom right)</li>
+	<li>Accept and install</li>
+	<li>Tell it Yes to restart of ADB</li>
+	<li>Close both windows</li>
+	<li>Go back to the command prompt</li>
+	<li>ctrl+C to kill the running program</li>
+	<li><span style="font-weight: bold;">cd ..\platform-tools</span></li>
+	<li><span style="font-weight: bold;">adb devices</span></li>
+	<li>Make sure a line with some letters and lots of numbers appear.  That's your phone.</li>
+	<li>Follow the instructions at <a href="http://wiki.cyanogenmod.com/index.php?title=HTC_Hero_(CDMA):_Full_Update_Guide#Rooting_the_HTC_Hero_.28CDMA.29">http://wiki.cyanogenmod.com/index.php?title=HTC_Hero_(CDMA):_Full_Update_Guide#Rooting_the_HTC_Hero_.28CDMA.29</a> and follow the Rooting the HTC Hero (CDMA) part</a></li>
+	
+</ol>
+
+Other instructions that you may find useful are at <a href="http://wiki.cyanogenmod.com/index.php?title=HTC_Hero_(CDMA):_Full_Update_Guide">http://wiki.cyanogenmod.com/index.php?title=HTC_Hero_(CDMA):_Full_Update_Guide</a>

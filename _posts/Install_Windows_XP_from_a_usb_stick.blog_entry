@@ -1,0 +1,35 @@
+# UTC EPOCH of original creation time
+1246046043
+# UTC EPOCH of last modified time
+1246046043
+# CATEGORY
+Tech Tricks
+# TITLE
+Install Windows XP from a usb stick
+# CONTENT in fragment XHTML until EOF
+I found a very useful guide for installing Windows XP from a usb stick.  It's useful when you don't have a CD/DVD-ROM drive or you are testing a custom make iso installer and don't want to burn lots of discs.
+<p>
+<a href="http://www.vandomburg.net/installing-windows-xp-from-usb/">http://www.vandomburg.net/installing-windows-xp-from-usb/</a>
+</p>
+
+<p>
+An alternative method can also be found at <a href="http://www.liliputing.com/2008/04/install-windows-xp-on-mini-note-usb.html">http://www.liliputing.com/2008/04/install-windows-xp-on-mini-note-usb.html</a>
+</p>
+
+<p>
+If you get the "NTDETECT failed" error it may mean that your USB stick has no partitions on it.  This happened when I zeroed out a usb stick in Linux and then let Windows XP format the drive.  Windows does not create partitions on removable usb stick drives and thus wrote the filesystem to the raw device with no partition table.  It would boot, but BartPE could not load.  This is also a common cause of a BIOS being unable to boot the stick.  Many are hard coded to look for a primary partition (or some even a special 4th partition).
+</p>
+
+<p>
+Here is how you can fix the usb stick drive:
+</p>
+<ol>
+<li>Gain access to a Linux system (<a href="http://www.sysresccd.org/Main_Page">System Rescue CD</a> works in a pinch)</li>
+<li>Plug in the USB stick and erase it with <b>dd if=/dev/zero of=/dev/<i>sdX</i> bs=64k</b></li>
+<li>Partition the USB stick with a single FAT16 (type 06) primary partition</li>
+<li>Mark the partition bootable (/sbin/cfdisk is a good tool)</li>
+<li>Safely remove the USB stick and plug it into the Windows computer that you are using to install Bart PE</li>
+<li>Format the USB stick per Windows recommendation</li>
+<li>Install Bart PE as usual</li>
+<li>The USB stick should now boot correctly</li>
+</ol>

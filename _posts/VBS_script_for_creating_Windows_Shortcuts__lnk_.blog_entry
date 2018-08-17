@@ -1,0 +1,29 @@
+# UTC EPOCH of original creation time
+1240593267
+# UTC EPOCH of last modified time
+1240593267
+# CATEGORY
+Programming
+# TITLE
+VBS script for creating Windows Shortcuts (lnk)
+# CONTENT in fragment XHTML until EOF
+Save the following into a file with the extension vbs or wsh with the appropriate edits:
+<pre>
+'Create a WshShell Object
+Set WshShell = Wscript.CreateObject("Wscript.Shell")
+
+'Create a WshShortcut Object
+Set oShellLink = WshShell.CreateShortcut("aaa.lnk")
+
+'Set the Target Path for the shortcut
+oShellLink.TargetPath = "notepad.exe"
+
+'Set the additional parameters for the shortcut
+oShellLink.Arguments = "c:\windows\desktop\aaa.txt"
+
+'Save the shortcut
+oShellLink.Save
+
+'Clean up the WshShortcut Object
+Set oShellLink = Nothing
+</pre>

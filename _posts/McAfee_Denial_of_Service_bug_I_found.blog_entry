@@ -1,0 +1,22 @@
+# UTC EPOCH of original creation time
+1380727840
+# UTC EPOCH of last modified time
+1380897620
+# CATEGORY
+Security
+# TITLE
+McAfee Denial of Service bug I found
+# CONTENT in fragment XHTML until EOF
+I discovered a DoS bug in McAfee's enterprise client "FrameworkService.exe" that I reported in September, 2013.  McAfee just released a public Security Bulletins about it at:
+
+<p>
+<a href="https://kc.mcafee.com/corporate/index?page=content&id=SB10055">McAfee Security Bulletin - McAfee Managed Agent update fixes the "Denial of Service" vulnerability against the FrameworkService.exe</a>
+</p>
+
+<p>The CERT Vulnerability Note <a href="http://www.kb.cert.org/vuls/id/613886">VU# 613886</a> has been published.</p>
+
+<p>The CVE is <a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2013-3627">CVE-2013-3627: McAfee Agent v4.6 Denial of Service</a></p>
+
+<p>
+I had some initial difficulty finding how to contact the vendor, but McAfee did reach back out to me later so I could report it.
+</p>

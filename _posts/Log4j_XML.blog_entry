@@ -1,0 +1,144 @@
+# UTC EPOCH of original creation time
+1290613426
+# UTC EPOCH of last modified time
+1443732508
+# CATEGORY
+Programming
+# TITLE
+Log4j XML
+# CONTENT in fragment XHTML until EOF
+Just notes on how I like to use log4j.
+
+<h3>log4j.xml</h3>
+
+Place in classpath to have it automatically loaded.  src/main/resources/log4j.xml is a good choice.
+
+<p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE log4j:configuration SYSTEM &quot;http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd&quot;&gt;
+
+&lt;!-- http://wiki.apache.org/logging-log4j/Log4jXmlFormat --&gt;
+
+&lt;log4j:configuration xmlns:log4j=&quot;http://jakarta.apache.org/log4j/&quot;&gt;
+
+	&lt;!-- The appender name &quot;rolling&quot; is referenced in Java code to display the absolute path of where logging is occurring --&gt;
+	&lt;appender name=&quot;rolling&quot; class=&quot;org.apache.log4j.rolling.RollingFileAppender&quot;&gt;
+
+		&lt;!-- The active file to log to --&gt;
+		&lt;param name=&quot;file&quot; value=&quot;${catalina.home}/logs/WebApplication.log&quot; /&gt;
+		&lt;param name=&quot;append&quot; value=&quot;true&quot; /&gt;
+		&lt;param name=&quot;encoding&quot; value=&quot;UTF-8&quot; /&gt;
+
+		&lt;rollingPolicy class=&quot;org.apache.log4j.rolling.TimeBasedRollingPolicy&quot;&gt;
+			&lt;!-- The file to roll to, this is a fairly intelligent parameter, if the 
+				file ends in .gz, it gzips it, based on the date stamp it rolls at that time, 
+				default is yyyy-MM-dd, (rolls at midnight) See: http://logging.apache.org/log4j/companions/extras/apidocs/org/apache/log4j/rolling/TimeBasedRollingPolicy.html --&gt;
+			&lt;param name=&quot;FileNamePattern&quot; value=&quot;${catalina.home}/logs/WebApplication.%d.log.gz&quot; /&gt;
+		&lt;/rollingPolicy&gt;
+
+		&lt;layout class=&quot;org.apache.log4j.PatternLayout&quot;&gt;
+			&lt;!-- %d = date, %p = level, %t = thread, %c = category (usually class), 
+				%m = message, %n = newline --&gt;
+			&lt;param name=&quot;ConversionPattern&quot;
+				value=&quot;%d{yyyy-MM-dd HH:mm:ss,SSS Z}\t%-5p\tThread=%t\t%c\t%m%n&quot; /&gt;
+		&lt;/layout&gt;
+	&lt;/appender&gt;
+
+	&lt;appender name=&quot;ASYNC&quot; class=&quot;org.apache.log4j.AsyncAppender&quot;&gt;
+		&lt;param name=&quot;BufferSize&quot; value=&quot;500&quot; /&gt;
+		&lt;appender-ref ref=&quot;rolling&quot; /&gt;
+		&lt;!-- Don't log to console as that fills up the web container log (ex: catalina.log) which may not roll --&gt;
+	&lt;/appender&gt;
+
+	&lt;root&gt;
+		&lt;level value=&quot;all&quot; /&gt;
+		&lt;appender-ref ref=&quot;ASYNC&quot; /&gt;
+	&lt;/root&gt;
+
+&lt;/log4j:configuration&gt;
+</pre>
+</p>
+
+
+<h3>Maven pom.xml</h3>
+
+You will want to add the version yourself based on the latest available.
+
+<pre>
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;log4j&lt;/artifactId&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;apache-log4j-extras&lt;/artifactId&gt;
+		&lt;/dependency&gt;
+</pre>
+
+
+<h3>Java use</h3>
+
+<pre>
+private static final Logger log = Logger.getLogger(SOMECLASS.class);</pre>
+
+<h3>The file cannot be validated as the XML definition "/some/path/log4j.dtd (The system cannot find the file specified)" that is specified as describing the syntax of the file cannot be located</h3>
+
+This just means that the location for the DTD validation can't be found locally.  One option is to use this DOCTYPE instead:
+
+<p><pre>&lt;!DOCTYPE log4j:configuration SYSTEM &quot;http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd&quot;&gt;</pre></p>
+
+<p>
+This however may cause your IDE to go out on the Internet to retrieve the DTD which could be slow if Apache's website is busy.  You'll just get a hang with no useful error message when you rebuild.
+</p>
+
+
+<h4>Java LoggingUtil</h4>
+
+<pre>
+package com.rodneybeede.cloudinabottle.utils;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+
+import org.apache.log4j.Appender;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.AppenderAttachable;
+
+public class LoggingUtils {
+	/**
+	 * @param logger Usually {@link Logger#getRootLogger()}
+	 * @return File handle objects to all appenders that subclass {@link FileAppender} and have file settings != null.  Recursive.
+	 */
+	public static Collection&lt;File&gt; getAppenderFiles(final org.apache.log4j.Logger logger) {
+		final Enumeration&lt;?&gt; childrenEnumeration = logger.getAllAppenders();
+		return getAppenderFiles(childrenEnumeration);
+	}
+	
+	
+	public static Collection&lt;File&gt; getAppenderFiles(final Enumeration&lt;?&gt; appenderEnumeration) {
+		final Collection&lt;File&gt; files = new ArrayList&lt;File&gt;();
+		
+		while(appenderEnumeration.hasMoreElements()) {
+			final Appender currAppender = (Appender) appenderEnumeration.nextElement();
+			
+			if(currAppender instanceof FileAppender) {
+				final FileAppender fileAppender = (FileAppender) currAppender;
+				if(null != fileAppender.getFile()) {
+					files.add(new File(fileAppender.getFile()).getAbsoluteFile());
+				}
+			}
+			if(currAppender instanceof AppenderAttachable) {
+				// Recursive
+				final Enumeration&lt;?&gt; childrenEnumeration = (((AppenderAttachable) currAppender).getAllAppenders());
+				files.addAll(getAppenderFiles(childrenEnumeration));
+			}
+		}
+
+		return files;
+	}
+}
+</pre>

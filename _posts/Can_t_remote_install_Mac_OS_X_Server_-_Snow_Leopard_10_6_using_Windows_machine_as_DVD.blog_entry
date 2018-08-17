@@ -1,0 +1,22 @@
+# UTC EPOCH of original creation time
+1307630941
+# UTC EPOCH of last modified time
+1307630941
+# CATEGORY
+Computer Problems
+# TITLE
+Can't remote install Mac OS X Server - Snow Leopard 10.6 using Windows machine as DVD
+# CONTENT in fragment XHTML until EOF
+I have a Mac Mini that came with Snow Leopard 10.6.  This Mac Mini doesn't include a DVD/CD drive.  I wanted to configure it with RAID which requires booting from the install DVD.
+
+<p>
+According to the documentation for Mac OS X Snow Leopard you can using a Windows host's (or another Mac) DVD drive to remote install the OS again.
+</p>
+
+<p>
+Turns out the documentation is not for Mac OS X <b>Server</b> but only the non-server edition.  You can't use a Windows host to remote install the <b>Server</b> edition of Snow Leopard as the DVD contains no Windows files on it (I looked at it with ISOBuster to make sure).
+</p>
+
+<p>
+I called Apple Enterprise support about this.  Your best bet is to get a USB/Firewire DVD drive or use another Mac instead.  Another option might be to boot from an 8GB+ USB thumb drive, but I haven't tried it.
+</p>

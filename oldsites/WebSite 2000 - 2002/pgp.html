@@ -1,0 +1,90 @@
+<HTML>
+<HEAD>
+	<TITLE>Pretty Good Privacy</TITLE>
+</HEAD>
+
+<BODY>
+
+<A NAME="Top"></A>
+
+<FONT SIZE=+1><A HREF="./index.html">Contents</A></FONT>
+<HR>
+
+<H3>Rodney's Discussion of PGP</H3>
+
+Pretty Good Privacy is a encryption technology that was made by Philip Zimmermann.  This is a VERY strong encryption algorithm.  It works on the basis that you make two encryption keys, a public key and a secret key.  Your public key is giving to everyone, and they use this key to encrypt messages so that only you can read them.  Your secret key is used to decrypt the messages that people encrypt with your public key and is the only key that can decrypt the messages.  This makes for a very secure system of encryption.
+
+<P>
+With this encryption you can send private e-mails to your friends, and be confident that no one else could read them.  PGP will also allow you to sign messages (or data files for the matter).  When you sign a message you can choose to either encrypt or not encrypt it, but that message can be verified as only coming from you.  If someone tampers with the message in the slightest way your PGP signature will show it.  When signing a message (or data file) you will use your secret key, then the people who wish to verify that it came from you use your public key.
+
+<P>
+The way in which you distrubute your public key is important.  You are mostly subject to man-in-the-middle attacks.  Someone intercepts your key and sends along a fake one to your friend instead of yours.  Here are some basic ways that key exchanges are done:<BR>
+<UL>
+<LI>Public Key Servers -- You upload your public key to a server on the Internet and tell your friends they can go hear to download it</LI><BR>
+<LI>Via e-mail -- You simply e-mail your public key to your friends</LI><BR>
+<LI>Via floppy disk -- You hand your friend a floppy disk with your public key</LI>
+</UL>
+
+<P>
+<B><U>Problems with Public Key Servers</U></B>
+
+<P>
+Lets say that you have your friends regularly download your public key from a PKS.  This is a pretty good way, but what if this happened:
+
+<P>
+<TABLE ALIGN=CENTER WIDTH=90%>
+<FONT SIZE=-1>
+Jo HackYouUp is a hacker who likes to fool people into reading e-mail attachments with viruses in them.  He will commonly find people who both use PGP public keys to sign the .EXE files they send each other.  Since he can get a persons name and e-mail from their public keys he will commonly just make up a new set of keys of his own and slap those persons name and e-mail on them.  This places an extra set of public keys on the PKS (public key server) that looks like they belong to that person.  Jo HackYouUp will then e-mail that person's friend that is faked to look like it came from that person (very possible to do with e-mails).  He includes in the message "I'm using a new key, go grab it from the keyserver!" and that friend of the hacked person will then proceed to download the fake signature thinking it was from his friend, verify the attached .EXE as safe, and then run it installing a virus!"</FONT></TABLE>
+
+<P>
+As you can see from the example above, your keys you send don't get a unique name and end up with duplicates.  Now your original PGP public keys that you upload can't be tampered with, but the above senerio shows a way of getting around your original, valid key.
+
+<P>
+<B><U>Problems with sending your public keys by e-mail</U></B>
+
+<P>
+Basically it is somewhat similar to the above senerio, except that Jo HackYouUp will simply once again fake an e-mail and make it look like it came  from you (e-mail headers and all) and send his fake PGP public key.  Once again your friend takes the key and gets the virus.
+
+<P>
+<B><U>What can you do about all of this?</U></B>
+
+<P>
+Well the most secure way to exchange keys is to actually hand each other a floppy disk with your key on it.  This isn't always very practicle though.  One good method would to be to post your public key on your website (as I have) and allow people to download it.  That way people know it only came from you and it isn't some fake duplicate like one could get on public key servers.  PGP also has other options too though, as you can see below.
+
+<P>
+PGP has the ability to allow other people to sign other people's keys.  This in affect says, I'm sure this key belongs to that person.  What you get is a web of trusted people who can verify (hopefull correctly) that the key is belonging to that person.  So you could sign your friends key and he could sign yours.  If you weren't sure it was your friends key you could find someone that knew it was his key for sure and have them sign it as well.
+
+<P>
+Better still though is the fact that all keys come with digital signatures that are unique to that key.  These signatures provide an excellent way of verifying keys.  The best way of verifying keys would to call the other person on the phone (regular phone or over the Internet, just as long as you use a VOICE conversation, since that is harder to fake) and read off your keys digital sig and have your friend read off his.  You can compare them as they are read off this way.
+
+<P>
+<B><U>Where do I get PGP</U></B>
+
+<P>
+Due to those lovely U.S. Export laws, if you live outside the U.S. you have to download from the international website.  If you live in the U.S. you can get it from the United States website.  If you do live in the U.S., please contact your local congressman and tell him to stop hurting U.S. encryption software companies and get those export laws removed!
+
+<P>
+You can get PGP for commercial (you pay for it) or non-commercial (free) from the following sites:<BR>
+<UL>
+<LI><A HREF="http://www.pgp.com">U.S. PGP Home</A></LI>
+<LI><A HREF="http://www.pgpi.com">International PGP Home</A></LI>
+</UL>
+
+<HR>
+
+<A NAME="PGPKey"><H3>My Public Key</H3></A>
+
+<A HREF="./publicpgpkey.asc">Download</A> my PGP public key (made in ver 6.5.2) from here.
+
+<P>
+My PGP public key should have the following digital signature:
+
+<P>
+<NOBR>217C 44BA F866 FED3 6068  F857 2CC5 8829 FC4B F90B</NOBR>
+
+<P>
+<HR WIDTH="50%" ALIGN=LEFT>
+<A HREF="./contact.html">Rodney Beede</A> <A HREF="./copyright.html">© 1999-2000</A> | <A HREF="#Top">Top</A>
+
+</BODY>
+</HTML>

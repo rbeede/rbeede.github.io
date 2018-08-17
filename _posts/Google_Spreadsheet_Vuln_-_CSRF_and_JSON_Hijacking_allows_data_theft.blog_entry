@@ -1,0 +1,296 @@
+# UTC EPOCH of original creation time
+1477451048
+# UTC EPOCH of last modified time
+1477451377
+# CATEGORY
+Security
+# TITLE
+Google Spreadsheet Vuln - CSRF and JSON Hijacking allows data theft
+# CONTENT in fragment XHTML until EOF
+<p>
+In October of 2015 I discovered a JSON + CSRF hijacking vulnerability with a Google API related to spreadsheet graph rendering.  Using this vunlerability an attacker could steal the content of a spreadsheet from a target victim without having permission to the Google Drive file.
+</p>
+
+<h2>Impact of the vulnerability:</h2>
+
+<p>
+When exploiting the vulnerability against target victim(s) from the Internet, an attacker is able to bypass the Sharing settings ACL restrictions on Google Drive native spreadsheets.   To clarify, an attacker who is not authorized to access a Google Drive file, as shown in the below image, is able to exploit the vulnerability to bypass the Google security protections:
+</p>
+
+<p>
+<img src="google_vuln_2015-10/000_What_attacker_can_bypass.png" />
+</p>
+
+<h2>Nature of vulnerability</h2>
+<p>
+This is not the first time that Google has had a JSON Hijacking vulneraiblity that allowed for customer data exposure.
+</p>
+
+<p>
+The nature lies in a software design flaw in Google Drive APIs that have caused an <a href="https://www.owasp.org/index.php/Top_10_2013-A8-Cross-Site_Request_Forgery_(CSRF)">OWASP TOP 10 (2013) - A8-Cross-Site Request Forgery (CSRF)</a> vulnerability that allows for JSON Hijacking.
+</p>
+
+<p>
+The vulnerability is not difficult to exploit.   One past example is Google Gmail, which has been vulnerable to CSRF+JSON hijacking before in publicly released vulnerability exploits.
+</p>
+
+<ul>
+	<li>January 27, 2006 -- Advanced Web Attack Techniques using Gmail
+		<ul>
+			<li><a href="http://jeremiahgrossman.blogspot.com/2006/01/advanced-web-attack-techniques-using.html">http://jeremiahgrossman.blogspot.com/2006/01/advanced-web-attack-techniques-using.html</a></li>
+			<li>Gmail Contact List CSRF Vulnerability</li>
+		</ul>
+	</li>
+	<li>November 20, 2008 - Anatomy of a Subtle JSON Vulnerability
+		<ul>
+			<li><a href="http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/">http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/</a></li>
+		</ul>
+	</li>
+	<li>October 14, 2010 - Gmail JSON Hijacking Attack Technique
+		<ul>
+			<li><a href="http://seclists.org/fulldisclosure/2010/Oct/199">http://seclists.org/fulldisclosure/2010/Oct/199</a></li>
+		</ul>
+	</li>
+</ul>
+
+<p>
+For the Gmail JSON hijack Google was able to remediate the issue by appending an infinite while() loop to their JSON to cause target victims' browsers to crash during exploit attempts, which stops the attacker.
+</p>
+
+<p>
+However, the nature of this Google Drive vulnerability is such that Google cannot simply apply a quick fix to the JSON.   The necessary fix requires complex changes to Google Drive in order to avoid breaking product functionality.
+</p>
+
+<p>
+In Google's case they opted to retire the old API and replace it with a new one that required additional security permissions.  This required developers who used the API to update their code.
+</p>
+
+<h2>Example Attack Scenario (one of many):</h2>
+
+<h3>Business has a spreadsheet with confidential information in it.</h3>
+
+<p>
+<img src="google_vuln_2015-10/001_business_spreadsheet.png" />
+</p>
+
+<h3>Spreadsheet is only shared with authorized individuals in the company.</h3>
+
+<p>
+<img src="google_vuln_2015-10/002_business_spreadsheet.png" />
+</p>
+
+<h3>An employee leaves the company so their access is removed and shared passwords/pins/secrets in the spreadsheet are changed after they leave denying them access or knowledge of the data.</h3>
+
+<p>
+<img src="google_vuln_2015-10/003_business_spreadsheet.png" />
+</p>
+
+<h3>The new sharing settings showing the user's access removed.</h3>
+
+<p>
+<img src="google_vuln_2015-10/004_business_spreadsheet.png" />
+</p>
+
+<h3>The force be with you</h3>
+
+<p>
+The now removed employee desires to obtain unauthorized access to the spreadsheet.  They know that Mr. admin.assist@example.com likes to frequent a website that allows anyone on the internet to publish comments with HTML markup.  This is known as a watering hole attack as the attacker simply waits for their victim instead of attempting a more active attack like phishing or otherwise.
+</p>
+
+<h3>Screenshot of victim/user visiting the website.</h3>
+
+<p>
+<img src="google_vuln_2015-10/005_user_visiting_watering_hole_site.png" />
+</p>
+
+<h3>Unknown to the target victim (who is not even the document owner) they have just sent a copy of the spreadsheet data to the attacker.</h3>
+
+<p>
+<img src="google_vuln_2015-10/006_user_visiting_watering_hole_site_hidden_iframe.png" />
+</p>
+
+<h3>What the stolen data looks like (not seen by the victim):</h3>
+
+<p>
+<img src="google_vuln_2015-10/007_user_browser_showning_technical_details.png" />
+</p>
+
+<h3>The attacker sees the data as shown</h3>
+
+<p>
+<img src="google_vuln_2015-10/008_attackers_server_with_data_stolen.png" />
+</p>
+
+
+<h2>How is this possible?</h2>
+
+<p>
+The API in question did not require an OAuth token from a referring application and allows other sites to make cross site requests.  This allows any website to call the API and obtain the spreadsheet data of a victim who is already logged into their Google account.
+</p>
+
+<p>
+Because the response returned is JSON it is possible using JavaScript to have the web browser parse the information into an object that gets submitted to an attacker's choice web server.
+</p>
+
+<p>
+Simple proof of concept exploit code can be found in the following files:
+</p>
+
+<ul>
+	<li><a href="google_vuln_2015-10/simpleCapture.p-h-p.txt">simpleCapture.php</a> - A script for capturing the data sent from the victim's web browser</li>
+	<li><a href="google_vuln_2015-10/google_drive_smuggle.html.txt">google_drive_smuggle.html</a> - The HTML code used against the victim to steal target data</li>
+</ul>
+
+<p>
+An example of the code that parses the hijacked JSON:
+</p>
+
+<pre>
+		var google = new Object();
+		google.visualization = new Object();
+		google.visualization.Query = new Object();
+		
+		google.visualization.Query.setResponse = function(goods) {
+			google.response = JSON.stringify(goods, undefined, 2);
+			
+		}
+</pre>
+
+<p>
+The reply from the API service returns a JavaScript object with the data in JSON encoded format.  That data is available to our cross-origin page in the JSON object so we simply submit it to wherever we want.
+</p>
+
+
+<h2>Timeline</h2>
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>Event</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>October 29, 2015</td>
+			<td>Report sent to Google</td>
+		</tr>
+		<tr>
+			<td>October 30, 2015</td>
+			<td>Google acknowledges security bug is a legit threat attack vector.  Asked Google for ETA on fix.</td>
+		</tr>
+		<tr>
+			<td>November 6, 2015</td>
+			<td>Google replies:  "...the product team is hoping they can finally make a change that won't break a lot of users sometime next year. As you can hopefully understand, the issue requires careful coordination as there are many users relying on this behavior today.. but I'm happy to say that there has been progress on this, and it will be fixed."</td>
+		</tr>
+		<tr>
+			<td>January 5, 2016</td>
+			<td>Asked Google for ETA on fix</td>
+		</tr>
+		<tr>
+			<td>January 6, 2016</td>
+			<td>Google replies still no ETA on a fix</td>
+		</tr>
+		<tr>
+			<td>January 14, 2016</td>
+			<td>Asked Google for guess of ETA on fix</td>
+		</tr>
+		<tr>
+			<td>January 27, 2016</td>
+			<td><span style="font-weight: bold;">90 days</span> with no fix nor ETA</td>
+		</tr>
+		<tr>
+			<td>February 5, 2016</td>
+			<td>Requested update from Google (99 days since issue reported; 30 days since last communication from Google)</td>
+		</tr>
+		<tr>
+			<td>February 15, 2016</td>
+			<td>Google responds with no ETA on a fix</td>
+		</tr>
+		<tr>
+			<td>February 25, 2016</td>
+			<td>Asked Google for reference number to share with their business support to request a fix in the product.</td>
+		</tr>
+		<tr>
+			<td>February 25, 2016</td>
+			<td>Google responds with bug # for reference</td>
+		</tr>
+		<tr>
+			<td>March 17, 2016</td>
+			<td>Asked Google for ETA for a fix</td>
+		</tr>
+		<tr>
+			<td>April 1, 2016</td>
+			<td>Google responds "Sorry, we don't have a timeline for remediation to share yet. We'll let you know once we have more information."</td>
+		</tr>
+		<tr>
+			<td>April 26, 2016</td>
+			<td><span style="font-weight: bold;">180 days</span> with no fix nor ETA</td>
+		</tr>
+		<tr>
+			<td>May 31, 2016</td>
+			<td>215 days with no fix nor ETA.  Asked for ETA.</td>
+		</tr>
+		<tr>
+			<td>June 3, 2016</td>
+			<td>Google responds that they are still working on the fix and are managing the transition slowly to avoid affecting a number of users adversely.</td>
+		</tr>
+		<tr>
+			<td>August 17, 2016</td>
+			<td>Asked for ETA update</td>
+		</tr>
+		<tr>
+			<td>August 17, 2016</td>
+			<td>Google responds same day that they have turned on a warning message for most users that API is changing.</td>
+		</tr>
+		<tr>
+			<td>September 13, 2016</td>
+			<td>Confirmed that the warning message was appearing</td>
+		</tr>
+		<tr>
+			<td>September 15, 2016</td>
+			<td><span style="font-weight: bold;">322 days</span> later confirmed that final fix was working and the vulnerability was closed.</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Fix Near</h2>
+
+<p>
+After looking at the issue for quite some time Google decided that trying to code a backwards compatability fix wasn't going to be the best route.  They opted to decommission the old API and replace it with a new one instead.  This made the most sense, in my opinion, at resolving the issue versus trying to catch all the corner cases that might still allow a security bypass.
+</p>
+
+<p>
+An alert started to appear telling the user that use of the OLD api by the website/application would stop working soon.
+</p>
+
+<img src="google_vuln_2015-10/fix_near.png" style="width: 50%" />
+
+<img src="google_vuln_2015-10/google_dev_blog_announces_change.png"/>
+
+<h2>Final Fix Confirmed</h2>
+
+<p>
+I confirmed the issue was finally fixed on September 15, 2016.
+</p>
+
+<img src="google_vuln_2015-10/final_fix_confirmed.png" style="width: 50%" />
+
+<h2>Finale</h2>
+
+<p>
+It took a while but keeping monthly contact with Google did see the issue fixed and spreadsheet data once again secured.  At times it was difficult to get a response from Google, but I felt it was better to get the issue fixed properly rather than try to pressure them with disclosure.  The complete fix was a bit involved since Google had to figure out how to minimize impact to functionality too.
+</p>
+
+<p>
+I was added to Google's Hall of Fame for my finding.  You can find my profile <a href="https://bughunter.withgoogle.com/profile/28694c6b-c616-4213-84a1-a129e59e0e1e">here</a>.
+</p>
+
+<p>
+<img src="google_vuln_2015-10/google_hall_of_fame_1.png" />
+</p>
+
+<p>
+<img src="google_vuln_2015-10/google_hall_of_fame_2.png" />
+</p>

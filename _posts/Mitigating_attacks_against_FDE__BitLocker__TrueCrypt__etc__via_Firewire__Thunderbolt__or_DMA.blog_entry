@@ -1,0 +1,48 @@
+# UTC EPOCH of original creation time
+1358363915
+# UTC EPOCH of last modified time
+1422293332
+# CATEGORY
+Security
+# TITLE
+Mitigating attacks against FDE (BitLocker, TrueCrypt, etc) via Firewire, Thunderbolt, or DMA
+# CONTENT in fragment XHTML until EOF
+Good Microsoft KB on how to prevent Firewire/Thunderbolt/DMA attacks against a live running system with software FDE.
+
+<p>
+<a href="http://support.microsoft.com/kb/2516445">Blocking the SBP-2 driver and Thunderbolt controllers to reduce 1394 DMA and Thunderbolt DMA threats to BitLocker</a>
+</p>
+
+<p>
+Good for versions of Windows including and after Vista and Server 2008.
+</p>
+
+<p>
+Windows 8.1 (not 8.0) actually mitigates the attack out of the box now!  See <a href="https://technet.microsoft.com/en-us/library/dn632181.aspx">Choose the Right BitLocker Countermeasure</a> on technet.microsoft.com (March 26, 2014).
+</p>
+
+<p>
+Microsoft's site isn't the most clear since it tries to apply to many versions of Windows.  The instructions actually have text that doesn't 100% match what your version of Windows may have.
+</p>
+
+<p>
+Windows 7 Quick Start:
+</p>
+
+<ol>
+<li>Run the program  gpedit.msc</li>
+<li>Local Computer Policy</li>
+<li>Computer Configuration</li>
+<li>Administrative Templates</li>
+<li>System</li>
+<li>Device Installation</li>
+<li>Device Installation Restrictions</li>
+<li>Prevent installation of devices using drivers that match these device setup classes</li>
+<li>Enabled</li>
+<li>Comment: https://support.microsoft.com/kb/2516445/</li>
+<li>Show...  (button inside Options: text box)</li>
+<li>d48179be-ec20-11d1-b6b8-00c04fa372a7</li>
+<li>Close the Show Contents window with OK</li>
+<li>Scroll the Options: text area down until you see the checkbox option</li>
+<li>Also apply to matching devices that are already installed.</li>
+</ol>

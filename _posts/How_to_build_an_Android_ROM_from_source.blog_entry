@@ -1,0 +1,148 @@
+# UTC EPOCH of original creation time
+1319233586
+# UTC EPOCH of last modified time
+1320097725
+# CATEGORY
+Programming
+# TITLE
+How to build an Android ROM from source
+# CONTENT in fragment XHTML until EOF
+<p>
+You can find many useful details on Google's official site at <a href="http://source.android.com/source/">http://source.android.com/source/</a>.  They have updated a lot if it recently and those steps are basically all the ones I used.
+</p>
+
+
+<p>
+What I used:
+</p>
+<ul>
+<li>Ubuntu Server 11.04 AMD64</li>
+<li>Installed onto ProxMox VM
+	<ul>
+		<li>Fully Virtualized (KVM)</li>
+		<li>8 CPU sockets, 1 core / socket</li>
+		<li>4GiB memory</li>
+		<li>160GB SCSI disk</li>
+		<li>2 NICs, one internal VLAN, one Internet VLAN (external router with NAT)</li>
+		<li>CD-ROM pointing to ISO for installer</li>
+	</ul>
+</li>
+</ul>
+	
+<h1>OS Setup</h1>
+
+<ol>
+<li>Installed Ubuntu</li>
+<li>Created "android" user
+	<ul>
+		<li>Has sudo access</li>
+		<li>SSH public key login</li>
+		<li>Used for building, could be anything really</li>
+	</ul>
+</li>
+<li>Setup Internet connectivity</li>
+<li>sudo apt-get update</li>
+<li>sudo apt-get upgrade</li>
+<li>sudo /sbin/reboot</li>
+<li>uname -a
+	<ul><li>Mine shows "Linux linux-android-64bit 2.6.38-8-server #42-Ubuntu SMP Mon Apr 11 03:49:04 UTC 2011 x86_64 x86_64 x86_64 GNU/Linux"</li></ul>
+</li>
+</ol>
+
+<h1>Compiler Tools</h1>
+
+<ol>
+<li>sudo apt-get install gcc g++ gcc-multilib g++-multilib</li>
+<li>gcc --version
+	<ul><li>gcc (Ubuntu/Linaro 4.5.2-8ubuntu4) 4.5.2</li></ul>
+</li>
+<li>g++ --version
+	<ul><li>g++ (Ubuntu/Linaro 4.5.2-8ubuntu4) 4.5.2</li></ul>
+</li>
+<li>perl --version
+	<ul><li>This is perl, v5.10.1 (*) built for x86_64-linux-gnu-thread-multi</li></ul>
+</li>
+</ol>
+
+<h1>Android Build Tools and Environment</h1>
+
+<ol>
+<li>Just use the command from "Installing required packages" at <a href="http://source.android.com/source/initializing.html">http://source.android.com/source/initializing.html</a>
+	<ul><li>
+	sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown libxml2-utils
+	</li></ul>
+</li>
+<li>mkdir ~/bin</li>
+<li>PATH=~/bin:$PATH
+	<ul><li>You may wish to place this in your ~/.bashrc or other startup script</li></ul>
+</li>
+<li>curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo &gt; ~/bin/repo</li>
+<li>chmod a+x ~/bin/repo</li>
+<li>sudo apt-get install default-jdk</li>
+<li>python --version
+	<ul><li>Python 2.7.1+</li></ul>
+</li>
+</ol>
+
+
+
+<h1>Android Source</h1>
+
+<ol>
+<li>mkdir ~/ANDROID_WORKING_DIRECTORY</li>
+<li>cd ~/ANDROID_WORKING_DIRECTORY</li>
+<li>repo init -u https://android.googlesource.com/platform/manifest
+	<ul>
+		<li>You did remeber to set your path, right?</li>
+		<li>For a different branch:  repo init -u https://android.googlesource.com/platform/manifest -b android-2.3.7_r1</li>
+	</ul>
+</li>
+<li>repo sync
+	<ul>
+		<li>"The initial sync operation will take an hour or more to complete" when pulling down master</li>
+	</ul>
+</li>
+</ol>
+
+
+
+
+
+<h1>Compiling</h1>
+
+<ol>
+<li>cd ~/ANDROID_WORKING_DIRECTORY</li>
+<li>source build/envsetup.sh</li>
+<li>lunch full-eng
+	<ul><li>For building emulator rom, see Android source site</li></ul>
+</li>
+<li>make -j8</li>
+</ol>
+
+
+<h1>Running</h1>
+
+This is for running on an emulator.  See later sections for other devices.
+
+<ol>
+<li>make -j8 sdk</li>
+<li>Copy the system.img, ramdisk.img, and userdata.img files in ~/ANDROID_WORKING_DIRECTORY/out/target/product/generic to a machine with a GUI and the Android SDK installed</li>
+<li>On the machine with the Android SDK run the emulator with
+	<ul>
+		<li>android-sdk-windows\tools\emulator -system system.img -ramdisk ramdisk.img -data userdata.img</li>
+		<li>Update the paths accordingly</li>
+	</ul>
+</li>
+<li>Optionally if the machine you are building on has a GUI you can just run "emulator" and by default it will load the latest build images for you</li>
+</ol>
+
+
+<h1>Building for specific hardware device</h1>
+
+For run instructions on how to flash and run see <a href="http://source.android.com/source/building.html#run-it">Run It on source.android.com</a>
+
+<h2>HTC Hero CDMA</h2>
+
+Todo, writeup
+
+<h2>todo, more</h2>

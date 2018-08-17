@@ -1,0 +1,18 @@
+# UTC EPOCH of original creation time
+1347996445
+# UTC EPOCH of last modified time
+1347996445
+# CATEGORY
+Security
+# TITLE
+Scanning your ftp server?
+# CONTENT in fragment XHTML until EOF
+So many organizations that care about their web presence will have security scans run against their web servers.  I wonder though how many have thought to have their public ftp servers scanned as well?
+
+<p>
+I guess EA.com didn't.  They have a XSS vulnerability that is served up via ftp.ea.com.  Providing a URL such as ftp://ftp.ea.com/web/index.htm is perfectly valid for the major web browsers.  This also opens up XSS that may be missed since most organizations don't think to scan the web content on them as well.
+</p>
+
+<p>
+I did notify EA, but I never got a response back.
+</p>

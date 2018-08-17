@@ -1,0 +1,67 @@
+# UTC EPOCH of original creation time
+1395427202
+# UTC EPOCH of last modified time
+1395434360
+# CATEGORY
+Misc
+# TITLE
+What does network number, network prefix, CIDR prefix, subnet mask, netmask mean
+# CONTENT in fragment XHTML until EOF
+Doing some research on the origins of some common Internet terms for networking.  Not a lot to go on as formal definitions in standard documents versus common usage vary.  The terms themselves are used in different forms even in the same RFC document.
+
+<h4><a href="https://tools.ietf.org/html/rfc4632">RFC4632 - Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan.</a></h4>
+
+<p>
+network number (or prefix) - which bits in a 32-bit IPv4 address are interpreted as the network number (or prefix) associated with a site
+</p>
+
+<p>
+Also known as "network identifier" but not defined so in RFC.
+</p>
+
+<p>
+network address is a common known term as well, but that was actually the term used in the old classful (or class based) system.  The newer term for CIDR is prefixes.  RFC4632:  "The solution that the community created was to deprecate the Class A/B/C network address assignment system in favor of using "classless", hierarchical blocks of IP addresses (referred to as prefixes)."
+</p>
+
+<p>
+CIDR prefix = 4 octets/mask  (example:  172.16.0.0/16)
+</p>
+
+
+<p>RFC1812 has the following definition:</p>
+<p>
+Network Prefix
+</p>
+<p>
+        The portion of an IP Address that signifies a set of systems.
+        It is selected from the IP Address by logically ANDing a subnet
+        mask with the address, or (equivalently) setting the bits of the
+        address not among the most significant <prefix-length> bits of
+        the address to zero.
+</p>
+
+
+<h4><a href="https://tools.ietf.org/html/rfc950">RFC950 - Internet Standard Subnetting Procedure</a></h4>
+
+<p>
+subnet address mask (a.k.a. address mask).  RFC is for IPv4
+</p>
+
+<p>
+The terms "network mask" or "netmask" never appear in this RFC.  "network mask" appears in RFC4632.  "netmask" is a common abbreviation.
+</p>
+
+<p>
+RFC950 specifies a 32-bit address mask field.  One common example would be the 4 octet decimal dotted form:  255.255.255.0
+</p>
+
+
+<h4><a href="https://tools.ietf.org/html/rfc4291">RFC4291 - IP Version 6 Addressing Architecture</a></h4>
+
+<p>
+node's subnet prefix (a.k.a. subnet number) - CIDR prefix form of the network number or prefix.  Suitable for IPv6 and IPv4 (RFC4632).
+</p>
+
+<p>
+Example:  2001:0DB8:0000:CD30:0000:0000:0000:0000/60
+</p>

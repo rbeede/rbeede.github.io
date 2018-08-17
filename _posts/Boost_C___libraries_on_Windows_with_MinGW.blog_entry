@@ -1,0 +1,36 @@
+# UTC EPOCH of original creation time
+1329932557
+# UTC EPOCH of last modified time
+1329932612
+# CATEGORY
+Programming
+# TITLE
+Boost C++ libraries on Windows with MinGW
+# CONTENT in fragment XHTML until EOF
+I like to use Boost because it makes cross-platform programming easier.  I also prefer to use a non-Visual Studio compiler such as <a href="http://http://www.mingw.org/">MinGW</a>.  I needed to install the Boost headers (latest version) along with compiling the extended libraries.  I outline the steps below (at the time I used Boost 1.48.0):
+
+<h1>Prerequistes</h1>
+
+<ol>
+	<li><a href="http://www.boost.org/">Boost</a></li>
+	<li><a href="http://http://www.mingw.org/">MinGW with MSYS</a> - I used the nice auto-installer.  You could also use Visual C++ as your compiler</a></li>
+	<li>MinGW & MSYS in your path (for my system it was C:\mingw\msys\1.0\bin;C:\mingw\bin)</li>
+	<li>Lots of time to wait on the compile</li>
+</ol>
+
+<h1>Steps</h1>
+
+<ol>
+	<li>Extract Boost somewhere (takes a while)
+		<ul><li>I used C:\boost_1_48_0 to avoid spaces in paths</li></ul>
+	</li>
+	<li>Open a command prompt (cmd) and go to C:\boost_1_48_0\tools\build\v2</li>
+	<li>gcc --version to make sure it is in your path</li>
+	<li>bootstrap.bat gcc</li>
+	<li>b2.exe install --prefix=C:\boost_1_48_0</li>
+	<li>set PATH=%PATH%;C:\boost_1_48_0\bin</li>
+	<li>b2 -j4 toolset=gcc --build-type=complete stage
+		<ul><li>Note that -j4 means use 4 cores.  Adjust as needed.</li></ul>
+	</li>
+	<li>Your compiled libs will be in C:\boost_1_48_0\stage\lib
+</ol>

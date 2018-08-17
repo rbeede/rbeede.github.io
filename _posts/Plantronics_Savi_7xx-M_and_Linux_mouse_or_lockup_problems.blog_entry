@@ -1,0 +1,52 @@
+# UTC EPOCH of original creation time
+1342820090
+# UTC EPOCH of last modified time
+1345140742
+# CATEGORY
+Computer Problems
+# TITLE
+Plantronics Savi 7xx-M and Linux mouse or lockup problems
+# CONTENT in fragment XHTML until EOF
+I have a Plantronics Savi 7xx-M headset attached via USB to my computer (HP EliteBook 8560w) running Fedora 17 Linux.  I started to get weird lockups of my mouse or constant mouse click actions.  Short story buggy driver with Linux kernel 3.4.5-2.fc17.x86_64.  I also constantly saw "ALSA sound/usb/clock.c:236 22:2:1: cannot get freq at ep 0x84" in my logs.
+
+<p>
+To Fix:
+</p>
+
+<ol>
+<li>Unplug the headset USB cable</li>
+<li>Edit /etc/modprobe.d/blacklist.conf</li>
+<li>blacklist snd_usb_audio</li>
+<li>modprobe -r snd_usb_audio</li>
+<li>Note that you can no longer use the headset in Linux.  You can use it inside a VM though.</li>
+</ol>
+
+<hr />
+
+<h1>Update - 16 Aug 2012</h1>
+
+I received the following message from Gerben Meijer (thanks!) with some pointers on some work arounds:
+
+<div>
+...<br />
+<br />
+I ran into two issues with it.<br />
+<br />
+One, the mouse/keyboard problem you mentioned. The device presents itself as an usb sound card, a mouse and a keyboard. To make X11 ignore the keyboard and mouse features (which are fine in windows but Xorg does not like it), I added this to xorg.conf:<br />
+<br />
+<pre>
+Section "InputClass"
+        Identifier  "Plantronics"
+        MatchVendor "Plantronics"
+        Option      "Ignore" "true"
+EndSection
+</pre>
+<br />
+This will make X11 ignore the mouse and keyboard features and stop weird things from happening.<br />
+<br />
+So then you can use the USB audio card, but I ran into another issue there. On linux, all audio was clipping. Turns out this was a Pulseaudio bug: <a href="https://bugs.launchpad.net/ubuntu/+source/pulseaudio/+bug/416190">https://bugs.launchpad.net/ubuntu/+source/pulseaudio/+bug/416190</a><br />
+<br />
+Which was pushed upstream to pulseaudio only yesterday.<br />
+<br />
+So with those things in place it works perfectly fine on Linux; I do recommend configuring it to wideband audio once in Windows. It seems to remember those settings. Haven't found a way to control those from Linux.
+</div>

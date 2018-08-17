@@ -1,0 +1,26 @@
+# UTC EPOCH of original creation time
+1304086181
+# UTC EPOCH of last modified time
+1304086181
+# CATEGORY
+Security
+# TITLE
+CAPTCHA used to cause worse security
+# CONTENT in fragment XHTML until EOF
+I noticed on Facebook the other day an odd post by one of my friends:
+
+<p>
+<img src="./images/FacebookCaptchaScam2011-04-29.png" />
+</p>
+
+<p>
+Turns out not a virus was responsible for posting it on my friend's wall but instead a fake CAPTCHA that fooled the user into posting it on their wall.
+</p>
+
+<p>
+Users get so trained into thinking they have to fill these things out when in reality this "CAPTCHA" was just a form to force a post on their wall.  Most likely to get the video/website author more traffic and money from ad revenue by tricking someone into advertising it on their wall.
+</p>
+
+<p>
+In another blog of mine I've already shown how CAPTCHA have been broken as a means of SPAM prevention anyway.  Now we find them as a new method of tricking users.
+</p>

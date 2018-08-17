@@ -1,0 +1,22 @@
+# UTC EPOCH of original creation time
+1358981659
+# UTC EPOCH of last modified time
+1358981659
+# CATEGORY
+Security
+# TITLE
+XSS (Cross-site Scripting) and Flash
+# CONTENT in fragment XHTML until EOF
+So in my security work I have been running more and more into sites that use Flash players they obtain from some vendor (sometimes free sometimes paid).  These flash players accept parameters via the URL string and commonly fail to actual validate the input and encoding.
+
+<p>
+This typically results in XSS allowing at attacker to hijack the user's session or present their own content.
+</p>
+
+<p>
+I also typically run into issues where video players will load anything full-screen.  The site owners don't realize someone can use their domain name to show any content they want and so they fail to restrict this or the player doesn't support restricting what URL it loads content from.
+</p>
+
+<p>
+Finding sites with vulnerable players is as easy as an advanced Google search too.
+</p>

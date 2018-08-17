@@ -1,0 +1,58 @@
+# UTC EPOCH of original creation time
+1516643134
+# UTC EPOCH of last modified time
+1516643134
+# CATEGORY
+Tech Tricks
+# TITLE
+Linux script show VM IP on logon screen
+# CONTENT in fragment XHTML until EOF
+<pre>
+#!/bin/sh
+
+# Care of http://offbytwo.com/2008/05/09/show-ip-address-of-vm-as-console-pre-login-message.html
+#
+# Modifications by Rodney Beede to have only 1 script file and some comments
+#
+# Debian/Ubuntu = /etc/network/if-up.d/show-ip-address
+#	netplan = Add the following file too  /etc/systemd/system/show-ip-address.service
+#	[Unit]
+#	Wants=network-online.target
+#	After=network-online.target
+#
+#	[Service]
+#	ExecStart=/etc/network/if-up.d/show-ip-address
+#
+#	[Install]
+#	WantedBy=multi-user.target
+#
+#
+#  Also need to	systemctl enable show-ip-address
+#
+# CentOS/RHEL = /sbin/ifup-local
+#
+# chmod 700
+# chown root:root
+
+#
+
+
+if [ &quot;$METHOD&quot; = loopback ]; then
+    exit 0
+fi
+
+
+if [ ! -f /etc/issue-standard ]; then
+	# First run so make our original to copy from each time
+	cp /etc/issue /etc/issue-standard
+fi
+
+# Write a clean template copy for updating
+cp /etc/issue-standard /etc/issue
+
+# Add to end of template the value
+ip address show | grep -Po 'inet \K[\d.]+' | grep -v 127.0.0.1 &gt;&gt; /etc/issue
+
+# Add separation for login prompt that will follow
+echo &quot;&quot; &gt;&gt; /etc/issue
+</pre>

@@ -1,0 +1,106 @@
+# UTC EPOCH of original creation time
+1377806709
+# UTC EPOCH of last modified time
+1377806861
+# CATEGORY
+Computer Problems
+# TITLE
+Install Windows 7 (boot) 64-bit to RAID array 3TB on Gigabyte Hybrid EFI motherboard
+# CONTENT in fragment XHTML until EOF
+Short Answer:  You can't.  Not with a RAID array with more than 2.2TB of a single volume disk.  The FakeRAID on the Gigabyte motherboard with Hybrid EFI does not have a ROM that supports <span style="font-weight: bold;">booting</span> from a volume larger than 2.2TB in EFI mode.  This means you can't install Windows 7 (or later) 64-bit onto a RAID array.
+
+<p>
+If you want a &gt; 2.2TB disk for OS boot you'll have to use a non-RAID mode or possibly an add-on controller if you can find one.
+</p>
+
+<p>
+For storage-only (not boot or OS install) you can have disks greater than 2.2TB.
+</p>
+
+<p>
+I tried multiple tricks.  At one point I got a USB disk to boot in EFI mode and start the install after I used diskpart to manually partition a GPT volume of 4TB RAID.  Windows did the extracting files, but it failed to make the disk bootable.  I just got error messages about how setup failed.
+</p>
+
+<p>
+I contacted Gigabyte support who verified that using RAID will not work as the Hybrid EFI and RAID ROM didn't support bootable volumes larger than 2.2TB.  Disappointing as my motherboard is only from 2011 and has no BIOS update to full UEFI.
+</p>
+
+<p>
+My take-away is Hybrid EFI is not as good as full UEFI if you are dealing with larger volumes.  Also of note is that Gigabyte's FakeRAID in RAID10 mode only supports 4 drives even though RAID10 isn't the restriction for this only the RAID controller implementation.  Maybe I'll find an add-on RAID card that can boot EFI with volumes &gt;2.2TB or perhaps I'll just get a SSD for my OS.
+</p>
+
+<p>
+My setup:
+</p>
+
+<p>
+<ul>
+	<li>Gigabyte GA-970A-UD3
+		<ul>
+			<li>Revision 1.0</li>
+			<li>Hybrid EFI</li>
+			<li>(Of note is that the rev3.0 has full UEFI BIOS, no update for prior rev.)</li>
+		</ul>
+	</li>
+	<li>Two 2TB Seagate SATA 6.0gbps drives</li>
+	<li>RAID0 (STRIPE) setup for 4TB volume</li>
+</ul>
+</p>
+
+<p>
+My original support inquiry with Gigabyte and their response:
+</p>
+
+
+<hr />
+<p>
+From :	Rodney<br />
+Sent :	8/29/2013 23:43<br />
+Question :	I have two 2TB SATA drives in a RAID0 (stripe) array for a single 4TB.<br />
+<br />
+I am unable to install Windows 7 64-bit Professional Edition onto this single 4TB drive.<br />
+<br />
+I set "EFI CD/DVD Boot Option" to "EFI"<br />
+<br />
+My SATA option is RAID.<br />
+<br />
+I have the F7 BIOS (latest stable, non-beta).<br />
+<br />
+<br />
+I begin by booting from the USB DVD with Windows 7 64-bit installer. I arrive at the screen to select which disk to install to. As expected the 4TB RAID array does not appear. I choose to install driver and use the "AMD SATA RAID Driver (Preinstall driver, press F6 during Windows* setup to read from floppy)" -- version -- "3.3.1540.33, 2012/10/25"<br />
+<br />
+I can now see the 4TB (shows as 3700GB) drive. I select the drive and click on Install.<br />
+<br />
+I get an error from Windows that it cannot install to the selected drive. "Windows cannot be installed to this disk. This computer's hardware may not support booting to this disk."
+I also attempted using a Windows 7 USB install drive (FAT32 formatted), but that gave me the same error.<br />
+<br />
+<br />
+How do I install Windows 7 64-bit Professional Edition to a 4TB disk?<br />
+<br />
+<br />
+-------------------------------------------------------------------------------<br />
+Model Name : GA-970A-UD3(rev. 1.0/1.1)<br />
+--------------------------<br />
+M/B Rev : 1.0<br />
+BIOS Ver : F7<br />
+Serial No. : [removed]<br />
+Purchase Dealer : Amazon.com<br />
+-------------------------------------------------------------------------------<br />
+VGA Brand : Nvidia      Model : GT 430<br />
+CPU Brand : AMD      Model : Phenom II X4 970      Speed : 3.5GHz<br />
+Operation System : Win 7 64-bit      SP : 1<br />
+Memory Brand : Corsair      Type : DDR3<br />
+Memory Size : 8GB      Speed : PC3-12800<br />
+Power Supply : 600 W<br />
+<br />
+<br />
+USB DVD-RW Drive<br />
+</p>
+
+<hr />
+<p>
+Answer :	Dear Customer,<br />
+<br />
+Due to the raid rom limitation the OS cannot exceed 2.2TB, please use the raid
+as the storage or you will need to use an single drive as the OS.<br />
+</p>

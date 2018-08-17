@@ -1,0 +1,36 @@
+# UTC EPOCH of original creation time
+1302735938
+# UTC EPOCH of last modified time
+1302736087
+# CATEGORY
+Computer Problems
+# TITLE
+Java ignores /dev/urandom or slow Tomcat SHA1PRNG SSL
+# CONTENT in fragment XHTML until EOF
+I discovered that since Java 1.5 Sun decided to make some hack that always ignores /dev/urandom as a possible device for SHA1PRNG.
+
+<p>
+Perhaps a good choice for security reasons, but if you have Tomcat in a development environment, and you wanted to test SSL it can take Tomcat forever to startup due to it waiting on entropy.
+</p>
+
+<p>
+The recommended solutions online must have been written back in Java 1.4 with Tomcat days where you could set RANDFILE or -Djava.security.egd=file:/dev/urandom, etc. to fix it.  However using "/dev/urandom" is ignored as per <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6202721">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6202721</a>.
+</p>
+
+<p>
+Some people like to use /dev/./urandom to fool Java into not overridding it with /dev/random.  Others even use /dev/zero.  Annoying that Sun decided this isn't a bug and didn't ever bother to document this anywhere like in the java.security file.
+</p>
+
+<p>
+Options to fix:
+</p>
+
+<ol>
+<li>Leave it as is where /dev/random is used (even if set to /dev/urandom) and use some third party tool to introduce sufficient random entropy into your system so /dev/random doesn't block so slowly</li>
+<li>Modify jre/lib/security/java.security file so line securerandom.source=file:/dev/./urandom</li>
+<li>Pass in -Djava.security.egd=file:/dev/./urandom</li>
+</ol>
+
+<p>
+#1 is your best option to get real security.  The other options are useful for test/dev environments where you aren't using real SSL certificates and security doesn't matter.
+</p>

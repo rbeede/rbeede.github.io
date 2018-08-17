@@ -1,0 +1,40 @@
+# UTC EPOCH of original creation time
+1523548486
+# UTC EPOCH of last modified time
+1523548515
+# CATEGORY
+Programming
+# TITLE
+Python3 and getting datetime with tz_info timezone info
+# CONTENT in fragment XHTML until EOF
+When using something like datetime.datetime.now().isoformat() you would expect to get the timezone on the end or a trailing Z.
+
+<p>
+However both the .now() and .utcnow() only return <b>naive</b> objects with tz_info of None
+</p>
+
+<p>
+If you don't want to use 3rd party libraries (solution for longest time until Python 3.2+) you can use the following tricks:
+</p>
+
+<pre>
+LOCAL_TIMEZONE = datetime.datetime.now(datetime.timezone.utc).astimezone().tzinfo
+
+enhanced_now = datetime.datetime.now(LOCAL_TIMEZONE)
+
+
+enhanced_now_utc = datetime.datetime.now(datetime.timezone.utc)
+</pre>
+
+
+
+
+<h3>Credits</h3>
+
+<a href="https://stackoverflow.com/questions/2720319/python-figure-out-local-timezone/39079819#39079819">Python: Figure out local timezone
+; Stackoverflow.com; vbem; August 22, 2016</a>
+
+
+<h3>Misc Refs</h3>
+
+<a href="https://bugs.python.org/issue23332">https://bugs.python.org/issue23332</a>

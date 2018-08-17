@@ -1,0 +1,14 @@
+# UTC EPOCH of original creation time
+1260468156
+# UTC EPOCH of last modified time
+1260468156
+# CATEGORY
+Tech Tricks
+# TITLE
+HTC Hero (Android) and playing videos
+# CONTENT in fragment XHTML until EOF
+So I had some videos I wanted to convert and play on my HTC Hero (Android) phone.  Here is what I'm using currently:<ul>
+<li><a href="http://www.videora.com/en-us/Converter/android/">Videora Android Converter</a> - Converts many formats to the needed format with a nice GUI.  Free.  Just displays ads in the program to support itself.</li>
+<li><strike>Android Market app</strike> (replaced) <span style="font-weight: bold;">aPlayer</span> - Free and plays back mp4 files.  Very basic player without playlist support, but it works.</li>
+<li>All Programs menu, Albums - Built-in and supports mp4 format.  Lacks playlists but has slideshow mode at least</li>
+</ul>

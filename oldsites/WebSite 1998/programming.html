@@ -1,0 +1,1036 @@
+<HTML>
+<HEAD>
+	<TITLE>Programming (C/C++, Visual Basic, QBasic, ...)</TITLE>
+</HEAD>
+
+<BODY BACKGROUND="background6.gif">
+
+<P>
+<HR>
+<A HREF="index.html">Contents</A>
+<HR>
+
+<H3>Programming in <A HREF="#C/C++">C/C++</A>, <A HREF="#VB">Visual Basic</A>, <A HREF="#QB">QuickBasic</A>, and <A HREF="#Q++">Q++</A></H3>
+
+<A NAME="C/C++"><U>C/C++</U></A><BR>
+C/C++ is a widely used program language.  It is commonly used to make DOS and Linux software.  It can also make Windows programs.  Here is a quick run-thru on how to write a C program for DOS that will take in input and give out input.  If you want to test this copy this code to a text editor and remove the line numbers.
+
+<P>
+<PRE>
+ <B>1</B>  #include &LTstdio.h>  //Input &AMP Output Header File
+ <B>2</B>  #include &LTstdlib.h>  //Input &AMP Output Library Header File
+ <B>3</B>  #include &LTstring.h>  //String Header File
+ <B>4</B>
+ <B>5</B>  void main( void ) {  //Main Function Beginning
+ <B>6</B>       int MyNumber;  //Declare integer
+ <B>7</B>       char MyWord[100];  //Declare string array
+ <B>8</B>
+ <B>9</B>       printf( "\nType in a number ==> " );  //Print out request
+<B>10</B>       scanf( "%d", &MyNumber );  //Read input from keyboard
+<B>11</B>
+<B>12</B>       //Print out input from keyboard
+<B>13</B>       printf( "\nYou typed in the number %d.", MyNumber );
+<B>14</B>
+<B>15</B>       printf( "\n\nType in a word ==> " );  /Print out request
+<B>16</B>       scanf( "%s", MyWord );  //Scan input from keyboard
+<B>17</B>
+<B>18</B>       //Print out input from keyboard
+<B>19</B>       printf( "\nYou typed in the word %s.", MyWord );
+<B>20</B>
+<B>21</B>       printf( "\nPress any key to end." );  //Print out message
+<B>22</B>       MyWord = getc( stdin );  //Read character from keyboard
+<B>23</B>  }  //Main Function End
+</PRE>
+
+<P>
+Line 1:  Indicates that the input and output library is to be linked.<BR>
+Line 2:  Indicates that the input and output library is to be linked.<BR>
+Line 3:  Indicates that the string library is to be linked.<BR>
+Line 4:  Blank Line.<BR>
+Line 5:  Indicates the beginning of the main function that is called when the program first runs.<BR>
+Line 6:  Indicates the declaration of a integer variable.<BR>
+Line 7:  Indicates the declaration of a string variable.<BR>
+Line 8:  Blank Line.<BR>
+Line 9:  Indicates that the text in quotes is to be printed to the screen.  A \n indicates a carriage return.<BR>
+Line 10:  Indicates that something is to be read from the keyboard.  The %d in the quotes indicates a integer number.  When reading numbers you must use a &AMP in front of the variable name.<BR>
+Line 11:  Blank Line.<BR>
+Line 12:  A comment.  A // indicates a comment and will do nothing.<BR>
+Line 13:  See Line 9.  A %d inside the quotes indicates that a number is to be inserted.  The variables are listed after the comma after the quotes.<BR>
+Line 14:  Blank Line.<BR>
+Line 15:  See Line 13.  The %s inside the quotes if for strings.<BR>
+Line 16:  See Line 10.  The %s indicates that a string is to be read.<BR>
+Line 17:  Blank Line.<BR>
+Line 18:  See Line 12.<BR>
+Line 19:  See Line 15.<BR>
+Line 20:  Blank Line.<BR>
+Line 21:  See Line 9.<BR>
+Line 22:  Reads a single character from the keyboard.<BR>
+Line 23:  Indicates the closing of the "main" function.
+
+<P>
+<A NAME="VB"><U>Visual Basic</U></A><BR>
+Visual Basic is a program language that is for Windows.  It uses a visual development environment that places controls on forms and programs events for them.  This is a very easy language for beginners that are looking to make Windows programs.  I program using Visual Basic 5.0.  You can get books to learn how to use Visual Basic.  Que makes really good books that I have used to learn how to program.  I will show you how to make a simple chat program.  In order to do this you will need the Winsock.ocx control.
+
+<P>
+The WinSock control allows TCP/IP connections between your programs.  The WinSock does have one bug however, whenever the client end gets disconnected the client cannot reconnect back to the server without unloading the control or resetting the local port number.  <A HREF="../Infinisoft/legal.html" TARGET="new">Click here</A> to download the program and its source code.  Just look for the program that is called Chat!<BR>
+
+<P>
+On with how I made the chat program.<BR>
+<UL>
+<LI>Start a new project, add the Winsock component.</LI>
+<LI>Give the form these properties:</LI>
+<TABLE BORDER ALIGN=CENTER>
+	<TR>
+		<TD>(Name)</TD><TD>frmMain</TD>
+	</TR>
+
+	<TR>
+		<TD>BorderStyle</TD><TD>1 - Fixed Single</TD>
+	</TR>
+
+	<TR>
+		<TD>Caption</TD><TD>Chat!</TD>
+	</TR>
+
+	<TR>
+		<TD>Height</TD><TD>4470</TD>
+	</TR>
+
+	<TR>
+		<TD>MinButton</TD><TD>True</TD>
+	</TR>
+
+	<TR>
+		<TD>Width</TD><TD>5385</TD>
+	</TR>
+</TABLE>
+<LI>Add a Winsock control to the form and give it these properties:</LI>
+<TABLE BORDER ALIGN=CENTER>
+	<TR>
+		<TD>(Name)</TD><TD>sckTCP</TD>
+	</TR>
+
+	<TR>
+		<TD>Index</TD><TD>0</TD>
+	</TR>
+
+	<TR>
+		<TD>Left</TD><TD>0</TD>
+	</TR>
+
+	<TR>
+		<TD>Top</TD><TD>0</TD>
+	</TR>
+</TABLE>
+<LI>Add a text box to the form and give it these properties:</LI>
+<TABLE BORDER ALIGN=CENTER>
+	<TR>
+		<TD>(Name)</TD><TD>txtChat</TD>
+	</TR>
+
+	<TR>
+		<TD>Height</TD><TD>2415</TD>
+	</TR>
+
+	<TR>
+		<TD>Left</TD><TD>240</TD>
+	</TR>
+
+	<TR>
+		<TD>Locked</TD><TD>True</TD>
+	</TR>
+
+	<TR>
+		<TD>MutliLine</TD><TD>True</TD>
+	</TR>
+
+	<TR>
+		<TD>ScrollBars</TD><TD>2 - Vertical</TD>
+	</TR>
+
+	<TR>
+		<TD>TabIndex</TD><TD>0</TD>
+	</TR>
+
+	<TR>
+		<TD>Text</TD><TD>  </TD>
+	</TR>
+
+	<TR>
+		<TD>Top</TD><TD>240</TD>
+	</TR>
+
+	<TR>
+		<TD>Width</TD><TD>4815</TD>
+	</TR>
+</TABLE>
+<LI>Add another text box and give it these properties:</LI>
+<TABLE BORDER ALIGN=CENTER>
+	<TR>
+		<TD>(Name)</TD><TD>txtSendMsg</TD>
+	</TR>
+
+	<TR>
+		<TD>Height</TD><TD>285</TD>
+	</TR>
+
+	<TR>
+		<TD>Left</TD><TD>240</TD>
+	</TR>
+
+	<TR>
+		<TD>TabIndex</TD><TD>1</TD>
+	</TR>
+
+	<TR>
+		<TD>Text</TD><TD>  </TD>
+	</TR>
+
+	<TR>
+		<TD>Top</TD><TD>2760</TD>
+	</TR>
+
+	<TR>
+		<TD>Width</TD><TD>3975</TD>
+	</TR>
+</TABLE>
+<LI>Add a command button and give it these properties:</LI>
+<TABLE BORDER ALIGN=CENTER>
+	<TR>
+		<TD>(Name)</TD><TD>cmdSendMsg</TD>
+	</TR>
+
+	<TR>
+		<TD>Caption</TD><TD>&AMPSend</TD>
+	</TR>
+
+	<TR>
+		<TD>Default</TD><TD>True</TD>
+	</TR>
+
+	<TR>
+		<TD>Height</TD><TD>285</TD>
+	</TR>
+
+	<TR>
+		<TD>Left</TD><TD>4320</TD>
+	</TR>
+
+	<TR>
+		<TD>TabIndex</TD><TD>2</TD>
+	</TR>
+
+	<TR>
+		<TD>Top</TD><TD>2760</TD>
+	</TR>
+
+	<TR>
+		<TD>Width</TD><TD>735</TD>
+	</TR>
+</TABLE>
+<LI>Add another command button and give it these properties:</LI>
+<TABLE BORDER ALIGN=CENTER>
+	<TR>
+		<TD>(Name)</TD><TD>cmdConnectDisconnect</TD>
+	</TR>
+
+	<TR>
+		<TD>Caption</TD><TD>&AMPConnect</TD>
+	</TR>
+
+	<TR>
+		<TD>Height</TD><TD>495</TD>
+	</TR>
+
+	<TR>
+		<TD>Left</TD><TD>240</TD>
+	</TR>
+
+	<TR>
+		<TD>TabIndex</TD><TD>3</TD>
+	</TR>
+
+	<TR>
+		<TD>Top</TD><TD>3360</TD>
+	</TR>
+
+	<TR>
+		<TD>Width</TD><TD>1455</TD>
+	</TR>
+</TABLE>
+<LI>Add another command button and give it these properties:</LI>
+<TABLE BORDER ALIGN=CENTER>
+	<TR>
+		<TD>(Name)</TD><TD>cmdHostStopHost</TD>
+	</TR>
+
+	<TR>
+		<TD>Caption</TD><TD>&AMPHost</TD>
+	</TR>
+
+	<TR>
+		<TD>Height</TD><TD>495</TD>
+	</TR>
+
+	<TR>
+		<TD>Left</TD><TD>1920</TD>
+	</TR>
+
+	<TR>
+		<TD>TabIndex</TD><TD>4</TD>
+	</TR>
+
+	<TR>
+		<TD>Top</TD><TD>3360</TD>
+	</TR>
+
+	<TR>
+		<TD>Width</TD><TD>1455</TD>
+	</TR>
+</TABLE>
+<LI>Add another command button and give it these properties:</LI>
+<TABLE BORDER ALIGN=CENTER>
+	<TR>
+		<TD>(Name)</TD><TD>cmdExit</TD>
+	</TR>
+
+	<TR>
+		<TD>Caption</TD><TD>&AMPExit</TD>
+	</TR>
+
+	<TR>
+		<TD>Height</TD><TD>495</TD>
+	</TR>
+
+	<TR>
+		<TD>Left</TD><TD>3600</TD>
+	</TR>
+
+	<TR>
+		<TD>TabIndex</TD><TD>5</TD>
+	</TR>
+
+	<TR>
+		<TD>Top</TD><TD>3360</TD>
+	</TR>
+
+	<TR>
+		<TD>Width</TD><TD>1455</TD>
+	</TR>
+</TABLE>
+<LI>Put the following code in the Declarations area of the form:<BR>
+<PRE>
+Private Type Connection_Info
+    sckNum As Integer  'Socket Number
+    ChatName As String  'Name
+End Type
+
+Dim Connections() As Connection_Info
+Dim ChatName As String  'Chatroom name
+</PRE>
+</LI>
+<LI>Create the following subroutine in the Declarations area of the form:<BR>
+<PRE>
+Private Sub Pause()
+    Dim i As Integer  'For counter
+    
+    For i = 0 To 500  'Pause for half a second
+        DoEvents  'Allow windows to continue
+    Next i
+End Sub
+</PRE>
+</LI>
+<LI>Add the following code to the Form_Load event:<BR>
+<PRE>
+Private Sub Form_Load()
+    'Write the instructions on the chat display text box
+    txtChat.Text = "Click on the CONNECT button to connect to a host.  Click on the HOST button to host for connections.  You can copy the text in this display by selecting the text and pressing CTRL+C.  You can clear the text in this display by pressing the DEL key."
+
+    'Color in text box to look disabled
+    txtSendMsg.BackColor = frmMain.BackColor
+    
+    'Disable text box and send button
+    txtSendMsg.Enabled = False
+    cmdSendMsg.Enabled = False
+
+    'Fill in default information
+    sckTCP(0).RemoteHost = "localhost"
+    sckTCP(0).RemotePort = "20000"
+    sckTCP(0).LocalPort = "20000"
+    ChatName = "Anonymous"
+End Sub
+</PRE>
+</LI>
+<LI>Add the following code to the Form_Unload event:<BR>
+<PRE>
+Private Sub Form_Unload(Cancel As Integer)
+    Dim i As Integer  'For counter
+    
+    'Need to skip past errors since we could get the error '340'
+    'because a socket didn't exist
+    On Error Resume Next
+    
+    'Figure out which sockets are still open and close them all
+    For i = sckTCP.LBound To sckTCP.UBound
+        If sckTCP(i).State <> sckClosed Then  'Open socket
+            sckTCP(i).Close  'Close the socket
+            
+            'Pause until socket closes
+            Do While sckTCP(i).State <> sckClosed
+                DoEvents  'Allow windows to continue
+                
+                'Check to make sure an error didn't occur
+                If Not Err.Number = 0 Then  'Error occured
+                    Exit Do  'Exit out of loop
+                End If
+            Loop
+        End If
+    Next i
+
+    End  'Make sure program terminates
+End Sub
+</PRE>
+</LI>
+<LI>Add the following code to the sckTCP_Close event:<BR>
+<PRE>
+Private Sub sckTCP_Close(Index As Integer)
+    Dim i, j As Integer 'For counters
+    
+    'Need to skip past errors since we could get the error '340'
+    'because a socket didn't exist
+    On Error Resume Next
+    
+    If sckTCP(0).State = sckListening Then  'We are in host mode
+        sckTCP(Index).Close  'Close socket
+       
+        'Determine who disconnected
+        For i = 1 To sckTCP.Count
+            If Connections(i).sckNum = Index Then  'Match between connection
+                'Display user who left
+                txtChat.Text = txtChat.Text + vbCrLf + Connections(i).ChatName + " has disconnected."
+                
+                'Tell everyone else who left
+                For j = 1 To sckTCP.UBound
+                    sckTCP(j).SendData Connections(i).ChatName + " has disconnected."
+                    Call Pause  'Allow data to be sent
+                Next j
+                
+                'Remove user from array by pushing all others down one
+                For j = i + 1 To sckTCP.Count
+                    Connections(j - 1).ChatName = Connections(j).ChatName
+                    Connections(j - 1).sckNum = Connections(j).sckNum
+                Next j
+                
+                'Remove extra entry at end
+                Connections(sckTCP.Count).ChatName = ""
+                Connections(sckTCP.Count).sckNum = ""
+            
+                Exit For  'Leave loop
+            End If
+        Next i
+        
+        Unload sckTCP(Index)  'Unload socket
+        
+        ReDim Preserve Connections(sckTCP.Count)  'Resize array
+    Else
+        'Host broke connection, tell user
+        txtChat.Text = txtChat.Text + vbCrLf + "Host broke connection."
+        
+        sckTCP(1).Close  'Close connection
+        Unload sckTCP(1)  'Unload socket
+    
+        txtSendMsg.Text = ""  'Clear out send text box
+        txtSendMsg.BackColor = frmMain.BackColor  'Color send box to look disabled
+        txtSendMsg.Enabled = False  'Disable text box
+        cmdSendMsg.Enabled = False  'Disable send button
+    
+        'Change Disconnect button caption
+        cmdConnectDisconnect.Caption = "&Connect"
+        
+        cmdHostStopHost.Enabled = True  'Enable host button
+    End If
+</PRE>
+</LI>
+<LI>Add the following code to the sckTCP_Connect event:<BR>
+<PRE>
+Private Sub sckTCP_Connect(Index As Integer)
+    'Tell user that program connected
+    txtChat.Text = txtChat.Text + vbCrLf + "Connected."
+    
+    'Send chat name to host
+    sckTCP(0).SendData "/~Name@" + ChatName
+
+    'Enable send text box and button
+    txtSendMsg.Enabled = True
+    cmdSendMsg.Enabled = True
+    
+    txtSendMsg.BackColor = vbWhite  'Make text box look enabled
+End Sub
+</PRE>
+</LI>
+<LI>Add the following code to the sckTCP_ConnectionRequest event:<BR>
+<PRE>
+Private Sub sckTCP_ConnectionRequest(Index As Integer, ByVal requestID As Long)
+    Dim i As Integer  'For counter
+    Dim FreeSocket As Integer  'For free socket number
+    
+    'Need to skip past errors since we could get the error '340'
+    'because a socket didn't exist
+    On Error Resume Next
+    
+    'Figure out what socket is avaiable if any
+    For i = 1 To sckTCP.UBound + 1
+        'Try to generate a '340 object doesn't exist error'
+        'to find a free socket space
+        
+        FreeSocket = sckTCP(i).Index  'Set free socket
+        
+        'Check to see if a socket didn't exist so we
+        'can make it exist and use it
+        If Err.Number = 340 Then  'Control didn't exist
+            FreeSocket = i  'Set free socket number
+            Exit For  'Leave i loop
+        End If
+    Next i
+            
+    Load sckTCP(FreeSocket)  'Load new socket
+    sckTCP(FreeSocket).LocalPort = 0  'Assign a random port number
+    sckTCP(FreeSocket).Accept requestID  'Accept connection
+    
+    ReDim Preserve Connections(sckTCP.Count + 1) 'Resize array of connections
+    
+    Connections(sckTCP.Count).sckNum = FreeSocket  'Store connection socket number
+    Connections(sckTCP.Count).ChatName = "Unconnected"  'Store the default name
+End Sub
+</PRE>
+</LI>
+<LI>Add the following code to the sckTCP_DataArrival event:<BR>
+<PRE>
+Private Sub sckTCP_DataArrival(Index As Integer, ByVal bytesTotal As Long)
+    Dim IncomingData As String
+    Dim i, j, k As Integer 'For counters
+
+    'Need to skip past errors since we could get the error '340'
+    'because a socket didn't exist
+    On Error Resume Next
+    
+    'Get incoming data
+    sckTCP(Index).GetData IncomingData, vbString
+    
+    'Give a short pause to make sure data gets read
+    Call Pause
+        
+    'Check to see if the host is getting information
+    If sckTCP(0).State = sckListening Then  'Host is
+        'Determine if it is the chat name of the client
+        If Left$(IncomingData, 6) = "/~Name" Then  'Name is coming
+            'Loop through all the connections
+            For i = 0 To sckTCP.Count
+                'Check to see if the current socket is in the array
+                If Index = Connections(i).sckNum Then  'Found match
+                    'Give that connection a name
+                    Connections(i).ChatName = Mid$(IncomingData, 8, Len(IncomingData))
+                    
+                    'Tell everyone new connections name
+                    For j = 1 To sckTCP.UBound
+                        sckTCP(j).SendData Connections(i).ChatName + " has connected."
+                        Call Pause  'Allow data to be sent
+                    Next j
+                    
+                    'Show who connected to user
+                    txtChat.Text = txtChat.Text + vbCrLf + Connections(i).ChatName + " has connected."
+                
+                    Exit For  'Leave loop
+                End If
+            Next i
+        Else
+            'Information is something someone typed, so display it
+            'Loop through and figure out who said it
+            For i = 0 To sckTCP.Count
+                'Check for a match between socket numbers
+                If Index = Connections(i).sckNum Then  'Match
+                    'Display their name and message to all
+                    txtChat.Text = txtChat.Text + vbCrLf + Connections(i).ChatName + " says:  " + IncomingData
+                    
+                    'Send data to everyone else
+                    For j = 1 To sckTCP.UBound
+                        sckTCP(j).SendData Connections(i).ChatName + " says:  " + IncomingData
+                        Call Pause  'Allow data to be sent
+                    Next j
+                
+                    Exit For  'Leave loop
+                End If
+            Next i
+        End If
+    Else  'Client is getting data
+        'Show incoming data
+        txtChat.Text = txtChat.Text + vbCrLf + IncomingData
+    End If
+</PRE>
+</LI>
+<LI>Add the following code to the sckTCP_Error event:<BR>
+<PRE>
+Private Sub sckTCP_Error(Index As Integer, ByVal Number As Integer, Description As String, ByVal Scode As Long, ByVal Source As String, ByVal HelpFile As String, ByVal HelpContext As Long, CancelDisplay As Boolean)
+    Dim i As Integer  'For counter
+    
+    'Need to skip past errors since we could get the error '340'
+    'because a socket didn't exist
+    On Error Resume Next
+    
+    'Tell user what the error was and that call connections are closed
+    txtChat.Text = txtChat.Text + vbCrLf + "Error " & Number & ":  " & Description & "." + vbCrLf + "All connections closed."
+    
+    'Clear out send text box and color it to be disabled
+    txtSendMsg.Text = ""
+    txtSendMsg.Enabled = False
+    txtSendMsg.BackColor = frmMain.BackColor
+
+    cmdSendMsg.Enabled = False  'Disable send message button
+    
+    'Reset connect/disconnect and host/stop hosting buttons
+    cmdConnectDisconnect.Caption = "&Connect"
+    cmdHostStopHost.Caption = "&Host"
+    cmdConnectDisconnect.Enabled = True
+    cmdHostStopHost.Enabled = True
+    
+    sckTCP(0).Close  'Close primary socket
+    
+    'Close all other sockets and unload them
+    For i = 1 To sckTCP.UBound
+        sckTCP(i).Close
+        Unload sckTCP(i)
+    Next i
+End Sub
+</PRE>
+</LI>
+<LI>Add the following code to the txtChat_Change event:<BR>
+<PRE>
+Private Sub txtChat_Change()
+    txtChat.SelStart = Len(txtChat.Text)
+End Sub
+</PRE>
+</LI>
+<LI>Add the following code to the txtChat_KeyDown event:<BR>
+<PRE>
+Private Sub txtChat_KeyDown(KeyCode As Integer, Shift As Integer)
+    If KeyCode = vbKeyDelete Then  'Delete key was pressed
+        txtChat.Text = ""  'Clear out text
+    End If
+End Sub
+</PRE>
+</LI>
+<LI>Add the following code to the cmdSendMsg_Click event:<BR>
+<PRE>
+Private Sub cmdSendMsg_Click()
+    Dim i As Integer  'For counter
+    
+    'Need to skip past errors since we could get the error '340'
+    'because a socket didn't exist
+    On Error Resume Next
+    
+    If txtSendMsg.Text = "" Then Exit Sub  'Nothing to send
+    
+    'If the program is hosting then send the message to everyone else
+    If sckTCP(0).State = sckListening Then  'It is
+        For i = 1 To sckTCP.UBound
+            sckTCP(i).SendData ChatName + " says:  " + txtSendMsg.Text
+            Call Pause  'Allow data to be sent
+        Next i
+        
+        'Show message in chat text box
+        txtChat.Text = txtChat.Text + vbCrLf + ChatName + " says:  " + txtSendMsg.Text
+    Else  'Not hosting, just send message
+        sckTCP(1).SendData txtSendMsg.Text
+    End If
+
+    txtSendMsg.Text = ""  'Clear out text box
+End Sub
+</PRE>
+</LI>
+<LI>Add the following code to the cmdConnectDisconnect_Click event:<BR>
+<PRE>
+Private Sub cmdConnectDisconnect_Click()
+    Dim i As Integer  'For counter
+    Dim Response As Integer  'For users response
+    
+    'Need to skip past errors since we could get the error '340'
+    'because a socket didn't exist
+    On Error Resume Next
+    
+    'Determine if button is suppose to connect or disconnect
+    If cmdConnectDisconnect.Caption = "&Connect" Then  'Connect
+        cmdConnectDisconnect.Caption = "&Disconnect"  'Change button caption
+        cmdHostStopHost.Enabled = False  'Disable host button
+    
+        'Ask for the remote computer address
+        sckTCP(0).Tag = InputBox$("Enter the computer name or ip address of the machine you wish to connect.", "Remote Address", sckTCP(0).RemoteHost)
+        
+        'Check to make sure user didn't cancel
+        If sckTCP(0).Tag = "" Then  'User canceled
+            cmdConnectDisconnect.Caption = "&Connect"  'Reset button caption
+            cmdHostStopHost.Enabled = True  'Enable host button
+            Exit Sub  'Leave sub
+        Else  'User entered a address
+            sckTCP(0).RemoteHost = sckTCP(0).Tag  'Set address
+            sckTCP(0).Tag = ""  'Clear out tag
+        End If
+            
+        'Ask for the remote computer port number
+        sckTCP(0).Tag = InputBox$("Enter the remote computer port number.", "Remote Port Number", Str$(sckTCP(0).RemotePort))
+        
+        'Check to see if user canceled
+        If sckTCP(0).Tag = "" Then  'User canceled
+            cmdConnectDisconnect.Caption = "&Connect"  'Reset button caption
+            cmdHostStopHost.Enabled = True  'Enable host button
+            Exit Sub  'Leave sub
+        Else  'User entered a port number
+            sckTCP(0).RemotePort = Val(sckTCP(0).Tag)  'Save value
+            sckTCP(0).Tag = ""  'Clear out tag
+        End If
+        
+        'Ask for a chat name
+        ChatName = InputBox$("Enter the name you would like to be called.", "Name", ChatName)
+        
+        'Check name to see if it is blank or if user canceled
+        If ChatName = "" Then  'User canceled
+            cmdConnectDisconnect.Caption = "&Connect"  'Reset button caption
+            cmdHostStopHost.Enabled = True  'Enable host button
+            Exit Sub  'Leave sub
+        End If
+                
+        'Make a new instance of the winsock that can be unloaded when
+        'the connection is broken, that way the program won't get a
+        'address error if it tries to connect again
+                
+        Unload sckTCP(1)  'Make sure doesn't exist
+        
+        Load sckTCP(1)  'Load new control
+        
+        sckTCP(1).RemoteHost = sckTCP(0).RemoteHost  'Set remote host
+        sckTCP(1).RemotePort = sckTCP(0).RemotePort  'Set remote port
+        sckTCP(1).LocalPort = 0  'Clear out local port number
+        sckTCP(1).Connect  'Attempt to connect to the remote computer
+            
+        'Tell user that a connection is being attempted
+        txtChat.Text = txtChat.Text + vbCrLf + "Attempting to connect to " + sckTCP(1).RemoteHost + " on port number" + Str$(sckTCP(1).RemotePort) + "..."
+        
+        'Pause to allow connection to catch up
+        Call Pause
+    Else  'Disconnect
+        'Ask user if they really wish to disconnect
+        Response = MsgBox("Are you sure you wish to disconnect?", vbQuestion + vbYesNo, "Chat!")
+        
+        'Determine response
+        If Response = vbYes Then  'User said yes
+            sckTCP(1).Close  'Close connection
+            
+            Unload sckTCP(1)  'Unload control
+            
+            'Tell user connection is closed
+            txtChat.Text = txtChat.Text + vbCrLf + "Connection closed."
+                        
+            'Change button caption
+            cmdConnectDisconnect.Caption = "&Connect"
+            
+            cmdHostStopHost.Enabled = True  'Enable host button
+            
+            'Disable send box and button
+            txtSendMsg.Enabled = False
+            cmdSendMsg.Enabled = False
+            
+            'Clear out send text box and color it to look disabled
+            txtSendMsg.Text = ""
+            txtSendMsg.BackColor = frmMain.BackColor
+        End If
+    End If
+End Sub
+</PRE>
+</LI>
+<LI>Add the following code to the cmdHostStopHost_Click event:<BR>
+<PRE>
+Private Sub cmdHostStopHost_Click()
+    Dim i As Integer  'For counter
+    Dim Response As Integer  'For users response
+    
+    'Need to skip past errors since we could get the error '340'
+    'because a socket didn't exist
+    On Error Resume Next
+    
+    'Determine if program should start or stop hosting
+    If cmdHostStopHost.Caption = "&Host" Then  'Start hosting
+        cmdHostStopHost.Caption = "&Stop &Hosting"  'Reset caption
+        
+        'Ask user what port to listen on
+        sckTCP(0).Tag = InputBox$("Enter the local port number to listen for connections on.", "Local Port Number", sckTCP(0).LocalPort)
+        
+        'Check to make sure user didn't cancel
+        If sckTCP(0).Tag = "" Then  'User canceled
+            cmdConnectDisconnect.Enabled = True  'Enable connect button
+            cmdHostStopHost.Caption = "&Host"  'Reset caption
+            Exit Sub  'Leave sub
+        End If
+        
+        sckTCP(0).LocalPort = Val(sckTCP(0).Tag)  'Set port number
+        
+        'Ask for a chat name
+        ChatName = InputBox$("Enter the name you would like to be called.", "Name", ChatName)
+        
+        If ChatName = "" Then  'User canceled
+            cmdHostStopHost.Caption = "&Host"  'Reset button caption
+            cmdConnectDisconnect.Enabled = True  'Enable connect button
+            Exit Sub  'Leave sub
+        End If
+        
+        'Set socket to listen for connectins
+        sckTCP(0).Listen
+    
+        'Tell user what program is doing
+        txtChat.Text = txtChat.Text + vbCrLf + "Listening for connections on port number" + Str$(sckTCP(0).LocalPort) + "."
+        
+        'Enable and color in send text box and button
+        txtSendMsg.Enabled = True
+        txtSendMsg.BackColor = vbWhite
+        cmdSendMsg.Enabled = True
+    
+        cmdConnectDisconnect.Enabled = False  'Disable connect button
+    Else  'Stop hosting
+        'Ask user if they really want to disconnect all sockets
+        Response = MsgBox("Are you sure you wish to disconnect all connections?", vbQuestion + vbYesNo, "Chat!")
+        
+        'Determine response
+        If Response = vbYes Then  'Disconnect them all
+            'Loop through any socket controls above index zero
+            For i = 1 To sckTCP.UBound
+                sckTCP(i).Close  'Close socket
+                Unload sckTCP(i)  'Unload socket control
+            Next i
+    
+            Erase Connections  'Clear out connections array
+
+            sckTCP(0).Close  'Close primary socket
+        
+            'Disable send text box and button
+            txtSendMsg.Enabled = False
+            txtSendMsg.Text = ""
+            txtSendMsg.BackColor = frmMain.BackColor
+            cmdSendMsg.Enabled = False
+            
+            cmdHostStopHost.Caption = "&Host"  'Reset caption
+        
+            cmdConnectDisconnect.Enabled = True  'Enable connect button
+        
+            'Tell user not listening
+            txtChat.Text = txtChat.Text + vbCrLf + "Not listening for connections."
+        End If
+    End If
+End Sub
+</PRE>
+</LI>
+<LI>Add the following code to the cmdExit_Click event:<BR>
+<PRE>
+Private Sub cmdExit_Click()
+    Unload frmMain  'Unload this form
+End Sub
+</PRE>
+</LI>
+<LI>Now compile the program and run two copies of it.  On one click on host and use the default port number.  On the other click on connect and type in your name as <B>Client</B>.  Try typing in a message in the send message text box (the one below the bigger one).  It should send a message to the other program.  If you get a error when you try to compile it check your typing.</LI>
+</UL>
+
+<P>
+<A NAME="QB"><U>QuickBasic</U></A><BR>
+QuickBasic was included with DOS 6.x.  It cannot compile programs into self-running code so you have to use it to run the programs.  Here is a sample program that I made when I was learning how to program.  After running and playing it you can probably figure out I wrote around the time I had just seen the movie Jurassic Park.  It does have a cheat code though, see if you can figure it out.
+<PRE>
+CLS : numberrap = 20: auxpower = 100: part = 1
+LOCATE 25
+INPUT "System Ready", q$
+IF q$ = "RoBear" THEN password$ = "Raptor #1": PRINT "Adnormal program start.": auxpower = 1000000: GOTO 5
+CLS
+PRINT "Jurassic Park Main Control"
+INPUT "Enter the password.  It's Raptor #1 :) ", password$
+5 IF NOT (password$ = "Raptor #1") THEN PRINT "Incorrect Identification.": SYSTEM: END
+PRINT "OK"
+DO while INKEY$ = ""
+   LOCATE 3, 3, 1
+LOOP
+7 CLS
+IF auxpower <= 30 THEN COLOR 20 ELSE COLOR 7, 0
+PRINT "Jurassic Main Control"
+LOCATE 10, 1, 0
+PRINT "Raptor pit"
+LOCATE 10, 30, 0
+PRINT "Power Supplies"
+LOCATE 20, 1, 0
+PRINT "Fences"
+LOCATE 20, 30, 0
+PRINT "Animal count"
+IF auxpower <= 0 THEN LOCATE 1, 1: FOR tt = 1 TO 10: FOR t = 1 TO 5000: NEXT t: PRINT "All power gone!!!  The Dinosaurs have escaped.  You have been eating by raptors.  You lose!!!": NEXT tt: SYSTEM: END
+DO
+  a$ = UCASE$(INKEY$)
+  IF a$ = "J" THEN GOTO 10
+  IF a$ = "R" THEN GOTO 20
+  IF a$ = "P" THEN GOTO 30
+  IF a$ = "F" THEN GOTO 40
+  IF a$ = "A" THEN GOTO 50
+LOOP
+10 CLS
+   PRINT "Jurassic Park"
+   PRINT
+   PRINT "1. Comm"
+   PRINT "2. Tour"
+   PRINT "3. DNA"
+   PRINT "4. Travel"
+   PRINT "5. Kill 2 Raptors."
+   PRINT "6. Quit Game."
+11 INPUT "Type 1, 2, 3, 4, 5 or 6 and press ENTER when ready. ", want
+   IF want < 1 OR want > 6 THEN PRINT "Invalied selection.  Please try again.": auxpower = auxpower - 15: GOTO 11
+   auxpower = auxpower - 9
+   IF want = 1 THEN
+              INPUT "Enter DNA code. ", dnapass$
+              IF dnapass$ = "5555555 T-REX" THEN
+                 CLS
+                 PRINT "Jurassic Comm System"
+                 PRINT "Find the two kids lost in JP"
+                 PRINT "by looking at Fences and the number of Animals."
+                 DO
+                 LOOP UNTIL INKEY$ <> ""
+              END IF
+   END IF
+   IF want = 2 THEN
+              CLS
+              PRINT "Jurassic Park Tour"
+              PRINT "The Raptors are starting to break free."
+              PRINT "You are Grant and must find the two kids"
+              PRINT " before all power is gone."
+              PRINT "Then you must decode the DNA strands to leave JP."
+              PRINT "The power amounts needed are as follows:"
+              PRINT "Jurassic Main Control 9% auxpower"
+              PRINT "  1.  9% auxpower"
+              PRINT "  2.  0% auxpower"
+              PRINT "  3. 10% auxpower"
+              PRINT "  4.  5% auxpower"
+              PRINT "  5.  0% auxpower"
+              PRINT "  6.  0% auxpower"
+              PRINT "Raptor pit 10% auxpower"
+              PRINT "Power Supplies 10% auxpower"
+              PRINT "Fences 20% auxpower"
+              PRINT "Animal Count 18% auxpower"
+              PRINT "Good Luck."
+              PRINT "--------------END TRANSMISSION----------------"
+              DO
+              a$ = INKEY$
+              LOOP UNTIL a$ <> ""
+   END IF
+   IF want = 3 THEN
+               INPUT "Warning!!!  This will kill 5 Raptors.  Ok to proceed?", o$
+               ok$ = UCASE$(o$)
+               IF ok$ = "Y" THEN
+                                  numberrap = numberrap - 5
+                                  auxpower = auxpower - 10
+                                  IF numberrap <= 0 THEN COLOR 20, 14: PRINT "Not enough of Raptors.  All raptors are dead.  You lose": END
+                                  PRINT
+                                  IF part = 1 THEN PRINT "DNA 555"
+                                  IF part = 2 THEN PRINT "DNA 5555555"
+                                  IF part = 3 THEN PRINT "DNA 5555555 T-"
+                                  IF part = 4 THEN PRINT "DNA 5555555 T-REX"
+                                  part = part + 1
+                                  IF part > 4 THEN part = 4
+                                  DO UNTIL INKEY$ <> ""
+                                  LOOP
+               END IF
+   END IF
+   IF want = 4 THEN
+     IF part = 4 AND kidsfound = 2 AND auxpower >= 5 THEN
+         PRINT "Leaving Jurassic Park.  Have a safe trip.": SYSTEM: END
+     ELSE
+      PRINT "Incorrect DNA strand.  Kids not with you.  Go find them."
+      PRINT "Must have 5% or above auxpower supply left!"
+      DO
+      LOOP UNTIL INKEY$ <> ""
+     END IF
+   END IF
+   IF want = 5 THEN
+           PRINT "Killing"
+           IF numberrap <= 0 THEN PRINT "No Raptors to kill.": numberrap = numberrap + 2
+           numberrap = numberrap - 2
+           IF numberrap <= 0 THEN
+                        PRINT "All raptors are dead. No power up."
+           ELSE
+              auxpower = auxpower + 19
+              PRINT " 10% powerup."
+           END IF
+           DO
+           LOOP UNTIL INKEY$ <> ""
+   END IF
+   IF want = 6 THEN SYSTEM: END
+   GOTO 7
+20 CLS
+   PRINT "Raptor pit status"
+   PRINT
+   IF numberrap < 0 THEN numberrap = 0
+   PRINT "Number in pit "; numberrap
+   PRINT "Number expected "; "20"
+   IF numberrap > 30 THEN PRINT "Warning raptor pit to small raptors are escaping!!!"
+   IF numberrap = 40 THEN PRINT "Too many raptors.  You bearly escape.  Jurassic Park is a failer!!": END
+   IF numberrap <= 0 THEN PRINT "All raptors are dead.  Loss of money.  70% power drain.": auxpower = auxpower - 70
+   IF numberrap <= 0 THEN PRINT "No more Raptors to hatch." ELSE numberrap = numberrap + 1
+   auxpower = auxpower - 10
+   PRINT "Press any key to exit"
+   DO UNTIL INKEY$ <> ""
+   LOOP
+   GOTO 7
+30 CLS
+   auxpower = auxpower - 5
+   PRINT "Jurassic Park Power Supplies"
+   PRINT
+   IF auxpower < 0 THEN PRINT "Warning all power gone. Emergancy power kicking in.": auxpower = 20
+   PRINT auxpower; "% auxiliary power left."
+   PRINT "Main power destroyed"
+   PRINT "Press any key to exit"
+   b$ = UCASE$(INKEY$)
+   DO UNTIL b$ <> ""
+   b$ = UCASE$(INKEY$)
+   LOOP
+   IF b$ = "T" THEN auxpower = 0: PRINT "T-REX eats all power supplyes and gets fried.  You eat him.  All power gone.": DO UNTIL INKEY$ <> "": LOOP
+   GOTO 7
+40 CLS
+   auxpower = auxpower - 20
+   CLS
+   PRINT "T-REX fences down"
+   PRINT "Raptor fences up"
+   PRINT "All fences percent working 70"
+   IF part = 4 AND NOT (kidsfound = 1) AND NOT (kidsfound = 2) THEN PRINT "One kid near Raptor fence.": kidsfound = 1
+   PRINT "Press any key to continue..."
+   DO
+   LOOP UNTIL INKEY$ <> ""
+   GOTO 7
+50 CLS
+   auxpower = auxpower - 18
+   CLS
+   PRINT "Number of animals expected 1000"
+   PRINT "Number Found 700"
+   PRINT "100 are dead"
+   PRINT "500 animals sorce unknown.  200 in captivity."
+   IF numberrap <= 0 THEN PRINT "All raptors are dead!!!"
+   IF part = 4 AND kidsfound = 1 THEN
+         kidsfound = 2
+         PRINT "Another kid found!!"
+   END IF
+   PRINT "Press any key to continue..."
+   DO
+   LOOP UNTIL INKEY$ <> ""
+GOTO 7
+SYSTEM
+</PRE>
+
+<A NAME="Q++"><U>Q++</U></A><BR>
+Q++ is the programming language that was used to make Quake.  It is very similar to C++ and I have modified the game by using it.  You can get the source code and a compilier <A HREF="http://www.cdrom.com/pub/quake/quakec/utils/qc106pac.zip" TARGET="new">here</A>.
+
+<HR>
+<A HREF="programming.html">Back to the top.</A>
+
+<P>
+<HR>
+Rodney Beede © 1998<BR>
+Nothing on any of these web pages may be copied without my written permission.
+</BODY>
+</HTML>

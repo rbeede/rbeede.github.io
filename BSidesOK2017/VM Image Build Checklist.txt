@@ -1,0 +1,211 @@
+Latest CentOS 7 Minimal ISO (x86_64)
+	https://www.centos.org/download/
+	
+~~~~~~~~~~~~~~~~~~~~~
+	
+VMWare Workstaton Pro 12.5 used for creation
+	New Virtual Machine
+	Custom (advanced)
+	
+	Hardware Workstation 9.x
+	
+	I will install the operating system later.
+	
+	Linux
+	CentOS 64-bit
+	
+	BSidesOK2017_AWS_ELK_CentOS7_x86_64
+	
+	1 processor / 1 core
+	
+	3072 MB memory
+	
+	Use network address translation (NAT)
+	
+	LSI Logic (Recommended)
+	
+	SCSI (Recommended)
+	
+	Create a new virtual disk
+	
+	8 GB disk size
+	
+	Uncheck - Allocate all disk space now.
+	
+	Store virtual disk as a singel file
+	
+	Customize Hardware
+		Remove  Sound Card
+		Remove  Printer
+		
+	Finish
+	
+	VMware Tools is not going to be installed
+		So "Synchronize guest time with host" does not matter
+	
+	Going to remove floppy drive in BIOS before install
+	
+	Power on this virtual machine
+	
+	F2
+	
+	Legacy Diskett A:  ==>  Disabled
+	
+	F10
+	
+	Now attach the CentOS-7-x86_64-Minimal-####.iso to the CD/DVD (IDE) virtual drive
+		Make sure to "Connect" the drive
+		
+	Send a CTRL+ALT+DEL
+
+	
+~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+Install CentOS Linux 7
+	Up arrow and enter (if Test this... default hits, okay just takes longer to boot)
+	Screen stays black for a couple seconds
+	
+
+English
+English (United States)
+Continue
+
+
+NETWORK & HOST NAME
+	ens33
+	"ON"
+	
+	Host name:  whatever you want
+	
+	Done
+
+
+DATE & TIME
+	Americas/Chicago
+	
+	Network Time ==> ON
+	
+	
+INSTALLATION DESTINATION
+	Check the 8GiB drive
+	
+
+Begin Installation
+	While this is running
+	
+	ROOT PASSWORD
+		Leave it as Root password is not set
+		Will effectively leave it !! or password disabled
+		
+	USER CREATION
+		Full name ==>  just leave it blank
+		User name ==>  student
+		Make this user administrator  (adds to wheel group)
+		Password ==>  student
+		
+		Done
+		Done  (click again)
+		
+Now let the install sit and finish.
+
+Reboot
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Post ISO install steps
+
+
+sudo visudo
+	%wheel	ALL=(ALL)	NOPASSWD:	ALL
+
+
+sudo yum --assumeyes install ntpdate
+
+sudo ntpdate pool.ntp.org
+
+date --utc; date
+	Verify date and time are correct
+
+
+Install  ifup-local
+	sudo vi /sbin/ifup-local
+	sudo cp /sbin/ifup-local /etc/NetworkManager/dispatcher.d/ifup-local
+	
+	sudo chown root:root /sbin/ifup-local
+	sudo chown root:root /etc/NetworkManager/dispatcher.d/ifup-local
+	sudo chmod 0550 /sbin/ifup-local
+	sudo chmod 0550 /etc/NetworkManager/dispatcher.d/ifup-local
+	
+	sudo cp /etc/issue /etc/issue-standard
+	
+
+
+sudo sed -i 's/SELINUX[=]enforcing/SELINUX=disabled/' /etc/sysconfig/selinux
+	
+
+sudo systemctl disable firewalld
+
+
+
+
+#===========	
+
+sudo yum --assumeyes update
+
+# Do it again for good measure
+
+sudo yum --assumeyes update
+
+	
+sudo yum --assumeyes install yum-utils
+
+sudo package-cleanup --oldkernels --count=1
+
+rpm -q kernel
+
+sudo yum clean all
+
+sudo find /var/log -type f -exec truncate --size=0 {} \; -ls
+
+
+# If you ever used root shell in this time
+sudo -i
+	history -c
+	history -w
+
+	exit
+		# should be student now
+	
+	
+# As student user
+
+history -c
+history -w
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+sudo /sbin/reboot
+
+
+#Login and verify network still works
+
+
+sudo find /var/log -type f -exec truncate --size=0 {} \; -ls
+
+# As student user still
+history -c
+history -w
+
+sudo /sbin/poweroff
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Disconnect the ISO from the VM
+	Otherwise the OVA will have the ISO embedded
+
+Export as OVA (not ovf) for final single distro

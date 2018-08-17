@@ -1,0 +1,22 @@
+# UTC EPOCH of original creation time
+1377305528
+# UTC EPOCH of last modified time
+1377305528
+# CATEGORY
+Security
+# TITLE
+ATT Uverse 2Wire modem shows wireless network key anonymously
+# CONTENT in fragment XHTML until EOF
+I noticed after a firmware upgrade on my AT&T Uverse service that my 2wire modem shows the clear-text password for the wireless network key on the anonymous status page that anyone can navigate to on your local network.  It also does so over a non-secure HTTP connection.
+
+<p>
+An interesting choice to make it easy to remind a user or tell a technician what the wireless password is.  I suppose if someone is connected via a wired connection to your local network already then knowing the wireless password may not be too big of a deal unless you were expecting to keep some computers on the wired network without that knowledge (say a shared computer lab where the wireless is only meant for special users and not those who used the wired lab computers).
+</p>
+
+<p>
+If someone has physical access they can just read the default password on the modem box and reset it remotely (local network) anyway (see <a href="./2WIRE_router_and_strange_default_password_choice.html">2WIRE router and strange default password choice</a>).  I could see cases where physical access wasn't possible and wired users were allowed throughout a building, but the use of wireless wasn't suppose to be restricted.
+</p>
+
+<p>
+<img src="./images/ATT_UVerse_2Wire_Home_Gateway_Status_Revealing_Wireless_Password.png" />
+</p>

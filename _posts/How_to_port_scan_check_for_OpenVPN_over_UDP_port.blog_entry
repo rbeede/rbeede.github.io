@@ -1,0 +1,14 @@
+# UTC EPOCH of original creation time
+1377529807
+# UTC EPOCH of last modified time
+1377529807
+# CATEGORY
+Security
+# TITLE
+How to port scan check for OpenVPN over UDP port
+# CONTENT in fragment XHTML until EOF
+Useful way to test if your firewall is blocking a connection to your OpenVPN server.
+
+<p>
+<a href="http://serverfault.com/questions/262474/how-to-check-that-an-openvpn-server-is-listening-on-a-remote-port-without-using">ServerFault - How to check that an OpenVPN server is listening on a remote port without using OpenVPN client?</a>
+</p>

@@ -1,0 +1,43 @@
+# UTC EPOCH of original creation time
+1221971400
+# UTC EPOCH of last modified time
+1221971400
+# CATEGORY
+Tech Tricks
+# TITLE
+CD Burn rights in XP for non-admin users
+# CONTENT in fragment XHTML until EOF
+I found a way to allow Power Users or Interactive Users to burn CD/DVD discs without administrator rights.
+<p>
+Microsoft has instructions at <a href="http://msdn.microsoft.com/en-us/library/bb540662(VS.85).aspx">http://msdn.microsoft.com/en-us/library/bb540662(VS.85).aspx</a> that detail the steps you need to take.
+</p>
+
+<p>
+I tested with <a href="http://www.cdspeed2000.com/download.html">Nero DiscSpeed</a> and was able to successfully erase discs as a regular user.  I could not burn images with that program though since it uses some low-level commands that bypass Windows.
+</p>
+
+<p>
+I then downloaded <a href="http://infrarecorder.sourceforge.net/">InfraRecord</a> to burn an ISO image, and it worked perfectly without admin rights.
+</p>
+
+<p>
+If the Microsoft link isn't working here is a summary of the steps:
+</p>
+<ol>
+<li>Run gpedit.msc as an admin</li>
+<li>Local Computer Policy</li>
+<li>Computer Configuration</li>
+<li>Windows Settings</li>
+<li>Security Settings</li>
+<li>Local Policies</li>
+<li>Security Options</li>
+<li>Devices: Allowed to format and eject removable media</li>
+<li>Set the value to "Administrators and Interactive Users"</li>
+<li>Devices: Restrict CD-ROM access to locally logged-on user only"</li>
+<li>Set the value to "Enabled"</li>
+<li>Reboot</li>
+</ol>
+
+<p>
+I tested this on a Windows XP PRO 64-bit SP2 machine with a SATA DVD burner.
+</p>

@@ -1,0 +1,21 @@
+# UTC EPOCH of original creation time
+1222470900
+# UTC EPOCH of last modified time
+1222470900
+# CATEGORY
+Programming
+# TITLE
+Windows Batch Script - Parsing Date Into Components (Month, Day, Year)
+# CONTENT in fragment XHTML until EOF
+<p>I found a U.S. locale specific way to parse a date into components inside a Windows batch script (.bat or .cmd).
+</p>
+
+<p><pre>
+@REM Valid only for U.S. (English) locale
+FOR /F "tokens=2-4 delims=/ " %%i IN ('echo %date%') DO SET MONTH=%%i& SET DAY=%%j& SET YEAR=%%k
+</pre>
+</p>
+
+<p>
+Again it only works for the U.S. locale (and similiar).  If you need something that works regardless of locale there are other examples that do it in a batch script, but you should really consider an external .com or .exe that inserts it into your batch script (Google it) or use a Windows Scripting Host script instead.
+</p>

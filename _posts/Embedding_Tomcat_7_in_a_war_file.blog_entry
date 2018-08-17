@@ -1,0 +1,375 @@
+# UTC EPOCH of original creation time
+1309548105
+# UTC EPOCH of last modified time
+1462476599
+# CATEGORY
+Programming
+# TITLE
+Embedding Tomcat 7 in a war file
+# CONTENT in fragment XHTML until EOF
+<p>
+All code is Copyright 2016 Rodney Beede<br />
+Permission to use is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE, Version 3, <a href="http://www.gnu.org/licenses/agpl.txt">http://www.gnu.org/licenses/agpl.txt</a>
+</p>
+
+<p>
+So Jetty has the ability to java -jar YourWebApp.war which runs the Jetty server.  I tried using Jetty 8 to do this with an application that had JSP files, but support just isn't there yet.  I wanted the latest JSP APIs too.
+</p>
+
+<p>
+I decided to try Tomcat 7's new embedded support.  I used some known tricks from my Jetty experience to get it working correctly.  This allows me to embed Tomcat 7 into my war file for easy deployment to others with java -jar WebApp.war.  I used Maven for all the building which makes grabbing dependency jars much easier.  The embedded version reads the web application configuration from the normal WEB-INF/web.xml.  Here is a rundown:
+</p>
+
+<h3>pom.xml</h3>
+<p>
+Standard stuff for any web application project.  Your build type should be a war not a jar.
+</p>
+
+<p>
+<pre>
+	&lt;properties&gt;
+		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+		&lt;tomcat.version&gt;7.0.69&lt;/tomcat.version&gt;
+	&lt;/properties&gt;
+
+
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;log4j&lt;/artifactId&gt;
+			&lt;version&gt;1.2.17&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;apache-log4j-extras&lt;/artifactId&gt;
+			&lt;version&gt;1.2.17&lt;/version&gt;
+		&lt;/dependency&gt;
+
+
+		&lt;!-- Maven Central and other repos don't have consistent locations for 
+			versions of the J2EE APIs This guide was helpful for older versions, but 
+			it doesn't seem to be followed anymore in repos: http://maven.apache.org/guides/mini/guide-coping-with-sun-jars.html 
+			You can also search http://jcp.org/en/jsr/all to get the middle point (x.'#'.z) 
+			latest JSR spec version --&gt;
+
+		&lt;!-- http://www.java.net/forum/topic/glassfish/glassfish/javaxservlet-api-version --&gt;
+		&lt;!-- http://java.net/projects/servlet-spec --&gt;
+		&lt;!-- Found in Maven central repository --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+			&lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+			&lt;version&gt;3.0.1&lt;/version&gt;
+			&lt;scope&gt;provided&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;!-- http://jsp.java.net/downLoad.html --&gt;
+		&lt;!-- Found in Maven central repository --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;
+			&lt;artifactId&gt;javax.servlet.jsp-api&lt;/artifactId&gt;
+			&lt;version&gt;2.2.1&lt;/version&gt;
+			&lt;scope&gt;provided&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;!-- Find the latest version with groupId and artifactId per http://jstl.java.net/download.html --&gt;
+		&lt;!-- Found in Maven central repository --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.glassfish.web&lt;/groupId&gt;
+			&lt;artifactId&gt;javax.servlet.jsp.jstl&lt;/artifactId&gt;
+			&lt;version&gt;1.2.4&lt;/version&gt;
+		&lt;/dependency&gt;
+
+		&lt;!-- These allow embedding of Tomcat 7 with JSP support --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;
+			&lt;artifactId&gt;tomcat-embed-core&lt;/artifactId&gt;
+			&lt;version&gt;${tomcat.version}&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;
+			&lt;artifactId&gt;tomcat-embed-jasper&lt;/artifactId&gt;
+			&lt;version&gt;${tomcat.version}&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;
+			&lt;artifactId&gt;tomcat-embed-logging-juli&lt;/artifactId&gt;
+			&lt;version&gt;${tomcat.version}&lt;/version&gt;
+		&lt;/dependency&gt;
+	&lt;/dependencies&gt;
+
+
+	&lt;build&gt;
+		&lt;plugins&gt;
+		
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+				&lt;version&gt;2.4.3&lt;/version&gt;
+				&lt;executions&gt;
+					&lt;execution&gt;
+						&lt;phase&gt;package&lt;/phase&gt;
+						&lt;goals&gt;
+							&lt;goal&gt;shade&lt;/goal&gt;
+						&lt;/goals&gt;
+						&lt;configuration&gt;
+							&lt;artifactSet&gt;
+								&lt;excludes&gt;
+									&lt;!-- Must have Excluding javax.servlet:servlet-api:jar:2.5 from the shaded jar to avoid conflict with tomcat-embed-core --&gt;
+									&lt;exclude&gt;javax.servlet:servlet-api:*&lt;/exclude&gt;
+									&lt;!-- For the warning about [WARNING] log4j-1.2.17.jar, apache-log4j-extras-1.2.17.jar define 43 overlapping classes
+										we can ignore since it is okay.
+									 --&gt;
+								&lt;/excludes&gt;
+							&lt;/artifactSet&gt;
+							&lt;createDependencyReducedPom&gt;true&lt;/createDependencyReducedPom&gt;
+							&lt;minimizeJar&gt;false&lt;/minimizeJar&gt;
+							&lt;transformers&gt;
+								&lt;transformer
+									implementation=&quot;org.apache.maven.plugins.shade.resource.ManifestResourceTransformer&quot;&gt;
+									&lt;mainClass&gt;EmbeddedTomcatMain&lt;/mainClass&gt;
+								&lt;/transformer&gt;
+							&lt;/transformers&gt;
+						&lt;/configuration&gt;
+					&lt;/execution&gt;
+				&lt;/executions&gt;
+			&lt;/plugin&gt;
+			&lt;!-- The main class needs to be in the root of the war in order to be 
+				runnable --&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+				&lt;version&gt;1.8&lt;/version&gt;
+				&lt;executions&gt;
+					&lt;execution&gt;
+						&lt;id&gt;move-main-class&lt;/id&gt;
+						&lt;phase&gt;compile&lt;/phase&gt;
+						&lt;configuration&gt;
+							&lt;tasks&gt;
+								&lt;move
+									todir=&quot;${project.build.directory}/${project.artifactId}-${project.version}&quot;&gt;
+									&lt;fileset dir=&quot;${project.build.directory}/classes/&quot;&gt;
+										&lt;include name=&quot;EmbeddedTomcatMain.class&quot; /&gt;
+									&lt;/fileset&gt;
+								&lt;/move&gt;
+							&lt;/tasks&gt;
+						&lt;/configuration&gt;
+						&lt;goals&gt;
+							&lt;goal&gt;run&lt;/goal&gt;
+						&lt;/goals&gt;
+					&lt;/execution&gt;
+				&lt;/executions&gt;
+			&lt;/plugin&gt;
+</pre>
+</p>
+
+
+<h3>EmbeddedTomcatMain.java (HTTP listener example 1)</h3>
+
+<p>
+<pre>
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.security.ProtectionDomain;
+
+import javax.servlet.ServletException;
+
+import org.apache.catalina.LifecycleException;
+import org.apache.catalina.connector.Connector;
+import org.apache.catalina.startup.Tomcat;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+
+/**
+ * @author rbeede
+ * 
+ * Supports Tomcat 7
+ * 
+ */
+public class EmbeddedTomcatMain {
+	public static void main(final String[] args) throws ServletException, LifecycleException, URISyntaxException, IOException {
+		final Tomcat tomcat = new Tomcat();
+		
+		
+		// Extract the pre-packaged SSL keys
+		final File[] certificateStores = extractCertificateStores();
+		
+		
+		
+		tomcat.setPort(80);  // Default connector
+		
+		addConnector(82, false, tomcat, null);
+		addConnector(443, true, tomcat, certificateStores);
+		
+        
+		// Load the war (assumes this class in in root of war file)
+		final ProtectionDomain domain = EmbeddedTomcatMain.class.getProtectionDomain();
+		final URL location = domain.getCodeSource().getLocation();
+
+		System.out.println(&quot;Using webapp at &quot; + location.toExternalForm());
+
+
+		tomcat.addWebapp(&quot;/&quot;, location.toURI().getPath());
+		tomcat.start();
+		tomcat.getServer().await();
+	}
+	
+	
+	private static void addConnector(final int port, final boolean https, final Tomcat tomcat, final File[] certificateStores) throws IOException {
+		final Connector connector = new Connector();
+		connector.setScheme((https) ? &quot;https&quot; : &quot;http&quot;);
+		connector.setPort(port);
+		connector.setProperty(&quot;maxPostSize&quot;, &quot;0&quot;);  // unlimited
+		connector.setProperty(&quot;xpoweredBy&quot;, &quot;true&quot;);
+		if(https) {
+			connector.setSecure(true);
+			connector.setProperty(&quot;SSLEnabled&quot;,&quot;true&quot;);
+			connector.setProperty(&quot;keyPass&quot;, &quot;123456&quot;);
+			connector.setProperty(&quot;keystoreFile&quot;, certificateStores[0].getCanonicalPath());
+			connector.setProperty(&quot;keystorePass&quot;, &quot;123456&quot;);
+			connector.setProperty(&quot;truststoreFile&quot;, certificateStores[1].getCanonicalPath());
+			connector.setProperty(&quot;truststorePass&quot;, &quot;123456&quot;);
+		}
+		tomcat.getService().addConnector(connector);
+	}
+	
+	
+	/**
+	 * @param tomcat
+	 * @return 0 = keystoreFile, 1 = truststoreFile
+	 * @throws IOException 
+	 */
+	private static File[] extractCertificateStores() throws IOException {
+		//FIXME Not secure in creation because Java 6 and before provide no platform independent API for setting file permissions &amp; ownership.  Java 7 will.
+		final File keystoreFile = File.createTempFile(&quot;ETM&quot;, null);
+		final File truststoreFile = File.createTempFile(&quot;ETM&quot;, null);
+		
+		keystoreFile.deleteOnExit();
+		truststoreFile.deleteOnExit();
+		
+		final FileOutputStream fosKeystore = new FileOutputStream(keystoreFile);
+		final FileOutputStream fosTruststore = new FileOutputStream(truststoreFile);
+		
+		// Assumes .jks files were in root of project resources which causes them to be under /WEB-INF/classes/ inside the war
+		IOUtils.copy(EmbeddedTomcatMain.class.getResourceAsStream(&quot;/WEB-INF/classes/keyStore.jks&quot;), fosKeystore);
+		IOUtils.copy(EmbeddedTomcatMain.class.getResourceAsStream(&quot;/WEB-INF/classes/trustStore.jks&quot;), fosTruststore);
+		
+		fosKeystore.close();
+		fosTruststore.close();
+		
+		
+		return new File[] {keystoreFile, truststoreFile};
+	}
+}
+</pre>
+</p>
+
+
+<h3>EmbeddedTomcatMain.java (AJP listener only example 2)</h3>
+
+<p>
+<pre>
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.security.ProtectionDomain;
+import java.util.UUID;
+
+import javax.servlet.ServletException;
+
+import org.apache.catalina.LifecycleException;
+import org.apache.catalina.connector.Connector;
+import org.apache.catalina.core.StandardHost;
+import org.apache.catalina.startup.Tomcat;
+
+/**
+ * @author rbeede
+ * 
+ * Supports Tomcat 7
+ * 
+ * Enforces secure options but does not handle https in preference of localhost binding AJP and letting external
+ * service handle user identity authorization and authentication.
+ * 
+ * Since this is embedded inside a WAR file it must be found in the root of the packaged &amp; assembled WAR
+ * 
+ */
+public class EmbeddedTomcatMain {
+	public static void main(final String[] args) throws ServletException, LifecycleException, URISyntaxException, IOException {
+		final Tomcat tomcat = new Tomcat();
+
+		// Tomcat 7 must have a BaseDir for temporary files (like work, wars, etc)
+		final Path tempBaseDir = java.nio.file.Files.createTempDirectory(EmbeddedTomcatMain.class.getSimpleName());
+		tempBaseDir.toFile().deleteOnExit();
+		tomcat.setBaseDir(tempBaseDir.toString());
+		System.out.println(&quot;Using temporary base directory of:  &quot; + tempBaseDir);  // Tomcat 7 API has no tomcat.getBaseDir() method
+		
+		tomcat.getHost().setAutoDeploy(false);
+		tomcat.getHost().setCreateDirs(false);
+		tomcat.getHost().setDeployOnStartup(false);
+		tomcat.setPort(-1);  // Not using default connector;  Undocumented API trick
+		
+		
+		// Tomcat 8 supports unpackWARS=false with untouched war file
+		// Tomcat 7 even with unpackWARS=false still has to extract Java libs and temp files for JSP compile
+		// 2015-04-06	https://wiki.apache.org/tomcat/RemoveUnpackWARs
+		((StandardHost) tomcat.getHost()).setUnpackWARs(false);
+		
+
+		// Setup AJP connector
+		addAJPConnector(8009, tomcat);
+
+
+		// Logging is not yet available
+		System.out.println(&quot;Listening via AJP on port 8009&quot;);
+
+
+		// Load the war (assumes this class is inside a war file)
+		final ProtectionDomain domain = EmbeddedTomcatMain.class.getProtectionDomain();
+		final URL location = domain.getCodeSource().getLocation();
+
+		System.out.println(&quot;Using webapp at &quot; + location.toExternalForm());
+		
+		
+		// Disable the shutdown port
+		tomcat.getServer().setShutdown(UUID.randomUUID().toString());  // Just in case future API doesn't disable it
+		tomcat.getServer().setPort(-1);  // Not officially API documented trick
+
+		
+		System.out.println(&quot;Adding web application at &quot; + location.toURI().getPath());
+		tomcat.addWebapp(&quot;&quot;, location.toURI().getPath());
+		
+		
+		tomcat.getServer().start();  // Do not call tomcat.start() as that adds a default connector we do not want
+		
+		for(final Connector connector : tomcat.getService().findConnectors()) {
+			System.out.println(&quot;Connector:  &quot; + connector.toString());
+			System.out.println(&quot;Connector Port:  &quot; + connector.getPort());
+		}
+		
+		tomcat.getServer().await();
+	}
+	
+	
+	private static void addAJPConnector(final int port, final Tomcat tomcat) throws IOException {
+		final Connector connector = new Connector();
+		connector.setProtocol(&quot;AJP/1.3&quot;);  // &quot;The standard protocol value for an AJP connector is AJP/1.3&quot;  https://tomcat.apache.org/tomcat-7.0-doc/config/ajp.html
+		connector.setPort(port);
+		connector.setAllowTrace(false);
+		connector.setEnableLookups(false);
+		connector.setXpoweredBy(true);
+		connector.setSecure(false);  // AJP does not encrypt in-transit
+		
+		connector.setProperty(&quot;address&quot;, &quot;127.0.0.1&quot;);  //IPv4 only
+		connector.setProperty(&quot;connectionTimeout&quot;, Integer.toString(10 * 1000));  // 10 seconds
+		//We do not use requiredSecret
+		connector.setProperty(&quot;tomcatAuthentication&quot;, Boolean.toString(false));
+		connector.setProperty(&quot;tomcatAuthorization&quot;, Boolean.toString(false));
+		
+		tomcat.getService().addConnector(connector);
+	}
+}
+</pre>
+</p>

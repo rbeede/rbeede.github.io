@@ -1,0 +1,48 @@
+# UTC EPOCH of original creation time
+1340401588
+# UTC EPOCH of last modified time
+1340401670
+# CATEGORY
+Tech Tricks
+# TITLE
+Convert Kismet netxml to csv
+# CONTENT in fragment XHTML until EOF
+The latest version drops CSV output support in Kismet.  I just need some basic information for the scan results.  A quick and easy way without having to write a script in Perl or Java was to use xslt transformation.
+
+<ol>
+<li>Assuming Linux</li>
+<li>Install xsltproc</li>
+<li>Create the a file with the below contents and name it transform.xslt (or whatever):
+<pre>
+&lt;xsl:stylesheet version=&quot;1.0&quot; xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+  &lt;xsl:output method=&quot;text&quot; encoding=&quot;utf-8&quot; /&gt;
+
+  &lt;xsl:param name=&quot;delim&quot; select=&quot;','&quot; /&gt;
+  &lt;xsl:param name=&quot;quote&quot; select=&quot;'&amp;quot;'&quot; /&gt;
+  &lt;xsl:param name=&quot;break&quot; select=&quot;'&amp;#xA;'&quot; /&gt;
+
+  &lt;xsl:template match=&quot;/&quot;&gt;
+    &lt;xsl:apply-templates select=&quot;detection-run/wireless-network&quot; /&gt;
+  &lt;/xsl:template&gt;
+
+  &lt;xsl:template match=&quot;wireless-network&quot;&gt;
+    &lt;xsl:apply-templates /&gt;
+    &lt;xsl:if test=&quot;following-sibling::*&quot;&gt;
+      &lt;xsl:value-of select=&quot;$break&quot; /&gt;
+    &lt;/xsl:if&gt;
+  &lt;/xsl:template&gt;
+
+  &lt;xsl:template match=&quot;*&quot;&gt;
+    &lt;!-- remove normalize-space() if you want keep white-space at it is --&gt; 
+    &lt;xsl:value-of select=&quot;concat($quote, normalize-space(), $quote)&quot; /&gt;
+    &lt;xsl:if test=&quot;following-sibling::*&quot;&gt;
+      &lt;xsl:value-of select=&quot;$delim&quot; /&gt;
+    &lt;/xsl:if&gt;
+  &lt;/xsl:template&gt;
+
+  &lt;xsl:template match=&quot;text()&quot; /&gt;
+&lt;/xsl:stylesheet&gt;</pre>
+<ul><li>Credit to <a href="http://stackoverflow.com/questions/365312/xml-to-csv-using-xslt">http://stackoverflow.com/questions/365312/xml-to-csv-using-xslt</a> for the template</li></ul>
+</li>
+<li>xsltproc -o MyKismitOutput.csv transform.xslt Kismet-yyyymmdd-hh-MM-ss-1.netxml</li>
+</ol>

@@ -1,0 +1,96 @@
+# UTC EPOCH of original creation time
+1221661680
+# UTC EPOCH of last modified time
+1221661680
+# CATEGORY
+Tech Tricks
+# TITLE
+Print 15 minute intervals in Outlook 2007 calendar
+# CONTENT in fragment XHTML until EOF
+So if you've moved from Outlook 2003 to Outlook 2007 you've probably noticed that it won't put the 15 or 30 minute intervals anymore when you print a weekly calendar.
+<p>
+This is because the ruling and sizing has changed in Outlook 2007.
+</p>
+
+<p>
+Some fixes are to:
+</p>
+
+<ul>
+<li>Specify fewer hours to print</li>
+<li>Print the calendar in portrait instead of landscape</li>
+</ul>
+
+<p>
+For myself I didn't like the above solutions so I researched the problem and found another solution to printing Outlook 2007 calendars with 15 minute intervals.
+</p>
+
+<ol>
+<li>Download Microsoft's <a href="http://office.microsoft.com/en-us/outlook/HA101687211033.aspx">Calendar Printing Assistant for Outlook 2007</a> (it's free)</li>
+<li>Install the assistant</li>
+<li>Download the service pack for CPA from Microsoft <a href="http://support.microsoft.com/kb/937157">here</a></li>
+<li>Install the service pack</li>
+<li>Start the assistant by going to:
+   <ol>
+   <li>Start</li>
+   <li>All Programs</li>
+   <li>Microsoft Office</li>
+   <li>Microsoft Office Tools</li>
+   <li>Calendar Printing Assistant</li>
+   </ol>
+   <ul>
+   <li>Note that there is no link in Outlook itself</li>
+   </ul>
+</li>
+</ol>
+
+<p>
+You simply select the template you want.  The program automatically loads your Outlook 2007 calendar data.
+</p>
+
+<p>
+One thing that did annoy me is there is no way to change the start and end hours inside the program.  This also means I still didn't get my 15 or 30 minute intervals with the provided templates.
+</p>
+
+<p>
+I fixed this by modifying a saved calx (that's CPA's format for your calendar formatting that you save) so that the start hour was 08:00, the end hour was 24:00, and the minor unit was 15.
+</p>
+
+<p>
+You may download the customized calendar formats below.  Just save to disk and double click to open it in CPA.
+</p>
+
+<p>
+<a href="./downloads/Calendar1 - 15min.calx">15 Minute Interval Calendar Format</a><br />
+<br />
+<a href="./downloads/Calendar1 - 30min.calx">30 Minute Interval Calendar Format</a>
+</p>
+
+<p>
+For those who want to know how I created those:
+</p>
+
+<ol>
+<li>Create a new calendar format in CPA and save it to disk</li>
+<li>Rename your Calendar.calx (or whatever you saved it as) to Calendar.calx.zip</li>
+<li>Open the zip archive</li>
+<li>Inside the archive go to the folder <b>Cal</b></li>
+<li><b>Templates</b></li>
+<li><b>Template<i>2</i></b> (may not end in the number 2)</li>
+<li>Extract <b>Content.xml</b></li>
+<li>Open the extracted file in a text or xml editor</li>
+<li>Search for <b>StartHour</b></li>
+<li>Modify the value to the hour you want</li>
+<li>There are multiple instances that you must change</li>
+<li>Search for <b>EndHour</b></li>
+<li>Modify the value to the hour you want</li>
+<li>There are multiple instances that you must change</li>
+<li>Search for <b>MinorUnit</b></li>
+<li>Modify to the minute interval you want</li>
+<li>There are multiple instances that you must change</li>
+<li>Save the file</li>
+<li>Place the modified file back into the archive in the same location with the same name (overwrite the existing one in the archive)</li>
+<li>Save the modified archive</li>
+<li>Rename the file back to Calendar.calx</li>
+<li>Open the file and your calendar will have different start/end hours and interval</li>
+</ol>

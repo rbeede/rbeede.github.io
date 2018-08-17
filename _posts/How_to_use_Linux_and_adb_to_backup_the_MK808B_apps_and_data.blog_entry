@@ -1,0 +1,36 @@
+# UTC EPOCH of original creation time
+1373384794
+# UTC EPOCH of last modified time
+1373384794
+# CATEGORY
+Tech Tricks
+# TITLE
+How to use Linux and adb to backup the MK808B apps and data
+# CONTENT in fragment XHTML until EOF
+I wanted a backup of the OEM apps and data since the manufacturer of the device doesn't have an official support site with original ROM downloads.  There were some sites that sold the devices that provided some factory update ROMs, but I wanted a sure backup of how my device shipped.  I also wanted to do it from Linux using adb.  Android 4 makes doing app and data backups easy as adb supports it built-in.  adb does not make a complete backup of the ROM itself nor image partitions.
+
+<p>
+I used Ubuntu 13.04 LTS 64-bit Server Edition running inside a VMWare Workstation VM on my Windows 7 64-bit system.  You do NOT need Windows drivers for this to work.  Just attach the device to the VM under Removable Devices.
+</p>
+
+<ol>
+<li><a href="http://developer.android.com/sdk/index.html"></a>Get the Android ADT Bundle</li> which includes adb in platform-tools</li>
+<li>For Ubuntu 64-bit you will probably need the 32-bit multi-libs installed.  apt-get install ia32-libs</li>
+<li>On your MK808B device go into Settings, {} Developer Options, USB debugging (checked)</li>
+<li>On your MK808B device go into Settings, USB, Connect to PC (checked)</li>
+<li>Connect the OTG port of your MK808B to a USB 2.0 port on your computer</li>
+<li><a href="http://www.slatedroid.com/topic/41219-connecting-to-a-rk3066-based-board-via-adb-on-linux/">How to get adb to recognize under Linux</a>
+	<ol>
+		<li>/etc/udev/rules.d/51-android.rules</li>
+		<li>SUBSYSTEM=="usb", ATTR{idVendor}=="2207", MODE="0666", GROUP="plugdev"</li>
+		<li>chmod a+r /etc/udev/rules.d/51-android.rules</li>
+		<li>udevadm control --reload-rules</li>
+		<li>$HOME/.android/adb_usb.ini</li>
+		<li>Add to the end "0x2207"  (without quotes)</li>
+		<li>adb kill-server && adb start-server</li>
+	</ol>
+</li>
+<li>adb devices</li>
+<li>adb backup -f ~/MK808B_Factory_App_Data_Backup__2013-07-08.ab -apk -shared -all -system
+	<ul><li><a href="http://android.stackexchange.com/questions/28296/full-backup-of-non-rooted-devices">Full Backup of non-rooted devices, StackExchange</a></li></ul>
+</li>

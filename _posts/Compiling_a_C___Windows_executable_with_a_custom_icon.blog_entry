@@ -1,0 +1,42 @@
+# UTC EPOCH of original creation time
+1223401980
+# UTC EPOCH of last modified time
+1223401980
+# CATEGORY
+Programming
+# TITLE
+Compiling a C++ Windows executable with a custom icon
+# CONTENT in fragment XHTML until EOF
+This example shows how to compile a simple C++ program into a standalone Windows executable (32-bit) with a custom icon.
+<p>
+I used <a href="http://www.mingw.org/">MinGW</a> version 3.15.1 with GCC 3.4.5.
+</p>
+
+<ol>
+<li>Start by creating a test.cpp example file<br />
+<pre>
+#include <iostream>
+using namespace std;
+
+int main () {
+ cout << "Hello World!";
+ return 0;
+}
+</pre>
+</li>
+<li>Create a resource file (say appicon.rc) with a line defining the location of your .ico file<br />
+<code>
+AppIcon ICON "MyApp.ico"
+</code>
+</li>
+<li>Compile the icon into a resource object with a command like<br />
+<code>
+C:\MinGW\bin\windres.exe appicon.rc appicon.opc
+</code>
+</li>
+<li>Compile your executable with the resource object included with a command like<br />
+<code>
+"C:\MinGW\bin\g++.exe" appicon.opc test.cpp
+</code>
+</li>
+</ol>

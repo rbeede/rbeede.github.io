@@ -1,0 +1,30 @@
+# UTC EPOCH of original creation time
+1354737101
+# UTC EPOCH of last modified time
+1354737101
+# CATEGORY
+Computer Problems
+# TITLE
+Dell Inspiron 1520 and Windows 7 64-bit drivers
+# CONTENT in fragment XHTML until EOF
+This laptop doesn't come with any Windows 7 support from Dell due to its age.  Installing Windows 7 covers almost every driver out of the box.  After you run all the Windows Updates you get every other device except for two important ones:
+
+<h2>"Base System Device"</h2>
+
+<p>
+This is the second part of the SD card reader (Ricoh Card Reader R5C833).  I used Dell's download <a href="http://downloads-us.dell.com/chipset/R188094.EXE">http://downloads-us.dell.com/chipset/R188094.EXE</a> which worked.  There are other downloads, but this is suppose to be newer as of today.  It is designed for Vista 64-bit, but it works in Windows 7 64-bit.
+</p>
+
+<h2>Dell Wireless 1505 Draft 802.11n WLAN Mini-Card</h2>
+
+<p>
+Windows 7 during the install will detect and install a driver for this device.  After you run all the Windows Updates it may also apply an "updated" driver.  I noticed after all was said and done that I was only getting 54mbps connection speed even though I was supposed to be connected over 802.11n.
+</p>
+
+<p>
+In short the driver was limiting the device speed.  I looked for the latest Dell driver version for Windows 7 64-bit.  I found R250808.  Upon attempting the install it threw an error that it couldn't find any hardware and exited.
+</p>
+
+<p>
+You have to force a driver update and point it to c:\dell\drivers\R250808\DRIVER_US.  Once that is done you will have true 802.11n speeds.  My driver provider shows as Broadcom with version 5.60.18.8 and driver date 8/21/2009.  I looked around on Broadcom's website, but they don't seem to offer wireless chipset Windows drivers.
+</p>

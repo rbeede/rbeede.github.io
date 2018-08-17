@@ -1,0 +1,18 @@
+# UTC EPOCH of original creation time
+1282148213
+# UTC EPOCH of last modified time
+1326325300
+# CATEGORY
+Curriculum Vitae
+# TITLE
+Misc Programming Projects
+# CONTENT in fragment XHTML until EOF
+Below are links to published programming projects I've done in the past.
+
+<ul>
+<li><a href="./downloads/OOAD_Class_Project_CloudInABottle_2011-08to12.7z">Cloud In A Bottle</a> - a computer science group project I did for my Object Oriented and Design graduate class at the University of Colorado.  I designed the web application model.  Inside the archive are PDFs of design details we had to create along with the source code.</li>
+<li><a href="http://code.google.com/p/distributed-wpa-cracking/">Distributed WPA Cracking</a> - a computer science group project I did during my graduate studies at CU.  It is a web application that breaks up a large rainbow table of WPA keys onto multiple machines for calculation.</li>
+<li><a href="http://code.google.com/p/pzapr/">Parallel Zip Archive Password Recovery</a> - a computer science group project during my my graduate studies at CU.  It is a MPI C++ program that we tested on some large super-computer clusters for brute forcing and dictionary attacking AES encrypted archives.</li>
+<li><a href="./Security_Circles_-_Academic_Paper.html">Security Circles</a> - a class project from my Mobile Computing class at CU (Fall 2011).  It involves an Android application I wrote along with some Dalvik VM and custom ROM changes by our class group.  Its purpose is to anonymize sensor data to installed apps on the phone.</li>
+<li><a href="https://sourceforge.net/projects/unidoc-cs3053/">Unidoc</a> - a computer science group class project I did during my undergraduate.  It allows real-time editing of a document by multiple users at the same time via the web browser.  You can see their changes live while you edit as well.</li>
+</ul>

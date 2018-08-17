@@ -1,0 +1,18 @@
+# UTC EPOCH of original creation time
+1238643484
+# UTC EPOCH of last modified time
+1280940445
+# CATEGORY
+Curriculum Vitae
+# TITLE
+Chop-chop HTTP Client open source project
+# CONTENT in fragment XHTML until EOF
+In my previous job (RiskMetrics) I was authorized to release a Java library I wrote as an open source project.  It's called Chop-chop HTTP Client and is a wrapper around Jakarta's HTTP Client for downloading content from web servers into File or OutputStream in Java.
+
+<p>
+The libraries main purpose is to accelerate downloads when possible by using HTTP headers according to the HTTP 1.1 specification.  If the remote web server supports the download method then the library will automatically break the download into multiple parts to maximize bandwidth utilization.  If the remote web server does not support that feature then the library automatically downloads the data in a normal fashion.
+</p>
+
+<p>
+See the project's home page at <a href="http://chop-chophttpcl.sourceforge.net/">http://chop-chophttpcl.sourceforge.net/</a> for more information.
+</p>

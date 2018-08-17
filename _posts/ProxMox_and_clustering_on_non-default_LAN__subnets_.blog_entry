@@ -1,0 +1,31 @@
+# UTC EPOCH of original creation time
+1318988680
+# UTC EPOCH of last modified time
+1320506314
+# CATEGORY
+Computer Problems
+# TITLE
+ProxMox and clustering on non-default LAN (subnets)
+# CONTENT in fragment XHTML until EOF
+<a href="http://pve.proxmox.com/wiki/Proxmox_VE_Cluster#Add_a_node_to_an_existing_master">Basic normal instructions</a> work okay when you don't have special subnets or VLANs, but the scripts on both the master and peer nodes fail if you don't have a specific IP configured for eth0.
+
+<p>
+I don't want one on the default VLAN on eth0 so I got around the problem by typing in an address in /etc/network/interfaces for eth0.  The script just parses this file and doesn't care if the interface actually has that IP.  It is just an auto-probe reference limitation.
+</p>
+
+<p>
+Something as simple as the following works fine for slave nodes:<br />
+<pre>
+iface eth0 inet manual
+        address 172.16.0.121
+        netmask 255.255.255.0
+</pre>
+</p>
+
+<p>
+Don't restart the networking, just modify the configuration file and run "pveca -a -h IP-ADDRESS-MASTER".  You may see a few warnings about missing localip, but you can ignore those.  Change the file back after you've added it.
+</p>
+
+<p>
+You can also manually modify the /etc/pve/cluster.cfg and /etc/pve/master/cluster.cfg files if needed.
+</p>

@@ -1,0 +1,18 @@
+# UTC EPOCH of original creation time
+1415726173
+# UTC EPOCH of last modified time
+1415726173
+# CATEGORY
+Tech Tricks
+# TITLE
+Maximum length of DNS hostname and domain names
+# CONTENT in fragment XHTML until EOF
+Great explanation from the "The Old New Thing" MSDN blog.  <a href="http://blogs.msdn.com/b/oldnewthing/archive/2012/04/12/10292868.aspx">What is the real maximum length of a DNS name? - 12 Apr 2012 7:00 AM - http://blogs.msdn.com/</a>.
+
+<p>
+253 characters.  The encoding requires the length of each label to be encoded (typically where each . goes).  The first label and the root (end) label take 2 octets from the 255 octet (not character) maximum.  US ASCII leaves you with 253 characters (including the dots in the middle which are lengths).
+</p>
+
+<p>
+Of course if you have a DNS entry in UTF-8 then things are different.
+</p>

@@ -1,0 +1,55 @@
+<HTML>
+<HEAD>
+	<TITLE>Making ZDNet Chat work behind a proxy/firewall</TITLE>
+</HEAD>
+
+<BODY>
+
+<A NAME="#TOP"></A>
+
+<FONT SIZE=+1><A HREF="./index.html">Contents</A></FONT>
+<HR>
+
+<H3>ZDNet Chat and Firewalls</H3>
+
+I had this situation:
+
+<P>
+One machine connected to the Internet and two other machines networked to that machine.  I gave my two non-Internet machines Internet access by installing a proxy server on the one machine with Internet access.  This gave me my basic web surfing and such, but I couldn't do ZDNet Chat.
+
+<P>
+With most proxy setups, each program on the client has to know to use a proxy server.  For Example:  You tell your web browser to use the private lan IP address of the proxy server for Internet access.  Well since ZDNet Chat doesn't do this, you can't chat except on the machine with the real Internet connection.
+
+<P>
+There are two ways to get around this:<BR>
+<OL>
+<LI>Setup the machine with the Internet connection using the Linux OS and IP Masquarding</LI>
+<LI>Use DNS overloading to fool ZDNet Chat into thinking it is addressing a different computer</LI>
+</OL>
+
+<P>
+The first option works well because as far as your clients are concerned there is no proxy server.  Almost all software will work fine this way.  Some stuff like Netmeeting and other Internet phones won't work though, and this also requires a dedicated computer.  Usually though you can go buy some old 486 and do fine this way.
+
+<P>
+If you don't have some old computer you can dedicate in this way, then you can use Windows as your server and use some kind of Windows proxy server.  To make this work you need to use TCP mapping on the following address and port with your proxy server:  TCP    chat.zdnet.com : 9955<BR>
+Basically telling the proxy to take anything coming from your clients that is destined for port 9955 and forward it to chat.zdnet.com.
+
+<P>
+This is only half of the trick.  Since the Java applet used in ZDNet Chat doesn't have a way to setup a proxy server connection, it tries to access chat.zdnet.com directly instead of using your proxy server's IP address.  You can fool your Window's clients into thinking that your proxy server is chat.zdnet.com by adding this line to your <B>C:\WINDOWS\HOSTS</B> on each client:<BR>
+<I>10.1.1.1	chat.zdnet.com</I>
+
+<P>
+If that file doesn't exist, then create it, but make sure it doesn't have any extension.
+
+<P>
+Set 10.1.1.1 to whatever the private lan IP address of your proxy server is.  Whenever ZDNet Chat  on the client tries to connect to chat.zdnet.com on port 9955 it will do a DNS lookup and think the IP address of chat.zdnet.com is actually 10.1.1.1 (or whatever your proxy server is).  When your proxy server gets the request it will forward all traffic over to chat.zdnet.com.
+
+<P>
+Hope that helps!
+
+<P>
+<HR WIDTH="50%" ALIGN=LEFT>
+<A HREF="./contact.html">Rodney Beede</A> <A HREF="./copyright.html">© 1999-2000</A> | <A HREF="#Top">Top</A>
+
+</BODY>
+</HTML>

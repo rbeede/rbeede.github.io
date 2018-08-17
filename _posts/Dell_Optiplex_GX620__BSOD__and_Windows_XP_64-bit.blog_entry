@@ -1,0 +1,29 @@
+# UTC EPOCH of original creation time
+1226618340
+# UTC EPOCH of last modified time
+1226618340
+# CATEGORY
+Computer Problems
+# TITLE
+Dell Optiplex GX620, BSOD, and Windows XP 64-bit
+# CONTENT in fragment XHTML until EOF
+So at work I have a Dell Optiplex GX620 with Windows XP Pro 64-bit w/SP2.
+<p>
+For the 2nd time in 3 months the machine has started to blue screen of death on me at boot up.  Last time I had to reinstall everything on the machine to resolve the issue.
+</p>
+
+<p>
+I tried downloading drivers from Dell.  Their ftp server is misconfigured and causes errors when accessing an ftp:// url via Firefox or IE.  I have to use a third party ftp client to get the files.  Even worse is that none of the drivers provided by Dell have been updated since 2006.
+</p>
+
+<p>
+The machine is still under Dell warranty so my work may just make a Dell tech come out and fix it.  Sad thing is they will probably just OS the machine again and most likely sometime afterward the problem will just occur again.
+</p>
+
+<p>
+Maybe I could talk my work into letting me build my own computer.  One that actually works with a 64-bit OS.
+</p>
+
+<p>
+If you're looking for a solution to this good luck.  Another newer Dell model at my work has even worse problems with 64-bit OS.  Just poor hardware driver support really.  Maybe you should consider VMWare 64-bit hosting a 64-bit Guest Windows OS.  I am right now.
+</p>

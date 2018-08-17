@@ -1,0 +1,37 @@
+# UTC EPOCH of original creation time
+1502471448
+# UTC EPOCH of last modified time
+1502471941
+# CATEGORY
+Tech Tricks
+# TITLE
+Create VMWare ESX usb installer with SysLinux 6 or later under Linux
+# CONTENT in fragment XHTML until EOF
+VMWare's KB gives instructions for creating a usb installer using Linux, but fails to warn you that only Syslinux version 3.28 works.  Modern distros come with 6.03 which won't work.
+
+<p>
+Instead of extracting the ISO I found a better way using Syslinux MEMDISK.
+</p>
+
+<p>
+Credit to <a href="http://www.geeklee.co.uk/create-and-test-esxi55-usb/#comment-282">SteveB05</a> for the great idea and example.
+</p>
+
+<ol>
+<li>Create a USB with a FAT32 partition</li>
+<li>Mark partition with active boot flag on</li>
+<li>Format mkfs.vfat</li>
+<li>syslinux --install /dev/sdX</li>
+<li>dd conv=notrunc bs=440 count=1 if=/usr/lib/syslinux/mbr/mbr.bin of=/dev/sdX</li>
+<li>Mount the USB drive and copy the VMware ISO (no extract)</li>
+<li>Create a syslinux.cfg as per below with the correct version in the filename</li>
+<li>cp /usr/lib/syslinux/memdisk LOC_OF_MOUNTED_DRIVE</li>
+</ol>
+
+<pre>
+LABEL Universal Image
+KERNEL memdisk
+APPEND iso
+INITRD /VMware-VMvisor-Installer-201701001-4887370.x86_64.iso
+MENU LABEL VMware-VMvisor-Installer-201701001-4887370.x86_64.iso ^Universal Image
+</pre>

@@ -1,0 +1,25 @@
+# UTC EPOCH of original creation time
+1377717022
+# UTC EPOCH of last modified time
+1377795736
+# CATEGORY
+Computer Problems
+# TITLE
+Windows USB boot install on UEFI
+# CONTENT in fragment XHTML until EOF
+I discovered that your USB drives must be FAT formatted as some (like mine) UEFI systems won't boot from NTFS formatted drives.
+
+<p>
+You need UEFI if you want to install to a drive larger than 2.2TB.
+</p>
+
+<p>
+References:
+</p>
+
+<ul>
+<li><a href="http://blogs.technet.com/b/home_is_where_i_lay_my_head/archive/2012/10/02/how-to-install-windows-7-or-8-from-usb-using-uefi.aspx">How to install Windows 7 or 8 from USB using UEFI</a></li>
+<li><a href="http://blogs.msdn.com/b/matt-harrington/archive/2012/03/27/how-to-create-a-bootable-usb-drive-from-an-iso-image-for-uefi-systems.aspx">How to create a bootable USB drive from an ISO image for UEFI systems</a></li>
+<li><a href="http://forums.bit-tech.net/showthread.php?t=209045">Another helpful site on how to force EFI mode for Windows 7 USB install</a></li>
+
+</ul>

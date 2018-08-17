@@ -1,0 +1,62 @@
+# UTC EPOCH of original creation time
+1376190655
+# UTC EPOCH of last modified time
+1432346296
+# CATEGORY
+Tech Tricks
+# TITLE
+Windows 7 drivers for Samsung NP365E5C-S02UB
+# CONTENT in fragment XHTML until EOF
+I didn't like Windows 8 on a new laptop purchase (Samsung NP365E5C-S02UB) and wanted to go back to Windows 7.  Samsung doesn't even have a support or product page for the actual model (NP365E5C-S02UB, purchased from BestBuy) nor any Windows 7 support or drivers for similiar model numbers.  Samsung's official support response is that only Windows 8 is available.  To get BIOS updates you must use the Samsung SW Update utility, and it will download any needed driver updates for Windows 8.
+
+<p>
+I found drivers from trusted sources (chipset maker or another major vendor's website) since I don't trust those drivers sites that could have malware.
+</p>
+
+<ol>
+	<li>You need a valid license for Windows 7</li>
+	<li>You need a valid Windows 7 ISO 64-bit installer
+		<ul><li><a href="http://superuser.com/questions/78761/where-do-i-download-windows-7-legally-from-microsoft">Look here</a> - I recommend the Windows 7 Professional SP1-U ISO x64</a></li></ul>
+	</li>
+	<li>You might want to make a "Samsung Recovery Factory image" backup to a 32GB+ USB drive
+		<ul><li>Be warned that you cannot restore to a blank hard drive if you decide to go back so you have to known how to manually restore partitions and the images.  See <a href="./Creating_Samsung_recovery_disc_on_a_Windows_8_laptop.html">Creating Samsung recovery disc on a Windows 8 laptop</a></li></ul>
+	</li>
+</ol>
+
+<p>
+You will need the following drivers (install in this order):
+</p>
+
+<ol>
+	<li><a href="http://support.amd.com/us/gpudownload/windows/Pages/raid_windows.aspx#2">AMD Chipset Drivers</a>
+		<ul><li>Windows 7 tab</li></ul>
+	</li>
+	<li><a href="http://support.amd.com/us/gpudownload/windows/Pages/radeonmob_win7-64.aspx#1">AMD Catalystâ„¢ Notebook Display Driver</a>
+		<ul>
+			<li>Skip the AMD Mobility Radeonâ„¢ Driver Verification Tool as it doesn't work</li>
+			<li>Use Latest Beta Driver</li>
+			<li>If you are happy with the AMD Chipset Drivers and don't need the extra Catalyst stuff then you may skip this especially since it takes forever to install</li>
+		</ul>
+	</li>
+	<li>Bluetooth Drivers
+		<ul>
+			<li>Qualcomm Atheros AR3012 Bluetooth 4.0</li>
+			<li>I have no good reference for the 4.0 drivers.</li>
+		</ul>
+	<li><a href="http://h10025.www1.hp.com/ewfrf/wc/softwareDownloadIndex?cc=us&lc=en&dlc=en&softwareitem=ob-105185-1">Wireless - LAN</a> - Atheros AR9485 802.11b/g/n Wireless LAN Driver Lite care of HP.com
+		<ul>
+			<li>I recommend using 7-zip to extract just the drivers inside the exe</li>
+			<li>The Samsung NP305V5A-A04US drivers for Wireless LAN,ATHEROS (Driver) (ver.9.2.0.470) might work too</li>
+		</ul>
+	</li>
+	<li><a href="http://www.realtek.com.tw/downloads/downloadsView.aspx?Langid=1&PNid=13&PFid=5&Level=5&Conn=4&DownTypeID=3&GetDown=false">Gigabit LAN </a> - Realtek - Software: Drivers & Utilities - RTL8168
+		<ul><li>Win7 and WinServer 2008 R2 Driver</li></ul>
+	</li>
+	<li><a href="http://www.realtek.com.tw/downloads/downloadsView.aspx?Langid=1&PNid=15&PFid=25&Level=4&Conn=3&DownTypeID=3&GetDown=false">Realtek SD Card Reader</a> - Software: Drivers & Utilities
+		<ul><li>USB RTS5139/RTS5129/RTS5179 card reader driver for XP/Win7/Win8</li></ul>
+	</li>
+</ol>
+
+<p>
+<a href="https://docs.google.com/a/rodneybeede.com/document/d/1Dhz2JlmNLo2zOc8Z4beyHg6PoNOG7miVwy3UldqP3yc/edit?pli=1">Helpful pointers from WINDOWS 8 TO WINDOWS 7</a> (via <a href="http://www.tomshardware.com/forum/id-1590857/downgrading-samsung-np365e5c-s01us-windows.html">tomshardware forum</a>)
+</p>

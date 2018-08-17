@@ -1,0 +1,188 @@
+# UTC EPOCH of original creation time
+1395074562
+# UTC EPOCH of last modified time
+1470149489
+# CATEGORY
+Tech Tricks
+# TITLE
+Building Apache 2.4 for Linux with mod_ssl
+# CONTENT in fragment XHTML until EOF
+These are my instructions for building Apache 2.4 on Linux and including mod_ssl.  OpenSSL is assumed to be available already and is thus not compiled from source.
+
+<h2>Platform Versions used:</h2>
+
+<ol>
+	<li>Apache 2.4.xx - <a href="http://httpd.apache.org/download.cgi#apache24">http://httpd.apache.org/download.cgi#apache24</a></li>
+	<li>Apache APR 1.5.x - <a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></li>
+	<li>Ubuntu 12.04.5 LTS, Server Edition, 32-bit - <a href="http://www.ubuntu.com/download/server">http://www.ubuntu.com/download/server</a>
+		<ul>
+			<li><a href="https://help.ubuntu.com/community/UbuntuHashes#A12.04_LTS">Ubuntu Hashes</a></li>
+			<li>Assumed that you have done all the latest apt-get dist-upgrade -y</li>
+		</ul>
+	</li>
+</ol>
+
+<h2>Prerequisites:</h2>
+
+<ol>
+	<li>Read over <a href="http://httpd.apache.org/docs/2.4/install.html">the Apache Compiling and Installing</a> documentation</li>
+	<li>It is assumed that OpenSSL 1.0.1 (or later) is already installed, but not necessarily the dev library package</li>
+	<li>It is assumed that Perl 5.14 (or later) is already installed</li>
+	<li><code>sudo apt-get install libssl-dev</code>
+		<ul><li>This avoids the "checking for OpenSSL version >= 0.9.7... FAILED" and "configure: WARNING: OpenSSL version is too old" errors on Ubuntu</li></ul>
+	</li>
+	<li><code>sudo apt-get install libpcre3-dev</code></li>
+	<li><code>sudo apt-get install gcc make</code></li>
+	<li>You will need the source for the APR and APR-Util.  Steps for download and install provided later</li>
+	<li>You are building using a non-privileged account (i.e. not root) and installing with sudo capability</li>
+</ol>
+
+<h2>Build:</h2>
+
+<p>I will give a script example that downloads, verifies, and builds everything.  It grabs the latest stable version of all needed packages automatically.</p>
+
+<pre>
+#!/bin/bash
+
+set -e
+
+set -o verbose
+
+HTTPD_DOWNLOAD_MIRROR=$(curl --silent http://www.apache.org/dyn/closer.cgi/httpd/ | grep 'We suggest the following mirror' -A 2 | grep -Po 'a href="[^"]+' | cut -c 9-)
+HTTPD_CURR_VERSION=$(curl --silent ${HTTPD_DOWNLOAD_MIRROR} | grep -Po 'CURRENT-IS-\d+\.\d+\.\d+"' | grep -Po '\d+\.\d+\.\d+')
+
+
+APR_DOWNLOAD_MIRROR=$(curl --silent http://www.apache.org/dyn/closer.cgi/apr/ | grep 'We suggest the following mirror' -A 2 | grep -Po 'a href="[^"]+' | cut -c 9-)
+APR_CURR_VERSION=$(curl --silent ${APR_DOWNLOAD_MIRROR} | grep -Po 'APR \d+\.\d+\.\d+ is the latest available version' | grep -Po '\d+\.\d+\.\d+' | head -n 1)
+APR_UTIL_CURR_VERSION=$(curl --silent $APR_DOWNLOAD_MIRROR | grep -Po 'APR-util \d+\.\d+\.\d+ is the latest available version' | grep -Po '\d+\.\d+\.\d+' | head -n 1)
+
+
+
+
+# Download the files
+curl --remote-name ${HTTPD_DOWNLOAD_MIRROR}httpd-${HTTPD_CURR_VERSION}.tar.bz2
+# Always direct over secure channel from apache.org and never from a mirror
+curl --output KEYS--httpd https://www.apache.org/dist/httpd/KEYS
+curl --remote-name https://www.apache.org/dist/httpd/httpd-${HTTPD_CURR_VERSION}.tar.bz2.asc
+
+
+curl --output KEYS--apr https://www.apache.org/dist/apr/KEYS
+
+curl --remote-name ${APR_DOWNLOAD_MIRROR}apr-${APR_CURR_VERSION}.tar.bz2
+curl --remote-name https://www.apache.org/dist/apr/apr-${APR_CURR_VERSION}.tar.bz2.asc
+
+curl --remote-name ${APR_DOWNLOAD_MIRROR}apr-util-${APR_UTIL_CURR_VERSION}.tar.bz2
+curl --remote-name https://www.apache.org/dist/apr/apr-util-${APR_UTIL_CURR_VERSION}.tar.bz2.asc
+
+
+# Verify hash integrity
+gpg --allow-non-selfsigned-uid --import KEYS--httpd
+if ! gpg --verify httpd-${HTTPD_CURR_VERSION}.tar.bz2.asc; then
+	echo "DOWNLOAD FILE INVALID/CORRUPT/MALICOIUS" 1>&2
+	exit 255
+fi
+
+gpg --allow-non-selfsigned-uid --import KEYS--apr
+if ! gpg --verify apr-${APR_CURR_VERSION}.tar.bz2.asc; then
+	echo "DOWNLOAD FILE INVALID/CORRUPT/MALICOIUS" 1>&2
+	exit 255
+fi
+if ! gpg --verify apr-util-${APR_UTIL_CURR_VERSION}.tar.bz2.asc; then
+	echo "DOWNLOAD FILE INVALID/CORRUPT/MALICOIUS" 1>&2
+	exit 255
+fi
+
+
+
+# Extract everything
+tar -xf httpd-${HTTPD_CURR_VERSION}.tar.bz2
+
+tar -xf apr-${APR_CURR_VERSION}.tar.bz2 -C httpd-${HTTPD_CURR_VERSION}/srclib/
+mv httpd-${HTTPD_CURR_VERSION}/srclib/apr-${APR_CURR_VERSION}/ httpd-${HTTPD_CURR_VERSION}/srclib/apr
+
+tar -xf apr-util-${APR_UTIL_CURR_VERSION}.tar.bz2 -C httpd-${HTTPD_CURR_VERSION}/srclib/
+mv httpd-${HTTPD_CURR_VERSION}/srclib/apr-util-${APR_UTIL_CURR_VERSION}/ httpd-${HTTPD_CURR_VERSION}/srclib/apr-util
+
+cd httpd-${HTTPD_CURR_VERSION}/
+
+./configure --with-included-apr --sbindir=/usr/local/apache2/sbin --enable-ssl=shared --enable-mods-shared=all
+#	Note that --enable-so is no longer required in Apache 2.4 as it gets auto-included
+#	--with-included-apr  (Uses downloaded APR for building)
+#	--sbindir=/usr/local/apache2/sbin
+#		Fixes bug in Apache 2.4.0-2.4.12 (possibly later) where default config.layout uses /bin instead of /sbin
+#		<a href="https://issues.apache.org/bugzilla/show_bug.cgi?id=56250">Bug 56250 - sbindir in config.layout for Apache has bin instead of sbin</a>
+#	--enable-ssl=shared  (Ensures mod_ssl is included)
+#	--enable-mods-shared=all  (Adds loadable modules for almost everything)
+
+
+# Start build process
+make
+
+
+# Install and fix permissions part
+sudo make install
+
+
+echo Fix Security Permissions
+
+echo Because the build process and make install does not always set an appropriate owner, group membership, or permission on files copied into the install directory you should always verify the appropriate security permissions.
+
+sudo chown -R root:root /usr/local/apache2/
+sudo chmod -R go-rwx,a-w /usr/local/apache2/
+
+# Allow entrance into sub-folders under apache2/ folder later
+sudo chmod o+x /usr/local/apache2/
+
+echo On Ubuntu "daemon" is the default generic account available
+sudo chgrp daemon /usr/local/apache2/htdocs/
+sudo chmod g+x /usr/local/apache2/htdocs/
+sudo chmod -R g+r /usr/local/apache2/htdocs/
+
+sudo chgrp daemon /usr/local/apache2/cgi-bin/
+sudo chmod g+x /usr/local/apache2/cgi-bin/
+sudo chmod -R g+r /usr/local/apache2/cgi-bin/
+
+sudo chmod -R u+w /usr/local/apache2/conf/ /usr/local/apache2/logs/
+
+echo You will need to adjust other permissions according to the features you use for your Apache server.
+</pre>
+
+
+
+<h2>Re-package options:</h2>
+
+You could simply tarball the directory or you could use something like <a href="http://asic-linux.com.mx/~izto/checkinstall/">checkinstall</a> to easily create a distro package.  You could also roll your own distro flavor package that includes package metadata like description, size, and dependencies.
+
+<h2>PHP 5.x Addition:</h2>
+
+<p>
+You will probably want to also include your own build of PHP with some extensions like zlib.
+</p>
+
+<ol>
+	<li>Download PHP (<a href="https://php.net/downloads.php">https://php.net/downloads.php</a>)</li>
+	<li>sudo apt-get install libxml2-dev libpng-dev libjpeg-dev libcurl4-openssl-dev libbz2-dev</li>
+	<li>Compile with common needed options for PHP with Apache and MySQL
+		<ul>
+			<li><pre>./configure \
+	--with-apxs2=/usr/local/apache2/bin/apxs \
+	--with-mysql \
+	--with-zlib \
+	--with-gd \
+	--with-jpeg-dir \
+	--with-png-dir \
+	--with-openssl \
+	--with-pcre-regex \
+	--with-bz2 \
+	--enable-calendar \
+	--with-curl \
+	--enable-exif \
+	--with-imap-ssl \
+	--enable-zip \
+	--prefix=/usr/local/php5</pre></li>
+			<li>You use --prefix=PREFIX if you want it somewhere other than /usr/local/bin, /usr/local/lib, etc.</li>
+		</ul>
+	</li>
+	<li>Compile and install with the usual (make && sudo make install)</li>
+	<li>For Apache the libphp5.so (it links to your PHP compiled prefix) is already added to your apache2/modules folder</li>
+</ol>
