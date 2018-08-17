@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1273610547
-# UTC EPOCH of last modified time
-1273610547
-# CATEGORY
-Programming
-# TITLE
-Web browser CSS and other quirks mode documentation
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1273610547
+lastmod-epoch: 1273610547
+categories: Programming
+title: Web browser CSS and other quirks mode documentation
+---
+
 Handy reference of what browsers support what.
 
 <p>

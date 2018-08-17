@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1298601798
-# UTC EPOCH of last modified time
-1386695222
-# CATEGORY
-Security
-# TITLE
-Why suid scripts aren't safe
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1298601798
+lastmod-epoch: 1386695222
+categories: Security
+title: Why suid scripts aren't safe
+---
+
 Some links that explain why:
 
 <ul>

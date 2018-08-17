@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1415726173
-# UTC EPOCH of last modified time
-1415726173
-# CATEGORY
-Tech Tricks
-# TITLE
-Maximum length of DNS hostname and domain names
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1415726173
+lastmod-epoch: 1415726173
+categories: Tech Tricks
+title: Maximum length of DNS hostname and domain names
+---
+
 Great explanation from the "The Old New Thing" MSDN blog.  <a href="http://blogs.msdn.com/b/oldnewthing/archive/2012/04/12/10292868.aspx">What is the real maximum length of a DNS name? - 12 Apr 2012 7:00 AM - http://blogs.msdn.com/</a>.
 
 <p>

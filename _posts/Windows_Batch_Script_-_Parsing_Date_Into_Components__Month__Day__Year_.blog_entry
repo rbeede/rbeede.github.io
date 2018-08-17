@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1222470900
-# UTC EPOCH of last modified time
-1222470900
-# CATEGORY
-Programming
-# TITLE
-Windows Batch Script - Parsing Date Into Components (Month, Day, Year)
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1222470900
+lastmod-epoch: 1222470900
+categories: Programming
+title: Windows Batch Script - Parsing Date Into Components (Month, Day, Year)
+---
+
 <p>I found a U.S. locale specific way to parse a date into components inside a Windows batch script (.bat or .cmd).
 </p>
 

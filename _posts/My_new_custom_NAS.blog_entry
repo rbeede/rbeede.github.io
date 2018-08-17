@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1375059316
-# UTC EPOCH of last modified time
-1375059316
-# CATEGORY
-Tech Tricks
-# TITLE
-My new custom NAS
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1375059316
+lastmod-epoch: 1375059316
+categories: Tech Tricks
+title: My new custom NAS
+---
+
 I built my own Linux based low-power NAS box.  I had wanted something much faster than my OpenWRT Buffalo router that I was using as a NAS.  I was only getting around 15 megabytes/second on my older NAS with a gigabit link.
 
 <p>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1389804247
-# UTC EPOCH of last modified time
-1389804247
-# CATEGORY
-Tech Tricks
-# TITLE
-Useful site to do TCP port open check
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1389804247
+lastmod-epoch: 1389804247
+categories: Tech Tricks
+title: Useful site to do TCP port open check
+---
+
 <a href="http://www.canyouseeme.org/">http://www.canyouseeme.org/</a>
 
 <p>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1315675824
-# UTC EPOCH of last modified time
-1315675824
-# CATEGORY
-Programming
-# TITLE
-Regular Java application pom.xml template
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1315675824
+lastmod-epoch: 1315675824
+categories: Programming
+title: Regular Java application pom.xml template
+---
+
 Below is a template I use for regular Java application projects with Maven.  Folder structure is typically as follows:
 
 <p>

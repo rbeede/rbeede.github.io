@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1224002700
-# UTC EPOCH of last modified time
-1224002700
-# CATEGORY
-Tech Tricks
-# TITLE
-Booting the Linux From Scratch LiveCD from a usb key drive
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1224002700
+lastmod-epoch: 1224002700
+categories: Tech Tricks
+title: Booting the Linux From Scratch LiveCD from a usb key drive
+---
+
 So I have a laptop with no DVD drive.  I wanted to try out <a href="http://www.linuxfromscratch.org/">Linux From Scratch (LFS)</a>, but I couldn't build it without the LiveCD.
 <p>
 I decided to try running the ISO from a usb drive.  I found some instructions on how to boot from a usb drive on the <a href="http://www.linuxfromscratch.org/livecd/documentation.html">LFS LiveCD Documentation page</a>, but they aren't the most clear on how to make the USB drive bootable with grub.

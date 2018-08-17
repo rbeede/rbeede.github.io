@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1282148213
-# UTC EPOCH of last modified time
-1326325300
-# CATEGORY
-Curriculum Vitae
-# TITLE
-Misc Programming Projects
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1282148213
+lastmod-epoch: 1326325300
+categories: Curriculum Vitae
+title: Misc Programming Projects
+---
+
 Below are links to published programming projects I've done in the past.
 
 <ul>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1507562418
-# UTC EPOCH of last modified time
-1507562418
-# CATEGORY
-Security
-# TITLE
-aws-api-key-auto-rotator and InnoTech OKC presentation
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1507562418
+lastmod-epoch: 1507562418
+categories: Security
+title: aws-api-key-auto-rotator and InnoTech OKC presentation
+---
+
 My tool I wrote for rotating on-premise (not in cloud) service credentials used for AWS cloud.  I presented this at InnoTech OKC 2017.
 
 <p>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1318988680
-# UTC EPOCH of last modified time
-1320506314
-# CATEGORY
-Computer Problems
-# TITLE
-ProxMox and clustering on non-default LAN (subnets)
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1318988680
+lastmod-epoch: 1320506314
+categories: Computer Problems
+title: ProxMox and clustering on non-default LAN (subnets)
+---
+
 <a href="http://pve.proxmox.com/wiki/Proxmox_VE_Cluster#Add_a_node_to_an_existing_master">Basic normal instructions</a> work okay when you don't have special subnets or VLANs, but the scripts on both the master and peer nodes fail if you don't have a specific IP configured for eth0.
 
 <p>

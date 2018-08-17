@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1378927986
-# UTC EPOCH of last modified time
-1378928135
-# CATEGORY
-Programming
-# TITLE
-Maven project as Eclipse Dynamic Web Project
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1378927986
+lastmod-epoch: 1378928135
+categories: Programming
+title: Maven project as Eclipse Dynamic Web Project
+---
+
 I used:
 <ul>
   <li>Maven 3.1.0</li>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1238643484
-# UTC EPOCH of last modified time
-1280940445
-# CATEGORY
-Curriculum Vitae
-# TITLE
-Chop-chop HTTP Client open source project
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1238643484
+lastmod-epoch: 1280940445
+categories: Curriculum Vitae
+title: Chop-chop HTTP Client open source project
+---
+
 In my previous job (RiskMetrics) I was authorized to release a Java library I wrote as an open source project.  It's called Chop-chop HTTP Client and is a wrapper around Jakarta's HTTP Client for downloading content from web servers into File or OutputStream in Java.
 
 <p>

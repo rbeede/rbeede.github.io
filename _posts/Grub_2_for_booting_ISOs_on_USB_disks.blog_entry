@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1324047357
-# UTC EPOCH of last modified time
-1429110695
-# CATEGORY
-Tech Tricks
-# TITLE
-Grub 2 for booting ISOs on USB disks
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1324047357
+lastmod-epoch: 1429110695
+categories: Tech Tricks
+title: Grub 2 for booting ISOs on USB disks
+---
+
 I like being able to boot various Linux distros from USB sticks.  It makes it easy to update to newer versions, is faster, and doesn't require using up DVD-R discs.  Previously this required extracting the ISO contents to a USB disk and setting up special boot loaders.  I have found a new way using grub2 to just copy the unmodified ISO file to the USB stick without extraction.
 
 <h1>Prerequisites</h1>

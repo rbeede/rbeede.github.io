@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1279569673
-# UTC EPOCH of last modified time
-1279569673
-# CATEGORY
-Security
-# TITLE
-Useful sites for security testing
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1279569673
+lastmod-epoch: 1279569673
+categories: Security
+title: Useful sites for security testing
+---
+
 <ul>
 <li><a href="http://www.exploit-db.com/">http://www.exploit-db.com/</a></li>
 </ul>

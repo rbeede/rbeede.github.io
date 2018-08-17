@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1297031021
-# UTC EPOCH of last modified time
-1297031021
-# CATEGORY
-Programming
-# TITLE
-Line Inserter plug-in for Notepad++
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1297031021
+lastmod-epoch: 1297031021
+categories: Programming
+title: Line Inserter plug-in for Notepad++
+---
+
 NotePad++ Line Inserter Plug-in
 
 So I've written a plug-in that will insert " at the beginning and end of all lines in the current document.

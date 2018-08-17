@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1354737101
-# UTC EPOCH of last modified time
-1354737101
-# CATEGORY
-Computer Problems
-# TITLE
-Dell Inspiron 1520 and Windows 7 64-bit drivers
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1354737101
+lastmod-epoch: 1354737101
+categories: Computer Problems
+title: Dell Inspiron 1520 and Windows 7 64-bit drivers
+---
+
 This laptop doesn't come with any Windows 7 support from Dell due to its age.  Installing Windows 7 covers almost every driver out of the box.  After you run all the Windows Updates you get every other device except for two important ones:
 
 <h2>"Base System Device"</h2>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1232992020
-# UTC EPOCH of last modified time
-1232992020
-# CATEGORY
-Computer Problems
-# TITLE
-Dell Wireless and Ubuntu Linux
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1232992020
+lastmod-epoch: 1232992020
+categories: Computer Problems
+title: Dell Wireless and Ubuntu Linux
+---
+
 I found a great thread that details how to get your wireless network card in a Dell laptop working under Ubuntu Linux (8.04, not 8.10).
 <p>
 <a href="http://ubuntuforums.org/showthread.php?t=297092">http://ubuntuforums.org/showthread.php?t=297092</a>

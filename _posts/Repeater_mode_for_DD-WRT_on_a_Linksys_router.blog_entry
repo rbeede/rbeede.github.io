@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1267045455
-# UTC EPOCH of last modified time
-1267045580
-# CATEGORY
-Tech Tricks
-# TITLE
-Repeater mode for DD-WRT on a Linksys router
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1267045455
+lastmod-epoch: 1267045580
+categories: Tech Tricks
+title: Repeater mode for DD-WRT on a Linksys router
+---
+
 Here is the method I used to get DD-WRT on a Linksys router to run in repeater mode so I could have it wireless connect as a client to a remote AP and also allow wireless clients on it to connect as well.
 
 <p>

@@ -1,11 +1,9 @@
-# UTC EPOCH of original creation time
-1214611080
-# UTC EPOCH of last modified time
-1214611080
-# CATEGORY
-Games
-# TITLE
-WarCraft II "VMM" Exception
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1214611080
+lastmod-epoch: 1214611080
+categories: Games
+title: WarCraft II "VMM" Exception
+---
+
 When I first started playing WarCraft II (DOS) under Windows 95/98 I occasionally ran into an error.  I would start the game inside Windows, and it would almost immediately crash.<br /><br />
 I find the problem to be related to the game settings for my video card.  By running the program "UVCONFIG" in the WarCraft II directory it updated the game settings for my system video card, and the game worked fine.

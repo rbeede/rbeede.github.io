@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1328984295
-# UTC EPOCH of last modified time
-1328984582
-# CATEGORY
-Security
-# TITLE
-sslstrip on OpenWRT (Linux) wireless router
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1328984295
+lastmod-epoch: 1328984582
+categories: Security
+title: sslstrip on OpenWRT (Linux) wireless router
+---
+
 I wanted to play with sslstrip but have it on my actual wireless router instead of a separate machine on the wireless or LAN.  This avoids the requirement of having to get arpspoof to work correctly and is a little simpler since I control the evil wireless router.
 
 <h2>Steps</h2>

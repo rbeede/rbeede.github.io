@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1224390420
-# UTC EPOCH of last modified time
-1224390420
-# CATEGORY
-Tech Tricks
-# TITLE
-Linux System Rescue CD, Linksys WUSB54GC, Getting wireless to work
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1224390420
+lastmod-epoch: 1224390420
+categories: Tech Tricks
+title: Linux System Rescue CD, Linksys WUSB54GC, Getting wireless to work
+---
+
 <h2>System Rescue CD version 1.3+</h2><ol>
 <li>Later versions already include the rt73 firmware</li>
 <li>It should work out of the box</li>

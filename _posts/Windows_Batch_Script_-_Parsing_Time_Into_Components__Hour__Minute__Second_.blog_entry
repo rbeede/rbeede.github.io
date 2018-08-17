@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1223415540
-# UTC EPOCH of last modified time
-1223415540
-# CATEGORY
-Programming
-# TITLE
-Windows Batch Script - Parsing Time Into Components (Hour, Minute, Second)
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1223415540
+lastmod-epoch: 1223415540
+categories: Programming
+title: Windows Batch Script - Parsing Time Into Components (Hour, Minute, Second)
+---
+
 I found a U.S. locale specific way to parse a time into components inside a Windows batch script (.bat or .cmd). 
 <p>
 @REM Valid only for U.S. (English) locale<br />

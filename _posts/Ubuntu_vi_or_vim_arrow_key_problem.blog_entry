@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1267808331
-# UTC EPOCH of last modified time
-1267808331
-# CATEGORY
-Tech Tricks
-# TITLE
-Ubuntu vi or vim arrow key problem
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1267808331
+lastmod-epoch: 1267808331
+categories: Tech Tricks
+title: Ubuntu vi or vim arrow key problem
+---
+
 After installing Ubuntu 9.10 64-bit I had problems with my arrow keys in VI.  I thought at first the problem was my remote ssh session over putty, but then a terminal on my local console did the same thing.
 
 <p>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1277319748
-# UTC EPOCH of last modified time
-1532955295
-# CATEGORY
-Tech Tricks
-# TITLE
-Web site tool for testing cron schedules
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1277319748
+lastmod-epoch: 1532955295
+categories: Tech Tricks
+title: Web site tool for testing cron schedules
+---
+
 I found some useful web sites for testing cron schedules to get a preview of the run times based on your cron string.
 
 <ul>

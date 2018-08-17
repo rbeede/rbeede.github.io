@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1267045684
-# UTC EPOCH of last modified time
-1267045701
-# CATEGORY
-Programming
-# TITLE
-Tidy command to indent xml
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1267045684
+lastmod-epoch: 1267045701
+categories: Programming
+title: Tidy command to indent xml
+---
+
 tidy -indent -xml -o "%1.FORMATTED" -wrap 120 "%1"
 
 <p>

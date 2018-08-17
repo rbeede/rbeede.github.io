@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1374068284
-# UTC EPOCH of last modified time
-1374068332
-# CATEGORY
-Security
-# TITLE
-IPMI recent public vulnerabilities
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1374068284
+lastmod-epoch: 1374068332
+categories: Security
+title: IPMI recent public vulnerabilities
+---
+
 Rapid 7 has recently <a href="https://community.rapid7.com/community/metasploit/blog/2013/07/02/a-penetration-testers-guide-to-ipmi">released public exploits</a> for some IPMI vulnerabilities that underscore the importance of securing one's internal network even from itself.  The issue stems from earlier versions of the IPMI specification lacking any security and improper security design being placed in the latest IPMI 2.0 specification.  Because the vulnerabilities now have public exploits there are no vendor patches and the implementation of a fix will have to violate some part of the IPMI specification (which is broken from a security point anyway).
 
 <p>

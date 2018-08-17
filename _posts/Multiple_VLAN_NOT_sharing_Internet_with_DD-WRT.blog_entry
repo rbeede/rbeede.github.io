@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1310747352
-# UTC EPOCH of last modified time
-1310747352
-# CATEGORY
-Tech Tricks
-# TITLE
-Multiple VLAN NOT sharing Internet with DD-WRT
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1310747352
+lastmod-epoch: 1310747352
+categories: Tech Tricks
+title: Multiple VLAN NOT sharing Internet with DD-WRT
+---
+
 I have a WRT54G (ver 2.0) with DD-WRT installed (VPN edition).  Below are the steps to setup multiple VLANs where some of the VLAN do NOT share Internet NAT access:
 
 <ol>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1267201359
-# UTC EPOCH of last modified time
-1267475386
-# CATEGORY
-Computer Problems
-# TITLE
-Boot USB drive on older BIOS
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1267201359
+lastmod-epoch: 1267475386
+categories: Computer Problems
+title: Boot USB drive on older BIOS
+---
+
 Some older BIOS have early USB boot support, but it doesn't alway seem to work.
 
 <p>

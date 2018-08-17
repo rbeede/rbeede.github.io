@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1481749321
-# UTC EPOCH of last modified time
-1481749321
-# CATEGORY
-Tech Tricks
-# TITLE
-Belkin Wireless G USB Network Adapter in OpenWrt
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1481749321
+lastmod-epoch: 1481749321
+categories: Tech Tricks
+title: Belkin Wireless G USB Network Adapter in OpenWrt
+---
+
 Trick is finding the right kernel module to install.
 
 <p>

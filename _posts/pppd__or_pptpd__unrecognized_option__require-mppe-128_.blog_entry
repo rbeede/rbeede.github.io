@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1328651830
-# UTC EPOCH of last modified time
-1328651830
-# CATEGORY
-Tech Tricks
-# TITLE
-pppd (or pptpd) unrecognized option 'require-mppe-128'
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1328651830
+lastmod-epoch: 1328651830
+categories: Tech Tricks
+title: pppd (or pptpd) unrecognized option 'require-mppe-128'
+---
+
 Was playing with my PPTP (pptpd) server on my OpenWRT router.  I was having problems hand-creating a configuration that would work with a Windows 7 client.
 
 <p>

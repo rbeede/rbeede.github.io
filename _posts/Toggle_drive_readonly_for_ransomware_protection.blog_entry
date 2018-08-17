@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1518281129
-# UTC EPOCH of last modified time
-1518281195
-# CATEGORY
-Security
-# TITLE
-Toggle drive readonly for ransomware protection
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1518281129
+lastmod-epoch: 1518281195
+categories: Security
+title: Toggle drive readonly for ransomware protection
+---
+
 I discovered a way in Windows (tested in 10, probably works in 7 and 8) to make a USB drive readonly except when I run a command to make it writable.  So I can run a backup job that makes the drive writable and as soon as it is completed makes the drive readonly.  This gives me another layer of protection in the event ransomware was on my system as the typical expected behavior of all my connected drives being writable will not hold true.
 
 <p>

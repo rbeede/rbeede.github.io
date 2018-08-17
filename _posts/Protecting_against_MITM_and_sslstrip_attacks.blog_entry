@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1328981433
-# UTC EPOCH of last modified time
-1328981433
-# CATEGORY
-Security
-# TITLE
-Protecting against MITM and sslstrip attacks
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1328981433
+lastmod-epoch: 1328981433
+categories: Security
+title: Protecting against MITM and sslstrip attacks
+---
+
 I was playing with sslstrip and discovered that Google's Chrome and Mozilla's Firefox web browsers actually protect some popular web sites against it.  sslstrip works by changing any requests of SSL (HTTPS) secure URLs into insecure ones.  This would allow an attacker on the same network to trick users machines into using it for accessing sites (send network traffic to it) and rewriting the site code.
 
 <p>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1224651360
-# UTC EPOCH of last modified time
-1224651360
-# CATEGORY
-Computer Problems
-# TITLE
-HP Pavilion Laptop, HP Quick Launch, and Windows XP SP3
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1224651360
+lastmod-epoch: 1224651360
+categories: Computer Problems
+title: HP Pavilion Laptop, HP Quick Launch, and Windows XP SP3
+---
+
 So I did a fresh install of Windows XP Pro SP3 (32-bit) on a HP Pavilion dv1000 CTO laptop.  I tried installing the QuickPlay drivers given on HP's website for that model.  The buttons did not work after installation.
 <p>
 I tried the following to (unsuccessfully) fix the issue:

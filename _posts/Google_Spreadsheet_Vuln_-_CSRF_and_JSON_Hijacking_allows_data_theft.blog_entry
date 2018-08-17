@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1477451048
-# UTC EPOCH of last modified time
-1477451377
-# CATEGORY
-Security
-# TITLE
-Google Spreadsheet Vuln - CSRF and JSON Hijacking allows data theft
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1477451048
+lastmod-epoch: 1477451377
+categories: Security
+title: Google Spreadsheet Vuln - CSRF and JSON Hijacking allows data theft
+---
+
 <p>
 In October of 2015 I discovered a JSON + CSRF hijacking vulnerability with a Google API related to spreadsheet graph rendering.  Using this vunlerability an attacker could steal the content of a spreadsheet from a target victim without having permission to the Google Drive file.
 </p>

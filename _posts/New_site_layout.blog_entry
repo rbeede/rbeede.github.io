@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1238986822
-# UTC EPOCH of last modified time
-1238986822
-# CATEGORY
-Misc
-# TITLE
-New site layout
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1238986822
+lastmod-epoch: 1238986822
+categories: Misc
+title: New site layout
+---
+
 I've updated my site layout so it works better with IE7, FF3, and Chrome.  This fixes some layout issues with long pages.
 <p>
 It may not look as pretty yet, but the content is much more readable.

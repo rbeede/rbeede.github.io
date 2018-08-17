@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1383229959
-# UTC EPOCH of last modified time
-1383229959
-# CATEGORY
-Security
-# TITLE
-Understanding Cryptographic Key Sizes
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1383229959
+lastmod-epoch: 1383229959
+categories: Security
+title: Understanding Cryptographic Key Sizes
+---
+
 I found a blog site that nicely explains why you see 1024, 2048, 128, or 256 key sizes.
 
 <p>

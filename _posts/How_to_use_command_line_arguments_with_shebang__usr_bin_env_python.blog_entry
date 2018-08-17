@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1374763785
-# UTC EPOCH of last modified time
-1374763785
-# CATEGORY
-Computer Problems
-# TITLE
-How to use command line arguments with shebang /usr/bin/env python
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1374763785
+lastmod-epoch: 1374763785
+categories: Computer Problems
+title: How to use command line arguments with shebang /usr/bin/env python
+---
+
 A lot of Python scripts for Unix systems have a starting line like:
 
 <p>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1267564462
-# UTC EPOCH of last modified time
-1267564462
-# CATEGORY
-Computer Problems
-# TITLE
-Ubuntu 9.10 Flash Player not working with embedded videos (click problem)
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1267564462
+lastmod-epoch: 1267564462
+categories: Computer Problems
+title: Ubuntu 9.10 Flash Player not working with embedded videos (click problem)
+---
+
 Youtube videos played, but embedded videos on pages could not be controlled (pause, fast forward, play).
 
 <p>

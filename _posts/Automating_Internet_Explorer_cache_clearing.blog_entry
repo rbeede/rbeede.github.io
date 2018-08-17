@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1238643256
-# UTC EPOCH of last modified time
-1238643256
-# CATEGORY
-Tech Tricks
-# TITLE
-Automating Internet Explorer cache clearing
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1238643256
+lastmod-epoch: 1238643256
+categories: Tech Tricks
+title: Automating Internet Explorer cache clearing
+---
+
 For IE7 I found a neat way to use rundll32 to clear all of IE7's cache with an automated scheduled task.
 <p>
 The command details can be found at <a href="http://www.walkernews.net/2007/07/07/rundll32-programmatically-delete-ie7-browsing-history/">http://www.walkernews.net/2007/07/07/rundll32-programmatically-delete-ie7-browsing-history/</a>

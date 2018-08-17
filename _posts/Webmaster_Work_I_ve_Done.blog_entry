@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1219471140
-# UTC EPOCH of last modified time
-1534472261
-# CATEGORY
-Curriculum Vitae
-# TITLE
-Webmaster Work I've Done
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1219471140
+lastmod-epoch: 1534472261
+categories: Curriculum Vitae
+title: Webmaster Work I've Done
+---
+
 <p>
 Below are links to old archived web sites that I've created for others.  Please note that some of the functionality of these old sites may be broken or disabled on purpose.
 </p>

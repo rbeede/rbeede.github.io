@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1222470720
-# UTC EPOCH of last modified time
-1288295662
-# CATEGORY
-Programming
-# TITLE
-Windows Batch Script - Getting Script Location (Directory/Path)
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1222470720
+lastmod-epoch: 1288295662
+categories: Programming
+title: Windows Batch Script - Getting Script Location (Directory/Path)
+---
+
 Inside a Windows batch file (.bat or .cmd) you can reference the drive and folder where the batch file is located by:
 
 <p>

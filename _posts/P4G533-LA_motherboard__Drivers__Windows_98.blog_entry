@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1232242800
-# UTC EPOCH of last modified time
-1232242800
-# CATEGORY
-Computer Problems
-# TITLE
-P4G533-LA motherboard, Drivers, Windows 98
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1232242800
+lastmod-epoch: 1232242800
+categories: Computer Problems
+title: P4G533-LA motherboard, Drivers, Windows 98
+---
+
 I have this motherboard that was pulled from an HP computer.  I was trying to find drivers so I searched on the Internet.  One person provided a link via HP that listed the drivers I would need, but they are out of date.
 <p>
 I decided to grab the drivers directly from the chipset maker's website instead.  For reference these are what you need for Windows 98 (XP detects most of the stuff, don't bother with Vista).

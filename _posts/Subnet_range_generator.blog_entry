@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1331245585
-# UTC EPOCH of last modified time
-1331245647
-# CATEGORY
-Tech Tricks
-# TITLE
-Subnet range generator
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1331245585
+lastmod-epoch: 1331245647
+categories: Tech Tricks
+title: Subnet range generator
+---
+
 <script type="text/javascript">
 	function generateSubnetsIPv4(cidr_addr,subnet_mask_bits) {
 		var octets = cidr_addr.split(".");

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1225750440
-# UTC EPOCH of last modified time
-1225750440
-# CATEGORY
-Computer Problems
-# TITLE
-Fixing Unsupported Class Version Error, jUnit, and Eclipse
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1225750440
+lastmod-epoch: 1225750440
+categories: Computer Problems
+title: Fixing Unsupported Class Version Error, jUnit, and Eclipse
+---
+
 I kept getting UnsupportedClassVersionError errors when I tried to run a newly created jUnit test (jUnit 4) in Eclipse (3.4).
 <p>
 I had my JRE System Library set for my Java 1.5 JDK.  I forgot to change the project settings to use JDK Compliance 1.5 instead of the default of 1.6.

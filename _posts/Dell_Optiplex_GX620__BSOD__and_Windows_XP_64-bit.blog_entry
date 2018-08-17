@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1226618340
-# UTC EPOCH of last modified time
-1226618340
-# CATEGORY
-Computer Problems
-# TITLE
-Dell Optiplex GX620, BSOD, and Windows XP 64-bit
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1226618340
+lastmod-epoch: 1226618340
+categories: Computer Problems
+title: Dell Optiplex GX620, BSOD, and Windows XP 64-bit
+---
+
 So at work I have a Dell Optiplex GX620 with Windows XP Pro 64-bit w/SP2.
 <p>
 For the 2nd time in 3 months the machine has started to blue screen of death on me at boot up.  Last time I had to reinstall everything on the machine to resolve the issue.

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1329932557
-# UTC EPOCH of last modified time
-1329932612
-# CATEGORY
-Programming
-# TITLE
-Boost C++ libraries on Windows with MinGW
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1329932557
+lastmod-epoch: 1329932612
+categories: Programming
+title: Boost C++ libraries on Windows with MinGW
+---
+
 I like to use Boost because it makes cross-platform programming easier.  I also prefer to use a non-Visual Studio compiler such as <a href="http://http://www.mingw.org/">MinGW</a>.  I needed to install the Boost headers (latest version) along with compiling the extended libraries.  I outline the steps below (at the time I used Boost 1.48.0):
 
 <h1>Prerequistes</h1>

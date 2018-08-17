@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1248478321
-# UTC EPOCH of last modified time
-1248478321
-# CATEGORY
-Tech Tricks
-# TITLE
-Partition a usb key drive under Windows
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1248478321
+lastmod-epoch: 1248478321
+categories: Tech Tricks
+title: Partition a usb key drive under Windows
+---
+
 This guide will tell you how to create a single partition on a usb key drive under Windows XP.  This does not allow you to have multiple drive letters for a usb drive.  You can do a web search for tools that do that.
 <p>
 The main reason you would want to do this is if you needed the usb drive to have a valid partition versus a raw file system.  Some USB drives come with no partitions and just a raw file system.  Since the drive is marked as "Removable" in Windows you can't partition it with Disk Management in Windows.  It is always possible to create the partitions in Linux, but you may not have a Linux machine handy.  So if all you have is Windows, and you need the drive to have a valid partition table (for creating a bootable key later perhaps) then do the following:

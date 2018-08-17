@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1302735938
-# UTC EPOCH of last modified time
-1302736087
-# CATEGORY
-Computer Problems
-# TITLE
-Java ignores /dev/urandom or slow Tomcat SHA1PRNG SSL
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1302735938
+lastmod-epoch: 1302736087
+categories: Computer Problems
+title: Java ignores /dev/urandom or slow Tomcat SHA1PRNG SSL
+---
+
 I discovered that since Java 1.5 Sun decided to make some hack that always ignores /dev/urandom as a possible device for SHA1PRNG.
 
 <p>

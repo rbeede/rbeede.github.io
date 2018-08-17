@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1523548486
-# UTC EPOCH of last modified time
-1523548515
-# CATEGORY
-Programming
-# TITLE
-Python3 and getting datetime with tz_info timezone info
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1523548486
+lastmod-epoch: 1523548515
+categories: Programming
+title: Python3 and getting datetime with tz_info timezone info
+---
+
 When using something like datetime.datetime.now().isoformat() you would expect to get the timezone on the end or a trailing Z.
 
 <p>

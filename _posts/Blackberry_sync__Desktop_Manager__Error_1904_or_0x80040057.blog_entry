@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1247107593
-# UTC EPOCH of last modified time
-1247107593
-# CATEGORY
-Computer Problems
-# TITLE
-Blackberry sync, Desktop Manager, Error 1904 or 0x80040057
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1247107593
+lastmod-epoch: 1247107593
+categories: Computer Problems
+title: Blackberry sync, Desktop Manager, Error 1904 or 0x80040057
+---
+
 So I have a Blackberry 8130 (Pearl) now that I was hoping to sync my phone book from my computer in order to import all my contacts.
 <p>
 In short not going to happen.

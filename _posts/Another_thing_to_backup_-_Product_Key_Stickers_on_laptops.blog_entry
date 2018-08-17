@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1344388368
-# UTC EPOCH of last modified time
-1344388368
-# CATEGORY
-Computer Problems
-# TITLE
-Another thing to backup - Product Key Stickers on laptops
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1344388368
+lastmod-epoch: 1344388368
+categories: Computer Problems
+title: Another thing to backup - Product Key Stickers on laptops
+---
+
 So I was working on a family member's laptop.  The Windows product key on the bottom had faded really bad to be almost unreadable.  Some laptops have the product key under the battery where it won't get rubbed and faded so much, but most don't.  The serial number was also pretty much gone although I have seen one netbook that actually protected the s/n with a clear coating.  Another annoyance of product key activation having to worry about losing the key and thus having higher costs to fix something.
 
 <p>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1342820090
-# UTC EPOCH of last modified time
-1345140742
-# CATEGORY
-Computer Problems
-# TITLE
-Plantronics Savi 7xx-M and Linux mouse or lockup problems
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1342820090
+lastmod-epoch: 1345140742
+categories: Computer Problems
+title: Plantronics Savi 7xx-M and Linux mouse or lockup problems
+---
+
 I have a Plantronics Savi 7xx-M headset attached via USB to my computer (HP EliteBook 8560w) running Fedora 17 Linux.  I started to get weird lockups of my mouse or constant mouse click actions.  Short story buggy driver with Linux kernel 3.4.5-2.fc17.x86_64.  I also constantly saw "ALSA sound/usb/clock.c:236 22:2:1: cannot get freq at ep 0x84" in my logs.
 
 <p>

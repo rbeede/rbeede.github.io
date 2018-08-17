@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1371756767
-# UTC EPOCH of last modified time
-1371756767
-# CATEGORY
-Tech Tricks
-# TITLE
-DIY cheap (and slow) Linux NAS
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1371756767
+lastmod-epoch: 1371756767
+categories: Tech Tricks
+title: DIY cheap (and slow) Linux NAS
+---
+
 I am making a small Linux NAS that runs on minimal power and can serve as a Samba server for remote backup.  I plan on using it to do automatic backups of wired and wireless PCs.
 
 <p>

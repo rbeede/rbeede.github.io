@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1307630941
-# UTC EPOCH of last modified time
-1307630941
-# CATEGORY
-Computer Problems
-# TITLE
-Can't remote install Mac OS X Server - Snow Leopard 10.6 using Windows machine as DVD
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1307630941
+lastmod-epoch: 1307630941
+categories: Computer Problems
+title: Can't remote install Mac OS X Server - Snow Leopard 10.6 using Windows machine as DVD
+---
+
 I have a Mac Mini that came with Snow Leopard 10.6.  This Mac Mini doesn't include a DVD/CD drive.  I wanted to configure it with RAID which requires booting from the install DVD.
 
 <p>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1238642890
-# UTC EPOCH of last modified time
-1238642890
-# CATEGORY
-Tech Tricks
-# TITLE
-Running MySQL from your Home Directory
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1238642890
+lastmod-epoch: 1238642890
+categories: Tech Tricks
+title: Running MySQL from your Home Directory
+---
+
 I was needing to setup a test MySQL installation on a Linux server but didn't have root access.  I decided to just run the copy under my user name in my home folder instead.
 <p>
 Do all of the following with the current directory as the folder where you decompressed MySQL.

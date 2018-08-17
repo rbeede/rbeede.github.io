@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1257344801
-# UTC EPOCH of last modified time
-1257344801
-# CATEGORY
-Computer Problems
-# TITLE
-Outlook 2007 calendar export leaves off time zone
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1257344801
+lastmod-epoch: 1257344801
+categories: Computer Problems
+title: Outlook 2007 calendar export leaves off time zone
+---
+
 So I discovered that if someone sent me a meeting invite with the time zone set differently than mine that it causes problems when exporting the calendar to a file.
 <p>
 Sure it shows up correctly in Outlook for my local time zone, but the exported file leaves out the organizers time zone information which when imported into my Google Calendar causes the event to show up at the incorrect hour.

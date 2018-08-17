@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1358363915
-# UTC EPOCH of last modified time
-1422293332
-# CATEGORY
-Security
-# TITLE
-Mitigating attacks against FDE (BitLocker, TrueCrypt, etc) via Firewire, Thunderbolt, or DMA
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1358363915
+lastmod-epoch: 1422293332
+categories: Security
+title: Mitigating attacks against FDE (BitLocker, TrueCrypt, etc) via Firewire, Thunderbolt, or DMA
+---
+
 Good Microsoft KB on how to prevent Firewire/Thunderbolt/DMA attacks against a live running system with software FDE.
 
 <p>

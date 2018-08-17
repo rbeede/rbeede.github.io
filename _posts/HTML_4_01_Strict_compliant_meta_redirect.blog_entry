@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1292881579
-# UTC EPOCH of last modified time
-1309364066
-# CATEGORY
-Programming
-# TITLE
-HTML 4.01 Strict compliant meta redirect
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1292881579
+lastmod-epoch: 1309364066
+categories: Programming
+title: HTML 4.01 Strict compliant meta redirect
+---
+
 This has been validated with <a href="http://validator.w3.org/check">http://validator.w3.org/check</a>
 
 <pre>

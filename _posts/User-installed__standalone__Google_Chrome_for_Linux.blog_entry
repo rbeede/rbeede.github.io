@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1287161719
-# UTC EPOCH of last modified time
-1287161719
-# CATEGORY
-Tech Tricks
-# TITLE
-User-installed (standalone) Google Chrome for Linux
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1287161719
+lastmod-epoch: 1287161719
+categories: Tech Tricks
+title: User-installed (standalone) Google Chrome for Linux
+---
+
 So I wanted to use Chrome on a computer that didn't have it installed that was running Ubuntu Linux.  I didn't have admin, but I wanted to run the program inside the user-space without installing it for all users anyway (a stand-alone install).
 
 The default downloads provided by Google are only .deb or .rpm packages which only run in the admin installer.  Extracting it by hand was not an option.

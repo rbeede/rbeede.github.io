@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1246046043
-# UTC EPOCH of last modified time
-1246046043
-# CATEGORY
-Tech Tricks
-# TITLE
-Install Windows XP from a usb stick
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1246046043
+lastmod-epoch: 1246046043
+categories: Tech Tricks
+title: Install Windows XP from a usb stick
+---
+
 I found a very useful guide for installing Windows XP from a usb stick.  It's useful when you don't have a CD/DVD-ROM drive or you are testing a custom make iso installer and don't want to burn lots of discs.
 <p>
 <a href="http://www.vandomburg.net/installing-windows-xp-from-usb/">http://www.vandomburg.net/installing-windows-xp-from-usb/</a>

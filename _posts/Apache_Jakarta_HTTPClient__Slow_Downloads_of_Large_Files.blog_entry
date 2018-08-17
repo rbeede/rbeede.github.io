@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1227651000
-# UTC EPOCH of last modified time
-1227651000
-# CATEGORY
-Computer Problems
-# TITLE
-Apache Jakarta HTTPClient, Slow Downloads of Large Files
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1227651000
+lastmod-epoch: 1227651000
+categories: Computer Problems
+title: Apache Jakarta HTTPClient, Slow Downloads of Large Files
+---
+
 So I was writing a Java application that used HTTPClient 3.1.  For some reason downloading a 32MiB file from my local web server on the same machine was taken at least 16 seconds to complete whereas in a web browser it took less than a second.
 <p>
 After many hours of writing Java socket test code and trying different web servers I discovered the issue.  It wasn't related to any of my buffer sizes (I tried all kinds of buffers and sizes).

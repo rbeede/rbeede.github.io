@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1387476008
-# UTC EPOCH of last modified time
-1427299099
-# CATEGORY
-Security
-# TITLE
-Chapter I wrote for the OpenStack Security Guide
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1387476008
+lastmod-epoch: 1427299099
+categories: Security
+title: Chapter I wrote for the OpenStack Security Guide
+---
+
 I wrote a chapter about securing object storage in an OpenStack cloud.  It has been submitted, reviewed, accepted, and published to the OpenStack website!
 
 <p>

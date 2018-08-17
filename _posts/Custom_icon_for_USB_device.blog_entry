@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1325544964
-# UTC EPOCH of last modified time
-1325544967
-# CATEGORY
-Tech Tricks
-# TITLE
-Custom icon for USB device
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1325544964
+lastmod-epoch: 1325544967
+categories: Tech Tricks
+title: Custom icon for USB device
+---
+
 <ol>
 	<li>Pick an image and cut out a part so it is no wider or taller than 64x64 pixels.  Save as PNG.</li>
 	<li>Go to <a href="http://www.convertico.com/">http://www.convertico.com/</a> and convert the PNG to ICO</li>

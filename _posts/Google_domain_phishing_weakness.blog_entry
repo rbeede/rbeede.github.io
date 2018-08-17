@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1511805321
-# UTC EPOCH of last modified time
-1516163271
-# CATEGORY
-Security
-# TITLE
-Google domain phishing weakness
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1511805321
+lastmod-epoch: 1516163271
+categories: Security
+title: Google domain phishing weakness
+---
+
 <p>
 Found a low-risk phishing weakness with a Google domain (googleapis.com).  Even though it is related to phishing and doesn't have an OWASP Top 10 vulnerability (i.e. XSS) I thought it worth reporting to Google to see if they might consider a technical measure to at least stop it.
 </p>

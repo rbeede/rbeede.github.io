@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1475718497
-# UTC EPOCH of last modified time
-1508124649
-# CATEGORY
-Security
-# TITLE
-AWS Security Architecture work I've done
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1475718497
+lastmod-epoch: 1508124649
+categories: Security
+title: AWS Security Architecture work I've done
+---
+
 I've presented this material at security conferences regarding my professional work I've done with Amazon AWS.
 
 <p>

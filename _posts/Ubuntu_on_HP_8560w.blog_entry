@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1339373508
-# UTC EPOCH of last modified time
-1339373508
-# CATEGORY
-Tech Tricks
-# TITLE
-Ubuntu on HP 8560w
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1339373508
+lastmod-epoch: 1339373508
+categories: Tech Tricks
+title: Ubuntu on HP 8560w
+---
+
 So I have a new workstation notebook from my new job.  It's an HP EliteBook 8560w with the nVidia graphics card option.
 
 <p>

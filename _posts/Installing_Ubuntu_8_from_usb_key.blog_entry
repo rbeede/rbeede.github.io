@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1217262360
-# UTC EPOCH of last modified time
-1217262360
-# CATEGORY
-Tech Tricks
-# TITLE
-Installing Ubuntu 8 from usb key
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1217262360
+lastmod-epoch: 1217262360
+categories: Tech Tricks
+title: Installing Ubuntu 8 from usb key
+---
+
 I needed to install Ubuntu on a laptop without a CDROM drive.  I followed the guide on <a href="https://help.ubuntu.com/community/Installation/FromUSBStick">https://help.ubuntu.com/community/Installation/FromUSBStick</a> for directions to install via a USB drive.
 <p>
 I copied all the files to the usb key and made it bootable as per instructions on the web, but the installer doesn't seem to work.  I can boot from the USB key and get a live session working, but installing to hard disk just doesn't seem to work.

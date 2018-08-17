@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1366384550
-# UTC EPOCH of last modified time
-1366384550
-# CATEGORY
-Tech Tricks
-# TITLE
-Stop Ask Toolbar adware in Java install
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1366384550
+lastmod-epoch: 1366384550
+categories: Tech Tricks
+title: Stop Ask Toolbar adware in Java install
+---
+
 Typical method is the offline installer, but for the Java update utility after the install you can do a registry change to disable the sponsor adware in the Java installer.
 
 <p>

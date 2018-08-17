@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1325205034
-# UTC EPOCH of last modified time
-1376575917
-# CATEGORY
-Curriculum Vitae
-# TITLE
-Security Circles - Academic Paper
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1325205034
+lastmod-epoch: 1376575917
+categories: Curriculum Vitae
+title: Security Circles - Academic Paper
+---
+
 For my Fall 2011 Mobile Computing class at the University of Colorado I participated in a group project regarding an Android security application.
 
 <p>

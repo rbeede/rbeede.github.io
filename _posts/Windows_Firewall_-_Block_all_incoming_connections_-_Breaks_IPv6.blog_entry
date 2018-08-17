@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1497410699
-# UTC EPOCH of last modified time
-1497410699
-# CATEGORY
-Computer Problems
-# TITLE
-Windows Firewall - Block all incoming connections - Breaks IPv6
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1497410699
+lastmod-epoch: 1497410699
+categories: Computer Problems
+title: Windows Firewall - Block all incoming connections - Breaks IPv6
+---
+
 <a href="https://superuser.com/questions/1217840/windows-10-firewall-block-all-incoming-connections-breaks-ipv6">https://superuser.com/questions/1217840/windows-10-firewall-block-all-incoming-connections-breaks-ipv6</a>
 
 <p>

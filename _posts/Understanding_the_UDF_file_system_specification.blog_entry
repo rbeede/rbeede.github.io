@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1230138540
-# UTC EPOCH of last modified time
-1230138540
-# CATEGORY
-Programming
-# TITLE
-Understanding the UDF file system specification
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1230138540
+lastmod-epoch: 1230138540
+categories: Programming
+title: Understanding the UDF file system specification
+---
+
 I've been working on a project to write a Java program that can create UDF ISO using the 2.01 specification. My main desire is to utilize filename lengths of 254 characters which is the longest length you can get for an optical file system such as UDF. All the other ISO creators I've tried either only supported ISO9660 with extensions up to 207 characters or UDF with only 127 characters.
 <p>
 I want the longer filename support so I can burn things to CD without having to worry about truncation of long names. This commonly happens with photos and MP3's.

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1395074562
-# UTC EPOCH of last modified time
-1470149489
-# CATEGORY
-Tech Tricks
-# TITLE
-Building Apache 2.4 for Linux with mod_ssl
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1395074562
+lastmod-epoch: 1470149489
+categories: Tech Tricks
+title: Building Apache 2.4 for Linux with mod_ssl
+---
+
 These are my instructions for building Apache 2.4 on Linux and including mod_ssl.  OpenSSL is assumed to be available already and is thus not compiled from source.
 
 <h2>Platform Versions used:</h2>

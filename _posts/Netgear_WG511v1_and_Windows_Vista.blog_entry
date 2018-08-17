@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1225425360
-# UTC EPOCH of last modified time
-1225425360
-# CATEGORY
-Computer Problems
-# TITLE
-Netgear WG511v1 and Windows Vista
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1225425360
+lastmod-epoch: 1225425360
+categories: Computer Problems
+title: Netgear WG511v1 and Windows Vista
+---
+
 So I was trying to use a Netgear WG511v1 with a friends computer that had Windows Vista on it.
 <p>
 It didn't work out.

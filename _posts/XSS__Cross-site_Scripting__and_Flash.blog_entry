@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1358981659
-# UTC EPOCH of last modified time
-1358981659
-# CATEGORY
-Security
-# TITLE
-XSS (Cross-site Scripting) and Flash
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1358981659
+lastmod-epoch: 1358981659
+categories: Security
+title: XSS (Cross-site Scripting) and Flash
+---
+
 So in my security work I have been running more and more into sites that use Flash players they obtain from some vendor (sometimes free sometimes paid).  These flash players accept parameters via the URL string and commonly fail to actual validate the input and encoding.
 
 <p>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1387300510
-# UTC EPOCH of last modified time
-1387303979
-# CATEGORY
-Security
-# TITLE
-How OpenSSH checks for locked Linux accounts
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1387300510
+lastmod-epoch: 1387303979
+categories: Security
+title: How OpenSSH checks for locked Linux accounts
+---
+
 I ran into some interesting behavior with OpenSSH 5.9 on Ubuntu 12.04 (64-bit) LTS.  I set up accounts so that only SSH key login is allowed and not password based authentication.  I also choose to not allow the user after login to set a password.  This is accomplished with the following:
 
 <p>

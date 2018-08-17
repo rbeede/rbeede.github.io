@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1291604431
-# UTC EPOCH of last modified time
-1495050805
-# CATEGORY
-Free Stuff
-# TITLE
-My Favorite Free Software
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1291604431
+lastmod-epoch: 1495050805
+categories: Free Stuff
+title: My Favorite Free Software
+---
+
 <ul>
 <li><a href="http://www.7-zip.org/">7-Zip</a> - Fastest archive program, smallest 7z archive, supports AES256 encryption</li>
 <li><a href="http://aria2.sourceforge.net/">Aria 2</a> - Nice alternative to wget and cross-platform compliant.  Also supports download acceleration through splitting.  I use aria2c -s 10 -j 10 -x 10 URL for my options.</li>

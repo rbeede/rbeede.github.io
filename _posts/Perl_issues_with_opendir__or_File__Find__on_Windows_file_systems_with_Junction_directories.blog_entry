@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1306163811
-# UTC EPOCH of last modified time
-1306163909
-# CATEGORY
-Programming
-# TITLE
-Perl issues with opendir (or File::Find) on Windows file systems with Junction directories
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1306163811
+lastmod-epoch: 1306163909
+categories: Programming
+title: Perl issues with opendir (or File::Find) on Windows file systems with Junction directories
+---
+
 So I had a simple Perl script that was recursively search through directories with opendir and throwing "Invalid argument" errors on some of the child folders.
 
 <p>Below is some sample code:</p>

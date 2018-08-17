@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1249930914
-# UTC EPOCH of last modified time
-1249930914
-# CATEGORY
-Tech Tricks
-# TITLE
-How to resolve IP address to MAC hardware address in Windows
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1249930914
+lastmod-epoch: 1249930914
+categories: Tech Tricks
+title: How to resolve IP address to MAC hardware address in Windows
+---
+
 I use this command from time to time on my Windows XP box and wanted to document it for reference.
 <p>
 ping <i>www.xxx.yyy.zzz</i> &nbsp; (to get the entry in the arp cache)<br />

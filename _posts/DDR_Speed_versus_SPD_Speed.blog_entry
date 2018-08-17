@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1319218708
-# UTC EPOCH of last modified time
-1319218708
-# CATEGORY
-Tech Tricks
-# TITLE
-DDR Speed versus SPD Speed
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1319218708
+lastmod-epoch: 1319218708
+categories: Tech Tricks
+title: DDR Speed versus SPD Speed
+---
+
 So I got some new DDR3 1600 ram.  When I hooked it in my BIOS came up with the speed of 1333 instead.  Turns out in AUTO mode the BIOS uses the SPD Speed (a chip that provides the BIOS with the RAM info).
 
 <p>

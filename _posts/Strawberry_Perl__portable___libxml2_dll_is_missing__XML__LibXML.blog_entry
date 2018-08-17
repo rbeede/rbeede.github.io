@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1255622677
-# UTC EPOCH of last modified time
-1255622677
-# CATEGORY
-Computer Problems
-# TITLE
-Strawberry Perl (portable), libxml2.dll is missing, XML::LibXML
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1255622677
+lastmod-epoch: 1255622677
+categories: Computer Problems
+title: Strawberry Perl (portable), libxml2.dll is missing, XML::LibXML
+---
+
 So I was running in the following error on my Windows 7 RC 64-bit machine trying to run a Perl program using XML::Simple which uses XML::LibXML:
 <p>
 "The program can't start because libxml2.dll is missing from your computer.  Try reinstalling the program to fix this problem."

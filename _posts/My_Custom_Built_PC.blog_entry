@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1214000940
-# UTC EPOCH of last modified time
-1214000940
-# CATEGORY
-Misc
-# TITLE
-My Custom Built PC
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1214000940
+lastmod-epoch: 1214000940
+categories: Misc
+title: My Custom Built PC
+---
+
 So I've finally put together a new computer for myself.
 <p>
 <img src="./images/newpc_2008-06-20.jpg" />

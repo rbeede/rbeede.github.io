@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1221661680
-# UTC EPOCH of last modified time
-1221661680
-# CATEGORY
-Tech Tricks
-# TITLE
-Print 15 minute intervals in Outlook 2007 calendar
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1221661680
+lastmod-epoch: 1221661680
+categories: Tech Tricks
+title: Print 15 minute intervals in Outlook 2007 calendar
+---
+
 So if you've moved from Outlook 2003 to Outlook 2007 you've probably noticed that it won't put the 15 or 30 minute intervals anymore when you print a weekly calendar.
 <p>
 This is because the ruling and sizing has changed in Outlook 2007.

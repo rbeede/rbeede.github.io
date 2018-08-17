@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1226703540
-# UTC EPOCH of last modified time
-1226703540
-# CATEGORY
-Misc
-# TITLE
-New PC Case
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1226703540
+lastmod-epoch: 1226703540
+categories: Misc
+title: New PC Case
+---
+
 So my old case wasn't working out anymore due to a new CPU fan that was too large.
 <p>
 My step-dad was kind (and very talented) enough to make me a new case so the front would fit on again.  Below are pictures.

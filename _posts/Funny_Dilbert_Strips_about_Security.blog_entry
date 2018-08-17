@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1377802481
-# UTC EPOCH of last modified time
-1377802481
-# CATEGORY
-Security
-# TITLE
-Funny Dilbert Strips about Security
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1377802481
+lastmod-epoch: 1377802481
+categories: Security
+title: Funny Dilbert Strips about Security
+---
+
 <ul>
 	<li><a href="http://dilbert.com/strips/comic/1995-12-20/">http://dilbert.com/strips/comic/1995-12-20/</a></li>
 	<li><a href="http://dilbert.com/strips/comic/1998-04-06/">http://dilbert.com/strips/comic/1998-04-06/</a></li>

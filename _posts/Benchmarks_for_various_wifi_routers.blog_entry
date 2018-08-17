@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1498268744
-# UTC EPOCH of last modified time
-1510456810
-# CATEGORY
-Misc
-# TITLE
-Benchmarks for various wifi routers
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1498268744
+lastmod-epoch: 1510456810
+categories: Misc
+title: Benchmarks for various wifi routers
+---
+
 I got some routers on clearance and wanted to benchmark them from various locations.  I thought I'd publish my results in case it was useful for others.
 
 <p>

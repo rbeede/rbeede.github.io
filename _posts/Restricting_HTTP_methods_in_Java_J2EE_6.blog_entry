@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1357936999
-# UTC EPOCH of last modified time
-1357936999
-# CATEGORY
-Security
-# TITLE
-Restricting HTTP methods in Java J2EE 6
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1357936999
+lastmod-epoch: 1357936999
+categories: Security
+title: Restricting HTTP methods in Java J2EE 6
+---
+
 I found a neat new feature of J2EE 6 which simplifies security configuration of applications.  You can now whitelist versus blacklist allowed HTTP methods in your web.xml:
 
 <pre>

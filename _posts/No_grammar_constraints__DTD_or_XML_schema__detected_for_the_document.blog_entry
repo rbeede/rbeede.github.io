@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1267045284
-# UTC EPOCH of last modified time
-1267045311
-# CATEGORY
-Computer Problems
-# TITLE
-No grammar constraints (DTD or XML schema) detected for the document
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1267045284
+lastmod-epoch: 1267045311
+categories: Computer Problems
+title: No grammar constraints (DTD or XML schema) detected for the document
+---
+
 No grammar constraints (DTD or XML schema) detected for the document.
 
 <p>

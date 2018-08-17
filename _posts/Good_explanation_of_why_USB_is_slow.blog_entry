@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1340208360
-# UTC EPOCH of last modified time
-1342923049
-# CATEGORY
-Computer Problems
-# TITLE
-Good explanation of why USB is slow
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1340208360
+lastmod-epoch: 1342923049
+categories: Computer Problems
+title: Good explanation of why USB is slow
+---
+
 A good article that explains why you never see the maximum performance from USB that you'd expect.
 
 <p>

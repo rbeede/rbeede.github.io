@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1502938338
-# UTC EPOCH of last modified time
-1503343009
-# CATEGORY
-Computer Problems
-# TITLE
-rsync, write protected read-only dest directory, mkstemp Permission denied
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1502938338
+lastmod-epoch: 1503343009
+categories: Computer Problems
+title: rsync, write protected read-only dest directory, mkstemp Permission denied
+---
+
 Doing an rsync from Ubuntu 14 to a remote rsyncd daemon (not ssh but rsync protocol).
 
 <p>

@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1261072554
-# UTC EPOCH of last modified time
-1261072554
-# CATEGORY
-Tech Tricks
-# TITLE
-Safely Eject (Remove) eSata drive
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1261072554
+lastmod-epoch: 1261072554
+categories: Tech Tricks
+title: Safely Eject (Remove) eSata drive
+---
+
 Unless your eSata/Sata controller/motherboard provided certain drivers to give you a "safe eject" icon for removing your eSata drive you had to simply unplug it at the right time or shutdown your computer first to ensure no data corruption.
 <p>
 I found a nice tool called Hot Swap that adds an additional eject icon just for your eSata drives.  It checks that the drive isn't in use, flushes any caches, and spins the drive down.

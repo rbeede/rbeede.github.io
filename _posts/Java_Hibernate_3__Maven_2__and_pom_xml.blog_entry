@@ -1,12 +1,10 @@
-# UTC EPOCH of original creation time
-1234411800
-# UTC EPOCH of last modified time
-1234411800
-# CATEGORY
-Programming
-# TITLE
-Java Hibernate 3, Maven 2, and pom.xml
-# CONTENT in fragment XHTML until EOF
+---
+creation-epoch: 1234411800
+lastmod-epoch: 1234411800
+categories: Programming
+title: Java Hibernate 3, Maven 2, and pom.xml
+---
+
 I decided to try using Hibernate 3 in a Java project managed by Maven.  The documentation and public Maven repo for Hibernate were not very good.  Even downloading the official Hibernate distribution didn't include all the necessary 3rd party libraries.  Below is the dependencies I used for my Maven 2 pom.xml to get Hibernate to work:
 <pre>
       &lt;!-- Hibernate's Core pom distro is lacking since it fails to actually
