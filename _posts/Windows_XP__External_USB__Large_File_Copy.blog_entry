@@ -1,0 +1,33 @@
+# UTC EPOCH of original creation time
+1222463040
+# UTC EPOCH of last modified time
+1222463040
+# CATEGORY
+Computer Problems
+# TITLE
+Windows XP, External USB, Large File Copy
+# CONTENT in fragment XHTML until EOF
+So I was copying some large files (2GB+) from my computer to an external usb hard drive.  The filesystem on the usb drive is NTFS.  I ran into a problem where my computer was getting very slow.
+<p>
+It turns out my available memory was running all the way down to zero.  This only happened while the large file copy was in progress.  I was using xcopy to move a bunch of files over.
+</p>
+
+<p>
+After searching for possible clues as to what would cause the issue I discovered that my Windows "System Cache" was growing to over 2GB.  This cache is responsible for caching among other things files from the filesystem.
+</p>
+
+<p>
+So I tried disabling anti-virus, write caching, and registry adjustments.  That did not help.
+</p>
+
+<p>
+I then found a tool that will let you temporarily reset the size of the system cache to a value you specify.  You can't force a permanent maximum (except in Windows Server 2003 or later), but you can call it via a scheduled task if desired.  It takes affect immediately and relieves the memory issue.
+</p>
+
+<p>
+The tool is called <a href="http://technet.microsoft.com/en-us/sysinternals/bb897561.aspx">CacheSet</a> and can be obtained from Microsoft (SysInternals).
+</p>
+
+<p>
+It isn't a perfect solution since you have to keep running it to keep the cache size down, but it is better than nothing at all.
+</p>

@@ -1,0 +1,14 @@
+# UTC EPOCH of original creation time
+1389804247
+# UTC EPOCH of last modified time
+1389804247
+# CATEGORY
+Tech Tricks
+# TITLE
+Useful site to do TCP port open check
+# CONTENT in fragment XHTML until EOF
+<a href="http://www.canyouseeme.org/">http://www.canyouseeme.org/</a>
+
+<p>
+Nice and simple site for checking to see if you have a port open.  I used it to verify port forwarding was working for an IP camera located on a home network.
+</p>

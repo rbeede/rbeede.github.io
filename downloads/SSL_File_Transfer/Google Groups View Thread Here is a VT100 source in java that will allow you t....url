@@ -1,0 +1,14 @@
+[DEFAULT]
+BASEURL=http://groups.google.com/groups?hl=en&lr=&threadm=poHI.28%24Oq.376060%40carnaval.risq.qc.ca&rnum=17&prev=/groups%3Fq%3Djava%2Bset%2Bcursor%2Bposition%26hl%3Den%26lr%3D%26start%3D10%26sa%3DN
+
+[DOC#4#5]
+BASEURL=http://groups.google.com/groups?hl=en&lr=&frame=left&th=8005995f6bee7a5d&prev=/groups%3Fq%3Djava%2Bset%2Bcursor%2Bposition%26hl%3Den%26lr%3D%26start%3D10%26sa%3DN&seekm=poHI.28%24Oq.376060%40carnaval.risq.qc.ca
+ORIGURL=/groups?hl=en&lr=&frame=left&th=8005995f6bee7a5d&prev=/groups%3Fq%3Djava%2Bset%2Bcursor%2Bposition%26hl%3Den%26lr%3D%26start%3D10%26sa%3DN&seekm=poHI.28%24Oq.376060%40carnaval.risq.qc.ca#s
+
+[DOC#4#6]
+BASEURL=http://groups.google.com/groups?hl=en&lr=&frame=right&th=8005995f6bee7a5d&seekm=poHI.28%24Oq.376060%40carnaval.risq.qc.ca
+ORIGURL=/groups?hl=en&lr=&frame=right&th=8005995f6bee7a5d&seekm=poHI.28%24Oq.376060%40carnaval.risq.qc.ca#s
+
+[InternetShortcut]
+URL=http://groups.google.com/groups?hl=en&lr=&threadm=poHI.28%24Oq.376060%40carnaval.risq.qc.ca&rnum=17&prev=/groups%3Fq%3Djava%2Bset%2Bcursor%2Bposition%26hl%3Den%26lr%3D%26start%3D10%26sa%3DN
+Modified=0020635F76B8C401D5

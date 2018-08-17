@@ -1,0 +1,119 @@
+# UTC EPOCH of original creation time
+1241793543
+# UTC EPOCH of last modified time
+1486958029
+# CATEGORY
+Tech Tricks
+# TITLE
+Benchmarking and Burn-in Tools
+# CONTENT in fragment XHTML until EOF
+<p>For Windows, Linux, etc a good disk benchmark problem is <a href="http://www.iozone.org/">http://www.iozone.org/</a>.
+</p>
+
+<p>
+iozone -l 2 -u 2 -r 4k -s 100m -F /mnt/YOURDISK/f1 /mnt/YOURDISK/f2 
+</p>
+
+<p>
+If you don't have IOZone and want a quick and dirty sustained throughput report try the following (read only):
+</p>
+
+<p>
+dd if=/dev/sd<i>X</i> iflag=direct of=/dev/null bs=64k<br />
+<br />
+Open another terminal<br />
+iostat -m 2
+</p>
+
+<h2>CPU</h2>
+
+<p>
+For CPU burn-in I like to use the client from the distributed.net project.  It simply tests the strength of encryption algorithms.  Since it does so many floating point operations the CPU gets a very good test and an opportunity to reach its maximum temperature.
+</p>
+
+<p>
+<a href="http://www.distributed.net/">http://www.distributed.net/</a>
+</p>
+
+<h2>Memory</h2>
+
+I like to use <a href="http://www.memtest.org/">Memtest86+</a>.  You have to boot into it though.
+
+<p>
+Another good one is <a href="http://hcidesign.com/memtest/">HCI Design's MemTest</a> which you can run from Windows.
+</p>
+
+<h2>Graphics</h2>
+
+I like to take some video game like Quake and run a demo in a constant loop.
+
+<h2>Temperature Monitoring</h2>
+
+If your motherboard and disk drivers have sensors on them you can use <a href="http://www.cpuid.com/hwmonitor.php">CPUID's HWMonitor</a>.  It's free and is a nice alternative if your motherboard doesn't have software for temperature monitoring.
+
+<h2>Network</h2>
+
+<a href="https://github.com/esnet/iperf">IPerf 3</a>
+
+<ul>
+<li>--format k means kilobits</li>
+<li>--interval 2 shows a bandwidth report every 2 seconds</li>
+<li>--parallel 4 (or use 1) is great for getting an idea of max performance</li>
+</ul>
+
+<h3>Server side</h3>
+
+<p>
+<pre>iperf3 --server --interval 2 --format k</pre>
+</p>
+
+<h3>Client side</h3>
+<p>
+<pre>iperf3 --format k --bandwidth 10000M --interval 2 --parallel 4 --client 10.1.1.1</pre>
+<pre>iperf3 --udp --format k --bandwidth 10000M --interval 2 --parallel 4 --client 10.1.1.1</pre>
+</p>
+
+<p>
+If your router has OpenWRT you can install iperf on it for the server side.
+</p>
+
+
+<hr />
+
+<h1>Games as benchmark/burn-in tools</h1>
+
+<h2>Quake 3 Arena</h2>
+
+You can just download the <a href="http://www.idsoftware.com/games/quake/quake3-arena/index.php?game_section=demo">official ID Software demo version</a> or even the free community created <a href="http://openarena.ws/">OpenArena</a> version.
+
+<p>
+Steps to run in a constant demo loop:
+</p>
+
+<ol>
+	<li>Download and install the demo or the full game
+		<ul>
+			<li><a href="http://www.idsoftware.com/games/quake/quake3-arena/">ID Software</a></li>
+			<li><a href="http://openarena.ws/">OpenArena</a></li>
+		</ul>
+	</li>
+	<li>Create a text file called demoloop.cfg and place it in either:
+		<ul>
+			<li>Q3Ademo\demoq3</li>
+			<li>baseq3 of wherever you installed the full version or OpenArena version</li>
+		</ul>
+	</li>
+	<li>Add the following contents to the demoloop.cfg file<br />
+		<code>
+			set loop "vstr loop1" <br />
+			set loop1 "set timedemo 1 ; set cg_drawfps 1; demo demo001 ; set nextdemo vstr loop2" <br />
+			set loop2 "demo demo002 ; set nextdemo vstr loop1" <br />
+		</code>
+	</li>
+	<li>Save the demoloop.cfg file and close it</li>
+	<li>Fire up the game and configure your video settings</li>
+	<li>At the main menu bring up the console with the <b>~</b> key</li>
+	<li>Type in <b>exec demoloop.cfg</b> and press enter</li>
+	<li>Type in <b>vstr loop</b> and press enter</li>
+	<li>The loop will start and show the current fps on the top right of the screen</li>
+</ol>

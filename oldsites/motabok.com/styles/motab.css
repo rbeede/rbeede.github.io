@@ -1,0 +1,360 @@
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	background-image: url(../images/bkg_main.png);
+}
+#container {
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+#main {
+	width: 786px;
+	text-align: left;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+}
+#motab_banner {
+	width: 777px;
+	height: 120px;
+	background-image: url(../images/motab_banner.png);
+	background-repeat: no-repeat;
+}
+#motab_banner_sub {
+	width: 777px;
+	height: 120px;
+}
+#main_menu {
+	width: 777px;
+	height: 30px;
+}
+#main_menu_lspacer {
+	float: left;
+	width: 34px;
+	height: 30px;
+	background-image: url(../images/main_menu_lspacer.png);
+	background-repeat: no-repeat;
+}
+#main_menu_lspacer_sub {
+	float: left;
+	width: 34px;
+	height: 30px;
+	background-image: url(../images/main_menu_lspacer_sub.png);
+	background-repeat: no-repeat;
+}
+#main_menu_buy_tickets {
+	float: left;
+	width: 89px;
+	height: 30px;
+}
+#main_menu_invite {
+	float: left;
+	width: 110px;
+	height: 30px;
+}
+#main_menu_FAQ {
+	float: left;
+	width: 49px;
+	height: 30px;
+}
+#main_menu_choir_facts {
+	float: left;
+	width: 92px;
+	height: 30px;
+}
+#main_menu_videos {
+	float: left;
+	width: 63px;
+	height: 30px;
+}
+#main_menu_2009_tour {
+	float: left;
+	width: 83px;
+	height: 30px;
+}
+#main_menu_venue {
+	float: left;
+	width: 61px;
+	height: 30px;
+}
+#main_menu_sponsorship {
+	float: left;
+	width: 94px;
+	height: 30px;
+}
+#main_menu_contact {
+	float: left;
+	width: 69px;
+	height: 30px;
+}
+#main_menu_rspacer {
+	float: left;
+	width: 33px;
+	height: 30px;
+	background-image: url(../images/main_menu_rspacer.png);
+	background-repeat: no-repeat;
+}
+#main_menu_rspacer_sub {
+	float: left;
+	width: 33px;
+	height: 30px;
+	background-image: url(../images/main_menu_rspacer_sub.png);
+	background-repeat: no-repeat;
+}
+#motab_pic {
+	width: 777px;
+	height: 330px;
+	background-image: url(../images/motab_pic.jpg);
+	background-repeat: no-repeat;
+}
+#content_heading_frontpage {
+	width: 777px;
+	height: 49px;
+	background-image: url(../images/content_heading_frontpage.png);
+	background-repeat: no-repeat;
+}
+#content_heading_invite {
+	width: 777px;
+	height: 55px;
+	background-image: url(../images/content_heading_invite.png);
+	background-repeat: no-repeat;
+}
+#content_heading_venue {
+	width: 777px;
+	height: 55px;
+	background-image: url(../images/content_heading_venue.png);
+	background-repeat: no-repeat;
+}
+#content_heading_FAQ {
+	width: 777px;
+	height: 55px;
+	background-image: url(../images/content_heading_FAQ.png);
+	background-repeat: no-repeat;
+}
+#content_heading_sponsorship {
+	width: 777px;
+	height: 55px;
+	background-image: url(../images/content_heading_sponsorship.png);
+	background-repeat: no-repeat;
+}
+#content_heading_contact {
+	width: 777px;
+	height: 55px;
+	background-image: url(../images/content_heading_contact.png);
+	background-repeat: no-repeat;
+}
+#content_heading_thanks {
+	width: 777px;
+	height: 55px;
+	background-image: url(../images/content_heading_thanks.png);
+	background-repeat: no-repeat;
+}
+#content_area {
+	width: 777px;
+	height: 329px;
+}
+#content_area_sub {
+	width: 777px;
+	height: 925px;
+	background-image: url(../images/bkg_sub.png);
+}
+#content_area_venue {
+	width: 777px;
+	height: 750px;
+	background-image: url(../images/bkg_sub.png);
+}
+#content_areaL {
+	float: left;
+	width: 27px;
+	height: 329px;
+	background-image: url(../images/content_areaL.png);
+	background-repeat: no-repeat;
+}
+#content_areaL_sub {
+	float: left;
+	width: 27px;
+	height: 653px;
+	background-image: url(../images/content_areaL_sub.png);
+	background-repeat: no-repeat;
+}
+#content_areaM {
+	float: left;
+	width: 724px;
+	height: 329px;
+	background-image: url(../images/content_areaM.png);
+	background-repeat: no-repeat;
+}
+#content_areaM_sub {
+	float: left;
+	width: 724px;
+	height: 653px;
+	background-image: url(../images/content_areaM_sub.png);
+	background-repeat: no-repeat;
+}
+#content_areaM_L {
+	float: left;
+	width: 479px;
+	height: 329px;
+}
+#content_areaM_L_sub {
+	float: left;
+	width: 475px;
+}
+#content_areaM_Ltop {
+	width: 479px;
+	height: 274px;
+}
+#mainpage_text {
+	color: #6e5000;
+	font-size: 15px;
+	padding: 6px 20px 0px 20px;
+	line-height: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: justify;
+	text-decoration: none;
+}
+.mainpage_text_privacy {
+	color: #6e5000;
+	font-size: 10px;
+	padding: 6px 20px 0px 20px;
+	line-height: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: justify;
+	text-decoration: none;
+}
+.lineup {
+	width: 4em;
+	float: left;
+	text-align: left;
+	margin-right: 0.5em;
+	display: block
+}
+#venue_layout {
+	float: left;
+	width: 475px;
+	height: 429px;
+	background-image: url(../images/venue_layout.png);
+	background-repeat: no-repeat;
+}
+#content_areaM_Lbottom {
+	width: 479px;
+	height: 55px;
+}
+#spacer {
+	float: left;
+	width: 292px;
+	height: 55px;
+}
+#invite_button {
+	float: left;
+	width: 187px;
+	height: 55px;
+}
+#content_areaM_R {
+	float: left;
+	width: 245px;
+	height: 329px;
+}
+#content_areaM_R_sub {
+	float: left;
+	width: 249px;
+	height: 653px;
+}
+#sponsor_top {
+	width: 249px;
+	height: 324px;
+}
+#sponsor_top_L {
+	float: left;
+	width: 35px;
+	height: 324px;
+}
+#sponsor_top_M {
+	float: left;
+	width: 183px;
+	height: 324px;
+}
+#sponsor_top_M_spacer {
+	width: 183px;
+	height: 12px;
+}
+#sponsor_top_M_lds {
+	width: 183px;
+	height: 113px;
+}
+#sponsor_top_M_spacer2 {
+	width: 183px;
+	height: 7px;
+}
+#sponsor_top_M_mormon {
+	width: 183px;
+	height: 113px;
+}
+#sponsor_top_M_spacer3 {
+	width: 183px;
+	height: 7px;
+}
+#sponsor_top_M_family {
+	width: 183px;
+	height: 63px;
+}
+#sponsor_top_M_spacer4 {
+	width: 183px;
+	height: 9px;
+}
+#sponsor_top_R {
+	float: left;
+	width: 31px;
+	height: 324px;
+}
+#sponsor_bottom {
+	width: 249px;
+	height: 329px;
+}
+#content_areaR {
+	float: left;
+	width: 26px;
+	height: 329px;
+	background-image: url(../images/content_areaR.png);
+	background-repeat: no-repeat;
+}
+#content_areaR_sub {
+	float: left;
+	width: 26px;
+	height: 653px;
+	background-image: url(../images/content_areaR_sub.png);
+	background-repeat: no-repeat;
+}
+#footer {
+	width: 777px;
+	height: 82px;
+	background-image: url(../images/footer.png);
+	background-repeat: no-repeat;
+}
+#footer_sub {
+	width: 777px;
+	height: 87px;
+	background-image: url(../images/footer_sub.png);
+	background-repeat: no-repeat;
+}
+
+
+
+
+
+
+.clearer {
+	clear: both; 
+	display: block; 
+	margin: 0px; 
+	padding: 0px; 
+	font-size: 1px;
+	line-height: 1px;
+}
+.copyright {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	padding: 10px;
+	color: #6f7a98;
+}

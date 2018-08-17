@@ -1,0 +1,22 @@
+# UTC EPOCH of original creation time
+1342723360
+# UTC EPOCH of last modified time
+1342723403
+# CATEGORY
+Tech Tricks
+# TITLE
+LUKS on SSD with TRIM enabled
+# CONTENT in fragment XHTML until EOF
+<a href="http://worldsmostsecret.blogspot.com/2012/04/how-to-activate-trim-on-luks-encrypted.html">How to Activate TRIM on LUKS Encrypted Partitions</a>
+
+<p>
+Useful guide that I used on Fedora 17 with success.
+</p>
+
+<p>
+It may lower your security since free space can now be determined as such (TRIM may cause empty cells to appear).  Your data is still encrypted, but an attacker could look at the contents now and know which parts have data and which don't to make attacks more feasible.  Just depends on how much encryption you need and whether it is okay for an attacker to be able to guess the size of data.
+</p>
+
+<p>
+You will get the potential benefit of better write performance and longer life on your SSD.
+</p>

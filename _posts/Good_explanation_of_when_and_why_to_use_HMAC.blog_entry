@@ -1,0 +1,14 @@
+# UTC EPOCH of original creation time
+1353013762
+# UTC EPOCH of last modified time
+1354300820
+# CATEGORY
+Security
+# TITLE
+Good explanation of when and why to use HMAC
+# CONTENT in fragment XHTML until EOF
+<a href="http://benlog.com/articles/2008/06/19/dont-hash-secrets"/>http://benlog.com/articles/2008/06/19/dont-hash-secrets/</a>
+
+<p>
+Good explanation of how hashing functions should be used for MAC and HMAC.  Especially good point about digital signatures.
+</p>

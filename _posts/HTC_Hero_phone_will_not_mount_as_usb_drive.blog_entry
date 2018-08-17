@@ -1,0 +1,41 @@
+# UTC EPOCH of original creation time
+1263487026
+# UTC EPOCH of last modified time
+1263487026
+# CATEGORY
+Computer Problems
+# TITLE
+HTC Hero phone will not mount as usb drive
+# CONTENT in fragment XHTML until EOF
+<p>So Windows 7 (and reported Vista) (tested 64-bit) have an issue where the Windows Updates detects that there is an updated "HTC Dream" driver when your phone is plugged in via usb cable.
+</p>
+
+<p>
+Thing is if you install that driver your HTC Hero will no longer mount as a USB Mass Storage Device (drive letter).
+</p>
+
+<p>
+To Fix:
+</p>
+
+<ol>
+<li>Plug in the phone via usb</li>
+<li>On the phone mount the device as a usb drive</li>
+<li>Now open device manager
+    <ol>
+        <li>Right click My Computer</li>
+        <li>Manage</li>
+        <li>Device Manager in the list</li>
+    </ol>
+</li>
+<li>Look for an entry near the top named APT (ATP) ...</li>
+<li>Expand that tree entry</li>
+<li>Look for HTC Dream</li>
+<li>Right click, Uninstall</li>
+<li>Check the checkbox to delete the driver files</li>
+<li>Do the uninstall</li>
+<li>Unplug the phone</li>
+<li>Plug in the phone</li>
+<li>On the phone mount it as USB</li>
+<li>It will now show up as a drive again</li>
+</ol>

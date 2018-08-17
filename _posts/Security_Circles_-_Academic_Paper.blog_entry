@@ -1,0 +1,18 @@
+# UTC EPOCH of original creation time
+1325205034
+# UTC EPOCH of last modified time
+1376575917
+# CATEGORY
+Curriculum Vitae
+# TITLE
+Security Circles - Academic Paper
+# CONTENT in fragment XHTML until EOF
+For my Fall 2011 Mobile Computing class at the University of Colorado I participated in a group project regarding an Android security application.
+
+<p>
+The basic concept was to modify the Android OS so applications could be placed into "security circles" that would anonymize the sensor data.  This would allow a level of trust for various applications so they would still function, but they wouldn't have access to real data that could identify you.
+</p>
+
+<p>
+We submitted the paper to MobiSys 2012.  You can download it <a href="./downloads/security_circles.pdf">here</a>.  It was also published as a technical report at the University of Colorado at Boulder <a href="http://digitool.library.colostate.edu/R/-?func=dbin-jump-full&amp;object_id=168176&amp;silo_library=GEN01">here</a>.
+</p>

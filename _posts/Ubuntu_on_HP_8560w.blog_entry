@@ -1,0 +1,22 @@
+# UTC EPOCH of original creation time
+1339373508
+# UTC EPOCH of last modified time
+1339373508
+# CATEGORY
+Tech Tricks
+# TITLE
+Ubuntu on HP 8560w
+# CONTENT in fragment XHTML until EOF
+So I have a new workstation notebook from my new job.  It's an HP EliteBook 8560w with the nVidia graphics card option.
+
+<p>
+Short story it wasn't working with Ubuntu.  The default included graphics drivers for Ubuntu 12.04 and before have a bug which causes the screen to be unreadable.
+</p>
+
+<p>
+The work around was provided by this most helpful website:  <a href="http://beradrian.wordpress.com/2012/06/10/install-ubuntu-12-on-8560w/">http://beradrian.wordpress.com/2012/06/10/install-ubuntu-12-on-8560w/</a>
+</p>
+
+<p>
+<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/864739">Bug reference</a>
+</p>

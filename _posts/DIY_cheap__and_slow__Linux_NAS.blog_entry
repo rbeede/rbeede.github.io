@@ -1,0 +1,49 @@
+# UTC EPOCH of original creation time
+1371756767
+# UTC EPOCH of last modified time
+1371756767
+# CATEGORY
+Tech Tricks
+# TITLE
+DIY cheap (and slow) Linux NAS
+# CONTENT in fragment XHTML until EOF
+I am making a small Linux NAS that runs on minimal power and can serve as a Samba server for remote backup.  I plan on using it to do automatic backups of wired and wireless PCs.
+
+<p>
+Since a laptop over 2.4GHz wireless tends to only get around 80mbps (10 megabytes/second) on the best of days (5.0GHz isn't an option as it gets worse performance going through walls, and I don't want a wireless dongle for 802.11ac) I don't need a very fast NAS.  The main goal is something cheap that won't use much power.  Additionally remote backup over the Internet means residential Internet service <span style="font-weight: bold;">upload speed</span> is the real limiting factor.
+</p>
+
+<p>
+I want Linux because I also want to run scripts on the NAS that can perform md5 checksums of every file once a week so I can verify the integrity of the backup data.  I also considered having two devices.  One a dedicated NAS device that you can buy (not necessarily Linux) with really good performance (70-100 megabytes /second) and another Linux embedded device that could connect remotely to the NAS to generate the checksums.  The problem is that uses network bandwidth and disk I/O on the NAS which could make currently running backups or other user activity slower.  It also requires more power and would take longer to create checksums.
+</p>
+
+<p>
+In the past I've used a Buffalo gigabit wireless router for my home wireless router, NAS, and Linux checksum (I ran OpenWRT).  This was okay except when generating the checksums or accessing large files because it would slow down the network for everyone else during high CPU usage.  I've decided that my home wireless router should stay dedicated to routing only and not utilize the USB port for a NAS.
+</p>
+
+<p>
+A more expensive NAS (also using more power) could max out a 1 gigabit network connection for wired clients, but most of the time the NAS is just for backups which resume automatically anyway when the client is turned on.  Having 10 megabytes/second performance for wireless clients and 15 megabytes/second performance for wired seems like an okay trade-off for reduced electricity usage.
+</p>
+
+<p>
+Some options I've looked at (goal of under $100 without drives):
+</p>
+
+<ul>
+	<li><a href="http://www.raspberrypi.org/">Raspberry Pi</a> - 512MB Ram, 100mbps Ethernet.  Internet forums report around 7 MBPS performance for Samba so not quite good enough.  $75 for a kit with everything needed</li>
+	<li><a href="http://cubieboard.org/">Cubieboard</a> - 1GB Ram, 100mbps Ethernet.  Internet forum reports about 11 MBPS performance which maxes out the 100mbps Ethernet.  $73 for a kit with everything needed</li>
+	<li><a href="http://www.mk808.com/">MK808B</a> - 1GB Ram, Dual Core, Wireless, No Ethernet, 8GB ROM.  $46 on Amazon.  Runs Android by default, but you can install a version of Ubuntu on it.  I added a USB 3.0 to 1 gigabit Ethernet adapter for $20.  Samba performance benchmark not yet done, but I'd expect around 15 megabytes/second</li>
+	<li><a href="http://www.amazon.com/BUFFALO-AirStation-HighPower-Wireless-WZR-600DHP/dp/B0096239G0/ref=sr_1_1?ie=UTF8&qid=1371755693&sr=8-1&keywords=buffalo+router">Buffalo Router WZR-600DHP</a> - Runs dd-wrt (Linux) already and also supports OpenWRT.  This is a newer revision of the WZR-HP-AG300H I used to have.  $70 beats most of the other options.</li>
+</ul>
+
+<p>
+I chose the Buffalo Router WZR-600DHP because I get 5 gigabit ports, 2.4GHz and 5.0GHz wireless client (not using as an access point), and Samba performance (wired) of 15 MBPS with a USB 2.0 external hard drive.  The downside compared to the MK808B/Cubieboard is not a dual core and only 128MB of ram.  I might go with just the MK808 in the future for additional deployments where I need a remote Samba share where the remote node connects back to my home using OpenVPN client.  The main win is the Buffalo router being only $70, having better wireless range, multiple gigabit ports, and doing 15 MBPS which is fast enough to handle incoming/outgoing data over an Internet connection while providing usefulness to local networks as well.
+</p>
+
+<p>
+The main limitation I've run into with this project would be the USB performance.  Most devices only have USB 2.0 ports which tend to have real-world throughput on x86 devices of 30 megabytes / second.  On these embedded Linux (e.g. ARM) devices the USB performance is typically much more limited (10-15 MBPS) due to the CPU having to do most of the USB work since they lack additional offloading controllers.  I'd love to see a sub-$100 device that had USB 3.0 and 100+ MBPS performance.
+</p>
+
+<p>
+The main benefit of using embedded devices would be the very low power requirements and less noise (no fans).  Typically my external USB drive requires more power.
+</p>

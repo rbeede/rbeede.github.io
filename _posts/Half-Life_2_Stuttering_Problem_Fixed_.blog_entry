@@ -1,0 +1,35 @@
+# UTC EPOCH of original creation time
+1220110860
+# UTC EPOCH of last modified time
+1220110860
+# CATEGORY
+Computer Problems
+# TITLE
+Half-Life 2 Stuttering Problem Fixed!
+# CONTENT in fragment XHTML until EOF
+So I got my new CPU fan in the other day.  It is a XIGMATEK HDT-S1283 that I got on newegg.com for $35 (shipping included).  It was the recommended fan by tomshardware.com.
+<p>
+The fan is very, very large.  I'm going to have to extend my custom wood case in order to put the plexiglass cover back on.  However the fan does its job very, very well!!!
+</p>
+
+<p>
+The stuttering in game was occurring because my CPU was reaching its maximum temperature.  Adding this new fan dropped the temperature by 15 degrees Celsius.  The stuttering no longer occurs.
+</p>
+
+<p>
+So now instead of an idle temperature of 42 degrees Celsius my setup now has a temperature of 35 degrees Celsius.  Instead of a full load temperature of 62 degrees Celsius I now only see 47 degrees Celsius.
+</p>
+
+<p>
+For reference again I'm using:
+</p>
+
+<ul>
+<li>ASUS M3A78-EMH HDMI Motherboard</li>
+<li>AMD Athlon (tm) X2 Dual Core Process 6000+</li>
+</ul>
+
+<p>
+Here is a photo of the fan sticking outside the case<br />
+<img src="./images/new_fan.jpg" />
+</p>

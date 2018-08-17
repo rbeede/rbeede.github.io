@@ -1,0 +1,659 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: Creating a New Key Pair and Self-Signed Certificate Using keytool (Java Developers Almanac Example)
+Date: Mon, 25 Oct 2004 18:31:30 -0500
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0000_01C4BAC0.D8C39500";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1409
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C4BAC0.D8C39500
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://javaalmanac.com/egs/java.security.cert/CreateCert.html
+
+=EF=BB=BF<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Creating a New Key Pair and Self-Signed Certificate =
+Using keytool (Java Developers Almanac Example)</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; charset=3DUTF-8">
+<META content=3D"Patrick Chan" name=3DAUTHOR>
+<META content=3D"Code Examples from The Java Developers Almanac 1.4"=20
+name=3DDESCRIPTION>
+<META content=3D"Addison-Wesley/Patrick Chan" name=3DOWNER>
+<META content=3D3/20/02 name=3Drevision>
+<META http-equiv=3DPragma content=3Dno-cache><LINK media=3Dscreen=20
+href=3D"http://javaalmanac.com/almanac.css" type=3Dtext/css =
+rel=3Dstylesheet>
+<META content=3D"MSHTML 6.00.2800.1476" name=3DGENERATOR></HEAD>
+<BODY>
+<TABLE cellSpacing=3D0 cellPadding=3D0 border=3D0>
+  <TBODY>
+  <TR>
+    <TD>
+      <SCRIPT language=3Djavascript>
+document.write('<A =
+HREF=3D"http://ad.doubleclick.net/jump/N763.javaalmanac/B1418751;sz=3D728=
+x90;ord=3D'+(new Date()).getTime()+'?">');
+document.write('<IMG ALT=3D"Click Here" HEIGHT=3D"90" WIDTH=3D"728" =
+BORDER=3D"0" =
+SRC=3D"http://ad.doubleclick.net/ad/N763.javaalmanac/B1418751;sz=3D728x90=
+;ord=3D'+(new Date()).getTime()+'?">');
+document.write('</IMG></A>');
+</SCRIPT>
+    </TD></TR></TBODY></TABLE><BR>
+<TABLE cellSpacing=3D0 cellPadding=3D0 border=3D0>
+  <TBODY>
+  <TR>
+    <TD></TD></TR>
+  <TR>
+    <TD rowSpan=3D3><A href=3D"http://javaalmanac.com/?l=3Dex"><IMG =
+hspace=3D10=20
+      src=3D"http://javaalmanac.com/egs/almanac14a.jpg" align=3Dbottom=20
+    border=3D0></A></TD>
+    <TD vAlign=3Dtop>
+      <H1>The Java Developers Almanac 1.4</H1><BR>Order this book from =
+<A=20
+      =
+href=3D"http://javaalmanac.com/cgi-bin/scripts/redirect.pl?l=3Dex&amp;url=
+=3Dhttp://www.amazon.com/exec/obidos/ASIN/0201752808/xeo">Amazon</A>.=20
+    </TD></TR>
+  <TR>
+    <TD vAlign=3Dbottom align=3Dright>
+      <FORM action=3D/cgi-bin/search/find.pl method=3Dget><INPUT =
+size=3D25 name=3Dwords><INPUT type=3Dsubmit value=3DSearch> =
+</FORM></TD></TR></TBODY></TABLE>
+<HR color=3D#6666cc>
+
+<TABLE cellSpacing=3D0 cellPadding=3D0 border=3D0>
+  <TBODY>
+  <TR>
+    <TD vAlign=3Dtop>
+      <SCRIPT type=3Dtext/javascript>
+<!--
+google_ad_client =3D "pub-6001183370374757";
+google_ad_width =3D 120;
+google_ad_height =3D 600;
+google_ad_format =3D "120x600_as";
+google_ad_channel =3D "4777242811";
+google_ad_type =3D "text_image";
+google_color_border =3D "CCCCCC";
+google_color_bg =3D "FFFFFF";
+google_color_link =3D "6666CC";
+google_color_url =3D "6666CC";
+google_color_text =3D "000000";
+//--></SCRIPT>
+
+      <SCRIPT =
+src=3D"http://pagead2.googlesyndication.com/pagead/show_ads.js"=20
+      type=3Dtext/javascript></SCRIPT>
+    </TD>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <TD vAlign=3Dtop>
+      <DIV align=3Dleft><A href=3D"http://javaalmanac.com/">Home</A> =
+&gt; <A=20
+      href=3D"http://javaalmanac.com/egs/index.html">List of =
+Packages</A> &gt; <A=20
+      =
+href=3D"http://javaalmanac.com/egs/java.security.cert/pkg.html">java.secu=
+rity.cert</A><FONT=20
+      class=3Dxsmall-font color=3D#666666> &nbsp;[9 examples] =
+</FONT>&gt; <B><A=20
+      =
+href=3D"http://javaalmanac.com/egs/java.security.cert/pkg.html#Certificat=
+es">Certificates</A></B><FONT=20
+      class=3Dxsmall-font color=3D#666666> &nbsp;[5 examples] =
+</FONT></DIV>
+      <P>
+      <H3>e223. Creating a New Key Pair and Self-Signed Certificate =
+Using=20
+      keytool</H3>This example uses the <CODE>keytool</CODE> program to =
+create a=20
+      new key pair and self-signed certificate for the principal=20
+      <CODE>Duke</CODE>. The example generates a 1024-bit Digital =
+Signature=20
+      Algorithm (DSA) key pair. <PRE>    &gt; keytool -genkey -alias =
+<FONT color=3D#0066ff><I>alias</I></FONT> -keystore <FONT =
+color=3D#0066ff><I>.keystore</I></FONT>
+    Enter keystore password: <FONT =
+color=3D#0066ff><I>password</I></FONT>
+    What is your first and last name?
+      [Unknown]: <FONT color=3D#0066ff><I>Duke</I></FONT>
+    What is the name of your organizational unit?
+      [Unknown]: <FONT color=3D#0066ff><I>JavaSoft</I></FONT>
+    What is the name of your organization?
+      [Unknown]: <FONT color=3D#0066ff><I>Sun</I></FONT>
+    What is the name of your City or Locality?
+      [Unknown]: <FONT color=3D#0066ff><I>Cupertino</I></FONT>
+    What is the name of your State or Province?
+      [Unknown]: <FONT color=3D#0066ff><I>CA</I></FONT>
+    What is the two-letter country code for this unit?
+      [Unknown]: <FONT color=3D#0066ff><I>US</I></FONT>
+    Is &lt;CN=3DDuke, OU=3DJavaSoft, O=3DSun, L=3DCupertino, ST=3DCA, =
+C=3DUS&gt; correct?
+      [no]: <FONT color=3D#0066ff><I>yes</I></FONT>
+
+</PRE>To create a 1024-bit RSA key: <PRE>    &gt; keytool -genkey =
+-keyalg RSA -keysize 1024 -alias <FONT =
+color=3D#0066ff><I>alias</I></FONT> -keystore <FONT =
+color=3D#0066ff><I>.keystore</I></FONT>
+
+</PRE>
+      <P>
+      <TABLE cellSpacing=3D0 cellPadding=3D2 width=3D600 border=3D0>
+        <TBODY>
+        <TR>
+          <TD align=3Dmiddle bgColor=3D#6666cc><FONT=20
+            color=3D#ffffff>&nbsp;<B>Related=20
+      Examples</B></FONT></TD></TR></TBODY></TABLE>e224. <A =
+class=3Deglink=20
+      =
+href=3D"http://javaalmanac.com/egs/java.security.cert/ExportCert.html?l=3D=
+rel">Exporting=20
+      a Certificate to a File </A><BR>e225. <A class=3Deglink=20
+      =
+href=3D"http://javaalmanac.com/egs/java.security.cert/ImportCert.html?l=3D=
+rel">Importing=20
+      a Certificate from a File </A><BR>e226. <A class=3Deglink=20
+      =
+href=3D"http://javaalmanac.com/egs/java.security.cert/ListCertFact.html?l=
+=3Drel">Listing=20
+      All Available Certificate Formats </A><BR>e227. <A class=3Deglink=20
+      =
+href=3D"http://javaalmanac.com/egs/java.security.cert/GetDn.html?l=3Drel"=
+>Getting=20
+      the Subject and Issuer Distinguished Names of an X509 Certificate =
+</A><BR>
+      <TABLE cellSpacing=3D0 cellPadding=3D2 width=3D600 border=3D0>
+        <TBODY>
+        <TR>
+          <TD align=3Dleft><BR>See also: <A class=3Deglink=20
+            =
+href=3D"http://javaalmanac.com/egs/java.security.cert/pkg.html?l=3Drel#Ce=
+rtification%20Paths">Certification=20
+            Paths </A>&nbsp;&nbsp; =
+</TD></TR></TBODY></TABLE><BR><BR><FONT=20
+      class=3Dxsmall-font>=C2=A9 2002 Addison-Wesley. </FONT></P></TD>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <TD vAlign=3Dtop>
+      <SCRIPT language=3Djavascript>
+document.write('<A =
+HREF=3D"http://ad.doubleclick.net/jump/N763.javaalmanac/B1415816;sz=3D120=
+x600;ord=3D'+(new Date()).getTime()+'?">');
+document.write('<IMG ALT=3D"Click Here" HEIGHT=3D"600" WIDTH=3D"120" =
+BORDER=3D"0" =
+SRC=3D"http://ad.doubleclick.net/ad/N763.javaalmanac/B1415816;sz=3D120x60=
+0;ord=3D'+(new Date()).getTime()+'?">');
+document.write('</IMG></A>');
+</SCRIPT>
+    </TD></TR></TBODY></TABLE>
+<META http-equiv=3DPRAGMA content=3DNO-CACHE></BODY></HTML>
+
+------=_NextPart_000_0000_01C4BAC0.D8C39500
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://javaalmanac.com/egs/almanac14a.jpg
+
+/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYF
+BgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBwYHCgoKCgoK
+CgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgr/wAARCAB5AGIDASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9Qv8A
+h7l+wv8A9FE8Qf8Ahv8AWf8A5Fo/4e5fsL/9FE8Qf+G/1n/5Fr8rv+Eksf8Any1P/wAE1z/8bpP+
+EksP+fLU/wDwTXP/AMbr9j/4hTw9/NW/8Cj/APKz8D/4i1n3/Tn7pf8Ayw/VL/h7l+wv/wBFE8Qf
++G/1n/5Fo/4e5fsL/wDRRPEH/hv9Z/8AkWvyt/4SSw/58tT/APBNc/8Axuq2ta2l7o13Z6fb6lHc
+S2siQP8A2PdDa5UgH/V+uKa8KOHm7c1b/wACj/8AKxS8W8+jFtKi/lL/AOWH6t/8Pcv2F/8Aooni
+D/w3+s//ACLR/wAPcv2F/wDooniD/wAN/rP/AMi1+bFl41/Z1kvLtdW+DHiGDzNRtrW0fRvDk0EK
+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
+rCoPPoBRWkvQfSiqEf/Z
+
+------=_NextPart_000_0000_01C4BAC0.D8C39500
+Content-Type: text/css;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Location: http://javaalmanac.com/almanac.css
+
+UNKNOWN {
+	FONT-SIZE: 11pt; FONT-FAMILY: Courier, Monospace
+}
+TABLE {
+	FONT-SIZE: 10pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+BODY {
+	FONT-SIZE: 10pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+PRE {
+	FONT-SIZE: 10pt; FONT-FAMILY: Courier, Monospace
+}
+H1 {
+	FONT-SIZE: 18pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+H2 {
+	FONT-SIZE: 15pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+H3 {
+	FONT-SIZE: 11pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+A.eglink {
+	TEXT-DECORATION: none
+}
+A.eglink:hover {
+	TEXT-DECORATION: underline
+}
+.small-font {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.xsmall-font {
+	FONT-SIZE: 7pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+
+------=_NextPart_000_0000_01C4BAC0.D8C39500
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://pagead2.googlesyndication.com/pagead/show_ads.js
+
+google_ad_url =3D '';=0A=
+google_date =3D new Date();=0A=
+google_random =3D google_date.getTime();=0A=
+google_org_error_handler =3D window.onerror;=0A=
+=0A=
+function quoted(str) {=0A=
+  return (str !=3D null) ? '"' + str + '"' : '""';=0A=
+}=0A=
+=0A=
+function google_encodeURIComponent(str) {=0A=
+  if (typeof(encodeURIComponent) =3D=3D 'function') {=0A=
+    return encodeURIComponent(str);=0A=
+  } else {=0A=
+    return escape(str);=0A=
+  }=0A=
+}=0A=
+=0A=
+function google_write_tracker(tracker_event) {=0A=
+  var img_url =3D window.google_ad_url.replace(/pagead\/ads/, =
+'pagead/imp.gif');=0A=
+  var img_src =3D img_url + '&event=3D' + tracker_event;=0A=
+  var img_tag =3D '<i' + 'mg height=3D"1" width=3D"1" border=3D"0" ' +=0A=
+                'src=3D' + quoted(img_src) +=0A=
+                ' />';=0A=
+  document.write(img_tag);=0A=
+}=0A=
+=0A=
+function google_append_url(param, value) {=0A=
+  if (value) {=0A=
+    window.google_ad_url +=3D '&' + param + '=3D' + value;=0A=
+  }=0A=
+}=0A=
+=0A=
+function google_append_url_esc(param, value) {=0A=
+  if (value) {=0A=
+    google_append_url(param, google_encodeURIComponent(value));=0A=
+  }=0A=
+}=0A=
+=0A=
+function google_append_color(param, value) {=0A=
+  if (value && typeof(value) =3D=3D 'object') {=0A=
+    value =3D value[window.google_random % value.length];=0A=
+  }=0A=
+  google_append_url('color_' + param, value);=0A=
+}=0A=
+=0A=
+function google_get_user_data() {=0A=
+  var javaEnabled =3D navigator.javaEnabled();=0A=
+  var tz =3D -google_date.getTimezoneOffset();=0A=
+=0A=
+  if (window.screen) {=0A=
+    google_append_url("u_h", window.screen.height);=0A=
+    google_append_url("u_w", window.screen.width);=0A=
+    google_append_url("u_ah", window.screen.availHeight);=0A=
+    google_append_url("u_aw", window.screen.availWidth);=0A=
+    google_append_url("u_cd", window.screen.colorDepth);=0A=
+  }=0A=
+=0A=
+  google_append_url("u_tz", tz);=0A=
+  google_append_url("u_his", history.length);=0A=
+  google_append_url("u_java", javaEnabled);=0A=
+=0A=
+  if (navigator.plugins) {=0A=
+    google_append_url("u_nplug", navigator.plugins.length);=0A=
+  }=0A=
+  if (navigator.mimeTypes) {=0A=
+    google_append_url("u_nmime", navigator.mimeTypes.length);=0A=
+  }=0A=
+}=0A=
+=0A=
+function google_show_ad() {=0A=
+  var w =3D window;=0A=
+  w.onerror =3D w.google_org_error_handler;=0A=
+=0A=
+   if (w.google_num_ad_slots) {=0A=
+    w.google_num_ad_slots =3D w.google_num_ad_slots + 1;=0A=
+  } else {=0A=
+    w.google_num_ad_slots =3D 1;=0A=
+  }=0A=
+=0A=
+  if (w.google_num_ad_slots > 3) {=0A=
+    return;=0A=
+  }=0A=
+=0A=
+  w.google_ad_url =3D 'http://pagead2.googlesyndication.com/pagead/ads?';=0A=
+  w.google_ad_client =3D w.google_ad_client.toLowerCase();=0A=
+  if (w.google_ad_client.substring(0,3) !=3D 'ca-') {=0A=
+     w.google_ad_client =3D 'ca-' + w.google_ad_client;=0A=
+  }=0A=
+  w.google_ad_url +=3D 'client=3D' + escape(w.google_ad_client) +=0A=
+                     '&dt=3D' + w.google_date.getTime();=0A=
+=0A=
+  google_append_url('hl', w.google_language);=0A=
+  if (w.google_country) {=0A=
+    google_append_url('gl', w.google_country);=0A=
+  } else {=0A=
+    google_append_url('gl', w.google_gl);=0A=
+  }=0A=
+  google_append_url('gr', w.google_region);=0A=
+  google_append_url_esc('gcs', w.google_city);=0A=
+  google_append_url_esc('hints', w.google_hints);=0A=
+  google_append_url('adsafe', w.google_safe);=0A=
+  google_append_url('oe', w.google_encoding);=0A=
+  google_append_url('lmt', w.google_last_modified_time);=0A=
+  google_append_url_esc('alternate_ad_url', w.google_alternate_ad_url);=0A=
+  google_append_url('alt_color', w.google_alternate_color);=0A=
+=0A=
+  if (w.google_skip) {=0A=
+    google_append_url("skip", w.google_skip);=0A=
+  } else if (w.google_prev_ad_formats) {=0A=
+    google_append_url_esc('prev_fmts', =
+w.google_prev_ad_formats.toLowerCase());=0A=
+  }=0A=
+=0A=
+  if (w.google_ad_format) {=0A=
+    google_append_url_esc('format', w.google_ad_format.toLowerCase());=0A=
+    if (w.google_prev_ad_formats) {=0A=
+      w.google_prev_ad_formats =3D w.google_prev_ad_formats + ',' + =
+w.google_ad_format;=0A=
+    } else {=0A=
+      w.google_prev_ad_formats =3D w.google_ad_format;=0A=
+    }=0A=
+  }=0A=
+=0A=
+  google_append_url('num_ads', w.google_max_num_ads);=0A=
+  google_append_url('output', w.google_ad_output);=0A=
+  google_append_url('adtest', w.google_adtest);=0A=
+  if (w.google_ad_channel) {=0A=
+    google_append_url_esc('channel', w.google_ad_channel.toLowerCase());=0A=
+  }=0A=
+  google_append_url_esc('url', w.google_page_url);=0A=
+  google_append_color('bg', w.google_color_bg);=0A=
+  google_append_color('text', w.google_color_text);=0A=
+  google_append_color('link', w.google_color_link);=0A=
+  google_append_color('url', w.google_color_url);=0A=
+  google_append_color('border', w.google_color_border);=0A=
+  google_append_color('line', w.google_color_line);=0A=
+  google_append_url('kw_type', w.google_kw_type);=0A=
+  google_append_url_esc('kw', w.google_kw);=0A=
+  google_append_url_esc('contents', w.google_contents);=0A=
+  google_append_url('num_radlinks', w.google_num_radlinks);=0A=
+  google_append_url('max_radlink_len', w.google_max_radlink_len);=0A=
+  google_append_url('rl_filtering', w.google_rl_filtering);=0A=
+  google_append_url('rl_mode', w.google_rl_mode);=0A=
+  google_append_url('ad_type', w.google_ad_type);=0A=
+  google_append_url('image_size', w.google_image_size);=0A=
+  google_append_url('feedback_link', w.google_feedback);=0A=
+  google_append_url_esc('ref', w.google_referrer_url);=0A=
+  google_append_url_esc('loc', w.google_page_location);=0A=
+  google_get_user_data();=0A=
+=0A=
+  w.google_ad_url =3D w.google_ad_url.substring(0, 1000);=0A=
+  w.google_ad_url =3D w.google_ad_url.replace(/%\w?$/, '');=0A=
+=0A=
+  if (google_ad_output =3D=3D 'js' && w.google_ad_request_done) {=0A=
+    document.write('<scr' + 'ipt language=3D"JavaScript1.1"' +=0A=
+                   ' src=3D' + quoted(google_ad_url) +=0A=
+                   '></scr' + 'ipt>');=0A=
+  } else if (google_ad_output =3D=3D 'html') {=0A=
+    if (w.name =3D=3D 'google_ads_frame') {=0A=
+      google_write_tracker('reboundredirect');=0A=
+    } else {=0A=
+      document.write('<ifr' + 'ame' +=0A=
+                     ' name=3D"google_ads_frame"' +=0A=
+                     ' width=3D' + quoted(w.google_ad_width) +=0A=
+                     ' height=3D' + quoted(w.google_ad_height) +=0A=
+                     ' frameborder=3D' + quoted(w.google_ad_frameborder) =
++=0A=
+                     ' src=3D' + quoted(w.google_ad_url) +=0A=
+                     ' marginwidth=3D"0"' +=0A=
+                     ' marginheight=3D"0"' +=0A=
+                     ' vspace=3D"0"' +=0A=
+                     ' hspace=3D"0"' +=0A=
+                     ' allowtransparency=3D"true"' +=0A=
+                     ' scrolling=3D"no">');=0A=
+      google_write_tracker('noiframe');=0A=
+      document.write('</ifr' + 'ame>');=0A=
+    }=0A=
+  }=0A=
+=0A=
+  w.google_ad_frameborder =3D null;=0A=
+  w.google_ad_format =3D null;=0A=
+  w.google_page_url =3D null;=0A=
+  w.google_language =3D null;=0A=
+  w.google_gl =3D null;=0A=
+  w.google_country =3D null;=0A=
+  w.google_region =3D null;=0A=
+  w.google_city =3D null;=0A=
+  w.google_hints =3D null;=0A=
+  w.google_safe =3D null;=0A=
+  w.google_encoding =3D null;=0A=
+  w.google_ad_output =3D null;=0A=
+  w.google_max_num_ads =3D null;=0A=
+  w.google_ad_channel =3D null;=0A=
+  w.google_contents =3D null;=0A=
+  w.google_alternate_ad_url =3D null;=0A=
+  w.google_alternate_color =3D null;=0A=
+  w.google_color_bg =3D null;=0A=
+  w.google_color_text =3D null;=0A=
+  w.google_color_link =3D null;=0A=
+  w.google_color_url =3D null;=0A=
+  w.google_color_border =3D null;=0A=
+  w.google_color_line =3D null;=0A=
+  w.google_adtest =3D null;=0A=
+  w.google_kw_type =3D null;=0A=
+  w.google_kw =3D null;=0A=
+  w.google_num_radlinks =3D null;=0A=
+  w.google_max_radlink_len =3D null;=0A=
+  w.google_rl_filtering =3D null;=0A=
+  w.google_rl_mode =3D null;=0A=
+  w.google_ad_type =3D null;=0A=
+  w.google_image_size =3D null;=0A=
+  w.google_feedback =3D null;=0A=
+  w.google_skip =3D null;=0A=
+  w.google_page_location =3D null;=0A=
+  w.google_referrer_url =3D null;=0A=
+}=0A=
+=0A=
+function google_error_handler(message, url, line) {=0A=
+  google_show_ad();=0A=
+  return true;=0A=
+}=0A=
+=0A=
+window.onerror =3D google_error_handler;=0A=
+=0A=
+if (window.google_ad_frameborder =3D=3D null) {=0A=
+  google_ad_frameborder =3D 0;=0A=
+}=0A=
+=0A=
+if (window.google_ad_output =3D=3D null) {=0A=
+  google_ad_output =3D 'html';=0A=
+}=0A=
+=0A=
+if (window.google_ad_format =3D=3D null && window.google_ad_output =
+=3D=3D 'html') {=0A=
+  google_ad_format =3D google_ad_width + 'x' + google_ad_height;=0A=
+}=0A=
+=0A=
+if (window.google_page_url =3D=3D null) {=0A=
+  google_page_url =3D document.referrer;=0A=
+  if (window.top.location =3D=3D document.location) {=0A=
+    google_page_url =3D document.location;=0A=
+    google_last_modified_time =3D Date.parse(document.lastModified) / =
+1000;=0A=
+    google_referrer_url =3D document.referrer;=0A=
+  }=0A=
+} else {=0A=
+  google_page_location =3D document.referrer;=0A=
+  if (window.top.location =3D=3D document.location) {=0A=
+    google_page_location =3D document.location;=0A=
+  }=0A=
+}=0A=
+=0A=
+google_show_ad();=0A=
+=0A=
+=0A=
+
+------=_NextPart_000_0000_01C4BAC0.D8C39500--

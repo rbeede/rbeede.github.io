@@ -1,0 +1,22 @@
+# UTC EPOCH of original creation time
+1329776878
+# UTC EPOCH of last modified time
+1329776924
+# CATEGORY
+Programming
+# TITLE
+My chosen IDE
+# CONTENT in fragment XHTML until EOF
+I have done mostly Java development.  I've used Eclipse historically because it had better performance than NetBeans.
+
+<p>
+For non-Java development I usually end up using <a href="http://notepad-plus-plus.org/">Notepad++</a>.
+</p>
+
+<p>
+My latest strivings with C/C++ have found me using <a href="http://netbeans.org/downloads/index.html">NetBeans</a>.  I tried the Eclipse CDT (version 8), but it had a lot of bugs and didn't work well with MinGW (I don't like CygWin because of dll headaches).  I considered Visual Studio Express and even a licensed Pro edition, but I want to be more careful about writing code that is more cross platform friendly.
+</p>
+
+<p>
+NetBeans 7 works great with MinGW.  I also like on the Java side how it supports Maven, Git, and SVN built-in.  A faster desktop helps too for handling former speed issues.
+</p>

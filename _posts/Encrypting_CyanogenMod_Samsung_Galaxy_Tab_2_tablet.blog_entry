@@ -1,0 +1,33 @@
+# UTC EPOCH of original creation time
+1479162603
+# UTC EPOCH of last modified time
+1479162603
+# CATEGORY
+Computer Problems
+# TITLE
+Encrypting CyanogenMod Samsung Galaxy Tab 2 tablet
+# CONTENT in fragment XHTML until EOF
+Ran into an issue since CyanogenMod 11 (and also now 13) that my Samsung Galaxy Tab 2 7.0" (GT-P113) wifi tablet would not encrypt.  Using this method of manual encryption fixed it:
+
+<p>
+<a href="http://android.stackexchange.com/questions/117405/how-do-you-encrypt-your-device-running-cyanogenmod-12-1">How do you encrypt your device running CyanogenMod 12.1? - http://android.stackexchange.com/</a>
+</p>
+
+<p>
+Short version in case link goes 404:
+</p>
+
+<ol>
+<li>Prepare to lose all your settings and data</li>
+<li>Boot phone normally (not recovery)</li>
+<li>Enable developer options (About Tablet, tap build 7 times)</li>
+<li>Enable ADB over USB</li>
+<li>Allow root for ADB</li>
+<li>On your computer now</li>
+<li>adb root</li>
+<li>adb shell</li>
+<li>vdc cryptfs enablecrypto wipe pin 12345
+<ul><li>Or you may use the password method and a hex-encoded (ascii) password</li></ul>
+</li>
+<li>Device will take 5 minutes and then reboot encrypted</li>
+</ol>

@@ -1,0 +1,37 @@
+# UTC EPOCH of original creation time
+1355600559
+# UTC EPOCH of last modified time
+1355600692
+# CATEGORY
+Computer Problems
+# TITLE
+Wrong times on SD Card from digital Camera or Camcorder (FAT file system)
+# CONTENT in fragment XHTML until EOF
+So I was looking at my SD card from my camcorder and digital camera when I noticed the times were different than the copies on my computer.  Turns out the FAT (FAT16, FAT32) file systems do not store time zone information.  Whatever file you create on such a file system is marked with the current local time.  When viewed on another system the time stamp is treated as that system's local time.
+
+<p>
+So if you take a picture in California at 3:00PM (your device's clock time) and copy the contents from the SD Card in New York the file time will be 3:00PM New York time instead of California.  Annoying if you wanted to preserve the dates or do synced backups/copies.
+</p>
+
+<p>
+exFAT also stores according to local time but has an optional time zone offset.  Most cameras and other devices don't have a concept of the actual time zone or store it.  For those that do you usually have a Home / World zone setter which simply adjusts the current device time.  Some even have a Summer Setting (Daylight Savings Time) which adjusts the clock, but they don't do so automatically.
+</p>
+
+<p>NTFS (used mainly on computers not portable devices) stores the time in UTC so it can be translated to the local device time zone and others without issue.  No DST complexity either.  Once you get the file onto this file system it will keep the original date, but copy to a FAT file system, and it translates to just the local time again.
+</p>
+
+<p>
+Your best option is to remember to adjust the time on your camera or other portable device.  Don't forget Daylight Savings Time changes.  You also have to copy the files (photos) onto a computer in the same time zone and daylight savings time state as when the pictures were taken.  Annoying if you take a photo the day before DST and then sync it a few days later.  The time will be off.
+</p>
+
+<p>
+The Exif header information in photos such as "Date Taken" appear to never carry time zone info.
+</p>
+
+<p>
+References:
+</p>
+
+<ul>
+<li><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms724290(v=vs.85).aspx">File Times (Windows) - MSDN</a></li>
+</ul>

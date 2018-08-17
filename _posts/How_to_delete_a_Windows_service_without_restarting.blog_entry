@@ -1,0 +1,39 @@
+# UTC EPOCH of original creation time
+1240594133
+# UTC EPOCH of last modified time
+1240594133
+# CATEGORY
+Tech Tricks
+# TITLE
+How to delete a Windows service without restarting
+# CONTENT in fragment XHTML until EOF
+<p>Tested on Windows XP Pro or Server 2003 machines.  Also works for Windows 2000, but you must copy the sc.exe command to the box from a Windows 2003 box.
+</p>
+
+<p>
+This works best if you close the Services console (services.msc) first.
+</p>
+
+<p>
+Do the following
+</p>
+<ol>
+	<li>sc \\machine stop "service name"</li>
+	<li>sc \\machine delete "service name"</li>
+</ol>
+
+<p>
+Note that service name is the internal name of the service and not the descriptive one you see in the Services console.  View the service properties to get the internal name.
+</p>
+
+<p>
+Give it 15 seconds to fully remove the service.  If the service just gives you the Marked for deletion message do the following:
+</p>
+
+<ol>
+	<li>Run regedit</li>
+	<li>Navigate to HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\<i>ServiceName</i></li>
+	<li>Change the DeleteFlag from 1 to 0</li>
+</ol>
+
+	

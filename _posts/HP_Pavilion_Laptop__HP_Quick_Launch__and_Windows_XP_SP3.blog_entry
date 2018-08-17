@@ -1,0 +1,33 @@
+# UTC EPOCH of original creation time
+1224651360
+# UTC EPOCH of last modified time
+1224651360
+# CATEGORY
+Computer Problems
+# TITLE
+HP Pavilion Laptop, HP Quick Launch, and Windows XP SP3
+# CONTENT in fragment XHTML until EOF
+So I did a fresh install of Windows XP Pro SP3 (32-bit) on a HP Pavilion dv1000 CTO laptop.  I tried installing the QuickPlay drivers given on HP's website for that model.  The buttons did not work after installation.
+<p>
+I tried the following to (unsuccessfully) fix the issue:
+</p>
+
+<ol>
+<li>Uninstall any QuickPlay (QuickLaunch) software via Control Panel</li>
+<li>Install .NET Framework 2.0 runtime (redist) or later</li>
+<li>Install the QuickLaunch software
+     <ol>
+     <li>I used version QuickLaunch - 6.40.8.2H,20Aug2008 -- sp40139</li>
+     <li>Try doing a search on HP's <b>business</b> support website for "HP Quick Launch Buttons" <a href="http://h20000.www2.hp.com/bizsupport/TechSupport/Home.jsp">link</a></li>
+     </ol>
+</li>
+<li>Reboot when asked</li>
+</ol>
+
+<p>
+So Windows XP SP3 and Quick Launch (Quick Play) buttons do not work yet.  Hopefully HP will find a solution to this issue and release an updated version.
+</p>
+
+<p>
+Note however that even without installing the driver the volume up/down, mute, play, pause, forward, back, and stop buttons still tend to work.  The DVD and ♫ buttons will not work until HP resolves this issue.
+</p>

@@ -1,0 +1,148 @@
+#!/usr/bin/perl
+################################################################################
+#  signup.pl
+#  
+#  Author:  Rodney Beede
+# 
+#  Version:  1.0
+#
+#  Copyright:  2001 © Rodney Beede
+#
+#  Description:  Signs up alias accounts for @texasbites.com.  Takes the
+#	following params:
+#	alias -- e-mail alias name to make
+#	forward -- e-mail address to forward to
+#	password -- password for alias acccount
+#	password2 -- confirmation for password param
+#
+#	Checks the desired alias against all current aliases.  Adds the new
+#	alias to the file defined in ACCOUNTS_FILE
+#
+#
+################################################################################
+
+use CGI ':standard';
+
+# Global vars
+$ACCOUNTS_FILE = "/home/webmaster/texasbites_accounts";
+$MAIL_SERVER_FILE = "/etc/mail/virtusertable";
+
+# Grab params
+$alias = param('alias'); 
+$forward = param('forward');
+$password = param('password');
+$password2 = param('password2');
+
+# HTML header start
+print "Content-type: text/html\n\n";
+print "<HTML><BODY>\n\n";
+
+# Let user know what's going on
+print "Attempting to create account for $alias\@texasbites.com...\n";
+
+
+# Compare passwords to see if they match
+if( $password ne $password2 ) {
+	# Failure to provide matching password, tell user
+	print "<P><FONT color='red'>FAILURE</FONT> -- You failed to provide a" .
+	   " matching password.\n";
+
+	goto EndOfScript;
+} else {
+	print "<P>Password&nbsp;OK...\n";
+}
+
+
+# Read in our texasbites accounts file
+open( ACCOUNTS_FH, $ACCOUNTS_FILE );
+@lines = <ACCOUNTS_FH>;
+close( ACCOUNTS_FH );
+# Parse lines into our hash
+$i = 0;
+foreach $currLine (@lines) {
+	@currLineData = split(/\t/, $currLine);
+
+	$accountsData{'id'}{$i} = $i;
+	$accountsData{'alias'}{$i} = $currLineData[0];
+	$accountsData{'forward'}{$i} = $currLineData[1];
+	$accountsData{'password'}{$i} = $currLineData[2];
+
+	$i++;
+}
+
+# Save the accountsData hash size
+$accountsData{'size'} = $i;
+
+
+# Loop through all of our accounts, making sure the desired name isn't
+# already taken
+for ($i = 0; $i < $accountsData{'size'}; $i++) {
+	if( $accountsData{'alias'}{$i} eq $alias ) {
+		# Failure to provide matching password, tell user
+		print '<P><FONT color="red">FAILURE</FONT> -- Your desired ' .
+		   'alias, <b>' . $alias . '</b>, is already taken.  ' .
+		   'Please choose another one instead.  ' .
+		   '<A HREF="javascript:history.back();">Click here</A> to ' .
+		   'go back.';
+
+		goto EndOfScript;
+	}
+}  
+# This alias is available, let user know it's ok
+print "<P>Alias $alias\@texasbites.com is OK...\n";
+
+
+# Make sure user provided a forwarding e-mail address
+if( $forward eq "" || $forward eq null ) {
+	# Tell user they messed up
+	print "<P><FONT color='red'>FAILURE</FONT> -- You failed to provide" .
+	   " a forwarding e-mail address.  " .
+	   " <A href='javascript:history.back();'>Click here</A> to go back.";
+
+	goto EndOfScript;
+}
+# User provided a forwarding e-mail address, it's ok
+print "<P>Forwarding Address $forward is OK...\n";
+
+
+# Append the new account to our list
+if( !open(ACCOUNTS_FH, ">>$ACCOUNTS_FILE") ) {
+	print "<P><FONT color='red'>FAILURE</FONT> -- System failure.  Please" .
+	   " contact rodney\@rodneybeede.com.";
+
+	goto EndOfScript;
+}
+
+print ACCOUNTS_FH "\n$alias\t$forward\t$password\n";
+close(ACCOUNTS_FH);
+
+
+# Add the e-mail alias to our e-mail server
+if( !open(MAILSRV_FH, ">>$MAIL_SERVER_FILE") ) {
+	print "<P><FONT color='red'>FAILURE</FONT> -- System failure 2." .
+	   "Please contact rodney\@rodneybeede.com.";
+
+	goto EndOfScript;
+}
+
+print MAILSRV_FH "$alias\@texasbites.com $forward\n";
+close(MAILSRV_FH);
+
+
+# Issue the system command to rebuild the e-mail server database
+$sysCmd = `/usr/sbin/makemap hash $MAIL_SERVER_FILE < $MAIL_SERVER_FILE`;
+
+print "<hr>OUTPUT:  $sysCmd<hr>";
+
+
+# Tell user all is well and done
+print "<H1>Success!!!<H1>\nYour new alias has been setup.  You should receive a confirmation e-mail shortly.";
+
+
+# Print footer info
+EndOfScript:
+print "\n\n</BODY></HTML>";
+#  EOF
+
+
+

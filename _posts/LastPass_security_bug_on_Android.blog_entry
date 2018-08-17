@@ -1,0 +1,69 @@
+# UTC EPOCH of original creation time
+1368411291
+# UTC EPOCH of last modified time
+1368411291
+# CATEGORY
+Security
+# TITLE
+LastPass security bug on Android
+# CONTENT in fragment XHTML until EOF
+I discovered a security bug with LastPass Android application.  LastPass is a password vault solution that syncs your passwords in the cloud and can help you use a different password for each site.
+
+<p>
+I enabled the LastPass keyboard functionality on my Android tablet so I could auto-fill in credentials on sites I visit and apps I use.  I discovered, however, that the default behavior is to also allow use of this keyboard on the lock screen of you tablet thus giving an attacker access to the list of your sites.  If any of those sites have the same password as your device lock screen password an attacker could unlock your tablet as well.
+</p>
+
+<p>
+I'd rate this as a low severity information disclosure issue since an attacker wouldn't be able to access the password contents unless one of them matches your password for your Android device.  I did contact the LastPass folks, and their response was to use a work around of enabling a PIN before each access to the LastPass keybaord.  A little inconvenient though so I choose to simply disable the keyboard for now until they can provide a fix (they did acknowledge the bug) so that the LastPass keyboard is not available at all.  I just use the other methods which are a little more work.  I was impressed by the timeliness of their response which is what really counts for any software company.
+</p>
+
+
+<p>
+<a href="./images/LastPass_Vulnerability_Report__2013-04-19.png">LastPass Support Screenshot</a>
+</p>
+
+<pre>
+
+2013-04-19 16:10
+Drew	I'd recommend enabling the PIN prompt in the LastPass app to protect against this behavior.
+
+
+2013-04-19 14:30
+AndrewK
+
+Hello,
+
+Thank you for bringing this issue to our attention. I was able to reproduce and have forwarded it to the development team. 
+
+Best,
+
+Andrew
+
+
+2013-04-19 11:03
+You
+
+Information disclosure on lock screen when LastPass keyboard is enabled and possible compromise of device lock screen security.
+
+
+When I lock my tablet and then press to unlock the tablet I can choose the LastPass keyboard. Hitting the LastPass icon brings up the list of accounts in my vault. Selecting one fills in the password automatically on the lock screen input.
+
+Security issue # 1: This allows an attacker to view the list of accounts in my vault.
+
+Security issue # 2: If one of those accounts shares the password with my device it will unlock it.
+
+A user would not expect that locking their tablet would also require first logging out from Lastpass to disable the lock screen from being auto-filled in or revealing this information.
+
+My device is fully encrypted and by policy requires password auth (pin and swipe are disabled) to meet security requirements. This issue causes my device to fail to meet these requirements.
+
+I enabled the LastPass keyboard as instructed for application use by going to Settings, Language and input, Keyboards and input methods, checked "LastPass"
+
+Recommendation:
+Do not allow LastPass auto-fill or access from the lock screen. An alternative would be to automatically logout the user from LastPass when they lock their device so the LastPass keyboard does not have any sites at the lock screen.
+
+
+Android 4.1.1
+Samsung Galaxy Tab 2 7.0"
+
+Lastpass Android app version 2.0.4
+</pre>

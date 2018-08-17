@@ -1,0 +1,43 @@
+# UTC EPOCH of original creation time
+1296516946
+# UTC EPOCH of last modified time
+1305043345
+# CATEGORY
+Tech Tricks
+# TITLE
+Restoring your HTC Hero (CDMA Sprint) from a custom ROM to the original factory ROM
+# CONTENT in fragment XHTML until EOF
+So you decide to revert back to the official rom or you need to return the phone for warranty or you are selling it.  Here are some simple instructions:
+
+<h1>You will need:</h1>
+
+<ol>
+	<li>Windows 7 Home Premium Edition 64-bit
+		<ul><li>Actually any version of Windows XP or later or Linux could work, but these instructions were written using a machine with Windows 7</li></ul>
+	</li>
+	<li>
+		<a href="http://www.htc.com/us/support/hero-sprint/downloads/">HTC SYNC UPDATE</a>
+		<ul><li>You may also just try the USB drivers only by downloading them from <a href="http://developer.htc.com/">http://developer.htc.com/</a></li></ul>
+	</li>
+	<li><a href="http://www.htc.com/us/support/hero-sprint/downloads/">HTC HERO (SPRINT) 2.1 SOFTWARE UPDATE</a></li>
+</ol>
+
+<h1>Steps</h1>
+
+<ol>
+	<li>Backup everything on your phone!
+		<ul>
+			<li>I like SMS Backup (Christoph Studer) for backing up my SMS and MMS messages to my Google Mail</li>
+			<li>If you have a Google account you can login to it on your phone to backup all your contacts</li>
+			<li>Remember to backup your SDCard contents too</li>
+		</ul>
+	</li>
+	<li>Install HTC SYNC (or the USB drivers) before running the RUU update or plugging in your phone</li>
+	<li>Plug in your phone to your computer via USB</li>
+	<li>Make sure your phone is in USB Charging mode and not USB Disk mode</li>
+	<li>Run the HTC HERO (SPRINT) 2.1 SOFTWARE UPDATE</li>
+	<li>Go through the prompts</li>
+	<li>Once complete you should reboot your phone and the original factory ROM will be installed just like you never used it before</li>
+	<li>Login to your Google account on your phone to restore contacts, etc.</li>
+	<li>You can also manually check for OTA (over the air) updates on your phone to update it to the latest official version</li>
+</ol>

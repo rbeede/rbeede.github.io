@@ -1,0 +1,72 @@
+# UTC EPOCH of original creation time
+1511805321
+# UTC EPOCH of last modified time
+1516163271
+# CATEGORY
+Security
+# TITLE
+Google domain phishing weakness
+# CONTENT in fragment XHTML until EOF
+<p>
+Found a low-risk phishing weakness with a Google domain (googleapis.com).  Even though it is related to phishing and doesn't have an OWASP Top 10 vulnerability (i.e. XSS) I thought it worth reporting to Google to see if they might consider a technical measure to at least stop it.
+</p>
+
+<p>
+fonts.googleapis.com could be considered a trusted domain by users.  It is possible to add arbituary text input (no html) into the page as an error message to the user.  Adding some emoji unicode characters causes the page to look more scary and legit to an unsuspecting victim.  An example image of what the malicious page looks like on an Android mobile device:<br />
+<img src="./images/phishing_google.png" width="25%" />
+</p>
+
+<p>
+The URL I used was:
+</p>
+
+<p>
+<a href="https://fonts.googleapis.com/css?directory=3&family=%E2%9B%94%E2%9A%A0%E2%9A%A0%E2%9A%A0%E2%9B%94%20WARNING-%20Your%20account%20has%20become%20corrupt%20and%20is%20at%20risk%20for%20data%20loss.%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%20To%20recover%20your%20data%20please%20visit%20http%2F%2Fsafety.googl.co">https://fonts.googleapis.com/css?directory=3&family=view_html_source</a>
+</p>
+
+
+<h2>Disclosure Timeline</h2>
+
+<table>
+<tr>
+	<td>Nov 17, 2017</td>
+	<td>Reported issue to Google with details.  Issue # 69462781</td>
+</tr>
+<tr>
+	<td>Nov 22, 2017</td>
+	<td>Vendor responds that this is Intended Behavior and not considered a security bug.</td>
+</tr>
+<tr>
+	<td>Nov 27, 2017</td>
+	<td>Public blog post</td>
+</tr>
+</table>
+
+<h2>Vendor's Quoted Response</h2>
+
+<p>
+We've investigated your submission and made the decision not to track it as a security bug. It will also not be accepted as part of our VRP. Only first reports of technical security vulnerabilities that substantially affect the confidentiality or integrity of our users' data are in scope, and unfortunately we feel the issue you mention does not meet that bar :(
+</p>
+
+<p>
+Reflecting text in a web application or an e-mail message is a known issue with too little practical impact, if the resulting text/HTML is sanitized and allows only for a limited formatting (e.g. XSS is not possible).
+</p>
+
+<p>
+Please read here for our rationale for this issue: https://sites.google.com/site/bughunteruniversity/nonvuln/limited-content-reflection-or-content-spoofing
+</p>
+
+<p>
+If you think we've misunderstood, please do let us know!
+</p>
+
+
+<h2>Concluding thoughts</h2>
+
+<p>
+I stated in my initial report that I also thought it was a low-risk/severity issue.  I did recommend:  "Limit the url param echoed text on the page to only 10 characters or don't show it at all.   (If needed for debug require a "Details..." button to show the content or even base64 encode it so only a developer who knows what base64 is will decode it outside of their web browser anyway.)"
+</p>
+
+<p>
+Because the domain may be more trusted it would have been nice to see the message text limited.  I think it is really only meant for developers who are debugging anyway.  It would at least reduce opportunity for phishing attacks, but it is Google's decision on what to prioritize.
+</p>

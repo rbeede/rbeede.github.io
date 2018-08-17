@@ -1,0 +1,38 @@
+# UTC EPOCH of original creation time
+1219118760
+# UTC EPOCH of last modified time
+1219118760
+# CATEGORY
+Computer Problems
+# TITLE
+Half-Life 2 (Demo) and Stuttering Problem (aka lag, choppy)
+# CONTENT in fragment XHTML until EOF
+So I'm waiting for my order of Half-Life: Orange Box to come in the mail.  I decided I would download the Half-Life 2 Demo and play it some.  I installed it on my Vista machine (custom built mentioned on this site) and played the demo levels.
+<p>
+I noticed every 5-10 minutes the game will start to stutter in play.  The audio would stutter/loop and the video movement would get very, very slow.
+</p>
+
+<p>
+I did a web search on the problem and tried some of the given advice.
+</p>
+
+<ul>
+<li>disable background services</li>
+<li>try lower video/sound settings</li>
+<li>update video/sound drivers</li>
+<li>defrag disk</li>
+<li>turn off sound in game</li>
+<li>etc...</li>
+</ul>
+
+<p>
+None of those things helped at all.  It only seems to happen in game.  When I record a long demo then play it back the issue never occurs.
+</p>
+
+<p>
+I decided to try Windows XP on the same hardware.  I disconnected my hard drives and hooked up a spare one.  I then install Windows XP SP3 and all the latest drivers on it.  After that I installed Steam and Half-Life 2 Demo.  The problem was even WORSE even with a clean OS install, drivers, and game.
+</p>
+
+<p>
+My only hope is that when the full version of the game arrives it will have patches that are not available for the demo.  With luck that will solve the issue right away.
+</p>

@@ -1,0 +1,126 @@
+# UTC EPOCH of original creation time
+1519699930
+# UTC EPOCH of last modified time
+1526406047
+# CATEGORY
+Games
+# TITLE
+Howto setup Synergy Half-life 2 dedicated server on Linux
+# CONTENT in fragment XHTML until EOF
+<h1>Pre-reqs</h1>
+
+<ol>
+	<li>You need a Steam account with a purchased copy of Half-life 2 (ep0, 1, or 2)
+		<ul><li>Only needed once during install, not required for running server afterwards (server will run anonymously)</li></ul>
+	</li>
+	<li>Ubuntu 17.10 Server 64-bit
+		<ul><li>Used in my setup, but the 16.04 LTS would probably work too</li></ul>
+	</li>
+	<li>About 20GB of disk space per episode</li>
+	<li>Appropriate iptables firewall rules to permit traffic (doced later)</li>
+	<li>512MB of memory is sufficient, 1 vCPU</li>
+</ol>
+
+
+<h1>Steps</h1>
+
+<h2>Setup steam user and steamcmd</h2>
+
+<ol>
+	<li>Following assume you are root, but can prefix with sudo if you like</li>
+	<li>useradd -m steam</li>
+	<li>apt-get update; apt-get -y dist-upgrade; apt-get -y autoremove; apt-get -y autoclean; apt-get -y clean</li>
+	<li>reboot</li>
+	<li>apt-get install lib32gcc1</li>
+	<li>su - steam</li>
+	<li>mkdir ~/Steam && cd ~/Steam</li>
+	<li>curl -O "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+		<ul><li>The apt-get install steamcmd is not recommended, use latest instead</li></ul>
+	</li>
+	<li>tar -xvf steamcmd_linux.tar.gz</li>
+	<li>iptables -A INPUT -p udp --dport 27015 -j ACCEPT</li>
+	<li>iptables -A INPUT -p tcp --dport 27015 -j ACCEPT</li>
+</ol>
+
+<h2>Download Half-life 2 and Synergy</h2>
+
+<ol>
+	<li>su - steam
+		<ul><li><i>If not already</i></li></ul>
+	</li>
+	<li>cd ~steam/Steam/</li>
+	<li>bash ./steamcmd.sh login YOUR_USERNAME app_update 17520 app_update 220
+		<ul>
+			<li>Enter your password when prompted.  Also 2FA code if asked</li>
+			<li>Add more add_update ### if you want the other episodes too (hl2=220, ep1=380, ep2=420, lostCoast=340, ep3=*all*_the_decimals_in_pi)</li>
+		</ul>
+	</li>
+	<li>cd ~steam/Steam/steamapps/common/Synergy/synergy/</li>
+	<li>vi mount.cache
+		<ul>
+			<li>Add which game to mount as needed (hl2, ep1, ep2)</li>
+			<li>Create file if necessary</li>
+			<li>hl2,ep1,ep2</li>
+		</ol>
+	</li>
+	<li>vi motd.txt</li>
+	<li>vi cfg/server.cfg<br />
+		hostname "NotOSNameButNameYouWantToShowInSynergy"<br />
+		rcon_password "betterMakeThisGoodOrYouGetPwned_also-not-encrypted-over-network"<br />
+		sv_password "you-can-leave-this-as-empty-quotes-for-public-server"<br />
+		<br />
+		sv_tags "mario,luigi"<br />
+		<br />
+		sv_cheats 1<br />
+		developer 1<br />
+	</li>
+</ol>
+
+
+<h1>Run Server</h1>
+
+<pre>
+cd ~steam/
+nohup sudo -i -u steam /home/steam/Steam/steamapps/common/Synergy/srcds_run -console -game synergy -port 27015 +map d1_trainstation_01 -nocrashdialog -insecure -nohltv &
+</pre>
+
+
+<h1>rcon (Remote Console to admin server from client)</h1>
+
+This tends to not work as the TCP port binds itself to the second network adapter instead of INET_ANY (0.0.0.0) or your primary IP.  Seems to be a bug, and I don't know of any config option or workaround.
+
+<p>
+I just ssh onto the server box and run a local rcon program in python to edit variables live.  Or you can place any settings you need in your server.cfg.
+</p>
+
+<ol>
+	<li>apt-get install python3-pip
+		<ul><li>python 3 is important</li></ul>
+	</li>
+	<li>python3 --version</li>
+	<li>su - steam</li>
+	<li>pip3 install pysrcds</li>
+	<li>python3 rcon.py status</li>
+</ol>
+
+<h3>rcon.py</h3>
+
+<pre>
+from srcds.rcon import RconConnection
+import sys
+
+conn = RconConnection('YOUR_SECOND_NIC_INTERFACE_IP_HERE', '27015', 'betterMakeThisGoodOrYouGetPwned_also-not-encrypted-over-network', single_packet_mode=True)
+response = conn.exec_command(sys.argv[1])
+
+print( response )
+</pre>
+
+
+<h1>References</h1>
+
+<ul>
+	<li><a href="http://www.synergymod.net/Documents/Dedicated%20Servers">http://www.synergymod.net/Documents/Dedicated%20Servers</a></li>
+	<li><a href="https://github.com/pmrowla/pysrcds">https://github.com/pmrowla/pysrcds</a></li>
+	<li><a href="https://developer.valvesoftware.com/wiki/Source_Dedicated_Server">https://developer.valvesoftware.com/wiki/Source_Dedicated_Server</a></li>
+	<li><a href="http://forums.srcds.com/viewtopic/2311">http://forums.srcds.com/viewtopic/2311</a></li>
+</ul>

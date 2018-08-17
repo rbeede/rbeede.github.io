@@ -1,0 +1,17 @@
+# UTC EPOCH of original creation time
+1340208360
+# UTC EPOCH of last modified time
+1342923049
+# CATEGORY
+Computer Problems
+# TITLE
+Good explanation of why USB is slow
+# CONTENT in fragment XHTML until EOF
+A good article that explains why you never see the maximum performance from USB that you'd expect.
+
+<p>
+<a href="http://www.tomshardware.com/reviews/usb-3-uas-turbo,3215.html">"Faster USB 3.0 Performance: Examining UASP And Turbo Mode"; June 20, 2012 by Andrew Ku</a>
+</p>
+
+<p>
+<a href="http://electronicdesign.com/article/embedded/whats-difference-usb-uasp-bot-73593">Another good explanation of UASP</a> - tells why most devices are not coming close to using all of USB 3.0's speed.

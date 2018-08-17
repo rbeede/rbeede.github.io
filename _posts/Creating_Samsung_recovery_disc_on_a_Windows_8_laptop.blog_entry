@@ -1,0 +1,108 @@
+# UTC EPOCH of original creation time
+1375721454
+# UTC EPOCH of last modified time
+1375901652
+# CATEGORY
+Tech Tricks
+# TITLE
+Creating Samsung recovery disc on a Windows 8 laptop
+# CONTENT in fragment XHTML until EOF
+<p>
+<span style="font-weight:bold;">Update 7 Aug. 2013</span>
+</p>
+
+<p>
+Neither the Samsung Recovery "Factory image" backup nor the Windows 8 Recovery backup (with copy of Recovery partition) seem capable of performing a restore to a blank new hard drive.  Both tell me that no image can be found even though on the Samsung Recovery Factory image there are 17GB+ of files.  Maybe both recovery programs use the same restore software and fail to create require partitions and GPT attributes.
+</p>
+
+<p>
+I've contacted Samsung Support via Facebook for assistance or options other than mailing my laptop in to be re-imaged.  Update:  Samsung Support has confirmed that the Samsung Recovery will not work on a blank hard drive.  You have to send in your laptop as none of the recovery options support blank/new drives.
+</p>
+
+<p>
+If I find a legal and legit source to download a Windows 8 ISO I'll create a new blog entry and link to it.  Since the product key is embedded in the BIOS doing activation shouldn't be too difficult (I hope).  Update:  If you have an MSDN subscription you can try <a href="http://msdn.microsoft.com/en-us/subscriptions/downloads/hh442898.aspx#FileId=50110">here</a>.  You can verify your download integrity with the provided SHA1 hash.
+</p>
+
+<hr />
+
+
+<p>
+<span style="font-weight:bold;">Update 6 Aug. 2013</span>
+</p>
+
+<p>
+I inquired to Samsung Support about purchasing some recovery disc.  They said they cannot send me any disc but instead I must mail my laptop to them and they will re-image the system.  $39.99 plus the shipping cost to get it there!
+</p>
+
+<p>
+Better yet is that the Windows 8 Recovery USB I made is unable to do a restore to a blank hard disk.  The Reset your PC and every other option refuses to work unless you already have required partitions on the disk marked with special GPT attributes.  Super LAME!  See <a href="http://forum.xda-developers.com/showthread.php?t=2350875">XDA Developers (Windows 8, RT Development and Hacking > Windows RT General > disk wiped clean - won't allow me to recover)</a> for help on how to manually recover your system from the command-line using your USB recovery drive.  Also known as "Unable to reset your PC. A required drive partition is missing" error.
+</p>
+
+<p>
+I'd advise making AND testing the Samsung Recovery Solution option or ensure you have a friend with an official Windows 8 ISO you can use.  If you ever have to replace your hard drive you will either have to mail off your laptop to Samsung and pay up or find a copy of Windows 8 ISO (or buy Windows 8 again).
+</p>
+
+<p>
+From a techie perspective or IT support these options for Windows 8 are just horrible.  I blame both OEMs for not including OS install media and Microsoft for making reinstalls so difficult.
+</p>
+
+<p>
+On a side note I did ensure I had UEFI mode enabled in my BIOS otherwise you'll get nowhere with Windows recovery anyway.
+</p>
+
+<hr />
+
+<p>
+Just bought a new Samsung laptop (model Model:  NP365E5C-S02UB) that came with Windows 8.  As is the normal thing now it came with no factory recovery disc.  Most new PCs will prompt you the first time you use the computer to create some factory recovery discs.  That is not the case with this Samsung laptop :'( .
+</p>
+
+<p>
+The printed user guide includes a section on recovery, but it doesn't show how to get to the Samsung recovery program.  You can also no longer burn DVDs but instead need a 17GB+ USB drive to create the Samsung recovery.
+</p>
+
+<p>
+With Windows 8 you also have the option of creating Windows 8 recovery disc which can restore your system, custom settings, and user data.  You still have the option of using DVDs or for this model I was able to use an 8GB USB drive because it fit on it.  This included backing up the OEM factory Recovery partition which is important if you ever have to replace a failed hard drive.  Otherwise you have to purchase recovery media from the OEM and wait 4-6 weeks to get it.  I wish you could download it for free.
+</p>
+
+<p>
+So you have two ways to create recovery media:
+</p>
+
+<ol>
+	<li>Windows 8 Recovery
+		<ul><li><a href="http://www.pcworld.com/article/2041569/how-to-create-a-bootable-windows-8-recovery-tool.html">PC World's Windows 8 Guide</a></li></ul>
+	</li>
+	<li>Samsung Recovery Solution
+		<ol>
+			<li>These directions based on <a href="http://www.samsung.com/us/support/supportOwnersHowToGuidePopup.do?howto_guide_seq=8787&prd_ia_cd=N0000137&map_seq=61414">How To Create A Factory Image In Recovery (Last Updated on 02/25/2013) on samsung.com</a></li>
+			<li>You can only use a USB drive (size need varies but mine was 17GB so I needed a 32GB drive)</li>
+			<li>The USB drive WILL BE ERASED and converted into bootable
+				<ul><li>I made an image file (using Linux dd) of my USB drive after the process so I could back up my recovery</li></ul>
+			</li>
+			<li>In Windows 8 go to your Start screen</li>
+			<li>Right click</li>
+			<li>Select "All Apps"</li>
+			<li>Scroll over to the "Samsung" section and choose Recovery</li>
+			<li>The Samsung Recovery Solution (not the Windows 8 one) should launch
+				<ul>
+					<li>I had version 6</li>
+					<li>An alternative is to press F4 while booting to launch the recovery utility which also allows creating a backup outside of Windows 8</li>
+				</ul>
+				
+			</li>
+			<li>Click on "Factory image"</li>
+			<li>Put in and select your USB drive you wish to ERASE if you haven't already</li>
+			<li>Toggle the "Create boot disk" option to ON</li>
+			<li>Run</li>
+			<li>It will erase and create the bootable USB stick that includes a backup copy of your recovery partition.  Save this USB drive.  You can also use it to restore without erasing all existing data later on.</li>
+		</ol>
+	</li>
+</ol>
+
+<p>
+As for which method is better I don't see much difference other than that the Windows method requires less space.  I haven't tested on a blank hard drive if the restore provides a different amount of software or not.  I did both backup methods and saved images of the USB drives just to be sure.  Ideally one could do a clean install of Windows 8, but I haven't found a free and official source to get the Windows 8 ISO or installer from.  Microsoft is really pushing OEMs to just have recovery partitions with special BIOS options to boot from them.  I guess it is one less disc for an end-user to just lose, but as an IT tech support person it makes fixing someone's computer more difficult.  I do like that the Windows 8 product key is no longer a sticker on the bottom that just rubs off after a few years.  One less headache to deal with when fixing someone's computer.
+</p>
+
+<p>
+The main lesson is to ensure when someone sets up a new computer that they create their recovery discs.  It is more difficult to find in Windows 8 and the user isn't prompted to do so out of the box.  Hard drives fail often and if it does with no recovery disc and no recovery partition available the user may have to either wait weeks or pay hundreds of dollars to rebuy Windows again.  Annoying and lame.
+</p>

@@ -1,0 +1,16 @@
+# UTC EPOCH of original creation time
+1489681261
+# UTC EPOCH of last modified time
+1489681261
+# CATEGORY
+Tech Tricks
+# TITLE
+Command line script way to get SSL certificate
+# CONTENT in fragment XHTML until EOF
+<pre>
+echo quit | openssl s_client -connect www.rodneybeede.com:443 2&gt;/dev/null| sed -ne '/BEGIN CERT/,/END CERT/p'
+</pre>
+
+<p>
+The 2&gt;/dev/null removes output from the openssl command so you can get only the ASCII BASE64 encoded certificate.
+</p>

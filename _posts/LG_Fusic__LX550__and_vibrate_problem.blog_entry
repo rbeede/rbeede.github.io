@@ -1,0 +1,23 @@
+# UTC EPOCH of original creation time
+1219114800
+# UTC EPOCH of last modified time
+1219114800
+# CATEGORY
+Computer Problems
+# TITLE
+LG Fusic (LX550) and vibrate problem
+# CONTENT in fragment XHTML until EOF
+So I got a LG Fusic.  For some reason it kept vibrating every 2-5 minutes even though I had no new alerts/messages nor had any missed/incoming calls.
+<p>
+I found that I had to turn-off message reminders to get it to stop.  A known bug in the phone for years now.  I find LG cell phones to be low quality in general now.
+</p>
+
+<ol>
+<li>Menu (press MENU)</li>
+<li>Settings (press #)</li>
+<li>Messaging (press 6)</li>
+<li>Message Reminder (press 2)</li>
+<li>Set to off</li>
+</ol>
+
+You can still get notification when a voicemail/text message/etc. arrives, but you won't get reminders of unread ones.  Better than the thing vibrating all the time and killing the battery.

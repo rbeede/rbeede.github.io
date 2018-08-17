@@ -1,0 +1,14 @@
+# UTC EPOCH of original creation time
+1316024537
+# UTC EPOCH of last modified time
+1316024537
+# CATEGORY
+Tech Tricks
+# TITLE
+Mount Windows dynamic disks (spanned) in Linux
+# CONTENT in fragment XHTML until EOF
+I found this helpful website that gives the necessary details:  <a href="http://bigli.ch/howto-access-windows-spanned-dynamic-disks-with-ubuntu/">http://bigli.ch/howto-access-windows-spanned-dynamic-disks-with-ubuntu/</a>
+
+<p>
+The tricky part is getting the disk order correct.  In my case I had a fake-raid of 2 750GB disks in a stripe and a separate 1TB disk that was spanned (Windows dynamic disk) to a 1TB partition.  It worked just fine.
+</p>

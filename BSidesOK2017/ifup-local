@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Debian/Ubuntu		-->	/etc/network/if-up.d/show-ip-address
+# Red Hat/CentOS	-->	/sbin/ifup-local
+# If NetworkManager	--> /etc/NetworkManager/dispatcher.d/ifup-local
+# chmod 0550
+# chown root:root
+
+
+if [ "$METHOD" = loopback ]; then
+	exit 0
+fi
+
+if [ "$1" = lo ]; then
+	exit 0
+fi
+
+
+cp /etc/issue-standard /etc/issue
+ip addr show | grep 'inet ' | grep -v 127.0.0.1 | awk '{ print $2 }' >> /etc/issue
+echo "" >> /etc/issue

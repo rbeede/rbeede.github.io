@@ -1,0 +1,27 @@
+# UTC EPOCH of original creation time
+1240867728
+# UTC EPOCH of last modified time
+1426885488
+# CATEGORY
+Programming
+# TITLE
+Dynamically obtain Perl script's directory and filename
+# CONTENT in fragment XHTML until EOF
+Note that this only works if you didn't use the perl -e or someprog | perl piping method.
+
+<p>
+A common method available since perl 5.8:  <a href="http://perldoc.perl.org/FindBin.html">FindBin</a>
+</p>
+
+<p>
+An alternative method:
+</p>
+
+<p>
+It will still work regardless of the calling parent attempting to set $0 to something else in an exec call.  This is because Perl always forces $0 to the value given when you passed in a script for it to run.  This code also resolves any relative pathnames to their absolute counter parts.
+</p>
+
+<pre>
+my $scriptDirectory = File::Basename::dirname(File::Spec->rel2abs($0));
+my $scriptFilename = File::Basename::basename(File::Spec->rel2abs($0));
+</pre>

@@ -1,0 +1,114 @@
+# UTC EPOCH of original creation time
+1375059316
+# UTC EPOCH of last modified time
+1375059316
+# CATEGORY
+Tech Tricks
+# TITLE
+My new custom NAS
+# CONTENT in fragment XHTML until EOF
+I built my own Linux based low-power NAS box.  I had wanted something much faster than my OpenWRT Buffalo router that I was using as a NAS.  I was only getting around 15 megabytes/second on my older NAS with a gigabit link.
+
+<p>
+I decided to build my own NAS versus buying one because for about the same cost I could get something that ran a stock Ubuntu Linux system which would make it easier to customize.  I run some scripts that do file verification overnight and will also use it for an OpenVPN server and rsync for offsite backup server.  While I saw some NAS devices that might have been able to do that they didn't has as much CPU or RAM like I wanted.
+</p>
+
+<p>
+One important consideration was a box that would be very power efficient.  I could have just taken some old spare parts and ran a server, but it would add $10-$15 a month to my electric bill.  I also wanted something that could run 24/7 and not be noisy.
+</p>
+
+<p>
+In terms of hardware I wanted something that had dual cores, 1GB+ ram, and supported USB 3.0.  Ideally before disks cost it would be around $150.  This is what I ended up with:
+</p>
+
+<ul>
+	<li>Biostar A68I-350 DELUXE R2.0 motherboard
+		<ul>
+			<li>Two USB 3.0 ports</li>
+			<li>Three SATA 6.0gbps ports - useful if I use internal drives later</li>
+			<li>Idle power usage of 5 watts, load average of 30 watts</li>
+			<li>Dual core 1.6GHz AMD Fusion APU 350D Dual-Core Processor</li>
+			<li>2 DDR3 slots</li>
+			<li>1 PCIe 4x speed (16x physical) slot</li>
+			<li>Mini-ITX - Small Size!!!</li>
+			<li>$75 on Amazon</li>
+		</ul>
+	</li>
+	<li>MI-008 SuperCase
+		<ul>
+			<li>Small form factor!  Would fit nicely in a TV cabinet shelf</li>
+			<li>Only has two drive slots, but you could cram in 1 more 3.5" if you welded a mount</li>
+			<li>Came with 250 watt power supply</li>
+			<li>Nice optical drive front panel</li>
+			<li>Two front USB 2.0 ports</li>
+			<li>Has HD and AC97 audio cables for front panel</li>
+			<li>$35 on Amazon</li>
+		</ul>
+	</li>
+	<li>Corsair Vengenance 8GB PC3-12800 1600mhz 240-Pin DDR3 Dual Channel
+		<ul>
+			<li>Two sticks of 4GB each</li>
+			<li>$50 on Amazon</li>
+		</ul>
+	</li>
+	<li>3TB USB 3.0 External Hard Drive
+		<ul>
+			<li>I had this already so I just reused it</li>
+			<li>I could have also done an internal HDD on the SATA</li>
+			<li>$120 on Amazon</li>
+		</ul>
+	</li>
+	<li>2GB USB 2.0 Flash Drive
+		<ul>
+			<li>This has the OS installed on it.</li>
+			<li>$6 or free swag lots of times</li>
+		</ul>
+	</li>
+</ul>
+
+<p>
+So $165 before hard drives.  The motherboard also has HDMI and VGA out, but I only needed that during the initial setup.
+</p>
+
+<p>
+I installed Ubuntu 13.04 LTS 64-bit Server Edition on the 2GB USB drive and boot from that.  Since the Ubuntu installer uses grub it identifies the boot drive by UUID so I can plug the drive in on any port with the boot order working just fine.
+</p>
+
+<p>
+The motherboard's BIOS has a lot of options and little documentation.  I initially made the mistake of enabling the thermal shutdown option (in the CPU fan section) which caused the machine to consistently power off hard.  This option wasn't necessary as the system wasn't overheating and another option already would cut the power if it reached a critical level of heat.  I restored the option back to the BIOS default and it worked fine afterwards.
+</p>
+
+<p>
+Updating the BIOS with Windows was as easy as copying the latest BIOS to a USB, inserting the USB, powering on, and hitting F12.  I was prompted to select the USB file and confirm to flash.
+</p>
+
+<p>
+I configured Samba with the most secure settings for the current version (smbd Version 3.6.9) and created the necessary users and shares.
+</p>
+
+<p>
+Overall the system runs very quite and the fan doesn't run at full speed always.  I tested full speed by disabling fan smart control in the BIOS just to see.  When disabled and the fan always at 100% it is quite loud, but when you leave the fan smart control enabled (I usd Auto) it is very quite.
+</p>
+
+<p>
+Performance wise from a Windows 7 machine to the NAS over sftp I only got about 15 megabytes/second with one core of the NAS at 100%.  I used FileZilla which may have been a bottleneck as well.  I didn't do any optimization of the encryption algorithm for sftp so I'm betting that could be made faster.
+</p>
+
+<p>
+Samba performance:
+</p>
+
+<p>
+Windows 7 64-bit (fully patched) to the NAS was my setup.  I ran the benchmark once so the 4GB file would be cached into memory on the NAS.  This test was to verify that my NAS would max out the gigabit connection.  I performed a dd on the 3TB drive on the NAS to verify that USB 3.0 performance was meeting the maximum speed of the drive which it did.
+</p>
+
+<ul>
+	<li>Read - 112 megabytes / second (4GB file)</li>
+	<li>Write - 76 megabytes / second (4GB file)
+		<ul><li>The 3TB drive was almost full and the bottleneck for writes was it</li></ul>
+	</li>
+</ul>
+
+<p>
+I'm very happy with the performance, power usage, and price.  I can also run integrity checks of all the drive data at night or perform other tasks such as compression to archive files.  The NAS makes a great backup device and utilizes the speed of my wired gigabit connection.
+</p>

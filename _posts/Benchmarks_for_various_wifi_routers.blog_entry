@@ -1,0 +1,251 @@
+# UTC EPOCH of original creation time
+1498268744
+# UTC EPOCH of last modified time
+1510456810
+# CATEGORY
+Misc
+# TITLE
+Benchmarks for various wifi routers
+# CONTENT in fragment XHTML until EOF
+I got some routers on clearance and wanted to benchmark them from various locations.  I thought I'd publish my results in case it was useful for others.
+
+<p>
+Each router is running the OEM latest firmware at the time of testing.  A gigabit fiber backbone was used with an 802.11ac wireless client 2x2 MIMO.  The 5ghz spectrum (80mhz) was on a dedicated channel with no others, but 2.4ghz was in a residential neighborhood of homes with probably average 3 other signals on 1,6,11.  This gives a nice average real-world comparison for typical crowded 2.4ghz.
+</p>
+
+<table border="1"><tr><th>Device</th><th>Client Location</th><th>Download (megabits/second)</th><th>Upload (megabits/second)</th></tr>
+<tr>
+  <td>ASUS RT-N66U (2.4ghz; 20mhz)</td>
+  <td>0-Walls</td>
+  <td>114</td>
+  <td>111</td>
+</tr>
+<tr>
+  <td>ASUS RT-N66U (2.4ghz; 20mhz)</td>
+  <td>1-Wall</td>
+  <td>101</td>
+  <td>82</td>
+</tr>
+<tr>
+  <td>ASUS RT-N66U (2.4ghz; 20mhz)</td>
+  <td>2-Walls</td>
+  <td>72</td>
+  <td>65</td>
+</tr>
+<tr>
+  <td>ASUS RT-N66U (2.4ghz; 20mhz)</td>
+  <td>5-Walls</td>
+  <td>44</td>
+  <td>34</td>
+</tr>
+<tr>
+  <td>ASUS RT-N66U (2.4ghz; 40mhz)</td>
+  <td>2-Walls</td>
+  <td>47</td>
+  <td>30</td>
+</tr>
+<tr>
+  <td>ASUS RT-N66U (2.4ghz; 40mhz)</td>
+  <td>5-Walls</td>
+  <td>90</td>
+  <td>56</td>
+</tr>
+<tr>
+  <td>ASUS RT-N66U (2.4ghz; 40mhz)</td>
+  <td>0-Walls</td>
+  <td>103</td>
+  <td>116</td>
+</tr>
+<tr>
+  <td>ASUS RT-N66U (2.4ghz; 40mhz)</td>
+  <td>1-Wall</td>
+  <td>107</td>
+  <td>87</td>
+</tr>
+<tr>
+  <td>ASUS RT-N66U (5ghz; 802.11n)</td>
+  <td>0-Walls</td>
+  <td>209</td>
+  <td>220</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (2.4ghz; 20mhz)</td>
+  <td>0-Walls</td>
+  <td>77</td>
+  <td>78</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (2.4ghz; 20mhz)</td>
+  <td>1-Wall</td>
+  <td>54</td>
+  <td>38</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (2.4ghz; 20mhz)</td>
+  <td>5-Walls</td>
+  <td>42</td>
+  <td>13</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (2.4ghz; 20mhz)</td>
+  <td>2-Walls</td>
+  <td>30</td>
+  <td>22</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (2.4ghz; 40mhz)</td>
+  <td>2-Walls</td>
+  <td>37</td>
+  <td>19</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (2.4ghz; 40mhz)</td>
+  <td>1-Wall</td>
+  <td>51</td>
+  <td>35</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (2.4ghz; 40mhz)</td>
+  <td>5-Walls</td>
+  <td>55</td>
+  <td>31</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (2.4ghz; 40mhz)</td>
+  <td>0-Walls</td>
+  <td>71</td>
+  <td>76</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (5ghz)</td>
+  <td>2-Walls</td>
+  <td>216</td>
+  <td>65</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (5ghz)</td>
+  <td>5-Walls</td>
+  <td>322</td>
+  <td>121</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (5ghz)</td>
+  <td>1-Wall</td>
+  <td>323</td>
+  <td>215</td>
+</tr>
+<tr>
+  <td>AT&amp;T Pace 5268ac (5ghz)</td>
+  <td>0-Walls</td>
+  <td>341</td>
+  <td>218</td>
+</tr>
+<tr>
+  <td>GL-AR150 (2.4ghz; 20mhz)</td>
+  <td>0-Walls</td>
+  <td>48</td>
+  <td>31</td>
+</tr>
+<tr>
+  <td>GL-AR150 (2.4ghz; 40mhz)</td>
+  <td>0-Walls</td>
+  <td>41</td>
+  <td>30</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (2.4ghz; 20mhz)</td>
+  <td>0-Walls</td>
+  <td>102</td>
+  <td>95</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (2.4ghz; 20mhz)</td>
+  <td>1-Wall</td>
+  <td>68</td>
+  <td>43</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (2.4ghz; 20mhz)</td>
+  <td>5-Walls</td>
+  <td>56</td>
+  <td>29</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (2.4ghz; 20mhz)</td>
+  <td>2-Walls</td>
+  <td>29</td>
+  <td>28</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (2.4ghz; 40mhz)</td>
+  <td>5-Walls</td>
+  <td>2</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (2.4ghz; 40mhz)</td>
+  <td>2-Walls</td>
+  <td>2</td>
+  <td>5</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (2.4ghz; 40mhz)</td>
+  <td>1-Wall</td>
+  <td>39</td>
+  <td>49</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (2.4ghz; 40mhz)</td>
+  <td>0-Walls</td>
+  <td>105</td>
+  <td>68</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (5ghz)</td>
+  <td>2-Walls</td>
+  <td>124</td>
+  <td>68</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (5ghz)</td>
+  <td>5-Walls</td>
+  <td>145</td>
+  <td>131</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (5ghz)</td>
+  <td>1-Wall</td>
+  <td>232</td>
+  <td>248</td>
+</tr>
+<tr>
+  <td>Linksys EA6700 (5ghz)</td>
+  <td>0-Walls</td>
+  <td>320</td>
+  <td>313</td>
+</tr>
+<tr>
+  <td>Linksys Extender RE-6400 (2.4ghz; 40mhz)</td>
+  <td>0-Walls</td>
+  <td>42</td>
+  <td>46</td>
+</tr>
+<tr>
+  <td>Linksys Extender RE-6400 (2.4ghz; 40mhz)<br />
+    Access Point Mode with wired ethernet<br />
+    Firmware v1.2.02.002_20170817
+  </td>
+  <td>0-Walls</td>
+  <td>92</td>
+  <td>77</td>
+</tr>
+<tr>
+  <td>Linksys Extender RE-6400 (5ghz)<br />
+    Access Point Mode with wired ethernet<br />
+    Firmware v1.2.02.002_20170817
+  </td>
+  <td>0-Walls</td>
+  <td>193</td>
+  <td>216</td>
+</tr>
+</table>

@@ -1,0 +1,21 @@
+# UTC EPOCH of original creation time
+1223415540
+# UTC EPOCH of last modified time
+1223415540
+# CATEGORY
+Programming
+# TITLE
+Windows Batch Script - Parsing Time Into Components (Hour, Minute, Second)
+# CONTENT in fragment XHTML until EOF
+I found a U.S. locale specific way to parse a time into components inside a Windows batch script (.bat or .cmd). 
+<p>
+@REM Valid only for U.S. (English) locale<br />
+FOR /F "tokens=1-3 delims=:." %%i IN ('echo %time: =0%') DO SET HOUR=%%i& SET MINUTE=%%j& SET SECOND=%%k</p>
+
+<p>
+Note that the %time% variable has the leading space (if any, exists when hour < 10) converted to a leading 0.
+</p>
+
+<p>
+Again it only works for the U.S. locale (and similiar). If you need something that works regardless of locale there are other examples that do it in a batch script, but you should really consider an external .com or .exe that inserts it into your batch script (Google it) or use a Windows Scripting Host script instead.
+</p>

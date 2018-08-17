@@ -1,0 +1,35 @@
+# UTC EPOCH of original creation time
+1267641526
+# UTC EPOCH of last modified time
+1267645819
+# CATEGORY
+Tech Tricks
+# TITLE
+Dual monitor in Ubuntu 9.10 64-bit rotated 90 degrees
+# CONTENT in fragment XHTML until EOF
+After I just installed Ubuntu 9.10 64-bit on my dual-monitor (DVI) machine I needed to rotate the display 90 degrees left for my monitor orientation.
+
+<p>
+The System -> Preferences -> Display option didn't give me the choice of left or right only normal or upside down.
+</p>
+
+<p>
+I installed ARandR which provided an easy GUI to configure my xrandr settings.  I saved the settings to a file (ARandR created a shell script for me) and added the script to my startup applications (System -> Preferences -> Startup Applications).
+</p>
+
+<p>
+Note:  When I tested from the live cd my mouse become corrupted.  Installing to hard disk did not have the mouse corruption issue.
+</p>
+
+<p>
+Also you may want to look in ~/.config/monitors.xml for settings you can modify.  After I did some system updates the left/right option appeared under System -> Preferences -> Display again.
+</p>
+
+<h3>Rotate Login Screen</h3>
+
+<a href="http://wiki.gadg3ts.com/index.php/Rotate_gdm_login_screen">http://wiki.gadg3ts.com/index.php/Rotate_gdm_login_screen</a> has great directions.  In case it isn't available:
+
+<ol>
+<li>Edit <b>/etc/gdm/Init/Default</b></li>
+<li>At very end before <i>exit 0</i> add <b>xrandr -o left &</b></li>
+</ol>

@@ -1,0 +1,25 @@
+# UTC EPOCH of original creation time
+1298601798
+# UTC EPOCH of last modified time
+1386695222
+# CATEGORY
+Security
+# TITLE
+Why suid scripts aren't safe
+# CONTENT in fragment XHTML until EOF
+Some links that explain why:
+
+<ul>
+<li><a href="http://www.faqs.org/faqs/unix-faq/faq/part4/section-7.html">http://www.faqs.org/faqs/unix-faq/faq/part4/section-7.html</a></li>
+<li><a href="http://www.tech-faq.com/security-problems-with-suid.html">http://www.tech-faq.com/security-problems-with-suid.html</a></li>
+<li><a href="http://collaboration.cmc.ec.gc.ca/science/rpn/biblio/ddj/Website/articles/SA/v10/i06/a1.htm">Dangers of SUID Shell Scripts, Thomas Akin</a></li>
+<li><a href="http://perldoc.perl.org/perlsec.html">http://perldoc.perl.org/perlsec.html</a></li>
+</ul>
+
+<p>
+Your best off using a C wrapper or direct binary command entries in your sudoers file.
+</p>
+
+<p>
+Remember that if you skipped the setuid (suid) attribute on a shell script and opted to place an entry in your sudoers for the shell script you are just as bad off.  Most likely you've achieved the same security problem even if you attempted more "secure" settings in your sudoers file config.
+</p>

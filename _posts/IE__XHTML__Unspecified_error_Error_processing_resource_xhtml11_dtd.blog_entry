@@ -1,0 +1,22 @@
+# UTC EPOCH of original creation time
+1291157060
+# UTC EPOCH of last modified time
+1291157060
+# CATEGORY
+Computer Problems
+# TITLE
+IE, XHTML, Unspecified error Error processing resource xhtml11.dtd
+# CONTENT in fragment XHTML until EOF
+Unspecified error Error processing resource 'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'. 
+
+<p>
+That was the error I was getting when trying to use an XHTML 1.1 page with IE8.  I used the W3C's recommended IE work around to process the page as application/xml and all that.  Turns out however that the DOCTYPE declaration which worked fine in non-IE browsers would cause IE to sit forever.
+</p>
+
+<p>
+The reason?  IE was trying to download the referenced dtd file which is very slow (probably on purpose to cut down traffic hammering the site) from w3c's web site.  It also turns out that IE's lack of XHTML support doesn't really use the dtd for much of anything useful anyway.  Other browsers just have it cached locally themselves.
+</p>
+
+<p>
+Solution:  When the User-Agent is MSIE just leave out the DOCTYPE.
+</p>

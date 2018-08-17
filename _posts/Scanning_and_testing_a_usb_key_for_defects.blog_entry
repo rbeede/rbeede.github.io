@@ -1,0 +1,31 @@
+# UTC EPOCH of original creation time
+1217303880
+# UTC EPOCH of last modified time
+1217303880
+# CATEGORY
+Tech Tricks
+# TITLE
+Scanning and testing a usb key for defects
+# CONTENT in fragment XHTML until EOF
+<p>I was using one of my 1GB USB keys to install some software one day when I started to get strange errors.  Since the key wasn't very old I didn't suspect it at first.
+</p>
+
+<p>
+I reformatted the device from Windows with no errors appearing on it.  I even ran "chkdsk D: /R" to scan for bad sectors.  Furthermore I used HDTune to run an error check on the device.  No errors came up so I figured all was okay.
+</p>
+
+<p>
+After getting the exact same problems again even after a format I decided to run Linux's badblocks tool on it.
+</p>
+
+<p>
+I did "badblocks -s -v -w /dev/sdd" which did a data destructive read-write test on the device.  Sure enough after an hour the scan came up with bad sectors on the device.
+</p>
+
+<p>
+This goes to show that chkdsk /R and even HDTune surface scans don't do enough checks on the newer flash memory to catch all errors.  If one wants to really check the integrity of a flash device they will have to do a read/write test.
+</p>
+
+<p>
+The key is only 7 months old, but it was from some cheap shop anyway.  Goes to show that non-generic usb keys probably hold up better.
+</p>

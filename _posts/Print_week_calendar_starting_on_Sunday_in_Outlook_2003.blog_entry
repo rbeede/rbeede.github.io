@@ -1,0 +1,41 @@
+# UTC EPOCH of original creation time
+1218732600
+# UTC EPOCH of last modified time
+1218732600
+# CATEGORY
+Tech Tricks
+# TITLE
+Print week calendar starting on Sunday in Outlook 2003
+# CONTENT in fragment XHTML until EOF
+I noticed one day when I printed one week from my Outlook Calendar using the "Weekly" style that it would always start on Monday.  Despite the fact my calendar view was configured and did display on screen the week starting on Sunday.
+<p>
+I found that you must do the following to get Outlook 2003 (later versions don't have this bug) to print a "Weekly" style calendar starting on Monday:
+</p>
+
+<ul>
+ <li>Open the calendar you will be printing</li>
+ <li>Select the 5 Work Week view</li>
+ <li>Right click on your calendar</li>
+ <li>Customize Current View...</li>
+ <li>Other Settings...</li>
+ <li>Uncheck "Compress weekend days" under Month</li>
+ <li>OK</li>
+ <li>OK to close the Customize View: Day/Week/Month dialog</li>
+ <li>Tools menu</li>
+ <li>Options...</li>
+ <li>Preferences tab (opened by default)</li>
+ <li>"Calendar" section</li>
+ <li>Calendar Options...</li>
+ <li>"Calendar work week" section</li>
+ <li>Check "Sun" and "Sat" (and all other days you want)</li>
+ <li>"First day of week:" set equal to "Sunday"</li>
+ <li>OK</li>
+ <li>OK to close the Options dialog</li>
+ <li>File menu</li>
+ <li>Print...</li>
+ <li>Weekly Style</li>
+ <li>Page Setup...</li>
+ <li><b>Check</b> "Don't Print Weekends" (yes that's right)</li>
+ <li>Click on Print Preview to verify</li>
+ <li>It now prints out the week starting with Sunday</li>
+</ul>

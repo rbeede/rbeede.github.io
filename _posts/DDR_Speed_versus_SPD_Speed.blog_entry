@@ -1,0 +1,21 @@
+# UTC EPOCH of original creation time
+1319218708
+# UTC EPOCH of last modified time
+1319218708
+# CATEGORY
+Tech Tricks
+# TITLE
+DDR Speed versus SPD Speed
+# CONTENT in fragment XHTML until EOF
+So I got some new DDR3 1600 ram.  When I hooked it in my BIOS came up with the speed of 1333 instead.  Turns out in AUTO mode the BIOS uses the SPD Speed (a chip that provides the BIOS with the RAM info).
+
+<p>
+So I had to manually set my timings and RAM speed in the BIOS to get the full performance from it.
+</p>
+
+<p>
+Why?  Turns out they do this on purpose to reduce the chance of compatibility issues when you first install into your motherboard.  See <a href="http://www.ocztechnologyforum.com/forum/showthread.php?63115-Platinum-1600-SPD-says-1066">this forum</a> for some details.
+</p>
+
+<p>So SPD Speed = compatibility speed for auto detection.  A little annoying since I can't just let the auto settings in the BIOS handle it, but oh well.
+</p>

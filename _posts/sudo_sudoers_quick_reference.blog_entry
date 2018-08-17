@@ -1,0 +1,35 @@
+# UTC EPOCH of original creation time
+1339424463
+# UTC EPOCH of last modified time
+1339424463
+# CATEGORY
+Tech Tricks
+# TITLE
+sudo sudoers quick reference
+# CONTENT in fragment XHTML until EOF
+The man page (http://www.sudo.ws/sudo/sudo.html) has lots of good info, but is a little hard to read.
+
+<p>
+sudo visudo
+</p>
+
+<h2>
+/etc/sudoers
+</h2>
+
+<p>
+<pre>userList	hostList	=	(runasUserList : optRunasGroupList)	optTagList	cmdList</pre>
+</p>
+
+<h2>
+Commands
+</h2>
+
+<p>
+sudo -u user cmd
+</p>
+
+<p>
+sudo -i -u user<br />
+<i>Runs full login shell with updated environment variables</i>
+</p>

@@ -1,0 +1,37 @@
+# UTC EPOCH of original creation time
+1322618913
+# UTC EPOCH of last modified time
+1322618913
+# CATEGORY
+Programming
+# TITLE
+Customize an Android system.img
+# CONTENT in fragment XHTML until EOF
+
+I needed to customize the system.img for a generic build (emulator) of an Android 2.3.7b1 ROM.  I wanted to add Google Maps to it (as well as Market, etc) and run it in the emulator for a school project of a custom ROM.
+
+<p>
+I tried adding the necessary files to a running ROM, but the system.img file is reset each time you restart the emulator.  There was a temporary copy of the modified in-memory version in my account profile temp folder, but copying it just gave an unbootable image.  In the end I found doing a ROM build on my Linux machine and extracting the system.img from the build, adding the files, and repackaging worked.
+</p>
+
+<h1>You need:</h1>
+
+<ul>
+<li>system.img to modify (.\android-sdk-windows\platforms\android-10\images is one place to look)</li>
+<li>GoogleServicesFramework.apk and whatever Google apps you want (like Vendor.apk, etc).
+<ul><li>Copy from your existing phone or check out <a href="http://wiki.cyanogenmod.com/wiki/Latest_Version">Google Apps</a> download section for CyanogenMod</li></ul>
+</li>
+<li>Linux (I used Ubuntu 11.04 64-bit)</li>
+<li><a href="http://code.google.com/p/unyaffs/">unyaffs</a> - (I used the precompiled binary without issue)</li>
+<li><a href="http://code.google.com/p/yafuse/downloads/detail?name=mkyaffs2image">mkyaffs2image</a> - (You also get it if you are building a ROM)</li>
+</ul>
+
+<h1>Steps</h1>
+
+<ol>
+<li>mkdir EXTRACTED</li>
+<li>cd EXTRACTED</li>
+<li>~/unyaffs ~/system.img</li>
+<li>Copy whatever you need into the extracted content<ul><li>Example: cp ~/GoogleServicesFramework.apk ~/EXTRACTED/app/</li></ul></li>
+<li>mkyaffs2image EXTRACTED newsystem.img</li>
+</ol>

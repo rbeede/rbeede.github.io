@@ -1,0 +1,17 @@
+# UTC EPOCH of original creation time
+1257344801
+# UTC EPOCH of last modified time
+1257344801
+# CATEGORY
+Computer Problems
+# TITLE
+Outlook 2007 calendar export leaves off time zone
+# CONTENT in fragment XHTML until EOF
+So I discovered that if someone sent me a meeting invite with the time zone set differently than mine that it causes problems when exporting the calendar to a file.
+<p>
+Sure it shows up correctly in Outlook for my local time zone, but the exported file leaves out the organizers time zone information which when imported into my Google Calendar causes the event to show up at the incorrect hour.
+</p>
+
+<p>
+Looks like I will have to use a different sync tool instead of the built-in export.  No big deal since there are lots of tools for plugging into Outlook anyway just annoying.
+</p>

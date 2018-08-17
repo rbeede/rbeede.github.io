@@ -1,0 +1,62 @@
+# UTC EPOCH of original creation time
+1213290780
+# UTC EPOCH of last modified time
+1213290780
+# CATEGORY
+Programming
+# TITLE
+Visual Basic 2008, WebBrowser, Zoom, and ExecWB
+# CONTENT in fragment XHTML until EOF
+So I discovered today how to use a WebBrowser object on a Form in Visual Basic 2008 that would zoom the page just like you can in IE7.<br /><br />
+<u>First Method</u><br />
+<br />
+The first method I tried used the .NET Framework Components, System.Windows.Forms, WebBrowser control object. This is a simplified interface for showing an IE web browser on your form.<br />
+<br />
+<strong>After</strong> the document has loaded (see WebBrowser DocumentComplete method) you can call Me.WebBrowser1.Document.Body.Style = "zoom 10%" to change the zoom. However you will see a brief flicker as the document will already be displayed and visible at the normal zoom before going to your new zoom.<br />
+<br />
+One option would be to hide the web browser control until after the document is loaded, and you've changed the zoom. However that might result in unwanted screen flicker as well.<br />
+<br />
+The disadvantage of this method is that you must reset the zoom each time you navigate to a different URL with the control.<br />
+<br />
+<br />
+<u>Second Method (Best)</u><br />
+<br />
+I searched on the Internet and also saw references to a ExecWB method. Unfortantely this method doesn't exist for the .Net Framework Component "WebBrowser."  I did find another component which I was able to use that had this method.<br />
+<br />
+<i>COM Components, Microsoft Web Browser, ieframe.dll</i><br />
+<br />
+Adding this to my toolbox and then to my form gave me a AxWebBrowser1 object. Maybe not as friendly or simple as the WebBrowser .Net one, but it has the ExecWB method I needed to set the zoom!<br />
+<br />
+I start by having my Form1_Load method call:<br />
+Me.AxWebBrowser1.Navigate("about:blank")<br />
+<br />
+This allows the control to load a quick document as required before making the zoom call.<br />
+<br />
+Below is the method I used to set the zoom one time before the control was rendered:<br />
+<br />
+<pre><br />
+    Private Sub AxWebBrowser1_DocumentComplete(ByVal sender As Object, ByVal e As AxSHDocVw.DWebBrowserEvents2_DocumentCompleteEvent) Handles AxWebBrowser1.DocumentComplete<br />
+        If (Me.AxWebBrowser1.LocationURL().Equals("about:blank")) Then<br />
+            'Loading page for very first time<br />
+            '   The first time we set the browser zoom level<br />
+<br />
+            '   The AxWebBrowser requires that at least 1 document has already been loaded before calling ExecWB<br />
+            '   otherwise a COM exception occurs<br />
+            '   So this function is triggered by navigating to about:blank the first time<br />
+<br />
+            Dim factor As Object<br />
+<br />
+            factor = 125<br />
+<br />
+            Try<br />
+                Me.AxWebBrowser1.ExecWB(SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM, SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER, factor, IntPtr.Zero)<br />
+            Catch ex As Exception<br />
+                Me.AxWebBrowser1.Hide()<br />
+                Me.errorLabel.Text = "This screensaver requires that you have Internet Explorer version 7 or later"<br />
+                Me.errorLabel.Visible = True<br />
+                Return<br />
+            End Try<br />
+        End If<br />
+<br />
+    End Sub<br />
+</pre>

@@ -1,0 +1,35 @@
+# UTC EPOCH of original creation time
+1287161719
+# UTC EPOCH of last modified time
+1287161719
+# CATEGORY
+Tech Tricks
+# TITLE
+User-installed (standalone) Google Chrome for Linux
+# CONTENT in fragment XHTML until EOF
+So I wanted to use Chrome on a computer that didn't have it installed that was running Ubuntu Linux.  I didn't have admin, but I wanted to run the program inside the user-space without installing it for all users anyway (a stand-alone install).
+
+The default downloads provided by Google are only .deb or .rpm packages which only run in the admin installer.  Extracting it by hand was not an option.
+
+Another choice was to download the source and compile it.  However 800MB+ of source and compile code was too big for my user quota.
+
+<h2>Solution</h2>
+
+I downloaded the latest developer build of Chrome for Linux.  It is just an archive with the compiled binaries that you can extract and run.
+
+<p>
+Get it from <a href="http://build.chromium.org/buildbot/snapshots/chromium-rel-linux/">http://build.chromium.org/buildbot/snapshots/chromium-rel-linux/</a>.
+</p>
+
+<p>
+Also by default the Google Chrome (ver 8 for Linux) uses the system installed Adobe Flash.  To force it to use the latest:
+</p>
+
+<ol>
+     <li>Download the .tar.gz from Adobe (Flash for Linux)</li>
+     <li>Extract the single libflashplayer.so plugin file into <b>chrome-linux/plugins</b> (you will probably have to create the plugins directory).</li>
+     <li>Close and reopen Chrome.
+     <li>Type <b>about:plugins</b> and disabled the Shockwave Flash older version and make sure your version is selected
+     <ul><li>You will need to click on Details near top right</li></ul>
+     </li>
+</ol>

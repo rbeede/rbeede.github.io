@@ -1,0 +1,15 @@
+# UTC EPOCH of original creation time
+1261684555
+# UTC EPOCH of last modified time
+1261684555
+# CATEGORY
+Tech Tricks
+# TITLE
+/dev/one for writing all 1's to a disk
+# CONTENT in fragment XHTML until EOF
+I found the following command online for writing all 1's to a disk:
+<p>
+<pre>
+tr '\0' '\377' < /dev/zero | dd bs=64K of=/dev/sdz
+</pre>
+</p>

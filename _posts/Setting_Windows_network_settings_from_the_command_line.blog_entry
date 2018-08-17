@@ -1,0 +1,26 @@
+# UTC EPOCH of original creation time
+1331083223
+# UTC EPOCH of last modified time
+1331083265
+# CATEGORY
+Tech Tricks
+# TITLE
+Setting Windows network settings from the command line
+# CONTENT in fragment XHTML until EOF
+Credit to:
+
+<ul>
+<li><a href="http://www.petri.co.il/configure_tcp_ip_from_cmd.htm">http://www.petri.co.il/configure_tcp_ip_from_cmd.htm</a></li>
+<li><a href="http://stackoverflow.com/questions/54989/change-windows-hostname-from-command-line">http://stackoverflow.com/questions/54989/change-windows-hostname-from-command-line</a></li>
+</ul>
+
+<pre>
+wmic computersystem where name="%COMPUTERNAME%" call rename name="<i>NEW NAME HERE</i>"
+</pre>
+<ul><li>Requires a reboot (shutdown -r -t 3)</li></ul>
+
+<pre>
+netsh interface ip set address name="Local Area Connection" static 192.168.0.20 255.255.255.0 192.168.0.1
+</pre>
+
+<ul><li>No reboot required</li></ul>

@@ -1,0 +1,13 @@
+# UTC EPOCH of original creation time
+1366384550
+# UTC EPOCH of last modified time
+1366384550
+# CATEGORY
+Tech Tricks
+# TITLE
+Stop Ask Toolbar adware in Java install
+# CONTENT in fragment XHTML until EOF
+Typical method is the offline installer, but for the Java update utility after the install you can do a registry change to disable the sponsor adware in the Java installer.
+
+<p>
+<a href="http://superuser.com/questions/549028/how-can-i-prevent-ask-com-toolbar-from-being-installed-every-time-java-is-update">http://superuser.com/questions/549028/how-can-i-prevent-ask-com-toolbar-from-being-installed-every-time-java-is-update</a>

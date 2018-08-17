@@ -1,0 +1,104 @@
+# UTC EPOCH of original creation time
+1214000940
+# UTC EPOCH of last modified time
+1214000940
+# CATEGORY
+Misc
+# TITLE
+My Custom Built PC
+# CONTENT in fragment XHTML until EOF
+So I've finally put together a new computer for myself.
+<p>
+<img src="./images/newpc_2008-06-20.jpg" />
+</p>
+
+<h2>ASUS M3A78-EMH HDMI Motherboard</h2>
+<ul>
+     <li>AMD SM2/SM2+ socket</li>
+     <li>4 DDR2 DIMM slots</li>
+     <li>1 16x PCI-e</li><li>1 1x PCI-e</li>
+     <li>2 PCI (32-bit)</li><li>Integrated VGA</li>
+     <li>Integrated DVI</li><li>Integrated HDMI</li>
+     <li>4 USB ports</li><li>8 USB headers</li>
+     <li>6-port multi-channel sound card</li>
+     <li>Headers for floppy, parallel, and serial</li>
+     <li>6 Sata 3Gb/s Ports (RAID 0/1 supported)</li>
+     <li>1 PATA IDE port</li><li>20/24 Pin ATX connector</li>
+     <li>Customizable bios boot image</li>
+     <li>Up to 8GB of memory support, up to 1GHz speed</li>
+</ul>
+
+<p>
+I purchased this board as a combo that came with a cpu and memory.  I found it care of <a href="http://www.pricewatch.com/">pricewatch.com</a> from the vendor portatech.com.
+</p>
+
+<p>
+I've been very happy with the board.  I don't have heavy graphics requirements so the built-in video card works fine for me.  It does use some of the system memory, but if I want too I can always add a 16x PCI-e card later on.
+</p>
+
+<p>
+I could have opted for ram that runs as 1GHz, but the 800GHz was much cheaper.  I figure if I ever need to upgrade the memory I'll replace it with 8GB of 1GHz memory.  I don't forsee that need for a long time though.
+</p>
+
+<h2>AMD Athlon (tm) X2 Dual Core Process 6000+</h2>
+<ul>
+     <li>3GHz / core</li>
+</ul>
+
+<h2>Samsung 1GB 2Rx8 PC2 - 6400u, 800MHz DDR2 Memory</h2>
+<ul>
+     <li>I have two 1GB sticks of memory for a total of 2GB</li>
+</ul>
+
+<h2>Seagate Barracuda 7200.11 750GB SATA 3Gb/s Hard Disk Drive</h2>
+<ul>
+     <li>I bought two of these</li>
+     <li>They are in a RAID-0 (stripe) array</li>
+     <li>I see around 160MB/s speed, just a little over Sata I maximum</li>
+     <li>I got them care of newegg.com</li>
+     <li>One arrived DOA, but newegg.com replaced it for me</li>
+</ul>
+
+<p>
+I partitioned the array to only 40GB out of the 1500GB available to increase performance.  I don't need all of that space yet, so I figured I'd limit access of the disk to the first part of the drives.  This has helped to speed up disk access time.  Having the increased hard disk performance is very noticable on my system.
+</p>
+
+<h2>Microsoft Windows Vista Business Edition (32-bit)</h2>
+
+<p>
+I decided to try out Vista since I had a free copy of it.  I was using XP before, which is also supported on my hardware.
+</p>
+
+<p>
+Lots of people complain about Vista performance, but I've found that on brand new computer hardware it runs just fine.  A clean install consumed 8GB of disk space (including the paging file and hibernation file).  After installing Vista SP1 it used 12GB of space.  After installing Office 2007 it consumed 16GB of disk space total.
+</p>
+
+<p>
+Overall I haven't had problems with Vista.  I find the User Account Control annoying at times, but overall the updated interface is nice.
+</p>
+
+<h2>The Wooden Case</h2>
+
+That's right, the photo shows a wooden computer case for my computer.  Here is the rundown of everything inside:
+
+<ul>
+     <li>Wooden frame measuring 18" x 18" x 9"</li>
+     <li>Plexiglass cover on the front</li>
+     <li>Motherboard on bottom left</li>
+     <li>600W Power Supply on bottom right</li>
+     <li>Two hard disk drives towards the top</li>
+     <li>4 case fans on the top side (removable from top)</li>
+     <li>All power cables hang out the bottom</li>
+</ul>
+
+<p>
+Why you may ask?  I decided that since I was going to purchase all this new hardware I might as well have a place to display it.  I'd read about other case mods and decided mine should be from wood and look like a picture frame.
+</p>
+
+<p>
+This did create challenges with the heat.  4 case fans (each only $1 after cashing in some recycled print cartidges) took care of any heating issues.  I made the case sit on bookshelf rails so it is easy to take down.  The plexiglass is held in by two paperclips and easily slides out.  This makes working on the machine easy.
+</p>
+
+<p>
+The most difficult part in construction was lining up the motherboard to the port sheet.  A plus side about wood though is that you simply drill another hole if your first one isn't quite right.
+</p>

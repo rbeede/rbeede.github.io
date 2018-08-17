@@ -1,0 +1,34 @@
+# UTC EPOCH of original creation time
+1216246200
+# UTC EPOCH of last modified time
+1216246200
+# CATEGORY
+Misc
+# TITLE
+Custom filesystem format
+# CONTENT in fragment XHTML until EOF
+Some musings on what my own custom file system would look like:
+<table border="1">
+<tr>
+ <td>File location start address</td>
+ <td>64-bits</td>
+ <td>8 bytes</td>
+ <td>16 exbibyte maximum volume size</td>
+</tr>
+<tr>
+ <td>File length</td>
+ <td>64-bits</td>
+ <td>8 bytes</td>
+ <td>16 exbibyte maximum file size</td>
+</tr>
+<tr>
+ <td>Filename</td>
+ <td>8 * 2 * 255 = 4080 bits</td>
+ <td>510 bytes</td>
+ <td>Each character is UTF-16 encoded, 2 bytes / character, 254 characters maximum (character 255 is the null character)</td>
+</tr>
+</table>
+
+File allocation table structure
+
+TODO:  Add directory information and flags

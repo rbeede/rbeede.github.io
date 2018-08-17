@@ -1,0 +1,14 @@
+# UTC EPOCH of original creation time
+1310739158
+# UTC EPOCH of last modified time
+1310739158
+# CATEGORY
+Computer Problems
+# TITLE
+ASUS M3A78-EMH HDMI unsigned RAID/ACHI driver in Vista 64-bit
+# CONTENT in fragment XHTML until EOF
+You downloaded and used the "AMD AHCI Compatible RAID Controller Driver V3.1.1540.10 for Windows 32/64bit Vista" to install Vista with your motherboard in RAID/ACHI mode, and everytime you boot you get the unsigned drivers error message. 
+
+<p>
+The drivers aren't signed correctly. To fix download the "AMD Chipset Driver V1.0.0.1 for Windows Vista 32bit/Vista 64bit" (2008-07-23) and install. This has RAID/ACHI drivers version 3.102.1540.25 which has a valid signature.
+</p> 

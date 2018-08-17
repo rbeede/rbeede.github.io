@@ -1,0 +1,74 @@
+# UTC EPOCH of original creation time
+1238987741
+# UTC EPOCH of last modified time
+1238987741
+# CATEGORY
+Computer Problems
+# TITLE
+MySQL 5, Hibernate 3, Connection timeouts
+# CONTENT in fragment XHTML until EOF
+I was getting a lot of connection timeouts with MySQL and Hibernate.  I played with my hibernate.cfg.xml until I finally got it to use C3P0 (c THREE p ZERO) for managing the database connections.  It wasn't easy to find all the necessary documentation on how to get Hibernate to not use its own internal database pool connector versus an external one.
+<p>
+Add the following to your Maven dependencies:
+</p>
+
+<div style="white-space: pre;">
+    &#60;dependency&#62;
+        &#60;groupId&#62;org.hibernate&#60;/groupId&#62;
+        &#60;artifactId&#62;hibernate-c3p0&#60;/artifactId&#62;
+        &#60;version&#62;3.3.1.GA&#60;/version&#62;
+    &#60;/dependency&#62;
+</div>
+
+<p>
+I used the following as my hibernate.cfg.xml:
+</p>
+
+<pre>
+&#60;?xml version="1.0" encoding="UTF-8"?&#62;
+&#60;!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&#62;
+
+&#60;hibernate-configuration&#62;
+
+    &#60;session-factory&#62;
+
+        &#60;!-- Database connection settings --&#62;
+        &#60;property name="hibernate.connection.driver_class"&#62;com.mysql.jdbc.Driver&#60;/property&#62;
+        &#60;!-- do NOT use autoReconnect, change your pool settings instead! --&#62;
+        &#60;property name="hibernate.connection.url"&#62;jdbc:mysql://localhost/MyDatabaseName&#60;/property&#62;
+        &#60;property name="hibernate.connection.username"&#62;MyUsername&#60;/property&#62;
+        &#60;property name="hibernate.connection.password"&#62;good password&#60;/property&#62;
+
+        &#60;!-- SQL dialect --&#62;
+        &#60;property name="dialect"&#62;org.hibernate.dialect.MySQL5Dialect&#60;/property&#62;
+
+        &#60;!-- Enable Hibernate's automatic session context management --&#62;
+        &#60;property name="current_session_context_class"&#62;thread&#60;/property&#62;
+
+        &#60;!-- Disable the second-level cache  --&#62;
+        &#60;property name="cache.provider_class"&#62;org.hibernate.cache.NoCacheProvider&#60;/property&#62;
+
+        &#60;!-- Echo all executed SQL to stdout --&#62;
+        &#60;property name="show_sql"&#62;true&#60;/property&#62;
+        &#60;property name="format_sql"&#62;true&#60;/property&#62;
+
+        &#60;!-- update means update schema if needed, preserve data --&#62;
+        &#60;property name="hbm2ddl.auto"&#62;update&#60;/property&#62;
+        
+        &#60;!-- Connection pool manager (avoids timeouts) --&#62;
+        &#60;property name="connection.provider_class"&#62;org.hibernate.connection.C3P0ConnectionProvider&#60;/property&#62;
+        &#60;property name="hibernate.c3p0.acquire_increment"&#62;1&#60;/property&#62;
+        &#60;property name="hibernate.c3p0.idle_test_period"&#62;60&#60;/property&#62;
+        &#60;property name="hibernate.c3p0.max_size"&#62;5&#60;/property&#62;
+        &#60;property name="hibernate.c3p0.max_statements"&#62;0&#60;/property&#62;
+        &#60;property name="hibernate.c3p0.min_size"&#62;5&#60;/property&#62;
+        &#60;property name="hibernate.c3p0.timeout"&#62;120&#60;/property&#62;
+
+        &#60;mapping resource="com/some/package/hibernate/SomeMapping.xml" /&#62;
+
+    &#60;/session-factory&#62;
+
+&#60;/hibernate-configuration&#62;
+</pre>

@@ -1,0 +1,103 @@
+# UTC EPOCH of original creation time
+1324047357
+# UTC EPOCH of last modified time
+1429110695
+# CATEGORY
+Tech Tricks
+# TITLE
+Grub 2 for booting ISOs on USB disks
+# CONTENT in fragment XHTML until EOF
+I like being able to boot various Linux distros from USB sticks.  It makes it easy to update to newer versions, is faster, and doesn't require using up DVD-R discs.  Previously this required extracting the ISO contents to a USB disk and setting up special boot loaders.  I have found a new way using grub2 to just copy the unmodified ISO file to the USB stick without extraction.
+
+<h1>Prerequisites</h1>
+<ul>
+	<li>ISO that supports booting from ISO container
+		<ul>
+			<li>Windows 7 doesn't support this</li>
+			<li>Ubuntu 11.04+ do</li>
+			<li>System Rescue CD does</li>
+			<li>Look for Linux distro that supports iso-scan or isoloop</li>
+		</ul>
+	</li>
+	<li>USB disk with grub2 bootable MBR
+		<ul><li>Easiest to create in Linux.  E-mail me for help in doing so from Windows.</li></ul>
+	</li>
+	<li>grub2 files
+		<ul>
+			<li>Easiest to install from Linux with "grub-install"</li>
+			<li>See also <a href="http://sourceforge.net/projects/grub2win/">Grub2Win</a> - (old project was Grub24DOS - http://sourceforge.net/projects/grub24dos/files/)</li>
+		</ul>
+	</li>
+</ul>
+
+<h1>Steps</h1>
+<ol>
+	<li>Setup grub2 on your USB key (FAT32 works and possibly NTFS)
+		<ul>
+			<li>grub-install --no-floppy --root-directory=/mnt/sdb1/ /dev/sdb</li>
+			<li>You need Grub 2 (version 1.99 or better)</li>
+			<li>Change out /dev/sdb and /mnt/sdb1/ as appropriate</li>
+		</ul>
+	</li>
+	<li>Copy the ISO to the usb key
+		<ul><li>I use e:\boot\isos for my directory</li></ul>
+	</li>
+	<li>You must configure boot entries for each boot configuration you want.  You can't load the ones built-in to the ISO.  See my example below.</li>
+</ol>
+
+<h2>Example \boot\grub\grub.cfg</h2>
+<pre>
+menuentry "Ubuntu 11.10 Desktop x86 (toram)" {
+	set isofile="/boot/isos/ubuntu-11.10-desktop-i386.iso"
+
+	loopback loop $isofile
+	linux (loop)/casper/vmlinuz boot=casper toram iso-scan/filename=$isofile quiet splash noprompt --
+	initrd (loop)/casper/initrd.lz
+}
+
+menuentry "Ubuntu 11.10 Desktop AMD64" {
+	set isofile="/boot/isos/ubuntu-11.10-desktop-amd64.iso"
+
+	loopback loop $isofile
+	linux (loop)/casper/vmlinuz boot=casper iso-scan/filename=$isofile quiet splash noprompt --
+	initrd (loop)/casper/initrd.lz
+}
+
+
+
+set isofilename="systemrescuecd-x86-2.4.1.iso"
+# Because System Rescue CD's boot loader adds a / when searching as it really likes it in the root of the drive
+set isorelativepath="boot/isos/$isofilename"
+set isofullpathname="/$isorelativepath"
+
+menuentry "systemrescuecd-x86-2.4.1 (docache setkmap=us)" {
+	loopback loop $isofullpathname
+	
+	linux (loop)/isolinux/rescuecd isoloop=$isorelativepath docache setkmap=us
+	initrd (loop)/isolinux/initram.igz
+}
+
+menuentry "systemrescuecd-x86-2.4.1 x64 Mode (docache setkmap=us)" {
+	loopback loop $isofullpathname
+	
+	linux (loop)/isolinux/rescue64 isoloop=$isorelativepath docache setkmap=us
+	initrd (loop)/isolinux/initram.igz
+}
+
+menuentry "System Rescue CD MemTest86+" {
+	loopback loop $isofullpathname
+	
+	linux16  (loop)/bootdisk/memtestp
+}
+
+# Not working yet, not sure how to get multiple initramfs working in grub2 like grub1
+# See http://savannah.gnu.org/bugs/?35238 which has a pushed fix not yet released
+#menuentry "System Rescue CD NTPASSWD" {
+#	loopback loop $isofullpathname
+#	
+#	linux (loop)/ntpasswd/vmlinuz rw
+#	initrd (loop)/ntpasswd/initrd.cgz
+#	initrd (loop)/ntpasswd/scsi.cgz
+#}
+#
+</pre>

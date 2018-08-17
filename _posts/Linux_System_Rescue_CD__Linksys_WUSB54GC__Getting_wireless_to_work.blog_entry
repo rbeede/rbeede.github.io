@@ -1,0 +1,35 @@
+# UTC EPOCH of original creation time
+1224390420
+# UTC EPOCH of last modified time
+1224390420
+# CATEGORY
+Tech Tricks
+# TITLE
+Linux System Rescue CD, Linksys WUSB54GC, Getting wireless to work
+# CONTENT in fragment XHTML until EOF
+<h2>System Rescue CD version 1.3+</h2><ol>
+<li>Later versions already include the rt73 firmware</li>
+<li>It should work out of the box</li>
+<li>Use wpa_supplicant if you need WPA encryption</li>
+<li>Helpful commands
+   <ul>
+   <li>iwlist</li>
+   <li>iwconfig</li>
+   <li>ifconfig <i>wlan0</i> up</li>
+   <li>wpa_passphrase <i>SSID</i> <i>passphrase</i> &gt; /wpa.conf</li>
+   <li>wpa_supplicant</li>
+   </ul>
+</li>
+</ol>
+
+
+<h2>System Rescue CD version 1.2 and before</h2>
+
+<ol>
+<li>Download the rt73 firmware (one for Linksys WUSB54GC chipset) from <a href="http://www.ralinktech.com.tw/data/RT71W_Firmware_V1.8.zip">http://www.ralinktech.com.tw/data/RT71W_Firmware_V1.8.zip</a></li>
+<li>Extract rt73.bin to /lib/firmware</li>
+<li>Unload the kernel driver with <b>rmmod rt73usb</b></li>
+<li>Reload the kernel driver with <b>modprobe rt73usb</b></li>
+<li>Configure the wireless card as usual with <b>iwconfig</b></li>
+<li>If you need WPA use <b>wpa_supplicant</b></li>
+</ol>

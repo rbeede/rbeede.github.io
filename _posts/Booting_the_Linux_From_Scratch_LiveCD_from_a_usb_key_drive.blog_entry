@@ -1,0 +1,81 @@
+# UTC EPOCH of original creation time
+1224002700
+# UTC EPOCH of last modified time
+1224002700
+# CATEGORY
+Tech Tricks
+# TITLE
+Booting the Linux From Scratch LiveCD from a usb key drive
+# CONTENT in fragment XHTML until EOF
+So I have a laptop with no DVD drive.  I wanted to try out <a href="http://www.linuxfromscratch.org/">Linux From Scratch (LFS)</a>, but I couldn't build it without the LiveCD.
+<p>
+I decided to try running the ISO from a usb drive.  I found some instructions on how to boot from a usb drive on the <a href="http://www.linuxfromscratch.org/livecd/documentation.html">LFS LiveCD Documentation page</a>, but they aren't the most clear on how to make the USB drive bootable with grub.
+</p>
+
+<p>
+It took me a while to get grub to install on the usb drive.  I discovered that you must have at least one partition on the device for it to work.  The instructions on the LFS site recommended using grub4dos if you want to create the disk from Windows, but I found it easier to simply boot from an existing Linux distro (I used <a href="http://www.sysresccd.org/">System Rescue CD</a>) and install grub that way.
+</p>
+
+<p>
+Here are the steps (tested with version x86-6.3-r2160 of LFS)
+</p>
+
+<ol>
+<li>Boot from an existing Linux distro</li>
+<li>Download the LFS LiveCD iso from <a href="http://www.linuxfromscratch.org/livecd/download.html">http://www.linuxfromscratch.org/livecd/download.html</a></li>
+<li>Insert your flash disk but don't mount it</li>
+<li>Partition your usb disk (ERASING ALL DATA) with the command <b>echo ",,b,*" | sfdisk /dev/</b><i>sdX</i>
+   <ol>
+   <li><i>sdX</i> should be replaced with the block device name of your usb drive</li>
+   <li>Use the command <b>dmesg</b> if you need help finding it</li>
+   </ol>
+</li>
+<li>Ignore the "If you created or changed a DOS..." message</li>
+<li>Format the newly partitioned disk with <b>mkfs.vfat /dev/</b><i>sdX</i><b>1</b></li>
+<li>Create a folder for mounting the new disk with <b>mkdir /mnt/lfs-usb</b></li>
+<li>Mount the new partition with <b>mount /dev/</b><i>sdX</i><b>1</b> <b>/mnt/lfs-usb</b></li>
+<li>Create a directory to mount the LFS LiveCD iso with the command <b>mkdir /mnt/iso</b></li>
+<li>Mount the iso with the command <b>mount -o ro,loop</b> <i>lfslivecd-x86-6.3-r2160.iso</i> <b>/mnt/iso</b>
+<ol><li>Change <i>lfslivecd-x86-6.3-r2160.iso</i> to match the iso file you downloaded</li></ol>
+</li>
+<li><b>mkdir /mnt/lfs-usb/boot</b>
+<li><b>cp /mnt/iso/boot/isolinux/linux /mnt/lfs-usb/boot</b></li>
+<li><b>cp /mnt/iso/boot/isolinux/initramfs_data.cpio.gz /mnt/lfs-usb/boot</b></li>
+<li><b>umount /mnt/iso</b></li>
+<li><b>cp <i>lfslivecd-x86-6.3-r2160.iso</i> /mnt/lfs-usb/lfslivecd.iso</b>
+   <ol><li>Change <i>lfslivecd-x86-6.3-r2160.iso</i> to match the iso file you downloaded</li></ol>
+</li>
+<li><b>echo "<i>lfslivecd-x86-6.3-r2160</i>" &gt; /mnt/lfs-usb/VERSION</b>
+   <ol>
+   <li>This is just to record what version you have</li>
+   <li>Change <i>lfslivecd-x86-6.3-r2160</i> to match the name of the iso</li>
+   </ol>
+<li><b>mkdir /mnt/lfs-usb/boot/grub</b></li>
+<li><b>cp /boot/grub/{stage1,stage2,fat_stage1_5} /mnt/lfs-usb/boot/grub</b></li>
+<li>Create a file named <b>/mnt/lfs-usb/boot/grub/menu.lst</b> with the following content
+<pre>
+default 0
+
+title LFS USB
+root (hd0,0)
+kernel /boot/linux root=iso:/dev/disk/by-uuid/<i>48F4-6515</i>:/lfslivecd.iso rootfstype=vfat rootdelay=20
+initrd /boot/initramfs_data.cpio.gz
+</pre>
+   <ol>
+   <li>You must change the UUID (48F4-6515 above) to match your disk UUID</li>
+   <li>Use the command <b>blkid</b> to determine the UUID</li>
+   </ol>
+</li>
+<li>Unmount your usb key with <b>umount /mnt/lfs-usb</b>
+<li>Start grub with the command <b>grub</b></li>
+<li>Determine your grub device mapping name for your usb key with the grub command <b>find /lfslivecd.iso</b></li>
+<li>Enter the grub command <b>root (hd</b><i>X,Y</i><b>)</b></li>
+<li>You should get a response "Filesystem type is fat, partition type 0xb</li>
+<li>Enter the grub command <b>setup (hd</b><i>X</i><b>)</b>
+   <ol>
+   <li>Note that you do NOT include the <i>Y</i> partition number</li>
+   </ol>
+</li>
+<li>Enter the grub command <b>quit</b></li>
+<li>You are done.  Try booting from the key now</li>
+</ol>

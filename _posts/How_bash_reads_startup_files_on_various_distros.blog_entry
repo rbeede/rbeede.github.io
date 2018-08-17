@@ -1,0 +1,51 @@
+# UTC EPOCH of original creation time
+1391627602
+# UTC EPOCH of last modified time
+1391627711
+# CATEGORY
+Tech Tricks
+# TITLE
+How bash reads startup files on various distros
+# CONTENT in fragment XHTML until EOF
+Some notes on how bash reads startup files.  Some distros compile with the SYS_BASHRC flag which can add some startup files.
+
+<p>
+In most cases /etc/bashrc (or similar /etc) files are not read by bash itself by are sourced by other startup files instead.  See /etc/profile, ~/.bash* files, ~/.profile, and /etc/skel/.bash* (or .profile) files.
+</p>
+
+<pre>
+login shell (interactive or non-interactive)
+    /etc/profile
+    First one that is readable
+        ~/.bash_profile
+        ~/.bash_login
+        ~/.profile
+    Can use --noprofile option to disable all of these above options
+    Upon exit reads ~/.bash_logout (and some distros /etc/bash.bash_logout)
+    
+
+non-login shell + interactive
+    /etc/bash.bashrc    (Ubuntu/Debian SYS_BASHRC special)
+    ~/.bashrc
+    Can use --norc to disable
+    Can use --rcfile to force one specific file instead
+    
+"sh" invocation
+    /etc/profile
+    ~/.profile
+</pre>
+
+<p>
+You also see on some distros /etc/bashrc (versus /etc/bash.bashrc).  This is typically (see SYS_BASHRC for exception) not read by bash itself but instead sourced by ~/.bashrc (which is typically sourced by ~/.profile or ~/.bash_profile).
+</p>
+
+<p>
+Other invocation methods have environment variables that specify a startup file to read.  POSIX mode (--posix) turns off startup files except for env.
+</p>
+
+<p>Consult the bash man page or <a href="http://www.gnu.org/software/bash/manual/bashref.html#Bash-Startup-Files">Bash Reference Manual</a> for more info.
+</p>
+
+<p>
+To tell if your distro uses the SYS_BASHRC compile option try "man bash" on your running distro and look in the INVOCATION section.
+</p>

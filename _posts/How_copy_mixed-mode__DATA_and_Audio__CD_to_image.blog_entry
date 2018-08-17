@@ -1,0 +1,18 @@
+# UTC EPOCH of original creation time
+1271096888
+# UTC EPOCH of last modified time
+1271107456
+# CATEGORY
+Tech Tricks
+# TITLE
+How copy mixed-mode (DATA and Audio) CD to image
+# CONTENT in fragment XHTML until EOF
+cdrdao read-cd -v 2 --driver generic-mmc:0x20000 --read-raw --device /dev/dvd --datafile imagen.bin imagen.toc
+
+<p>
+This is a Linux tool.
+</p>
+
+<p>
+Also <a href="http://www.dosbox.com/wiki/Cuesheet">http://www.dosbox.com/wiki/Cuesheet</a> has a good reference for converting the .toc to .cue and making sure the audio comes through instead of being static.
+</p>

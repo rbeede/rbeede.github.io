@@ -1,0 +1,83 @@
+# UTC EPOCH of original creation time
+1387300510
+# UTC EPOCH of last modified time
+1387303979
+# CATEGORY
+Security
+# TITLE
+How OpenSSH checks for locked Linux accounts
+# CONTENT in fragment XHTML until EOF
+I ran into some interesting behavior with OpenSSH 5.9 on Ubuntu 12.04 (64-bit) LTS.  I set up accounts so that only SSH key login is allowed and not password based authentication.  I also choose to not allow the user after login to set a password.  This is accomplished with the following:
+
+<p>
+/etc/ssh/sshd_config
+</p>
+
+<p>
+<pre>
+PubkeyAuthentication yes
+
+ChallengeResponseAuthentication no
+PasswordAuthentication no
+UsePAM no
+</pre>
+</p>
+
+<p>
+/etc/shadow
+</p>
+
+<p>
+<pre>
+username:!*:15974:0:99999:7:::
+</pre>
+</p>
+
+<p>
+Notice the !* which indicates that the password login is locked (and the * which means there is no valid password).  From the passwd man page you see the "passwd -l" option which is what prefixes or removes the !, but as noted in the man page "Note that this does not disable the account. The user may still be able to login using another authentication token (e.g. an SSH key)."
+</p>
+
+<p>
+So I expected to be able to login still, but I kept getting an error in my /var/log/auth.log:  "User username not allowed because account is locked".  Turns out that in OpenSSH when I set "UsePAM no" that I got the OpenSSH behavior which sees a leading "!" and considers the account locked.
+</p>
+
+<p>
+With "UsePAM yes" the "!*" is only seen as a password disabled account and not fully locked so ssh public key login works, and the user's ability to change their password does not.
+</p>
+
+<p>
+On a side note to disable an account so it cannot login via password nor ssh key authentication you use:
+</p>
+
+<p>
+<pre>usermod --expiredate 1970-01-01 username</pre>
+</p>
+
+<p>
+Note:  You sometime see people recommending also doing "passwd -l username", but that is only to disable password based login and not required if you wish to simply disable the entire account.
+</p>
+
+<p>
+Depending on your flavor of Unix the behavior of what is in your password entry (usually /etc/shadow sometimes /etc/passwd) for the locked password (or no password or invalid password) varies.  Disabling account is best done by using an account expiration (i.e. usermod --expiredate) to ensure no login is possible.  Try looking in your system's manual pages for specifics.
+</p>
+
+<p>
+The man page for "sshd" also provides this useful info (emphasis added):
+</p>
+
+<p>
+Regardless of the authentication type, the account is checked to ensure that it is accessible.  An account is not accessible if it is locked, listed in DenyUsers or its group is listed in DenyGroups .  The definition of a locked account is <span style="font-weight: bold;">system dependant</span>. Some platforms have their own account database (eg AIX) and some modify the passwd field ( "*LK*" on Solaris and UnixWare, "*" on HP-UX, containing "Nologin" on Tru64, a leading "*LOCKED*" on FreeBSD and a leading "!" on most Linuxes).  If there is a requirement to disable password authentication for the account while allowing still public-key, then the passwd field should be set to something other than these values (eg "NP" or "*NP*").
+</p>
+
+<p>
+I'd point out that using NP or *NP* may not be ideal as according to the passwd(5) man page that is a signal to look in an NIS server for the password.  The paragraph above comes from the OpenSSH 5.9p1 version (Debian).  The <a href="http://www.openssh.org/cgi-bin/man.cgi?query=sshd">OpenSSH man page</a> does not have this paragraph while the <a href="http://manpages.debian.net/cgi-bin/man.cgi?query=sshd&apropos=0&sektion=0&manpath=Debian+7.0+wheezy&format=html&locale=en">Debian man page</a> does.
+</p>
+
+<p>
+References:
+</p>
+
+<ul>
+    <li><a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=219377">Debian bug #219377</a> - Discusses PAM and sshd behavior regarding password locked accounts</li>
+    <li><a href="https://bugs.launchpad.net/ubuntu/+source/openssh/+bug/1261861">Ubuntu Launchpad Bug Report - man page for sshd contains error about NP and locked accounts</a></li>
+</ul>

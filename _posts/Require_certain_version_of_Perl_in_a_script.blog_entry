@@ -1,0 +1,13 @@
+# UTC EPOCH of original creation time
+1239046372
+# UTC EPOCH of last modified time
+1239046372
+# CATEGORY
+Programming
+# TITLE
+Require certain version of Perl in a script
+# CONTENT in fragment XHTML until EOF
+require 5.010_000;		# Require Perl version 5.10 or better
+<p>
+This is the backwards compatible way which will not generate warnings when you run Perl -W
+</p>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<title>Send an invitation e-card</title>
+
+	<style type="text/css">
+label.lineup
+{
+width: 4em;
+float: left;
+text-align: left;
+margin-right: 0.5em;
+display: block
+}
+
+	</style>
+</head>
+<body>
+<p>
+You can send a friend an invitation e-card for the choir performance by using the form below.  If you'd like to see what it looks like before sending
+it to your friend then simply send yourself one first.
+</p>
+
+<form action="/cgi-bin/e-card_preview.pl" method="post">
+
+<p>
+<label for="from_address" class="lineup">From:</label> <input type="text" name="from address" id="from_address" size="35" maxlength="320">
+</p>
+
+<p>
+<label for="to_addresses" class="lineup">To:</label> <textarea name="to addresses" id="to_addresses" rows="10" cols="35"></textarea> <i>(Multiple addresses each on a separate line)</i>
+</p>
+
+<p>
+<label for="personal_message">Personal Message: <i>(1000 character limit)</i></label><br >
+<textarea name="personal message" id="personal_message" rows="25" cols="80">Just wanted to let you know about a performance by the renowned Mormon Tabernacle Choir and Orchestra at Temple Square coming here to Norman, Oklahoma!</textarea>
+</p>
+
+<p>
+By clicking on this button you certify that you have provided accurate and legitment information and that you will not use this service for the transmission of spam or other abuse.
+</p>
+
+<p>
+<input type="submit" value="I Agree, Preview E-card" >
+</p>
+
+</form>
+
+<p>
+<b>Privacy Notice:</b>
+</p>
+
+<p>
+Any e-mail addresses submitted via the e-card mechanism will be kept confidential and not shared with third parties.  No e-mail addresses submitted via this mechanism will be added to any mailing lists or used for any purpose other than transmitting the e-card.  Please see other sections of this site if you do wish to be added to a mailing list.  Certain information, such as but not limited to your IP address, may be retained on the server for security purposes.  Any communication you transmit is not encrypted.  No warranty or guarantee is provided that your submitted e-card invitation will be received.  Any communication transmitted may contain your e-mail address, the recipient's e-mail address, your personal message, and your IP address in the communication.
+</p>
+</body>
+</html>

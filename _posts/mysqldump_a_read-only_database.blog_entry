@@ -1,0 +1,13 @@
+# UTC EPOCH of original creation time
+1239376100
+# UTC EPOCH of last modified time
+1239376100
+# CATEGORY
+Tech Tricks
+# TITLE
+mysqldump a read-only database
+# CONTENT in fragment XHTML until EOF
+mysqldump -u USERNAME -h IP-ADDRESS -pPASSWORD_TOUCHING_ARG --skip-lock-tables DATABASE_NAME
+<p>
+You can also provide just "-p" to be prompted for the password.
+</p>

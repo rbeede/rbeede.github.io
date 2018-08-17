@@ -1,0 +1,22 @@
+# UTC EPOCH of original creation time
+1374068284
+# UTC EPOCH of last modified time
+1374068332
+# CATEGORY
+Security
+# TITLE
+IPMI recent public vulnerabilities
+# CONTENT in fragment XHTML until EOF
+Rapid 7 has recently <a href="https://community.rapid7.com/community/metasploit/blog/2013/07/02/a-penetration-testers-guide-to-ipmi">released public exploits</a> for some IPMI vulnerabilities that underscore the importance of securing one's internal network even from itself.  The issue stems from earlier versions of the IPMI specification lacking any security and improper security design being placed in the latest IPMI 2.0 specification.  Because the vulnerabilities now have public exploits there are no vendor patches and the implementation of a fix will have to violate some part of the IPMI specification (which is broken from a security point anyway).
+
+<p>
+I've had success with using the exploits against some Cisco systems and SuperMicro servers.  Of interesting note is that for the HP servers I've tested they are not vulnerable by default.  I tested HP iLO 2, 3, and 4.  HP appears to be the only vendor who has IPMI disabled by default (if IPMI is enabled then the HP iLO is vulnerable), and they also appear to be the only vendor who actually makes the default admin password a random 8-character value for each system.  Of course if someone has physical access to the system they could read the password off of the tag so you have to be aware of securing that.  I'd still recommend changing the default password anyway especially if you need to enable IPMI.
+</p>
+
+<p>
+Hopefully a revision to IPMI 2.0 will come out that fixes the security shortcomings, but I don't expect vendors to be quick about providing firmware patches.  The typical response is to isolate the BMC interfaces onto a separate and unique (V)LAN which you should be doing anyway.
+</p>
+
+<p>
+The annoying part is that an attacker who exploits your IPMI can own the system even if you wipe and re-install the OS clean.  It's the next best thing to physical access as it allows one to gain complete control over the system.  IPMI can be a useful tool, but you may have to evaluate whether you really need or use it.
+</p>

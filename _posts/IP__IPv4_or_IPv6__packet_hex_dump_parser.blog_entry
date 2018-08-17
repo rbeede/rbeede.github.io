@@ -1,0 +1,349 @@
+# UTC EPOCH of original creation time
+1331317330
+# UTC EPOCH of last modified time
+1331317330
+# CATEGORY
+Programming
+# TITLE
+IP (IPv4 or IPv6) packet hex dump parser
+# CONTENT in fragment XHTML until EOF
+<script type="text/javascript">
+	function parseHexDump(hexdump) {
+		var resultMessage = "<pre>";
+
+		
+		// Remove any spaces from the hexdump or any other non-hex characters
+		hexdump = hexdump.replace(/[^0-9a-fA-F]/g, "");
+
+		// Figure out the version and call the appropriate method
+		var ipVersion = parseInt(hexdump.charAt(0), 16);  // First character is 4-bit version
+		
+		switch(ipVersion) {
+			case 4:
+				resultMessage += parseIPv4(hexdump);
+				break;
+			case 6:
+				resultMessage += parseIPv6(hexdump);
+				break;
+
+			default:
+				resultMessage += "Unknown IP version:  " + ipVersion + "\n";
+		} 
+		
+		resultMessage += "\n";
+		resultMessage += "END\n";
+		resultMessage += "</pre>";
+		document.getElementById("result").innerHTML = resultMessage;
+	}
+	
+	
+	// Credit to http://en.wikipedia.org/wiki/IPv4	2012-03-09	For the IP header reference
+	function parseIPv4(hexdump) {
+		var resultMessage = "";
+		
+		resultMessage += "IP Version:  4" + "\n";
+		
+		var ihl = parseInt(hexdump.charAt(1), 16);
+		resultMessage += "Internet Header Length (32-bit words):  " + ihl + "\n";
+		
+		resultMessage += "Total Length (hdr+data) bytes:  " + parseInt(hexdump.substr(4, 4), 16) + "\n";
+		
+		resultMessage += "Time To Live:  " + parseInt(hexdump.substr(16, 2), 16) + "\n";
+		
+		var protocol = parseInt(hexdump.substr(18, 2), 16);
+		resultMessage += "Protocol:  " +  protocol + "\n";
+		
+		resultMessage += "Source IP:  " + integerToIPv4(parseInt(hexdump.substr(24, 8), 16)) + "\n";
+		
+		resultMessage += "Destination IP:  " + integerToIPv4(parseInt(hexdump.substr(32, 8), 16)) + "\n";
+		
+		// Header length > 5 ?
+		if(ihl > 5) {
+			resultMessage += "IHL is > 5 so options exist" + "\n";
+		}
+		
+		var dataStartIdx = ihl * 8;  // 8 nibbles / 32-bit word;  1 hex character = 4-bits = 1 nibble
+		resultMessage += "Data offsets are all <b>0-indexed</b>" + "\n";
+		resultMessage += "Data starts at bit off-set:  " + dataStartIdx * 4 + "\n";
+		resultMessage += "Data starts at byte off-set:  " + dataStartIdx / 2 + "\n";
+		resultMessage += "Data starts at 32-bit word off-set:  " + ihl + "\n";
+		
+		resultMessage += "\n";
+		
+		// Dump protocol
+		switch(protocol) {
+			case 1:
+				resultMessage += parseICMP(hexdump.substr(dataStartIdx));
+				break;
+			case 6:
+				resultMessage += parseTCP(hexdump.substr(dataStartIdx));
+				break;
+			case 17:
+				resultMessage += parseUDP(hexdump.substr(dataStartIdx));
+				break;
+
+			default:
+				resultMessage += "Don't understand protool:  " + protocol + "\n";
+		}
+		
+		
+		
+		return resultMessage;
+	}
+	
+	
+	function parseIPv6(hexdump) {
+		var resultMessage = "";
+		
+		resultMessage += "IP Version:  6" + "\n";
+		
+		var protocol = parseInt(hexdump.substr(12, 2), 16);
+		resultMessage += "Protocol number:  " + protocol + "\n";
+		
+		// Note that EMCA Script (JavaScript) cannot represent a 64-bit integer let alone 128-bit numbers (EMCA-256 5th Edition)
+		// Since IPv6 just uses hex anyway we can take the raw hexdump values and just pretty format them :)
+		
+		resultMessage += "Source IP:  " + formatIPv6(hexdump.substr(16, 32)) + "\n";
+		
+		resultMessage += "Destination IP:  " + formatIPv6(hexdump.substr(48, 32)) + "\n";
+
+		dataStartIdx = 80;  // IPv6 header (not including extension headers) is 40 octets (40 bytes or 320 bits) giving 80 nibbles
+		
+		// Dump protocol
+		switch(protocol) {
+			case 1:
+				resultMessage += parseICMP(hexdump.substr(dataStartIdx));
+				break;
+			case 6:
+				resultMessage += parseTCP(hexdump.substr(dataStartIdx));
+				break;
+			case 17:
+				resultMessage += parseUDP(hexdump.substr(dataStartIdx));
+				break;
+
+			default:
+				resultMessage += "Don't understand protool:  " + protocol + "\n";
+		}
+
+		
+		return resultMessage;
+	}
+	
+	
+	
+	// Assumes first character is first bits of protocol and not IP packet or other previous parts
+	function parseICMP(hexdump) {
+		var resultMessage = "";
+		
+		// Kudos to http://en.wikipedia.org/wiki/Internet_Control_Message_Protocol
+		
+		// Code is in first 8 bits; Type is in second 8 bits
+		var code = parseInt(hexdump.substr(0, 2), 16);
+		var type = parseInt(hexdump.substr(2, 2), 16);
+		
+		resultMessage += "Protocol type is ICMP with code/type of " + code + "/" + type + " ==> ";
+		
+		// All the known types (handily made with Notepad++
+		var codeAndTypes = new Array();
+		for(var i = 0; i < 256; i++) {
+			codeAndTypes[i] = new Array();  // multi-dimensional
+		}
+			codeAndTypes[0][0] = "Echo reply (used to ping)";
+			codeAndTypes[1][0] = "Reserved";
+			codeAndTypes[2][0] = "Reserved";
+			codeAndTypes[3][0] = "Destination network unreachable";
+			codeAndTypes[3][1] = "Destination host unreachable";
+			codeAndTypes[3][2] = "Destination protocol unreachable";
+			codeAndTypes[3][3] = "Destination port unreachable";
+			codeAndTypes[3][4] = "Fragmentation required, and DF flag set";
+			codeAndTypes[3][5] = "Source route failed";
+			codeAndTypes[3][6] = "Destination network unknown";
+			codeAndTypes[3][7] = "Destination host unknown";
+			codeAndTypes[3][8] = "Source host isolated";
+			codeAndTypes[3][9] = "Network administratively prohibited";
+			codeAndTypes[3][10] = "Host administratively prohibited";
+			codeAndTypes[3][11] = "Network unreachable for TOS";
+			codeAndTypes[3][12] = "Host unreachable for TOS";
+			codeAndTypes[3][13] = "Communication administratively prohibited";
+			codeAndTypes[4][0] = "Source quench (congestion control)";
+			codeAndTypes[5][0] = "Redirect Datagram for the Network";
+			codeAndTypes[5][1] = "Redirect Datagram for the Host";
+			codeAndTypes[5][2] = "Redirect Datagram for the TOS & network";
+			codeAndTypes[5][3] = "Redirect Datagram for the TOS & host";
+			codeAndTypes[6][0] = "Alternate Host Address";
+			codeAndTypes[7][0] = "Reserved";
+			codeAndTypes[8][0] = "Echo request (used to ping)";
+			codeAndTypes[9][0] = "Router Advertisement";
+			codeAndTypes[10][0] = "Router discovery/selection/solicitation";
+			codeAndTypes[11][0] = "TTL expired in transit";
+			codeAndTypes[11][1] = "Fragment reassembly time exceeded";
+			codeAndTypes[12][0] = "Pointer indicates the error";
+			codeAndTypes[12][1] = "Missing a required option";
+			codeAndTypes[12][2] = "Bad length";
+			codeAndTypes[13][0] = "Timestamp";
+			codeAndTypes[14][0] = "Timestamp reply";
+			codeAndTypes[15][0] = "Information Request";
+			codeAndTypes[16][0] = "Information Reply";
+			codeAndTypes[17][0] = "Address Mask Request";
+			codeAndTypes[18][0] = "Address Mask Reply";
+			codeAndTypes[19][0] = "Reserved for security";
+			codeAndTypes[20][0] = "Reserved for robustness experiment";
+			codeAndTypes[21][0] = "Reserved for robustness experiment";
+			codeAndTypes[22][0] = "Reserved for robustness experiment";
+			codeAndTypes[23][0] = "Reserved for robustness experiment";
+			codeAndTypes[24][0] = "Reserved for robustness experiment";
+			codeAndTypes[25][0] = "Reserved for robustness experiment";
+			codeAndTypes[26][0] = "Reserved for robustness experiment";
+			codeAndTypes[27][0] = "Reserved for robustness experiment";
+			codeAndTypes[28][0] = "Reserved for robustness experiment";
+			codeAndTypes[29][0] = "Reserved for robustness experiment";
+			codeAndTypes[30][0] = "Information Request";
+			codeAndTypes[31][0] = "Datagram Conversion Error";
+			codeAndTypes[32][0] = "Mobile Host Redirect";
+			codeAndTypes[33][0] = "Where-Are-You (originally meant for IPv6)";
+			codeAndTypes[34][0] = "Here-I-Am (originally meant for IPv6)";
+			codeAndTypes[35][0] = "Mobile Registration Request";
+			codeAndTypes[36][0] = "Mobile Registration Reply";
+			codeAndTypes[37][0] = "Domain Name Request";
+			codeAndTypes[38][0] = "Domain Name Reply";
+			codeAndTypes[39][0] = "SKIP Algorithm Discovery Protocol, Simple Key-Management for Internet Protocol";
+			codeAndTypes[40][0] = "Photuris, Security failures";
+			codeAndTypes[41][0] = "ICMP for experimental mobility protocols such as Seamoby [RFC4065]";
+
+		if(codeAndTypes[code][type]) {
+			resultMessage += codeAndTypes[code][type];
+		} else {
+			resultMessage += "Unknown code = " + code + " and type = " + type + "\n";
+		}
+		
+		resultMessage += "\n";
+		
+		return resultMessage;
+	}
+	
+	// Assumes first character is first bits of protocol and not IP packet or other previous parts
+	function parseTCP(hexdump) {
+		var resultMessage = "";
+		
+		resultMessage += "Protocol type is TCP" + "\n";
+		
+		// kudos to http://en.wikipedia.org/wiki/Transmission_Control_Protocol	2012-03-09
+		
+		resultMessage += "Source Port:  " + parseInt(hexdump.substr(0, 4), 16) + "\n";
+		resultMessage += "Destination Port:  " + parseInt(hexdump.substr(4, 4), 16) + "\n";
+		// SKIPPED OUTPUT: next 32-bits (8 hex chars) is sequence number
+		// SKIPPED OUTPUT: next 32-bits (8 hex chars) is Acknowledgment  number
+		// SKIPPED OUTPUT: next 4-bits is data offset (size of TCP header in 32-bit words)
+		
+		// Flags are next 12 bits (we're at hex char offset (nibble) 24 (0-indexed)
+		var flagsAsInt = parseInt(hexdump.substr(25, 3), 16);
+		
+		resultMessage += "Flags:" + "\n";
+		resultMessage += "\t" + "Binary:  " + flagsAsInt.toString(2) + "\n";
+		resultMessage += "\t" + "Integer:  " + flagsAsInt.toString() + "\n";
+		resultMessage += "\t" + "Hex:  " + flagsAsInt.toString(16) + "\n";
+		resultMessage += "\t" + "Unparsed Hex:  " + hexdump.substr(25, 3) + "\n";
+		resultMessage += "\t" + "Symbols:" + "\n";
+		resultMessage += "\t\t" + "Reserved 96+4:  " + (flagsAsInt & 0x800 ? "SET" : "NOT SET") + "\n";
+		resultMessage += "\t\t" + "Reserved 96+5:  " + (flagsAsInt & 0x400 ? "SET" : "NOT SET") + "\n";
+		resultMessage += "\t\t" + "Reserved 96+6:  " + (flagsAsInt & 0x200 ? "SET" : "NOT SET") + "\n";
+		resultMessage += "\t\t" + "NS 96+7:  " + (flagsAsInt & 0x100 ? "SET" : "NOT SET") + "\n";
+		resultMessage += "\t\t" + "CWR 96+8:  " + (flagsAsInt & 0x080 ? "SET" : "NOT SET") + "\n";
+		resultMessage += "\t\t" + "ECE 96+9:  " + (flagsAsInt & 0x040 ? "SET" : "NOT SET") + "\n";
+		resultMessage += "\t\t" + "URG 96+10:  " + (flagsAsInt & 0x020 ? "SET" : "NOT SET") + "\n";
+		resultMessage += "\t\t" + "ACK 96+11:  " + (flagsAsInt & 0x010 ? "SET" : "NOT SET") + "\n";
+		resultMessage += "\t\t" + "PSH 96+12:  " + (flagsAsInt & 0x008 ? "SET" : "NOT SET") + "\n";
+		resultMessage += "\t\t" + "RST 96+13:  " + (flagsAsInt & 0x004 ? "SET" : "NOT SET") + "\n";
+		resultMessage += "\t\t" + "SYN 96+14:  " + (flagsAsInt & 0x002 ? "SET" : "NOT SET") + "\n";
+		resultMessage += "\t\t" + "FIN 96+15:  " + (flagsAsInt & 0x001 ? "SET" : "NOT SET") + "\n";
+		
+		return resultMessage;
+	}
+
+	// Assumes first character is first bits of protocol and not IP packet or other previous parts
+	function parseUDP(hexdump) {
+		var resultMessage = "";
+		
+		resultMessage += "Protocol type is UDP" + "\n";
+		
+		// kudos to http://en.wikipedia.org/wiki/User_Datagram_Protocol	2012-03-09
+		resultMessage += "Source Port:  " + parseInt(hexdump.substr(0, 4), 16) + "\n";
+		resultMessage += "Destination Port:  " + parseInt(hexdump.substr(4, 4), 16) + "\n";
+
+		var udpLength = parseInt(hexdump.substr(8, 4), 16);
+		resultMessage += "Length (UDP hdr+data, bytes):  " + udpLength + "\n";
+		
+		resultMessage += "Checksum (hex):  " + hexdump.substr(12, 4) + "\n";
+		
+		// Sanity check on remainging data provided and expected length
+		var udpHdrAndDataDumpLengthInBytes = (hexdump.length / 2);
+		var udpDataDumpLength = udpHdrAndDataDumpLengthInBytes - 8;  // UDP header is always 8 bytes
+		
+		if(udpHdrAndDataDumpLengthInBytes != udpLength) {
+			resultMessage += "<span style='color: red;'>Expected UDP (hdr+data) of size " + udpLength + " but saw " + udpHdrAndDataDumpLengthInBytes + " bytes instead where actual data length was " + udpDataDumpLength + " bytes</span>" + "\n";
+		}
+		
+		return resultMessage;
+	}
+
+	
+	
+	function integerToIPv4(integer) {
+		var address = "";
+		
+		address += ((integer >> 24) & 0xFF);
+		address += ".";
+		address += ((integer >> 16) & 0xFF);
+		address += ".";
+		address += ((integer >> 8) & 0xFF);
+		address += ".";
+		address += ((integer ) & 0xFF);
+		
+		return address;
+	}
+	
+	
+	function formatIPv6(unformattedHex) {
+		// Remove any non-hex characters (effective unformat)
+		unformattedHex = unformattedHex.replace(/[^0-9a-fA-F]/g, "");
+
+		var formatRegex = /([0-9a-zA-Z]+)([0-9a-zA-Z]{4})/;  // Group each character from right to left in groups of 4
+		while(formatRegex.test(unformattedHex)) {
+			unformattedHex = unformattedHex.replace(formatRegex, '$1' + ':' + '$2');
+		}
+		
+		return unformattedHex;  // now formatted
+	}
+	
+	
+	// Care of http://www.mredkj.com/javascript/nfbasic.html
+	//	addCommas and addSeparatorsNF are released to the public domain.
+	//	Other content is still copyrighted
+	function addCommas(nStr)
+	{
+		nStr += '';
+		x = nStr.split('.');
+		x1 = x[0];
+		x2 = x.length > 1 ? '.' + x[1] : '';
+		var rgx = /(\d+)(\d{3})/;
+		while (rgx.test(x1)) {
+			x1 = x1.replace(rgx, '$1' + ',' + '$2');
+		}
+		return x1 + x2;
+	}
+</script>
+
+<p>
+Takes the provided hex dump and parses it into the IP packet fields.  Assumes first hex character is beginning of the IP packet (no ethernet or other frames at the beginning).
+</p>
+
+<p>
+<labal for="hexdump">Hex Dump:</label><br />
+<textarea id="hexdump" value="" rows="10" cols="80"></textarea>
+</p>
+
+<p>
+<button onclick="parseHexDump(document.getElementById('hexdump').value);">Parse</button>
+</p>
+
+<div id="result">Result will appear here</div>

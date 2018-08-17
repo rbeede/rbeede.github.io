@@ -1,0 +1,32 @@
+# UTC EPOCH of original creation time
+1267564462
+# UTC EPOCH of last modified time
+1267564462
+# CATEGORY
+Computer Problems
+# TITLE
+Ubuntu 9.10 Flash Player not working with embedded videos (click problem)
+# CONTENT in fragment XHTML until EOF
+Youtube videos played, but embedded videos on pages could not be controlled (pause, fast forward, play).
+
+<p>
+Solution:  <a href="http://www.khattam.info/2009/08/18/solved-flashplugin-controls-not-working-in-ubuntu-9-10-karmic-koala-alpha-4/">http://www.khattam.info/2009/08/18/solved-flashplugin-controls-not-working-in-ubuntu-9-10-karmic-koala-alpha-4/</a>
+</p>
+
+<p>
+In case the above site is no longer available:
+</p>
+
+<ol>
+<li>sudo apt-get remove flashplugin-installer flashplugin-nonfree swdec-mozilla mozilla-plugin-gnash
+    <ul><li>Don't worry if some fail because they are not installed</li></ul>
+</li>
+<li>wget http://download.macromedia.com/pub/labs/flashplayer10/libflashplayer-10.0.45.2.linux-x86_64.so.tar.gz
+     <ul>
+          <li>Change out the version number for the latest</li>
+          <li>The labs version works while the normal one does not</li>
+     </ul>
+</li>
+<li>tar -xvf libflashplayer-10.0.45.2.linux-x86_64.so.tar.gz</li>
+<li>sudo mv libflashplayer.so /usr/lib/mozilla/plugins/</li>
+</ol>

@@ -1,0 +1,92 @@
+# UTC EPOCH of original creation time
+1231449000
+# UTC EPOCH of last modified time
+1231449000
+# CATEGORY
+Tech Tricks
+# TITLE
+How to install Apache Continuum
+# CONTENT in fragment XHTML until EOF
+Apache Continuum is an automated build and reporting system for Maven or Ant Java projects.  It is nice because it will automatically check out from source control a project and build it.  Any errors found during the build process can then be e-mailed to you.  This is nice because it allows an automated build to run every X hours (or whatever you want) with the latest code from source control.  This allows one to catch an error that breaks the build a developer may have made when checking in code.  It also provides a web interface for viewing build history and reports.
+<p>
+Unfortunately the documentation on setting up Continuum isn't very good.  Below is my quick start guide to getting Continuum running.  This assumes Windows XP, but the instructions should work on Linux as well.
+</p>
+
+Pre-requesites:
+<ol>
+<li>Download <a href="http://continuum.apache.org/download.html">Apache Continuum</a> (these instructions were done with version 1.2.2)</li>
+<li>Java JDK (javac) in your system path</li>
+<li>For Windows a user account to run the service
+   <ul>
+   <li>You should not use LocalSystem as you need a separate user home directory</li>
+   </ul>
+</li>
+<li>Maven 2.0.9+ in your system path</li>
+<li>JAVA_HOME system environment variable that points to your JDK</li>
+<li>Subversion command line client (svn) in your system path
+   <ul>
+   <li>I recommend the <a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=8100">Tigris.org Apache 2.x</a> svn-win32-<i>x.y.z</i>.zip</li>
+   </ul>
+</li>
+<li>TCP port 8080 free</li>
+<li>A settings.xml for your Maven in the correct place (see instructions below)</li>
+</ol>
+
+Installation Steps (Windows):
+
+<ol>
+<li>Unzip the Apache Continuum distro into whatever location</li>
+<li>Create the Windows user account
+   <ul>
+   <li>Users group only, Administrators is not necessary</li>
+   </ul>
+</li>
+<li>Create the Windows' user profile on the system
+   <ul><li>cmd /runas:<b>ContinuumUser</b> cmd</li></ul>
+</li>
+<li>Copy your Maven settings file into the <i>profile-folder</i>/.m2/settings.xml
+   <ul><li>Don't forget to adjust the file security permissions if necessary</li></ul>
+</li>
+<li>If your SVN repository requires auth for read-only access
+   <ul>
+   <li>cmd /runas:<b>ContinuumUser</b> cmd</li>
+   <li>svn list https://your-repo/svn/project</li>
+   </ul>
+</li>
+<li>Set recursively the Apache Continuum folder security permissions and ownership to your Windows' Continuum user</li>
+<li>Install the Continuum service by running <i>c:\</i>apache-continuum-<i>x.y.z</i>\bin\continuum.bat install</li>
+<li>Open up the Services control panel (run services.msc)</li>
+<li>Edit the "Apache Continuum" service
+   <ol>
+   <li>Log On tab</li>
+   <li>Log on as:  "This account"</li>
+   <li>Enter in the Windows' Continuum user account you created</li>
+   <li>Click on the OK button</li>
+   </ol>
+</li>
+<li>Edit <i>c:\</i>apache-continuum-<i>x.y.z</i>\conf\jetty.xml
+   <ol>
+   <li>You should probably open it in WordPad</li>
+   <li>Search for "mail.smtp.host"</li>
+   <li>Inbetween the "Put" tags insert the hostname of your SMTP e-mail server
+      <ul>
+      <li>You will probably need to remove the "localhost" default setting</li>
+      </ul>
+   </li>
+   <li>Save the file and close it</li>
+   </ol>
+</li>
+<li>Start the "Apache Continuum" service</li>
+<li>Be very patient as it takes a while to load</li>
+</ol>
+
+
+Post Steps:
+
+<ol>
+<li>Open your web browser to <a href="http://localhost:8080/continuum">http://localhost:8080/continuum</a></li>
+<li>Follow the first time configuration wizard</li>
+<li>When adding a Maven project "POM Url" means the URL to the pom.xml file in source control
+   <ul><li>Example:  https://svn-server/svn/project/trunk/pom.xml</li></ul>
+</li>
+</ol>

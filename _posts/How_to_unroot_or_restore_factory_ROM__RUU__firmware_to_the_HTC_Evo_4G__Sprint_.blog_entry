@@ -1,0 +1,39 @@
+# UTC EPOCH of original creation time
+1351393225
+# UTC EPOCH of last modified time
+1351397923
+# CATEGORY
+Tech Tricks
+# TITLE
+How to unroot or restore factory ROM (RUU) firmware to the HTC Evo 4G (Sprint)
+# CONTENT in fragment XHTML until EOF
+Some rough notes.
+
+<p>
+You are much better off if you made a backup of your original firmware.  HTC doesn't offer an official download of the ROM besides the OTA update.  I guess one could have intercepted that download while their original phone was downloading, but I didn't do that.  Annoying that HTC doesn't just offer a RUU for each phone that you can download to your PC or even just a zip file ROM.
+</p>
+
+<p>
+I had clockworkmod recovery so the RUU I found wouldn't work.  I had to Google search for someone else's copy of the stock ROM.  Trying to use clockworkmod recovery to apply the update would fail.  Using a RUU also failed because the phone didn't want invalid signatures or older updates.  fastboot flash system system.img also failed because that tool can't handle more than 200MB flashes (too large error).
+</p>
+
+<p>
+What I did:
+</p>
+
+<ul>
+<li><a href="http://forum.xda-developers.com/wiki/HTC_Evo/ROMs">http://forum.xda-developers.com/wiki/HTC_Evo/ROMs</a></li>
+<li>Left phone in UNLOCKED state</li>
+<li>Wiped recovery partition and fastboot flash recovery recovery.img (stock OEM recovery from zip)</li>
+<li>Wiped cache, other partitions.  Did format on system partition</li>
+<li>fastboot boot ra-recovery.img (<a href="http://forum.xda-developers.com/showthread.php?t=1661543">Amon RA)</a></li>
+<li>adb shell</li>
+<li>dd if=/sdcard/system.img of=/dev/block/mtdblock4 bs=4096
+ <ul>
+ <li>bs=4096 IS KEY or you get write errors (<a href="http://forum.xda-developers.com/showthread.php?t=1651413&page=16">xda-developers</a>)</li>
+ <li>mount /system  and  mount  to figure out your /dev/block/... part</li>
+ <li>mount /sdcard or use the RA GUI menus</li>
+  </ul>
+</li>
+<li>I also redid boot.img.  I actually downgraded from what was on the phone's original stock ROM so you may need to OTA update again</li>
+</ul>

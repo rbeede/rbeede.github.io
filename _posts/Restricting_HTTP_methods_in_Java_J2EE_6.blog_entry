@@ -1,0 +1,27 @@
+# UTC EPOCH of original creation time
+1357936999
+# UTC EPOCH of last modified time
+1357936999
+# CATEGORY
+Security
+# TITLE
+Restricting HTTP methods in Java J2EE 6
+# CONTENT in fragment XHTML until EOF
+I found a neat new feature of J2EE 6 which simplifies security configuration of applications.  You can now whitelist versus blacklist allowed HTTP methods in your web.xml:
+
+<pre>
+	&lt;security-constraint&gt;
+		&lt;web-resource-collection&gt;
+			&lt;web-resource-name&gt;Disable unneeded HTTP methods by 403 Forbidden them&lt;/web-resource-name&gt;
+			&lt;url-pattern&gt;*&lt;/url-pattern&gt;
+			&lt;http-method-omission&gt;GET&lt;/http-method-omission&gt;
+			&lt;http-method-omission&gt;HEAD&lt;/http-method-omission&gt;
+			&lt;http-method-omission&gt;POST&lt;/http-method-omission&gt;
+		&lt;/web-resource-collection&gt;
+		&lt;auth-constraint /&gt;
+	&lt;/security-constraint&gt;
+</pre>
+
+<p>
+Reference:  <a href="https://blogs.oracle.com/nithya/entry/new_security_features_in_glassfish">https://blogs.oracle.com/nithya/entry/new_security_features_in_glassfish</a>
+</p>

@@ -1,0 +1,29 @@
+# UTC EPOCH of original creation time
+1233077220
+# UTC EPOCH of last modified time
+1233077220
+# CATEGORY
+Computer Problems
+# TITLE
+Make Juniper Network Connect work with Slackware 12.2
+# CONTENT in fragment XHTML until EOF
+My work uses Juniper Network connection for the VPN solution.  I have Slackware 12.2 at home.  Assuming you install all the packages for Slackware the VPN doesn't work out of the box.  Here are the steps I took to get it working:
+<ol>
+<li>Make sure you have Java 1.6 JRE installed</li>
+<li>Launch Firefox 3</li>
+<li>Make sure your Java plug-in is loaded into Firefox
+    <ol><li>Google "test Java" to test it</li></ol>
+</li>
+<li>Start the network connect via your VPN web site
+    <ul><li>It will fail, but we need the initial files</li></ul>
+</li>
+<li>Open a terminal (I used Konsole)</li>
+<li>Add the <b>tun</b> device with the following commands
+    <ul>
+    <li>sudo mkdir /dev/net</li>
+    <li>sudo mknod /dev/net/tun c 10 200</li>
+    </ul>
+</li>
+<li>Relaunch the network connect via your VPN web site</li>
+<li>This time the connection will hold</li>
+</ol>

@@ -1,0 +1,18 @@
+<Session>
+	<File>
+		<Name>myfile.txt</Name>
+		<Path>/mydir/mysub-dir</Path>
+		<Content_Length>500</Content_Length>
+		<Content>
+[binary data]
+		</Content>
+	</File>
+	<File>
+		<Name>myimage.jpg</Name>
+		<Path>/mydir/mysub-dir/images</Path>
+		<Content_Length>100457</Content_Length>
+		<Content>
+[binary data]
+		</Content>
+	</File>
+</Session>	

@@ -1,0 +1,61 @@
+# UTC EPOCH of original creation time
+1310747352
+# UTC EPOCH of last modified time
+1310747352
+# CATEGORY
+Tech Tricks
+# TITLE
+Multiple VLAN NOT sharing Internet with DD-WRT
+# CONTENT in fragment XHTML until EOF
+I have a WRT54G (ver 2.0) with DD-WRT installed (VPN edition).  Below are the steps to setup multiple VLANs where some of the VLAN do NOT share Internet NAT access:
+
+<ol>
+	<li>Install the VPN version of DD-WRT for your router.  This method uses DD-WRT version v24 preSP2</li>
+	<li>Setup tab</li>
+	<li>VLAN sub-tab</li>
+	<li>Move any ports out of the default VLAN0 to whichever VLANs you want</li>
+	<li>Make sure each VLAN is set for Unbridged mode (not LAN)</li>
+	<li>Networking sub-tab</li>
+	<li>Change the VLANs you want separated from "Default" to "Unbridged"</li>
+	<li>Give each VLAN an IP and netmask</li>
+	<li>
+		Leave "Masquerade / NAT" set to "Disabled"
+		<ul>
+			<li style="font-style: italic;">(doesn't do actual blocking of NAT Internet for VLAN, this is only for special cases when loopback support is needed on the VLAN)</li>
+		</ul>
+	</li>
+	<li>Optionally add multiple DHCP servers on this screen for each VLAN</li>
+	<li>Administration tab</li>
+	<li>Commands sub-tab</li>
+	<li>
+		Enter in the following into the "Commands" text box:
+		<ul>
+			<li>
+				<code>iptables -I FORWARD -i br0 -o vlanX -j DROP</code>
+				<ul>
+					<li>Stop vlan to vlan communication</li>
+					<li>Change vlanX to whatever vlan number</li>
+					<li>Repeat for each vlan</li>
+				</ul>
+			</li>
+			<li>
+				<code>iptables -I FORWARD -i vlanX -o vlanW -j DROP</code>
+				<ul>
+					<li>Stop vlan to wan (NAT/Internet) communication</li>
+					<li>Change vlanX to whatever vlan number</li>
+					<li>Change vlanW to whatever vlan number the WAN is on</li>
+					<li>Repeat for each vlan</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li>Click on <span style="font-weight: bold;">Save Firewall</span></li>
+	<li>Management sub-tab</li>
+	<li>Reboot Router</li>
+</ol>
+
+<p>Misc Notes</p>
+
+<ul>
+	<li>DD-WRT sets WLAN public IP for SNAT mode which by default is set to do any network/vlan hence why you need extra iptables rules</li>
+</ul>

@@ -1,0 +1,14 @@
+# UTC EPOCH of original creation time
+1267045684
+# UTC EPOCH of last modified time
+1267045701
+# CATEGORY
+Programming
+# TITLE
+Tidy command to indent xml
+# CONTENT in fragment XHTML until EOF
+tidy -indent -xml -o "%1.FORMATTED" -wrap 120 "%1"
+
+<p>
+Creates second file with indented xml in file ending with same name plus .FORMATTED
+</p>

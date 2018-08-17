@@ -1,0 +1,15 @@
+# UTC EPOCH of original creation time
+1352230081
+# UTC EPOCH of last modified time
+1352230081
+# CATEGORY
+Tech Tricks
+# TITLE
+How to list wireless details in Windows 7
+# CONTENT in fragment XHTML until EOF
+<ol>
+<li>Open an elevated command prompt
+  <ul><li>Start, "cmd" in Search, ctrl+shift+center</li></ul>
+</li>
+<li>netsh wlan show all</li>
+</ol>
