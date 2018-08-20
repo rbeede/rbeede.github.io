@@ -14,8 +14,9 @@ Default template but with content and jekyll dynamic stuff and more
 <hr />
 
 <ul>
-  {% for category in site.categories %}
-    <li><a href="{{site.baseurl}}/categories/{{category}}.html">{{category}}</a></li>
+  {% assign sorted_categories = site.categories | sort %}
+  {% for tuple in site.categories %}
+    <li><a href="{{site.baseurl}}/categories/{{category[0]}}.html">{{category[0]}}</a></li>
   {% endfor %}
 </ul>
   
