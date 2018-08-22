@@ -1,14 +1,18 @@
 ---
 creation-epoch: 1489681261
-lastmod-epoch: 1489681261
+lastmod-epoch: 1534942592
 categories: ['Tech Tricks']
 title: Command line script way to get SSL certificate
 ---
 
 <pre>
-echo quit | openssl s_client -connect www.rodneybeede.com:443 2&gt;/dev/null| sed -ne '/BEGIN CERT/,/END CERT/p'
+openssl s_client -prexit -showcerts -connect www.rodneybeede.com:443 2&gt;/dev/null &lt;/dev/null| sed -ne '/BEGIN CERT/,/END CERT/p'
 </pre>
 
 <p>
 The 2&gt;/dev/null removes output from the openssl command so you can get only the ASCII BASE64 encoded certificate.
+</p>
+
+<p>
+The &lt;/dev/null disables STDIN input so the openssl command terminates after a successful connection.
 </p>
