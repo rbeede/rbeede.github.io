@@ -6,8 +6,12 @@ title: Command line script way to get SSL certificate
 ---
 
 <pre>
-openssl s_client -prexit -showcerts -connect www.rodneybeede.com:443 2&gt;/dev/null &lt;/dev/null| sed -ne '/BEGIN CERT/,/END CERT/p'
+openssl s_client -showcerts -connect www.rodneybeede.com:443 2&gt;/dev/null &lt;/dev/null| sed -ne '/BEGIN CERT/,/END CERT/p'
 </pre>
+
+<p>
+This will obtain all certificates in the chain that the remote server is sending.  Typically the root CA is not (nor should be) included.
+</p>
 
 <p>
 The 2&gt;/dev/null removes output from the openssl command so you can get only the ASCII BASE64 encoded certificate.
