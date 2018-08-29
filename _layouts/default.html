@@ -5,21 +5,6 @@
 {{ post.title }}
 </title>
 
-<style>
-.column {
-	float: left;
-	padding: 10px;
-}
-
-.left {
-	width: 75%;
-}
-
-.right {
-	width: 25%;
-}
-</style>
-
 </head>
 
 
@@ -28,13 +13,11 @@
 <span style="font-size: smaller;">
 Last Modified: {{ post.lastmod-epoch }} ; Created: {{ post.creation-epoch }}
 </span>
-  
 
-<div class="column">
-{{ content }}
-</div>
-  
-<div class="column right">
+<table>
+<tr>
+<td>{{ content }}</td>
+<td>
 <ul style="list-style-type: none;">
   {% assign sorted_categories = site.categories | sort %}
   {% for tuple in sorted_categories %}
@@ -42,7 +25,9 @@ Last Modified: {{ post.lastmod-epoch }} ; Created: {{ post.creation-epoch }}
     <li><a href="{{site.baseurl}}/categories/{{category_name}}.html">{{category_name}}</a></li>
   {% endfor %}
 </ul>
-</div>
+</td>
+</tr>
+</table>
   
 </body>
 </html>
