@@ -10,14 +10,15 @@
 
 <body>
 <h1>{{ post.title }}</h1>
-<span style="font-size: smaller;">
-Last Modified: {{ post.lastmod-epoch }} ; Created: {{ post.creation-epoch }}
-</span>
+
+<p style="font-size: smaller;">
+Last Modified: {{ post.lastmod_epoch }} ; Created: {{ post.creation_epoch }}
+</p>
 
 <table>
 <tr>
 <td>{{ content }}</td>
-<td>
+<td style="vertical-align:top;">
 <ul style="list-style-type: none;">
   {% assign sorted_categories = site.categories | sort %}
   {% for tuple in sorted_categories %}

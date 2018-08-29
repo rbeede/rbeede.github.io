@@ -1,6 +1,6 @@
 ---
-creation-epoch: 1534809600
-lastmod-epoch: 1535034066
+creation_epoch: 1534809600
+lastmod_epoch: 1535034066
 categories: Security
 title: Unattended, Unlocked, Unprotected Terminals - User Security Training with USB Rubber Ducky
 ---
