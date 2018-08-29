@@ -7,9 +7,11 @@ layout: default
 
 <h1>{{ page.category }}</h1>
 
-{% assign sorted_pages = (site.pages | sort: 'title') %}
-{% for post in site.categories[page.category] | sort: 'title' %}
-    <a href="{{ post.url | absolute_url }}">
-      {{ post.title }}
-    </a>
+{% assign sorted = (site.categories[page.category] | sort: 'title') %}
+{% for post in  sorted %}
+<p>
+	<a href="{{ post.url | absolute_url }}">
+		{{ post.title }}
+	</a>
+</p>
 {% endfor %}
