@@ -3,8 +3,12 @@ layout: default
 ---
 
 <!-- https://jekyllrb.com/docs/posts/#displaying-post-categories-or-tags -->
+<!-- Modifications by Rodney Beede -->
 
-{% for post in site.categories[page.category] %}
+<h1>{{ page.category }}</h1>
+
+{% assign sorted_pages = (site.pages | sort: 'title') %}
+{% for post in site.categories[page.category] | sort: 'title' %}
     <a href="{{ post.url | absolute_url }}">
       {{ post.title }}
     </a>
