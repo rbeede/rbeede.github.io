@@ -18,7 +18,13 @@ Last Modified: {{ post.lastmod_epoch }} ; Created: {{ post.creation_epoch }}
 <table>
 <tr>
 <td>{{ content }}</td>
+
 <td style="vertical-align:top;">
+<ul style="list-style-type: none;">
+{% for post in site.posts  limit:5 %}
+	<li><a href="{{ post.url | absolute_url }}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
 <ul style="list-style-type: none;">
   {% assign sorted_categories = site.categories | sort %}
   {% for tuple in sorted_categories %}
