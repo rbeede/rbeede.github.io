@@ -6,22 +6,22 @@
 </title>
 
 <style>
-ul {
+#sidemenu ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
  
-li {
+#sidemenu li {
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
 }
  
-li:last-child {
+#sidemenu li:last-child {
   border: none;
 }
  
-li a {
+#sidemenu li a {
   text-decoration: none;
   color: #000;
   display: block;
@@ -34,7 +34,7 @@ li a {
   transition: font-size 0.3s ease, background-color 0.3s ease;
 }
  
-li a:hover {
+#sidemenu li a:hover {
   font-size: 30px;
   background: #f6f6f6;
 }
@@ -54,7 +54,7 @@ Last Modified: {{ page.lastmod_epoch | date_to_rfc822 }} ; Created: {{ page.crea
 <tr>
 <td>{{ content }}</td>
 
-<td style="vertical-align:top;">
+<td style="vertical-align:top;" id="sidemenu">
 <ul>
 {% for post in site.posts  limit:5 %}
 	<li><a href="{{ post.url | absolute_url }}">{{ post.title }}</a></li>
