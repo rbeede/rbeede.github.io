@@ -14,18 +14,13 @@
  
 #sidemenu li {
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
-  border-bottom: 1px solid #ccc;
-}
- 
-#sidemenu li:last-child {
-  border: none;
+  border: 1px solid #ccc;
 }
  
 #sidemenu li a {
   text-decoration: none;
   color: #000;
   display: block;
-  width: 200px;
  
   -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
   -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
@@ -60,6 +55,7 @@ Last Modified: {{ page.lastmod_epoch | date_to_rfc822 }} ; Created: {{ page.crea
 	<li><a href="{{ post.url | absolute_url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
+<hr />
 <ul>
   {% assign sorted_categories = site.categories | sort %}
   {% for tuple in sorted_categories %}
