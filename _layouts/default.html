@@ -5,6 +5,41 @@
 {{ page.title }}
 </title>
 
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ 
+li {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+}
+ 
+li:last-child {
+  border: none;
+}
+ 
+li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  width: 200px;
+ 
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+ 
+li a:hover {
+  font-size: 30px;
+  background: #f6f6f6;
+}
+</style>
+
 </head>
 
 
@@ -20,12 +55,12 @@ Last Modified: {{ page.lastmod_epoch | date_to_rfc822 }} ; Created: {{ page.crea
 <td>{{ content }}</td>
 
 <td style="vertical-align:top;">
-<ul style="list-style-type: none;">
+<ul>
 {% for post in site.posts  limit:5 %}
 	<li><a href="{{ post.url | absolute_url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
-<ul style="list-style-type: none;">
+<ul>
   {% assign sorted_categories = site.categories | sort %}
   {% for tuple in sorted_categories %}
     {% assign category_name = tuple[0] %}
