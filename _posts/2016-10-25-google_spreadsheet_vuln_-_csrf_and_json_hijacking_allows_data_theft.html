@@ -16,7 +16,7 @@ When exploiting the vulnerability against target victim(s) from the Internet, an
 </p>
 
 <p>
-<img src="google_vuln_2015-10/000_What_attacker_can_bypass.png" />
+<img src="/google_vuln_2015-10/000_What_attacker_can_bypass.png" />
 </p>
 
 <h2>Nature of vulnerability</h2>
@@ -68,25 +68,25 @@ In Google's case they opted to retire the old API and replace it with a new one 
 <h3>Business has a spreadsheet with confidential information in it.</h3>
 
 <p>
-<img src="google_vuln_2015-10/001_business_spreadsheet.png" />
+<img src="/google_vuln_2015-10/001_business_spreadsheet.png" />
 </p>
 
 <h3>Spreadsheet is only shared with authorized individuals in the company.</h3>
 
 <p>
-<img src="google_vuln_2015-10/002_business_spreadsheet.png" />
+<img src="/google_vuln_2015-10/002_business_spreadsheet.png" />
 </p>
 
 <h3>An employee leaves the company so their access is removed and shared passwords/pins/secrets in the spreadsheet are changed after they leave denying them access or knowledge of the data.</h3>
 
 <p>
-<img src="google_vuln_2015-10/003_business_spreadsheet.png" />
+<img src="/google_vuln_2015-10/003_business_spreadsheet.png" />
 </p>
 
 <h3>The new sharing settings showing the user's access removed.</h3>
 
 <p>
-<img src="google_vuln_2015-10/004_business_spreadsheet.png" />
+<img src="/google_vuln_2015-10/004_business_spreadsheet.png" />
 </p>
 
 <h3>The force be with you</h3>
@@ -98,25 +98,25 @@ The now removed employee desires to obtain unauthorized access to the spreadshee
 <h3>Screenshot of victim/user visiting the website.</h3>
 
 <p>
-<img src="google_vuln_2015-10/005_user_visiting_watering_hole_site.png" />
+<img src="/google_vuln_2015-10/005_user_visiting_watering_hole_site.png" />
 </p>
 
 <h3>Unknown to the target victim (who is not even the document owner) they have just sent a copy of the spreadsheet data to the attacker.</h3>
 
 <p>
-<img src="google_vuln_2015-10/006_user_visiting_watering_hole_site_hidden_iframe.png" />
+<img src="/google_vuln_2015-10/006_user_visiting_watering_hole_site_hidden_iframe.png" />
 </p>
 
 <h3>What the stolen data looks like (not seen by the victim):</h3>
 
 <p>
-<img src="google_vuln_2015-10/007_user_browser_showning_technical_details.png" />
+<img src="/google_vuln_2015-10/007_user_browser_showning_technical_details.png" />
 </p>
 
 <h3>The attacker sees the data as shown</h3>
 
 <p>
-<img src="google_vuln_2015-10/008_attackers_server_with_data_stolen.png" />
+<img src="/google_vuln_2015-10/008_attackers_server_with_data_stolen.png" />
 </p>
 
 
@@ -135,8 +135,8 @@ Simple proof of concept exploit code can be found in the following files:
 </p>
 
 <ul>
-	<li><a href="google_vuln_2015-10/simpleCapture.p-h-p.txt">simpleCapture.php</a> - A script for capturing the data sent from the victim's web browser</li>
-	<li><a href="google_vuln_2015-10/google_drive_smuggle.html.txt">google_drive_smuggle.html</a> - The HTML code used against the victim to steal target data</li>
+	<li><a href="/google_vuln_2015-10/simpleCapture.p-h-p.txt">simpleCapture.php</a> - A script for capturing the data sent from the victim's web browser</li>
+	<li><a href="/google_vuln_2015-10/google_drive_smuggle.html.txt">google_drive_smuggle.html</a> - The HTML code used against the victim to steal target data</li>
 </ul>
 
 <p>
@@ -263,9 +263,9 @@ After looking at the issue for quite some time Google decided that trying to cod
 An alert started to appear telling the user that use of the OLD api by the website/application would stop working soon.
 </p>
 
-<img src="google_vuln_2015-10/fix_near.png" style="width: 50%" />
+<img src="/google_vuln_2015-10/fix_near.png" style="width: 50%" />
 
-<img src="google_vuln_2015-10/google_dev_blog_announces_change.png"/>
+<img src="/google_vuln_2015-10/google_dev_blog_announces_change.png"/>
 
 <h2>Final Fix Confirmed</h2>
 
@@ -273,7 +273,7 @@ An alert started to appear telling the user that use of the OLD api by the websi
 I confirmed the issue was finally fixed on September 15, 2016.
 </p>
 
-<img src="google_vuln_2015-10/final_fix_confirmed.png" style="width: 50%" />
+<img src="/google_vuln_2015-10/final_fix_confirmed.png" style="width: 50%" />
 
 <h2>Finale</h2>
 
@@ -286,9 +286,9 @@ I was added to Google's Hall of Fame for my finding.  You can find my profile <a
 </p>
 
 <p>
-<img src="google_vuln_2015-10/google_hall_of_fame_1.png" />
+<img src="/google_vuln_2015-10/google_hall_of_fame_1.png" />
 </p>
 
 <p>
-<img src="google_vuln_2015-10/google_hall_of_fame_2.png" />
+<img src="/google_vuln_2015-10/google_hall_of_fame_2.png" />
 </p>
