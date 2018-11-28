@@ -1,0 +1,43 @@
+---
+creation_epoch: 1543422712
+lastmod_epoch: 1543422712
+categories: ['Security']
+title: Cracking Metasploitable2 Root Password Hash
+---
+
+Playing with this test VM pulled the root entry in /etc/shadow.
+
+<p>
+<pre>root:$1$/avpfBJ1$x0z8w5UF9Iv./DR9E9Lid.:0:0:root:/root:/bin/bash</pre>
+</p>
+
+<p>
+Not really required to get root, but I wanted to see if I could find the password.  I splun up a cloud server with compute optimization (vCPU dedicated) and ran John the Ripper.
+</p>
+
+<pre>
+john --fork=2 unshadowedMetasploitable2
+</pre>
+
+<p>
+2 cores on a Intel(R) Xeon(R) CPU E5-2680 v2 @ 2.80GHz.
+</p>
+
+<h3>Results</h3>
+
+<p>
+Running continous for 2,471 hours (102 days) has not resulted in the password.
+</p>
+
+<p>
+The last status line from today:
+
+<pre>
+1 0g 103:02:08:06 3/3 0g/s 6268p/s 12537c/s 12537C/s aj1ahcal..aj1ahcan
+2 0g 103:02:08:06 3/3 0g/s 6268p/s 12537c/s 12537C/s mbunrl#6..mbunrl#@
+</pre>
+</p>
+
+<p>
+I don't have any GPU instances because I wanted to test with a low-cost cloud server to see how far it could get with low cost.
+</p>
