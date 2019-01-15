@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1252429130
-lastmod_epoch: 1424212640
+lastmod_epoch: 1547575318
 categories: Security
 title: Compile Netcat on Windows using MinGW
 ---
@@ -11,11 +11,17 @@ Doing so on Windows is a real pain since there isn't a straight forward make fil
 </p>
 
 <p>
-Just copy and paste the following text into a "makewin.cmd" file in the same directory as the source.  A good place to get source for Windows is <a href="http://joncraton.org/blog/46#comment-14590181">http://joncraton.org/blog/46#comment-14590181</a> (this also includes a binary for Netcat for Windows but the -e option is still turned on).  I also have a build of Netcat that you can download <a href="/downloads/nc111nt_rodneybeede.zip">here</a>.  In addition you can find other sites that provide mirrors at <a href="http://www.thaoh.net/Tools/Netcat/">http://www.thaoh.net/Tools/Netcat/</a>
+Just copy and paste the following text into a "makewin.cmd" file in the same directory as the source.  A good place to get source for Windows is <a href="http://joncraton.org/blog/46#comment-14590181">http://joncraton.org/blog/46#comment-14590181</a> (this also includes a binary for Netcat for Windows but the -e option is still turned on).
 </p>
 
 <p>
-You'll need MinGW with gcc version 3.4.5 (I used MinGW 5.1.4.  Modify the paths in the batch script as needed and run it.  You should get a nc.exe file if all went well.
+I also have a build of Netcat (nc.exe) that you can download <a href="/downloads/nc.exe">here</a>.<br />
+A copy of the source code with makewin.bat is at <a href="/downloads/nc111nt_rodneybeede.zip">here</a>.  This only has the source and build files, no executable.<br />
+In addition you can find other sites that provide mirrors at <a href="http://www.thaoh.net/Tools/Netcat/">http://www.thaoh.net/Tools/Netcat/</a>
+</p>
+
+<p>
+You'll need MinGW with gcc (MinGW.org GCC-8.2.0-3) 8.2.0.  Modify the paths in the batch script as needed and run it.  You should get a nc.exe file if all went well.
 </p>
 
 <pre>
@@ -23,9 +29,12 @@ You'll need MinGW with gcc version 3.4.5 (I used MinGW 5.1.4.  Modify the paths 
 @REM
 @REM	Rodney Beede	(http://www.rodneybeede.com)
 @REM
-@REM	2009-09-02
+@REM	2019-01-15
 @REM
-@REM	Tested with gcc 3.4.5 and MinGW version 5.1.4
+@REM	Tested with gcc (MinGW.org GCC-8.2.0-3) 8.2.0
+
+@REM	Adjust PATH so necessary dll's are accessible
+SET PATH=%PATH%;c:\MinGW\bin
 
 SET COMPILER=c:\MinGW\bin\gcc.exe
 SET LIB_DIR=c:\MinGW\lib
@@ -45,7 +54,3 @@ del nc.exe
 @REM Note that the -l libraries MUST come at the very end or linking will fail
 "%COMPILER%" getopt.o doexec.o netcat.o --output nc.exe -Wl,-L"%LIB_DIR%",-lkernel32,-luser32,-lwinmm,-lws2_32
 </pre>
-
-<h1>Download my Netcat build</h1>
-
-<a href="/downloads/nc111nt_rodneybeede.zip">Netcat 1.11 for Windows</a> (32-bit build, works on 64-bit too).  The -e option is not enabled.
