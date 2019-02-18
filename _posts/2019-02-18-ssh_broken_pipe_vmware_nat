@@ -1,0 +1,29 @@
+---
+creation_epoch: 1550503535
+lastmod_epoch: 1550503535
+categories: ['Computer Problems']
+title: SSH Broken Pipe with VMware NAT
+---
+
+Ran into this problem when using the git clone command on a virtual machine inside VMware Workstation.  The latest version of OpenSSH utilizes QoS for IP packets, but the NAT software in VMware has a bug where this causes connections to fail.  This was especially a problem when I tried to run git clone because the error I received was packet_write_wait: Connection to 192.0.2.100 port 22: Broken pipe
+
+<p>
+The cause and workaround is documented in multiple places
+</p>
+
+<ul>
+<li><a href="https://github.com/vmware/open-vm-tools/issues/287">OpenSSH 7.8 causes VMware Workstation and Player networking SSH bug on Linux VMs</a></li>
+<li><a href="https://bugzilla.redhat.com/show_bug.cgi?id=1624437">Bug 1624437 - 7.8p1-1.fc28 breaks ssh connections to other systems when client is running on VMware Player/Workstation</a></li>
+</ul>
+
+
+<h3>Solution Quick Reference</h3>
+
+<p>
+~/.ssh/config
+</p>
+
+<pre>
+Host *
+  IPQoS lowdelay throughput
+</pre>
