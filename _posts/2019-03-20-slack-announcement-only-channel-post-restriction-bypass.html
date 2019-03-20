@@ -1,0 +1,95 @@
+---
+creation_epoch: 1553083200
+lastmod_epoch: 1553083200
+categories: ['Security']
+title: Slack announcement-only channel post restriction bypass
+---
+
+Slack is a messaging platform with channels for communication.  One feature includes an announcement-only channel for communication to users.  Only authorized users may post content to these channels as per:
+<a href="https://get.slack.help/hc/en-us/articles/360004635551-Create-an-announcement-only-channel#enterprise-grid-plan-1">Create an announcement-only channel, get.slack.help, Feb 21, 2019</a>.
+
+<p>
+The official Slack documentation states:
+</p>
+
+<p>
+By limiting who can post, announcement-only channels are a great way to broadcast information to everyone in Slack. This type of channel becomes read-only to anyone without permission to post. Instead of the message field, members will see a message like this:
+</p>
+
+<p>
+Your Workspace Owners have limited who can post to #announcements-global
+</p>
+
+<p>
+However, I found a way for unauthorized users to bypass this restriction via the use of commonly added third party applications.  One example is via the Simple Poll app.
+</p>
+
+<ol>
+<li>Go to a channel that has restricted posting, such as #general, using a user who is not allowed to post new messages or thread replies</li>
+<li>Select a message posted in the channel by one of the authorized users</li>
+<li>Click on the ... menu for that message</li>
+<li>More message actions...</li>
+<li>Turn question into poll via Simple Poll add-on</li>
+<li>Post the poll with whatever text you want</li>
+<li>Notice (screenshot attached) that the poll appears for all users even though "Your Workspace Owners have limited who can post to #general</li>
+</ol>
+
+<p>
+<img src="/images/Slack_vuln-496095.png" />
+</p>
+
+<h3>Analysis</h3>
+
+<p>
+This was just one example app.  Many other apps could be used as well to do the same.  The issue lies in that Slack at its core does not prevent apps from making this unauthorized post to an announcement-only channel and bypassing this security control.
+</p>
+
+<p>
+Slack should not trust third party apps to restrict who can post to an announcement-only channel.  Doing so at present will require uninstalling many third party apps used by customers to prevent this vulnerability.
+</p>
+
+
+<h2>Impact</h2>
+
+<p>
+In this case #general was locked down because everyone was in it and kept posting @here comments that annoyed people. An attacker, however, could post a phishing message with a malicious link to a channel such as #general which all employees would see in their Slack.
+</p>
+
+<p>
+A Workspace Owners/org admin must monitor the channel and delete unauthorized posts to mitigate.
+</p>
+
+<p>
+An attacker can also quickly delete the Poll post to minimize the chance of a legit admin seeing the post and determining who was phished.
+</p>
+
+
+<h2>Vendor Response</h2>
+
+The vendor states that these security bugs must be addressed in the third party apps themselves.
+
+
+<h2>Timeline</h2>
+
+<table>
+<tr>
+	<td>Feb. 14, 2019</td>
+	<td>Reported via Slack.com instructions to <a href="https://hackerone.com/reports/496095">https://hackerone.com/reports/496095</a></td>
+</tr>
+<tr>
+	<td>Feb. 18, 2019</td>
+	<td>Vendor replies they will not fix.</td>
+</tr>
+<tr>
+	<td>Feb. 18, 2019</td>
+	<td>Request to make report public</td>
+</tr>
+<tr>
+	<td>Mar. 20, 2019</td>
+	<td>30 day mark and public disclosure</td>
+</tr>
+</table>
+
+<p>
+<img src="/images/hackerone.com_reports_496095.png" />
+</p>
