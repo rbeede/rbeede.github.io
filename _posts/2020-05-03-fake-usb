@@ -1,0 +1,40 @@
+---
+creation_epoch: 1588561448
+lastmod_epoch: 1588561448
+categories: ['Misc']
+title: Fake 2TB USB scam
+---
+
+I was perusing Amazon.com and came across a 1TB USB drive for only $22 via Amazon Prime. Decided I'd try it out to see what these devices are all about.
+
+<p>
+Drive came in a clear style case with 2 free gifts, a keychain stylus (soft-tip for use on touch screens) and a pink keychain holder for the USB drive.
+</p>
+
+<p>
+Imagine my surprise when I plugged in the USB drive and instead of reporting 1TB it came back as 2TB!
+</p>
+
+<p>
+I ran the <a href="https://www.rmprepusb.com/tutorials/-fake-usb-flash-memory-drives">FakeFlashTest tool</a> on the drive and it failed fairly quickly. After the failed test the drive partition was corrupt, and I had to unplug it and replug to get it to respond again. I opened the diskpart command line tool, select disk, clean, create partition, and it came back as a 1.90TiB drive again. I did a quick format and ran the slow test.
+</p>
+
+<p>
+The slow test came back with the drive failing after 2GB so in reality the flash only has 2GB of actual storage or 0.002TB of the promised amount.
+</p>
+
+<p>
+Moral, if it seems too good to be true don't trust it even if it is an Amazon Prime listing, haha.  I returned the thing to get my $21 bucks back.
+</p>
+
+<h3>Photos</h3>
+
+<img src="/images/fake_usb/unopened.jpg"/><br />
+<img src="/images/fake_usb/unopened2.jpg"/><br />
+<img src="/images/fake_usb/opened.jpg"/><br />
+<img src="/images/fake_usb/top.jpg"/><br />
+<img src="/images/fake_usb/bottom.jpg"/><br />
+<img src="/images/fake_usb/Windows Explorer.png"/><br />
+<img src="/images/fake_usb/USB Drive properties.png"/><br />
+<img src="/images/fake_usb/Fake Flash Test.png"/><br />
+<img src="/images/fake_usb/Fake Flash Test 2 - slow.png"/><br />
