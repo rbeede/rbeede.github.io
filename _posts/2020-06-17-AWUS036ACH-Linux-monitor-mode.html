@@ -1,0 +1,41 @@
+---
+creation_epoch: 1592453409
+lastmod_epoch: 1592453409
+categories: ['Computer Problems']
+title: AWUS036ACH in monitor mode in Linux
+---
+
+Tried this Alfa card in Ubuntu 20.04 (latest updates) but had the hardest time getting it to work in monitor mode. I run Ubuntu under a VMware Workstation VM with the USB passed to the VM. Attempting to use airmon-ng start wlx000000000000 would result in my kernel crashing. I found a resolution with the following method:
+
+<p>
+These commands worked for me:
+</p>
+
+<code>
+# All as root of course
+
+apt-get purge -y rtl8812au-dkms
+
+
+cd /root/
+
+git clone https://github.com/aircrack-ng/rtl8812au.git
+
+cd rtl8812au/
+
+apt install dkms
+
+./dkms-install.sh
+
+# Important to do a reboot
+/sbin/reboot
+
+# replace wlx000000000000 with your cards interface name
+
+airmon-ng
+airmon-ng check kill
+ip link set wlx000000000000 down
+iw dev wlx000000000000 set type monitor
+ip link set wlx000000000000 up
+iw wlx000000000000 info
+</code>
