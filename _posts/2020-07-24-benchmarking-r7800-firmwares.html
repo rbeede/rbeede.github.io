@@ -1,0 +1,152 @@
+---
+creation_epoch: 1595619724
+lastmod_epoch: 1595619724
+categories: ['Misc']
+title: Benchmarking Netgear Nighthawk® X4S R7800 Firmwares
+---
+
+Wanted to benchmark the performance of various firmwares for the R7800 router to see how they performed. Alternative firmwares offers options such as different features, more granular control, and additional security options. I tested these 3 firmwares:
+<ul>
+<li><a href="https://www.netgear.com/support/product/R7800.aspx#Firmware%20Version%201.0.2.68">Stock (OEM) firmware V1.0.2.68</a></li>
+<li><a href="https://www.voxel-firmware.com/Downloads/Voxel/html/r7800.html">Voxel R7800-V1.0.2.78SF</a></li>
+<li><a href="https://openwrt.org/toh/netgear/r7800">openwrt-19.07.3</a></li>
+</ul>
+
+<h3>Test Setup</h3>
+
+<p>
+I ran an iperf3 server on a gigabit wired connected machine to the switch. It was either connected to a LAN port or WAN port as per the test.
+</p>
+
+<p>
+For the client I used a wired gigabit connection or a Wi-Fi connection with an Intel(R) Wi-Fi 6 AX200 160MHz adapter.
+</p>
+
+<h4>iperf3 commands</h4>
+
+<a href="https://iperf.fr/iperf-doc.php#3doc">Documentation Reference</a>
+
+<p>
+iperf3 --server --interval 2 --format m
+<ul><li>'m' = Mbits/sec</li></ul>
+</p>
+
+<p>
+iperf3 --format m --bandwidth 10000M --interval 2 --parallel 4 --client 203.0.113.101
+</p>
+
+<p>
+iperf3 --format m --bandwidth 10000M --interval 2 --parallel 4 --client 203.0.113.101 --reverse
+</p>
+
+<h3>Results</h3>
+
+<table>
+	<thead>
+		<tr>
+			<th>Firmware</th>
+			<th>Client Type</th>
+			<th>Server Type</th>
+			<th>C->S Speed (Mbits/sec)</th>
+			<th>S->C Speed (Mbits/sec)</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>OEM V1.0.2.68</td>
+			<td>WIRED LAN</td>
+			<td>WIRED LAN</td>
+			<td>959</td>
+			<td>962</td>
+		</tr>
+		<tr>
+			<td>OEM V1.0.2.68</td>
+			<td>Wireless (5.0ghz)</td>
+			<td>WIRED LAN</td>
+			<td>841</td>
+			<td>489</td>
+		</tr>
+		<tr>
+			<td>OEM V1.0.2.68</td>
+			<td>WIRED LAN</td>
+			<td>WAN(wired)</td>
+			<td>944</td>
+			<td>948</td>
+		</tr>
+		<tr>
+			<td>OEM V1.0.2.68</td>
+			<td>Wireless (5.0ghz)</td>
+			<td>WAN(wired)</td>
+			<td>733</td>
+			<td>460</td>
+		</tr>
+		<tr>
+			<td>Voxel R7800-V1.0.2.78SF</td>
+			<td>WIRED LAN</td>
+			<td>WIRED LAN</td>
+			<td>949</td>
+			<td>946</td>
+		</tr>
+		<tr>
+			<td>Voxel R7800-V1.0.2.78SF</td>
+			<td>Wireless (5.0ghz)</td>
+			<td>WIRED LAN</td>
+			<td>701</td>
+			<td>863</td>
+		</tr>
+		<tr>
+			<td>Voxel R7800-V1.0.2.78SF</td>
+			<td>WIRED LAN</td>
+			<td>WAN(wired)</td>
+			<td>949</td>
+			<td>947</td>
+		</tr>
+		<tr>
+			<td>Voxel R7800-V1.0.2.78SF</td>
+			<td>Wireless (5.0ghz)</td>
+			<td>WAN(wired)</td>
+			<td>712</td>
+			<td>868</td>
+		</tr>
+		<tr>
+			<td>openwrt-19.07.3</td>
+			<td>WIRED LAN</td>
+			<td>WIRED LAN</td>
+			<td>949</td>
+			<td>943</td>
+		</tr>
+		<tr>
+			<td>openwrt-19.07.3</td>
+			<td>Wireless (5.0ghz)</td>
+			<td>WIRED LAN</td>
+			<td>672</td>
+			<td>710</td>
+		</tr>
+		<tr>
+			<td>openwrt-19.07.3</td>
+			<td>WIRED LAN</td>
+			<td>WAN(wired)</td>
+			<td>942</td>
+			<td>902</td>
+		</tr>
+		<tr>
+			<td>openwrt-19.07.3</td>
+			<td>Wireless (5.0ghz)</td>
+			<td>WAN(wired)</td>
+			<td>817</td>
+			<td>461</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>Summary</h3>
+
+For the WIRED LAN to WAN and WIRED LAN to WIRED LAN all 3 firmwares were close in performance.
+
+<p>
+Wireless / WAN for download (S on wan -> C on wireless) saw Voxel as the fastest, but upload (C->S) OpenWRT was faster.
+</p>
+
+<p>
+Wireless / LAN for download (S on lan ->C on wireless) saw Voxel as the fastests, but upload (C->S) for OEM was faster.
+</p>
