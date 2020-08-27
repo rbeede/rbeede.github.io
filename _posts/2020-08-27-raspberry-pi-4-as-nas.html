@@ -1,0 +1,49 @@
+---
+creation_epoch: 1598561889
+lastmod_epoch: 1598561889
+categories: ['Misc']
+title: Raspberry Pi 4 as a NAS
+---
+
+I recently acquired a Raspberry Pi 4 B with 8GB of RAM. In a test benchmark setup I was able to saturate the gigabit wired link with a file transfer between a Windows 10 client and the Raspberry Pi.
+
+<p>
+I am using a 64GB microSD card (class U1). I also installed 5 heatsinks on the Pi and used a case with a small 5V fan. Connection is via a gigabit switch between the client and the Pi. I have the latest Raspberry Pi OS lite 64-bit. My testing used a ramdisk so the microSD card was not a bottleneck.
+</p
+
+<p>
+Commands used for the setup:
+</p>
+
+<pre>
+mkdir /mnt/ramdisk/
+
+chmod 1777 /mnt/ramdisk/
+
+mount -t tmpfs -o size=1g tmpfs /mnt/ramdisk/
+
+dd if=/mnt/ramdisk/random.data of=/dev/null iflag=sync status=progress bs=20M
+
+apt-get install -y samba samba-common-bin
+
+apt-get install -y vim /etc/samba/smb.conf
+
+smbpasswd -a pi
+
+systemctl restart samba
+</pre>
+
+<h5>smb.conf</h5>
+
+<pre>
+[share]
+Comment = Pi shared folder
+Path = /mnt/ramdisk
+Browseable = yes
+Writeable = Yes
+only guest = no
+create mask = 0777
+directory mask = 0777
+Public = yes
+Guest ok = yes
+</pre>
