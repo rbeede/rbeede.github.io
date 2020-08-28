@@ -26,7 +26,9 @@ dd if=/dev/urandom of=random.data bs=10M count=100 status=progress
 
 apt-get install -y samba samba-common-bin
 
-apt-get install -y vim /etc/samba/smb.conf
+apt-get install -y vim
+
+vim /etc/samba/smb.conf
 
 smbpasswd -a pi
 
