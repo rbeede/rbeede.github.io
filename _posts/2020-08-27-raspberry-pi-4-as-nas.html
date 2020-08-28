@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1598561889
-lastmod_epoch: 1598561889
+lastmod_epoch: 1598620020
 categories: ['Misc']
 title: Raspberry Pi 4 as a NAS
 ---
@@ -22,7 +22,7 @@ chmod 1777 /mnt/ramdisk/
 
 mount -t tmpfs -o size=1g tmpfs /mnt/ramdisk/
 
-dd if=/mnt/ramdisk/random.data of=/dev/null iflag=sync status=progress bs=20M
+dd if=/dev/urandom of=random.data bs=10M count=100 status=progress
 
 apt-get install -y samba samba-common-bin
 
