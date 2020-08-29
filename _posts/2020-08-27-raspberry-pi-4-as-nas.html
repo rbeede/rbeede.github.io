@@ -28,11 +28,11 @@ apt-get install -y samba samba-common-bin
 
 apt-get install -y vim
 
-vim /etc/samba/smb.conf
-
 smbpasswd -a pi
 
-systemctl restart samba
+vim /etc/samba/smb.conf
+
+systemctl restart smbd
 </pre>
 
 <h5>smb.conf</h5>
