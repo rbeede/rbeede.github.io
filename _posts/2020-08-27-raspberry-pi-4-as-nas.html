@@ -22,7 +22,7 @@ chmod 1777 /mnt/ramdisk/
 
 mount -t tmpfs -o size=1g tmpfs /mnt/ramdisk/
 
-dd if=/dev/urandom of=random.data bs=10M count=100 status=progress
+dd if=/dev/urandom of=/mnt/ramdisk/random.data bs=10M count=100 status=progress
 
 apt-get install -y samba samba-common-bin
 
