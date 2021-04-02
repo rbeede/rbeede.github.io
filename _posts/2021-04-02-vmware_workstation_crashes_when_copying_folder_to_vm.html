@@ -1,0 +1,47 @@
+---
+creation_epoch: 1617375554
+lastmod_epoch: 1617375554
+categories: ['Computer Problems']
+title: VMware Workstation crashes when copying folder to VM
+---
+
+<p>
+I005: FileIOCreateRetry: CreateFileW() returned ERROR_SHARING_VIOLATION, failing with FILEIO_CANCELLED
+</p>
+
+<p>
+VMware Workstation Pro 15.5.7 build-17171714
+</p>
+
+<p>
+Ubuntu 20.04 desktop guest VM with open-vm-tools<br />
+Was started from a snapshot (may not matter?).
+</p>
+
+<p>
+Steps to reproduce
+</p>
+
+<ol>
+	<li>On Windows host create a folder</li>
+	<li>Create and save an Excel xlsx inside that folder</li>
+	<li>Keep the Excel file open</li>
+	<li>Right click to copy the folder from the host</li>
+	<li>Attempt to paste the folder into a sub-folder on the guest VM</li>
+	<li>My mouse went erratic and within 30 seconds the vmx just crashed</li>
+</ol>
+
+<h3>Solution</h3>
+
+<p>
+Version 15.5 is out of contact support so I couldn't contact VMware. Probably need to not copy+paste anymore or buy the upgrade.
+</p>
+
+<h4>Did not help</h4>
+
+<ul>
+	<li>Uninstalled open-vm-tools, re-installed, rebooted, paste still crashed</li>
+	<li>Uninstalled open-vm-tools, installed vmware-tools, Segmentation fault during install, finished install, rebooted, paste still crashed<li>
+<ul>
+
+
