@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1617375554
-lastmod_epoch: 1617375554
+lastmod_epoch: 1625757568
 categories: ['Computer Problems']
 title: VMware Workstation crashes when copying folder to VM
 ---
@@ -34,7 +34,19 @@ Steps to reproduce
 <h3>Solution</h3>
 
 <p>
-Version 15.5 is out of contact support so I couldn't contact VMware. Probably need to not copy+paste anymore or buy the upgrade.
+Version 15.5 is out of contract support so I couldn't contact VMware.
+</p>
+
+<p>
+Update
+</p>
+
+<p>
+Upgrading to version 16 stopped the crash, but you cannot copy a folder while an Excel file is open inside it. You will get "Cannot scan local directory. You might not have permission to perfrom the operation. Canceling teh file copy operation."
+</p>
+
+<p>
+So upgrading stops the hard crash. You have to remember to close any locked files in the directory before you copy it.
 </p>
 
 <h4>Did not help</h4>
