@@ -1,0 +1,39 @@
+---
+creation_epoch: 1631740637
+lastmod_epoch: 1631740637
+categories: ['Security']
+title: Restrict YouTube in OpenWrt
+---
+
+You have to configure your OpenWrt DNS resolver to point the YouTube domains to restrict.youtube.com.
+
+<p>
+/etc/config/dhcp
+</p>
+
+<pre>
+
+config domain
+        option name 'restrict.youtube.com'
+        option ip '216.239.38.120'
+
+config cname
+        option cname 'www.youtube.com'
+        option target 'restrict.youtube.com'
+
+config cname
+        option cname 'm.youtube.com'
+        option target 'restrict.youtube.com'
+
+config cname
+        option cname 'youtubei.googleapis.com'
+        option target 'restrict.youtube.com'
+
+config cname
+        option cname 'youtube.googleapis.com'
+        option target 'restrict.youtube.com'
+
+config cname
+        option cname 'www.youtube-nocookie.com'
+        option target 'restrict.youtube.com'
+</pre>
