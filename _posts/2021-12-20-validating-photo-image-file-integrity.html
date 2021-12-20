@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1640039856
-lastmod_epoch: 1640039856
+lastmod_epoch: 1640039991
 categories: ['Computer Problems']
 title: Validating Photo Image File Integrity
 ---
@@ -12,26 +12,25 @@ I discovered over time that some of my photo files have corruption in them. I wr
 
 # ImageMagik needs to be instlaled
 
-export IFS=$'\n'
+export IFS=$&apos;\n&apos;
 
 export LOGFILE=/tmp/$0.LOG
 
-date --utc > "$LOGFILE"
+date --utc &gt; &quot;$LOGFILE&quot;
 
 # 0 is good, 1 is bad
-echo "Filepath	ExitCode"
+echo &quot;Filepath	ExitCode&quot;
 
 
-for filepath in $(find $1 -type f -iname '*.jpeg' -o -iname '*.jpg' -o -iname '*.png' -o -iname '*.gif'); do
+for filepath in $(find $1 -type f -iname &apos;*.jpeg&apos; -o -iname &apos;*.jpg&apos; -o -iname &apos;*.png&apos; -o -iname &apos;*.gif&apos;); do
 	echo -n $filepath
-	echo -n "	"
+	echo -n &quot;	&quot;
 	
-	cmdoutput=$(identify -verbose "$filepath" 2>&1)
+	cmdoutput=$(identify -verbose &quot;$filepath&quot; 2&gt;&amp;1)
 
 	echo -n $?
-	echo ""
+	echo &quot;&quot;
 
-	echo $cmdoutput >> "$LOGFILE"
+	echo $cmdoutput &gt;&gt; &quot;$LOGFILE&quot;
 done
-
 </pre>
