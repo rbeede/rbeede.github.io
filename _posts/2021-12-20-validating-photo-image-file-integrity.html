@@ -1,0 +1,37 @@
+---
+creation_epoch: 1632018735
+lastmod_epoch: 1632018735
+categories: ['Computer Problems']
+title: Validating Photo Image File Integrity
+---
+
+I discovered over time that some of my photo files have corruption in them. I wrote a small bash script that could be run to detect corrupt files so I could try to find older backup archives of them.
+
+<pre>
+#!/bin/bash
+
+# ImageMagik needs to be instlaled
+
+export IFS=$'\n'
+
+export LOGFILE=/tmp/$0.LOG
+
+date --utc > "$LOGFILE"
+
+# 0 is good, 1 is bad
+echo "Filepath	ExitCode"
+
+
+for filepath in $(find $1 -type f -iname '*.jpeg' -o -iname '*.jpg' -o -iname '*.png' -o -iname '*.gif'); do
+	echo -n $filepath
+	echo -n "	"
+	
+	cmdoutput=$(identify -verbose "$filepath" 2>&1)
+
+	echo -n $?
+	echo ""
+
+	echo $cmdoutput >> "$LOGFILE"
+done
+
+</pre>
