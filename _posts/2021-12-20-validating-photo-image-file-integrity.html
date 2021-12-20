@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1640039856
-lastmod_epoch: 1640039991
+lastmod_epoch: 1640039992
 categories: ['Computer Problems']
 title: Validating Photo Image File Integrity
 ---
@@ -14,7 +14,7 @@ I discovered over time that some of my photo files have corruption in them. I wr
 
 export IFS=$&apos;\n&apos;
 
-export LOGFILE=/tmp/$0.LOG
+export LOGFILE=/tmp/`basename $0`.LOG
 
 date --utc &gt; &quot;$LOGFILE&quot;
 
