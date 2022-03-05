@@ -1,0 +1,53 @@
+---
+creation_epoch: 1646419972
+lastmod_epoch: 1646419972
+categories: ['Programming','Security']
+title: Programming an attiny85 for BadUSB Rubber Ducky
+---
+
+I saw some older articles about using an attiny85 as a USB rubber ducky (simulates a malicious keyboard) and wanted to try it out. I found a 6-pack on Amazon for $16.29 which after tax comes out to $2.94 / unit. <a href="https://www.amazon.com/gp/product/B08JGL5TSV/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1">ACEIRMC 6pcs Digispark Kickstarter Attiny85 General Micro USB Development Board for Arduino</a>
+
+<p>
+The units I received came with the USB attiny85 and two pin headers (a 1x3 and a 1x6) that could be optionally attached. I also had a friend 3D print a USB thumb drive case I could use to enclose it. <a href="https://cults3d.com/en/3d-model/tool/digispark-attiny85-badusb-fake-usb-memory-case-remix">DIGISPARK ATTINY85 BADUSB FAKE USB MEMORY CASE REMIX</a>
+</p>
+
+<p>
+I first attempted to attach it in VMware to an Ubuntu VM, but it did not respond well. I ended up just using Windows 10 but with the 2016 drivers and the latest Arduino IDE.
+</p>
+
+<h3>Quick Steps</h3>
+
+<ol>
+  <li>Unplug the device</li>
+  <li>Download Digistump.Drivers.zip 1.6.7 from <a href="https://github.com/digistump/DigistumpArduino/releases/download/1.6.7/Digistump.Drivers.zip">https://github.com/digistump/DigistumpArduino/releases/download/1.6.7/Digistump.Drivers.zip</a></li>
+  <li>Unzip and run Install Drivers.exe</li>
+  <li>Download the latest Arduino IDE</li>
+  <li>File</li>
+  <li>Preferences</li>
+  <li>Additional Board Manager URLs</li>
+  <li>http://digistump.com/package_digistump_index.json</li>
+  <li>OK</li>
+  <li>Tools menu</li>
+  <li>Board</li>
+  <li>Board Manager</li>
+  <li>Digistump AVR Boards</li>
+  <li>Install button</li>
+  <li>Close</li>
+  <li>Tool</li>
+  <li>Board</li>
+  <li>Digistump AVR Boards</li>
+  <li>Digispark (Default - 16.5mhz)</li>
+  <li>Paste a desired script into the editor</li>
+  <li>Click on the Upload toolbar button</li>
+  <li>Plug in the USB board</li>
+  <li>Once programming is complete unplug and plug in again to test</li>
+</ol>
+
+<h3>References</h3>
+
+<ul>
+  <li><a href="https://create.arduino.cc/projecthub/alaspuresujay/use-an-attiny85-with-arduino-ide-07740c">Use an ATtiny85 with Arduino IDE - create.arduino.cc</a></li>
+  <li><a href="https://github.com/digistump/DigistumpArduino/releases/">https://github.com/digistump/DigistumpArduino/releases/</a></li>
+  <li><a href="https://macrosec.tech/index.php/2021/06/10/creating-bad-usb/">https://macrosec.tech/index.php/2021/06/10/creating-bad-usb/</a></li>
+</ul>
+  
