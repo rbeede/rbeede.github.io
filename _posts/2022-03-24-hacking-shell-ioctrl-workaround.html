@@ -1,0 +1,18 @@
+---
+creation_epoch: 1648174739
+lastmod_epoch: 1648174739
+categories: ['Security']
+title: Hacking shell ioctl workaround
+---
+
+You get a shell but not a proper terminal which causes things like sudo, ssh, su to not work right with password prompts. There are multiple ways to work around this, but these are two handy ones.
+
+<p>
+ttyname failed: Inappropriate ioctl for device
+</p>
+
+<pre>
+/bin/bash -l
+
+script /dev/null -c bash
+</pre>
