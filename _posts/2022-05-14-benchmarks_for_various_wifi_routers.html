@@ -1,17 +1,60 @@
 ---
 creation_epoch: 1498268744
-lastmod_epoch: 1586386184
+lastmod_epoch: 1652578583
 categories: ['Tech Tricks']
 title: Benchmarks for various wifi routers
 ---
 
-I got some routers on clearance and wanted to benchmark them from various locations.  I thought I'd publish my results in case it was useful for others.
+A history of router benchmarks I've collected over the years.
 
 <p>
-Each router is running the OEM latest firmware at the time of testing unless otherwise noted.  A gigabit connection was used with an 802.11ac wireless client 2x2 MIMO.  The 5ghz spectrum (80mhz) was on a dedicated channel with no others, but 2.4ghz was in a residential neighborhood of homes with probably average 3 other signals on 1,6,11.  This gives a nice average real-world comparison for typical crowded 2.4ghz.
+Each router had the OEM latest firmware at the time of testing unless otherwise noted.  A gigabit connection was used with an 802.11ax wireless client 2x2 MIMO.  The 5ghz spectrum (80mhz) was on a dedicated channel with no others, but 2.4ghz was in a residential neighborhood of homes with probably average 3 other signals on 1,6,11.  This gave a nice average real-world comparison for typical crowded 2.4ghz.
+</p>
+
+<p>
+iperf3 --server --interval 2 --format m
+<ul><li>'m' = Mbits/sec</li></ul>
+</p>
+
+<p>
+iperf3 --format m --bandwidth 10000M --interval 2 --parallel 4 --client 203.0.113.101
+</p>
+
+<p>
+iperf3 --format m --bandwidth 10000M --interval 2 --parallel 4 --client 203.0.113.101 --reverse
 </p>
 
 <table border="1"><tr><th>Device</th><th>Client Location</th><th>Download (megabits/second)</th><th>Upload (megabits/second)</th></tr>
+<tr>
+  <td>Netgear Nighthawk AX12 RAX120</td>
+  <td>WIRED LAN - WIRED LAN</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>Netgear Nighthawk AX12 RAX120</td>
+  <td>WIRED LAN - WAN (WIRED)</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>Netgear Nighthawk AX12 RAX120 (5.0ghz)</td>
+  <td>0-Walls - WiFi to Wired LAN</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>Netgear Nighthawk AX12 RAX120 (5.0ghz)</td>
+  <td>0-Walls - WiFi to WAN Wired</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>Netgear Nighthawk AX12 RAX120 (2.4ghz)</td>
+  <td>0-Walls - WiFi to Wired LAN</td>
+  <td></td>
+  <td></td>
+</tr>
 <tr>
   <td>Netgear Nighthawk(R) X4S R7800 (2.4ghz; 20mhz)</td>
   <td>0-Walls</td>
