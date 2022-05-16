@@ -1,0 +1,50 @@
+---
+creation_epoch: 1652669932
+lastmod_epoch: 1652669932
+categories: ['Tech Tricks']
+title: Netgear Nighthawk AX12 - RAX120 - AX6000 Router
+---
+
+<h2>Netgear Nighthawk AX12 - RAX120 - AX6000 Router</h2>
+
+<p>
+v2 of the device has OFDMA. If you have an FCC ID on the bottom of the router near the top left of the sticker you have this. You can also confirm by the Advanced, Administration, Router Status (192.168.1.1/RST_status.htm) page. Also <code>cat /module_name</code>
+</p>
+
+<p>
+The OEM firmware runs a customized OpenWrt Chaos Calmer 15.05.1 (RAX120-V1.2.3.28+r49254). No standard OpenWrt builds were available as of May 2022.
+</p>
+
+<p>
+The GUI limits a number of configuration options (e.g. SSID with non-ASCII characters, like emojis). The /debug.htm page also no longer offers Telnet. You can still gain Telnet access via the magic packet method on the local LAN.
+</p>
+
+<p>
+<a href="https://github.com/Red54/telnetenable-r9000">https://github.com/Red54/telnetenable-r9000</a>
+</p>
+
+<p>
+You can find the LAN MAC address on the /RST_status.htm page. Use the LAN (Router Status box); not the WAN MAC.
+</p>
+
+<p>
+Installing a custom SSID:<br />
+(Note that if you use forbidden characters then the GUI setup page will no longer work)<br />
+(JavaScript bypasses or server-side [e.g. Burp proxy manipulation] will not work. You have to telnet.)
+</p>
+
+<ol>
+<li>Login via telnet</li>
+<li>config set wl_ssid=YOUR_2.4GHZ_SSID_HERE</li>
+<li>config set wla_ssid=YOUR_5.0GHZ_SSID_HERE</li>
+<li>config commit</li>
+<li>Reboot or /sbin/wifi</li>
+</ol>
+
+<p>
+If you use unicode or emoji characters they may show on your command line as "?", but the character code is working.
+</p>
+
+<p>
+You will see familiar OpenWrt  uci  /etc/config  files, but modifying those (even with rw overlay) will not persist a reboot. You will find nvram empty. You want the config command.
+</p>
