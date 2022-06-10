@@ -1,11 +1,16 @@
 ---
 creation_epoch: 1252429130
-lastmod_epoch: 1547575318
+lastmod_epoch: 1654864735
 categories: Security
 title: Compile Netcat on Windows using MinGW
 ---
 
 I wanted a way to compile Netcat on Windows using MinGW so I could have a version without the GAPING_SECURITY_HOLE option (-e command line option).  This helps to avoid the annoyance of anti-virus tools reporting it as a virus/trojan and also gives me a binary I know isn't infected with something.
+
+<p>
+Since 2019 most malware endpoint protection software identifies it as a PUP. If you are looking to evade that I recommend using socat or PowerShell as Netcat is not a tool maintained by anyone anymore.
+</p>
+
 <p>
 Doing so on Windows is a real pain since there isn't a straight forward make file for MinGW.  It seemed mostly geared at Microsoft VC.
 </p>
@@ -15,7 +20,10 @@ Just copy and paste the following text into a "makewin.cmd" file in the same dir
 </p>
 
 <p>
-I also have a build of Netcat (nc.exe) that you can download <a href="/downloads/nc.exe">here</a>.<br />
+I also have a build of Netcat (nc.exe) that you can download <a href="/downloads/nc.exe">here</a>. Most endpoint malware protection identifies it as a PUP even if you recompile.<br />
+</p>
+
+<p>  
 A copy of the source code with makewin.bat is <a href="/downloads/nc111nt_rodneybeede.zip">here</a>.  This only has the source and build files, no executable.<br />
 In addition you can find other sites that provide mirrors at <a href="http://www.thaoh.net/Tools/Netcat/">http://www.thaoh.net/Tools/Netcat/</a>
 </p>
