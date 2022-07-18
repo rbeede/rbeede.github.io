@@ -8,7 +8,7 @@ title: Benchmarks for various wifi routers
 A history of router benchmarks I've collected over the years.
 
 <p>
-Each router had the OEM latest firmware at the time of testing unless otherwise noted.  A gigabit connection was used with an 802.11ax wireless client 2x2 MIMO.  The 5ghz spectrum (80mhz) was on a dedicated channel with no others, but 2.4ghz was in a residential neighborhood of homes with probably average 3 other signals on 1,6,11.  This gave a nice average real-world comparison for typical crowded 2.4ghz.
+Each router had the OEM latest firmware at the time of testing unless otherwise noted.  A gigabit connection was used with an 802.11ax wireless client 2x2 MIMO.  The 5ghz spectrum was on a dedicated channel with no others, but 2.4ghz was in a residential neighborhood of homes with probably average 3 other signals on 1,6,11.  This gave a nice average real-world comparison for typical crowded 2.4ghz.
 </p>
 
 <p>
@@ -16,10 +16,12 @@ iperf3 --server --interval 2 --format m
 <ul><li>'m' = Mbits/sec</li></ul>
 </p>
 
+<p>uploading from client to the server</p>
 <p>
 iperf3 --format m --bandwidth 10000M --interval 2 --parallel 4 --client 203.0.113.101
 </p>
 
+<p>downloading from server to the client</p>
 <p>
 iperf3 --format m --bandwidth 10000M --interval 2 --parallel 4 --client 203.0.113.101 --reverse
 </p>
