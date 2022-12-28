@@ -1,0 +1,53 @@
+---
+creation_epoch: 1672190856
+lastmod_epoch: 1672190856
+categories: ['Computer Problems']
+title: VMware Workstation Working on Latest Ubuntu
+---
+
+Latest Ubuntu (or Xubuntu) distros have kernel versions that don't compile nicely for VMware Workstation Professional 16.x (or 17). Errors like "vmnet-only/vm_assert.h:43:10: fatal error: stdarg.h: No such file or directory" or similar.
+
+<p>
+I found the solution via multiple searches. <a href="https://communities.vmware.com/t5/VMware-Workstation-Pro/Compiling-vmmon-module-fails-on-linux-kernel-5-16-0-arch1-1/m-p/2921525/highlight/true#M176985">Compiling vmmon module fails on linux kernel 5.16.0-arch1-1</a>
+</p>
+
+<p>
+  <a href="https://github.com/mkubecek/vmware-host-modules/blob/master/INSTALL">https://github.com/mkubecek/vmware-host-modules/blob/master/INSTALL</a>
+</p>
+
+<p>
+Some pre-req commands:
+</p>
+
+<pre>
+sudo apt-get install make gcc g++ autoconf build-essential linux-libc-dev git
+</pre>
+
+<p>
+In the event that community forum content disappears here are the quick start steps (assumes VMware bundle already installed):
+</p>
+
+<pre>
+mkdir /opt/vmware
+
+cd /opt/vmware
+
+git clone https://github.com/mkubecek/vmware-host-modules.git
+
+cd vmware-host-modules/
+
+# Change-out with your version here
+git checkout workstation-16.2.5
+
+make VM_UNAME=$(uname -r)
+
+make install
+
+
+systemctl restart vmware
+systemctl status vmware
+</pre>
+
+<p>
+I ignored the error when restarting vmware. It still just worked.
+</p>
