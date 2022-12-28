@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1672190856
-lastmod_epoch: 1672190856
+lastmod_epoch: 1672197201
 categories: ['Computer Problems']
 title: VMware Workstation Working on Latest Ubuntu
 ---
@@ -8,7 +8,7 @@ title: VMware Workstation Working on Latest Ubuntu
 Latest Ubuntu (or Xubuntu) distros have kernel versions that don't compile nicely for VMware Workstation Professional 16.x (or 17). Errors like "vmnet-only/vm_assert.h:43:10: fatal error: stdarg.h: No such file or directory" or similar.
 
 <p>
-I found the solution via multiple searches. <a href="https://communities.vmware.com/t5/VMware-Workstation-Pro/Compiling-vmmon-module-fails-on-linux-kernel-5-16-0-arch1-1/m-p/2921525/highlight/true#M176985">Compiling vmmon module fails on linux kernel 5.16.0-arch1-1</a>
+I found the solution via multiple searches. <a href="https://communities.vmware.com/t5/VMware-Workstation-Pro/Compiling-vmmon-module-fails-on-linux-kernel-5-16-0-arch1-1/m-p/2921525/highlight/true#M176985">Compiling vmmon module fails on linux kernel 5.16.0-arch1-1</a> <a href="https://www.sysnettechsolutions.com/en/install-vmware-ubuntu/">How to Install VMware Workstation 17 Pro on Ubuntu 22.10
 </p>
 
 <p>
@@ -20,7 +20,7 @@ Some pre-req commands:
 </p>
 
 <pre>
-sudo apt-get install make gcc g++ autoconf build-essential linux-libc-dev git
+sudo apt-get install make gcc g++ autoconf build-essential dkms linux-libc-dev git
 </pre>
 
 <p>
@@ -39,15 +39,14 @@ cd vmware-host-modules/
 # Change-out with your version here
 git checkout workstation-16.2.5
 
-make VM_UNAME=$(uname -r)
+make
 
-make install
+sudo make install
 
+tar -cf vmnet.tar vmnet-only
+tar -cf vmmon.tar vmmon-only
 
-systemctl restart vmware
-systemctl status vmware
+sudo cp -v vmmon.tar vmnet.tar /usr/lib/vmware/modules/source/
+
+sudo vmware-modconfig --console --install-all
 </pre>
-
-<p>
-I ignored the error when restarting vmware. It still just worked.
-</p>
