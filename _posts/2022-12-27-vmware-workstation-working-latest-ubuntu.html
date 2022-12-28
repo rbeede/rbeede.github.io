@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1672190856
-lastmod_epoch: 1672197201
+lastmod_epoch: 1672255486
 categories: ['Computer Problems']
 title: VMware Workstation Working on Latest Ubuntu
 ---
@@ -8,11 +8,12 @@ title: VMware Workstation Working on Latest Ubuntu
 Latest Ubuntu (or Xubuntu) distros have kernel versions that don't compile nicely for VMware Workstation Professional 16.x (or 17). Errors like "vmnet-only/vm_assert.h:43:10: fatal error: stdarg.h: No such file or directory" or similar.
 
 <p>
-I found the solution via multiple searches. <a href="https://communities.vmware.com/t5/VMware-Workstation-Pro/Compiling-vmmon-module-fails-on-linux-kernel-5-16-0-arch1-1/m-p/2921525/highlight/true#M176985">Compiling vmmon module fails on linux kernel 5.16.0-arch1-1</a> <a href="https://www.sysnettechsolutions.com/en/install-vmware-ubuntu/">How to Install VMware Workstation 17 Pro on Ubuntu 22.10
-</p>
-
-<p>
-  <a href="https://github.com/mkubecek/vmware-host-modules/blob/master/INSTALL">https://github.com/mkubecek/vmware-host-modules/blob/master/INSTALL</a>
+  I found the solution via multiple searches.<br />
+  <a href="https://communities.vmware.com/t5/VMware-Workstation-Pro/Compiling-vmmon-module-fails-on-linux-kernel-5-16-0-arch1-1/m-p/2921525/highlight/true#M176985">Compiling vmmon module fails on linux kernel 5.16.0-arch1-1</a><br />
+  <a href="https://www.sysnettechsolutions.com/en/install-vmware-ubuntu/">How to Install VMware Workstation 17 Pro on Ubuntu 22.10</a><br />
+  <a href="https://github.com/mkubecek/vmware-host-modules/blob/master/INSTALL">https://github.com/mkubecek/vmware-host-modules/blob/master/INSTALL</a><br />
+  <a href="https://communities.vmware.com/t5/VMware-Workstation-Player/The-famous-libssl-problem-in-Linux-distribtution/td-p/2846821">The famous libssl problem in Linux distribtution</a><br />
+  <a href="https://kb.vmware.com/s/article/2146460">"Cannot open /dev/vmmon: No such file or directory" error when powering on a VM (2146460)</a><br />
 </p>
 
 <p>
@@ -21,6 +22,10 @@ Some pre-req commands:
 
 <pre>
 sudo apt-get install make gcc g++ autoconf build-essential dkms linux-libc-dev git
+
+#Ensure that Secure Boot is disabled of the modules will never load (unless you sign them)
+
+# Assumed y0ou already ran the VMware installer once.
 </pre>
 
 <p>
@@ -28,6 +33,8 @@ In the event that community forum content disappears here are the quick start st
 </p>
 
 <pre>
+mokutil --sb-state
+
 mkdir /opt/vmware
 
 cd /opt/vmware
@@ -41,12 +48,28 @@ git checkout workstation-16.2.5
 
 make
 
-sudo make install
-
 tar -cf vmnet.tar vmnet-only
 tar -cf vmmon.tar vmmon-only
 
 sudo cp -v vmmon.tar vmnet.tar /usr/lib/vmware/modules/source/
 
+sudo make install
+
 sudo vmware-modconfig --console --install-all
+</pre>
+
+
+<p>
+  I also had libssl errors with vmware-authdlauncher
+</p>
+
+<pre>
+vim /etc/ld.so.conf.d/vmware-authdlauncher.conf
+
+#linking libssl and libcrypto
+/usr/lib/vmware/lib/libssl.so.1.1
+/usr/lib/vmware/lib/libcrypto.so.1.1
+
+
+sudo ldconfig
 </pre>
