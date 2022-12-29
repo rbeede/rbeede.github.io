@@ -1,0 +1,33 @@
+---
+creation_epoch: 1672278218
+lastmod_epoch: 1672278218
+categories: ['Computer Problems']
+title: Fix USB Will Not Connect VMware Workstation Linux
+---
+
+Error was "The device is not allowed by the virtual machine configuration."
+
+<p>
+  Fix: <a href="https://communities.vmware.com/t5/VMware-Workstation-Player/All-USB-devices-are-greyed-out/m-p/2878267/highlight/true#M38018">https://communities.vmware.com/t5/VMware-Workstation-Player/All-USB-devices-are-greyed-out/m-p/2878267/highlight/true#M38018</a>
+</p>
+
+<pre>
+usb.restrictions.defaultAllow = "TRUE"
+</pre>
+
+<p>
+This even seems to allow other VMs to start working without editing their vmx files.
+</p>
+
+<pre>
+Other things tried:
+
+usb.generic.allowHID = "TRUE"
+usb.generic.allowLastHID = "TRUE"
+
+usb.ccid.disable = "TRUE"
+usb.generic.allowCCID = "TRUE"
+
+vi /etc/vmware/config
+usb.quirks.device0 = "0x1050:0x0404 allow"
+</pre>
