@@ -1,0 +1,21 @@
+---
+creation_epoch: 1672641139
+lastmod_epoch: 1672641139
+categories: ['Computer Problems']
+title: Fixing VMware Workstation Gnome Favorites Pin
+---
+
+If you run from a terminal command-line <b>vmware</b> it won't attach to your pinned Gnome favorite. This fix is:
+
+<pre>
+vim /usr/share/applications/vmware-workstation.desktop
+
+# Add this line to the end
+
+
+StartupWMClass=Vmware
+</pre>
+
+<p>
+  This community post gave a hint as to how to fix this problem in general: <a href="https://askubuntu.com/questions/1378642/application-in-the-dock-cant-be-added-to-favourites">https://askubuntu.com/questions/1378642/application-in-the-dock-cant-be-added-to-favourites</a>
+</p>
