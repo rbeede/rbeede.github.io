@@ -1,0 +1,24 @@
+---
+creation_epoch: 1672641139
+lastmod_epoch: 1673022187
+categories: ['Computer Problems']
+title: Fixing VMware Workstation Gnome Favorites Pin
+---
+
+Had an Ubuntu 20 VM running in VMware Workstation Pro version 16.2.5 that would freeze every few hours for about 20 seconds. Tried rebuilding the VM without much success. This freezing would occur even if the host had no disk usage, cpu usage, and plenty of memory. Similar for the guest VM with low cpu usage tasks and memory. Simple things such as opening a new web browser tab in the guest VM would just randomly freeze up.
+
+<p>
+  I tried the last solution at <a href="https://community.spiceworks.com/topic/2335844-vmware-guest-periodic-freezes-then-comes-back">VMWare Guest periodic freezes..then comes back</a> post by adamitj on Dec 7, 2022.
+</p>
+
+<p>
+  Power down the VM and add to the vmx:
+</p>
+
+<pre>
+isolation.tools.unity.disable = "TRUE"
+</pre>
+
+<p>
+  Since this was a Linux desktop guest VM and a Linux host hypervisor the Unity feature wasn't available anyway. Disabling this setting appears to have cleared up the freezing.
+</p>
