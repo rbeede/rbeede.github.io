@@ -1,0 +1,65 @@
+---
+creation_epoch: 1674278918
+lastmod_epoch: 1674278918
+categories: ['Computer Problems']
+title: NVIDIA Qardo T2000 GPU Ubuntu 22 Dell 5540 Laptop
+---
+
+<p>NVIDIA-SMI has failed because it couldn’t communicate with the NVIDIA driver Dell laptop</p>
+
+<p>I tried the Ubuntu nouveau as well as the ubuntu-drivers nvidia-driver-525 and nvidia-driver-525-open without success. Setting prime-select nvidia made no difference. None of my applications would use the NVIDIA GPU in preference of the integrated Intel. nvidia-smi would not recogonize the gpu</p>
+
+<p>Solution:</p>
+
+<pre>
+# clean-out any previous attempts
+
+sudo apt-get remove --purge '^nvidia-.*' -y; sudo apt-get remove --purge '^libnvidia-.*' -y; sudo apt-get remove --purge '^cuda-.*' -y
+sudo apt-get purge bumblebee -y
+
+sudo apt-get -y autoremove
+</pre>
+
+<p>Download the latest Linux driver from NVIDIA. <a href="https://www.nvidia.com/download/index.aspx">https://www.nvidia.com/download/index.aspx</a></p>
+
+<pre>
+sudo apt install build-essential libglvnd-dev pkg-config
+</pre>
+
+<pre>
+# If you already tried the NVIDIAinstallers blacklisting method you can skip this
+
+sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf"
+sudo bash -c "echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nvidia-nouveau.conf"
+</pre>
+
+<pre>
+sudo update-initramfs -u
+/sbin/reboot
+</pre>
+
+<pre>
+# after reboot and logging back in
+
+sudo telinit 3
+
+sudo bash NVIDIA-Linux-x86_64-*.run
+
+sudo /sbin/reboot
+</pre>
+
+<pre>
+sudo apt install nvidia-prime
+sudo prime-select nvidia
+
+# should be for the last time
+/sbin/reboot
+</pre>
+
+<pre>
+nvidia-smi
+</pre>
+
+<h3>References</h3>
+
+<a href="https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-20-04-focal-fossa-linux">https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-20-04-focal-fossa-linux</a>
