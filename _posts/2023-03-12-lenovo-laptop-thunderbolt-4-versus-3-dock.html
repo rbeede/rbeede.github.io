@@ -1,0 +1,22 @@
+---
+creation_epoch: 1678660855
+lastmod_epoch: 1678660855
+categories: ['Computer Problems']
+title: Lenovo Laptop (20Y4S2NJ00) with Lenovo Dock (40AN) and Windows Login Screen with no working USB
+---
+
+<p>I had a Lenovo Laptop with Thunderbolt 4 (20Y4S2NJ00) and a Lenovo Dock (40AN) with Thunderbolt 3. When arriving at the Windows login screen after a reboot or cold startup none of the USB devices would work. I could only login with the keyboard on the laptop itself.</p>
+
+<p>The BitLocker PIN entry screen did work with USB from the docking station, but once the Windows OS took over all the USB devices were disabled, but the monitors will worked.</p>
+
+<p>I tried installing the latest laptop UEFI firmware, dock firmware, and dock drivers. No change in the behavior. Other searches on the Internet for guides resulted in no luck either. Kernal DMA Prootection was marked "ON" in the UEFI config, msinfo32.exe reported it enabled, laptop lid was open. Tried tweaking GPO settings but no luck. The Thudnerbolt Control Center showed everything was allowed too. Nothing from the existing Internet sites worked.</p>
+
+<p>After I logged into Windows the USB ports and keyboard worked just fine, even after a lock; but a reboot and the dock connected USB devices no longer worked at the Windows login screen.</p>
+
+<p>I went into the UEFI settings (Config->Thunderbolt 4) and set PCIe Tunneling to off. This allowed USB devices at the Windows login screen, but it caused the thunderbolt 3 dock to not be recognized including one of my screens. I changed the setting back to On.</p>
+
+<p>I was going to give-up when I tried one last thing. I went into the UEFI firmware settings, Security, and set Kernal DMA Protection of "Off." However, I left the two virtualization vt-d options underneath it to On (normally if you have Kernal DMA set to On then those two options were disabled and forced to "On."</p>
+
+<p>Upon a reboot my thunderbolt 3 dock USB ports and keyboard WORKED! I could use them at the Windows login screen. Anoter plus was that msinfo32 reported kernel dma protection was still in-place.</p>
+
+<p>My guess is an odd behavior with the Lenovo UEFI firmware with thunderbolt 4 and 3 devices mixed. "Kernel DMA Protection" left "On" in the UEFI caused the thunderbolt 3 device to not be available, but if you set it to "Off" but still left the sub-options enabled then the dock would work.</p>
