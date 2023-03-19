@@ -1,0 +1,58 @@
+---
+creation_epoch: 1679234641
+lastmod_epoch: 1679234641
+categories: ['Security']
+title: MFA (2FA) to Standalone Windows Pro Local Account via Remote Desktop (RDP)
+---
+
+<p>I wanted to RDP into a target Windows 11 Professional standalone (not domain connected) system using my Yubikey USB security key. Windows Hello supports using FIDO2 keys, but not over RDP (that required Windows Hello for Business).</p>
+
+<p>I also considered using the PIV smartcard feature, but most solutions required a domain-joined device with a CA and AD. One free solution I did find for non-domain machines with local user accounts (EIDAuthenticate) only worked on the Home edition and not Professional edition of Windows.</p>
+
+<p>There was a Rohos product for $32 that offered a solution to use a multide of options for login, but I was looking for something open source and free.</p>
+
+<p>I came across <a href="https://github.com/multiOTP/multiotp">mutliOTP</a>. It has a commercial license component if you want a GUI, but the command-line edition is open source and free. I settled for using the Yubico OTP method.</p>
+
+<p>Because this was a standalone setup with no authentication server for one single Windows PC I had to generate a new Yubico OTP in slot 2. <b>Warning!</b> If you reprogram your slot 1 you will lose the factory cc-prefixed OTP attached to the YubiCloud. I used slot 2 to avoid this, but you could re-upload your new key if you need to use it elsewhere.</p>
+
+<p>The Yubikey Personalization Tool was useful for capturing the csv log containing the OTP secret/seed needed for import into multiOTP.</p>
+
+<pPrerequisites:</p>
+
+<ol>
+  <li>The OTP shared secret to import into multiOTP</li>
+  <li>Existing local (in theory a domain account could work) Windows account</li>
+  <li>The USB (or authenticator application) to use (these directions assume a yubikey, but you can generate a QR code for authenticator apps too)</li>
+  <li>Administrator access to install multiOTP</li>
+  <li><a href="https://download.multiotp.net/credential-provider/">https://download.multiotp.net/credential-provider/</a></li>
+</ol>
+
+<p>multiOTP install steps:</p>
+
+<ol>
+  <li>Install both the 32-bit and 64-bit MSVC++ redistribuables (64-bit was already there, but 32-bit was required for installer to work)</li>
+  <li>Run multiOTPCredentialProviderInstaller.msi</li>
+  <li>Leave "URL of your multiOTP server(s)" blank</li>
+  <li>Check the "No remote serverr, local multiOTP only</li>
+  <li>Choose your Logon and Unlock options (you can leave CredUI as None)</li>
+  <li>Open a cmd (or Terminal) as Administrator</li>
+  <li>cd c:\Program Files (x86)\multiOTP</li>
+  <li>.\multiotp.exe -fastcreatenopin <i>YOURUSERNAMEHERE</i></li>
+  <li>.\multiotp.exe -import-yubikey C:\Users\YOURUSERNAMEHERE\Downloads\YUBILOG_WITH_SECRET.csv</li>
+  <li>.\multiotp.exe -assign-token <i>YOURUSERNAMEHERE</i> <b><i>jteunabcaaai</i></b>
+    <ul><li>Provide your public ID for your Yubico OTP</li></ul>
+  </li>
+  <li>.\multiotp.exe -userlist</li>
+</ol>
+
+<p>Now you should be prompted for the username, password, and then the multiOTP code when you try to login.</p>
+
+<p>You can exclude a user from MFA by updating the registry configuration at HKEY_CLASSES_ROOT\CLSID\{FCEFDFAB-B0A1-4C4D-8B2B-4FF4E0A3D978} in excluded_account</p>
+
+<p>If you find that a remote desktop client is not remembering the username + password (you want to only have to provide the unique OTP each connect) then try:</p>
+
+<pre>
+cmdkey /generic:TERMSRV/* /user:YOURUSERNAMEHERE /pass:YOURPASSWORDHERE
+
+cmdkey /list
+</pre>
