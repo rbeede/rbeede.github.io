@@ -1,0 +1,16 @@
+---
+creation_epoch: 1681227014
+lastmod_epoch: 1681227014
+categories: ['Security']
+title: Test your DNS malware filter is blocking correctly
+---
+
+<p><a href="https://developers.cloudflare.com/cloudflare-one/policies/filtering/dns-policies/test-dns-filtering/">https://developers.cloudflare.com/cloudflare-one/policies/filtering/dns-policies/test-dns-filtering/</a></p>
+
+<pre>
+nslookup malware.testcategory.com
+
+nslookup phishing.testcategory.com
+
+nslookup nudity.testcategory.com 1.0.0.3
+</pre>
