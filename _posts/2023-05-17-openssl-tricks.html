@@ -1,0 +1,29 @@
+---
+creation_epoch: 1684331035
+lastmod_epoch: 1684331035
+categories: ['Tech Tricks']
+title: OpenSSL Tricks
+---
+
+<p>A few openssl commands I've found useful</p>
+
+<code>openssl s_client -showcerts -connect www.rodneybeede.com:443 &lt;/dev/null 2&gt;/dev/null | sed --silent --expression &apos;/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p&apos;</code>
+<ul>
+	<li>From the remote web server grabs all the x509 certificates in ASCII (Base64) format useful for PEM CA chain bundles.</li>
+	<li>Note that the last, root CA certificate is commonly not provided by remote web sites</li>
+</ul>
+
+<code>openssl x509 -in some_public_cert.pem -noout -text</code>
+<ul><li>Output details of a certificate for review</li></ul>
+
+<code>openssl x509 -inform der -in burp-ca.der -out burp-ca.pem</code>
+<ul><li>Convert from DER format to ASCII (Base64) PEM</li></ul>
+
+<code>openssl req -x509 -newkey rsa:4096 -nodes -out cert.crt -keyout cert.key -days 3653 -subj "/CN=lab.rbeede.cloud.localtest.me"</code>
+<ul><li>One liner to create a self-signed certificate and key pair for web server testing</li></ul>
+
+<code>openssl storeutl -noout -text -certs allcerts.pem</code>
+<ul>
+	<li>Outputs every certificate in a chained ASCII (Base64) PEM file</li>
+	<li>Idea from <a href="https://serverfault.com/a/755815">How to view all ssl certificates in a bundle?</a></li>
+</ul>
