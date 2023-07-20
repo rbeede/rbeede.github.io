@@ -1,0 +1,183 @@
+---
+creation_epoch: 1684331035
+lastmod_epoch: 1684331035
+categories: ['Tech Tricks']
+title: AHCI versus RST in Laptop
+---
+
+<p>
+Laptops in the last 5 years (2018-2023) include Intel RST support for fake-RAID or Optane configurations. Linux does not support the Intel RST found in laptops versus the much older RSTi implementations.
+</p>
+
+<p>
+I benchmarked two NVMe SSDs in a Lenovo P1 Gen 3 laptop in multiple configuration modes to see what the performance was like.
+</p>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-j6zm{font-weight:bold;text-align:left;vertical-align:bottom}
+.tg .tg-7zrl{text-align:left;vertical-align:bottom}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-j6zm">Mode</th>
+    <th class="tg-j6zm">Drive</th>
+    <th class="tg-j6zm">Q</th>
+    <th class="tg-j6zm">READ (MB/s)</th>
+    <th class="tg-j6zm">WRITE (MB/s)</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-7zrl">AHCI</td>
+    <td class="tg-7zrl">C</td>
+    <td class="tg-7zrl">SEQ1M Q8T1</td>
+    <td class="tg-7zrl">3280</td>
+    <td class="tg-7zrl">2538</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">AHCI</td>
+    <td class="tg-7zrl">C</td>
+    <td class="tg-7zrl">SEQ1M Q1T1</td>
+    <td class="tg-7zrl">2119</td>
+    <td class="tg-7zrl">1745</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">AHCI</td>
+    <td class="tg-7zrl">C</td>
+    <td class="tg-7zrl">RND4K Q32T1</td>
+    <td class="tg-7zrl">305</td>
+    <td class="tg-7zrl">304</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">AHCI</td>
+    <td class="tg-7zrl">C</td>
+    <td class="tg-7zrl">RND4K Q1T1</td>
+    <td class="tg-7zrl">35</td>
+    <td class="tg-7zrl">95</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">AHCI</td>
+    <td class="tg-7zrl">D</td>
+    <td class="tg-7zrl">SEQ1M Q8T1</td>
+    <td class="tg-7zrl">3504</td>
+    <td class="tg-7zrl">2011</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">AHCI</td>
+    <td class="tg-7zrl">D</td>
+    <td class="tg-7zrl">SEQ1M Q1T1</td>
+    <td class="tg-7zrl">2315</td>
+    <td class="tg-7zrl">1727</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">AHCI</td>
+    <td class="tg-7zrl">D</td>
+    <td class="tg-7zrl">RND4K Q32T1</td>
+    <td class="tg-7zrl">323</td>
+    <td class="tg-7zrl">330</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">AHCI</td>
+    <td class="tg-7zrl">D</td>
+    <td class="tg-7zrl">RND4K Q1T1</td>
+    <td class="tg-7zrl">44</td>
+    <td class="tg-7zrl">98</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">C</td>
+    <td class="tg-7zrl">SEQ1M Q8T1</td>
+    <td class="tg-7zrl">3101</td>
+    <td class="tg-7zrl">2187</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">C</td>
+    <td class="tg-7zrl">SEQ1M Q1T1</td>
+    <td class="tg-7zrl">2088</td>
+    <td class="tg-7zrl">1583</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">C</td>
+    <td class="tg-7zrl">RND4K Q32T1</td>
+    <td class="tg-7zrl">269</td>
+    <td class="tg-7zrl">313</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">C</td>
+    <td class="tg-7zrl">RND4K Q1T1</td>
+    <td class="tg-7zrl">35</td>
+    <td class="tg-7zrl">101</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">D</td>
+    <td class="tg-7zrl">SEQ1M Q8T1</td>
+    <td class="tg-7zrl">3546</td>
+    <td class="tg-7zrl">2256</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">D</td>
+    <td class="tg-7zrl">SEQ1M Q1T1</td>
+    <td class="tg-7zrl">2079</td>
+    <td class="tg-7zrl">1860</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">D</td>
+    <td class="tg-7zrl">RND4K Q32T1</td>
+    <td class="tg-7zrl">275</td>
+    <td class="tg-7zrl">310</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">D</td>
+    <td class="tg-7zrl">RND4K Q1T1</td>
+    <td class="tg-7zrl">40</td>
+    <td class="tg-7zrl">103</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">RAID0</td>
+    <td class="tg-7zrl">SEQ1M Q8T1</td>
+    <td class="tg-7zrl">3195</td>
+    <td class="tg-7zrl">3217</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">RAID0</td>
+    <td class="tg-7zrl">SEQ1M Q1T1</td>
+    <td class="tg-7zrl">2303</td>
+    <td class="tg-7zrl">1889</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">RAID0</td>
+    <td class="tg-7zrl">RND4K Q32T1</td>
+    <td class="tg-7zrl">235</td>
+    <td class="tg-7zrl">252</td>
+  </tr>
+  <tr>
+    <td class="tg-7zrl">RST</td>
+    <td class="tg-7zrl">RAID0</td>
+    <td class="tg-7zrl">RND4K Q1T1</td>
+    <td class="tg-7zrl">41</td>
+    <td class="tg-7zrl">85</td>
+  </tr>
+</tbody>
+</table>
+
+<h3>Conclusion</h3>
+
+<p>
+There was not a significant difference in performance for NVMe PCIe storage devices even in RAID0 stripe mode. The addition of an Intel RST driver could make installation more complicated although the Windows 10 installer did recogonize the disk volumes without help. There could be battery life impacts for the RST mode instead, but this was not tested.
+</p>
