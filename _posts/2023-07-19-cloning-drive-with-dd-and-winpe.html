@@ -1,0 +1,45 @@
+---
+creation_epoch: 1689821458
+lastmod_epoch: 1689821458
+categories: ['Tech Tricks']
+title: Cloning Drive with dd and WinPE
+---
+
+<p>
+I had a system where I wanted to clone a USB enclosure drive to an internal RAID running under Intel RST (fake-RAID). Linux cannot recognize the recent laptop edition of the Intel RST (the decades older RSTi has a kernel module, but not the newer one). I had to use a Windows environment for the necessary driver support to regoconized the disk volumes.
+</p>
+
+<p>
+I initially created an amd64 WinPE disk, but it also lacked BitLocker support and other necessary tools. I tried some online disk cloning softwares that would create WinPE boot media, but they did not do a true sector by sector copy resulting in the BitLocker partition being corrupt.  
+</p>
+
+<p>
+I used a Ventoy USB with the unmodified Win10_22H2_English_x64v1.ISO installer. I would boot with this, select repair, and open a Command Prompt.
+</p>
+
+<p>
+I also found a 64-bit version of dd.exe for Windows (most versions are 32-bit which won't execute). <a href="http://www.chrysocome.net/download">http://www.chrysocome.net/dd</a>. You want the <b>ddrelease64.exe</b>.<br />
+Place a copy of it on the USB.
+</p>
+
+<pre>
+D:\ddrelease64.exe --list
+
+Use diskpart  list disk  if you need disk numbers for reference.
+</pre>
+
+<pre>
+ddrelease64.exe if=\\?\Device\Harddisk2\Partition0 of=\\?\Device\Harddisk0\Partition0 --progress bs=1G
+</pre>
+
+<p>
+If the system does not boot you probably need to rebuild the UEFI BCD
+</p>
+
+<pre>
+Use diskpart to Assign the EFI partition if necessary
+
+E:
+cd \EFI\Microsoft\Boot
+bcdboot C:\Windows /l en-us /s E: /f ALL
+</pre>
