@@ -54,18 +54,22 @@ chmod +x ./install.sh
 # May require a reboot then rerun of the command again
 sudo ./install.sh
 
+# Once completed you may need another reboot for everything in the enhanced session to work correctly
+
+
+
 
 ####################
 # For enabling audio
 
-sudo apt install build-essential dpkg-dev libpulse-dev git autoconf libtool
+sudo apt install -y build-essential dpkg-dev libpulse-dev git autoconf libtool
 
 
 git clone https://github.com/neutrinolabs/pulseaudio-module-xrdp.git
 
 cd ~/pulseaudio-module-xrdp
 
-scripts/install_pulseaudio_sources_apt-wrapper.sh
+scripts/install_pulseaudio_sources_apt_wrapper.sh
 
 ./bootstrap && ./configure PULSE_DIR=~/pulseaudio.src
 
