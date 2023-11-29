@@ -34,14 +34,14 @@ I looked at multiple blogs, websites, and git repos with methods to enable enhan
   On your Hyper-V host open a Windows PowerShell prompt as administrator
 </p>
 
-<code>
+<pre>
 Get-VM
 Set-VM -VMName "The_VM_Name" -EnhancedSessionTransportType HvSocket
-</code>
+</pre>
 
 <p>Inside your Ubuntu guest VM</p>
 
-<code>
+<pre>
 sudo apt update
 
 sudo apt install -y pulseaudio pavucontrol xrdp
@@ -73,6 +73,6 @@ make
 
 sudo make install
 
-</code>
+</pre>
 
 <p>Finally perform another reboot, and you should have enhanced session support</p>
