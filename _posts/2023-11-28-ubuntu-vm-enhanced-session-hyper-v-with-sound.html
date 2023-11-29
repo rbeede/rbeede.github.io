@@ -1,0 +1,72 @@
+---
+creation_epoch: 1701228202
+lastmod_epoch: 1701228202
+categories: ['Computer Problems']
+title: Ubuntu VM with Enhanced Session Hyper-V with Sound
+---
+
+<p>
+I looked at multiple blogs, websites, and git repos with methods to enable enhanced session support for Ubuntu VM desktop support. I wanted the nice copy+paste and sound features. Many sites had quite the long solutions or methods, but I did find a simpler one that worked by combining information from multiple. Xrdp gives you the copy+paste and enhanced session support, but not sound without extra work.
+</p>
+
+<p>Some of the sites I used to piece together a solution</p>
+
+<ul>
+  <li>https://gist.github.com/ANRCorleone/39322bd9514607b072adaa36d080d96c - The initial script for xrdp was great, but the extra steps to compile all of pulseaudio was not necessary for Ubuntu 22.04</li>
+  <li>https://raw.githubusercontent.com/Hinara/linux-vm-tools/ubuntu20-04/ubuntu/20.04/install.sh - Works great in 22.04 for getting enhanced session base to work with xrdp, but it is not the sound part</li>
+  <li>https://c-nergy.be/blog/?p=17734 - There is an all-in-one "product" utility script offered here as well, but it did not work for me on Nov 2023 with Ubuntu 22.04 in Hyper-V. This blog post had just the audio parts assuming you got your xrdp + Hyper-V setup from above already working</li>
+  <li>Microsoft's Hyper-V Quick Create for Ubuntu 22.04 did not work out-of-the-box. In fact some important software was missing until I forced an OS apt-get update. Would recommend installing from vanilla OEM (Cananocial) ISO instead of using "Quick Create"</li>
+  <li><a href="https://ubuntuforums.org/showthread.php?t=2481545&p=14132611#post14132611">https://ubuntuforums.org/showthread.php?t=2481545&p=14132611#post14132611</a> - The later comment held the easier solution with minimal pulseaudio compile steps</li>
+</ul>
+
+<h3>My Consolidated Steps</h3>
+
+<p>
+  Assuming you installed using the vanialla OEM (Canoncial) Ubuntu Desktop ISO and are now in a basic session.
+</p>
+<p>
+  On your Hyper-V host open a Windows PowerShell prompt as administrator
+</p>
+
+<code>
+Get-VM
+Set-VM -VMName "The_VM_Name" -EnhancedSessionTransportType HvSocket
+</code>
+
+<p>Inside your Ubuntu guest VM</p>
+
+<code>
+sudo apt update
+
+sudo apt install -y pulseaudio pavucontrol xrdp
+
+cd ~/
+# Works for 20.04 or 22.04
+wget https://raw.githubusercontent.com/Hinara/linux-vm-tools/ubuntu20-04/ubuntu/20.04/install.sh 
+chmod +x ./install.sh
+
+# May require a reboot then rerun of the command again
+sudo ./install.sh
+
+
+####################
+# For enabling audio
+
+sudo apt install build-essential dpkg-dev libpulse-dev git autoconf libtool
+
+
+git clone https://github.com/neutrinolabs/pulseaudio-module-xrdp.git
+
+cd ~/pulseaudio-module-xrdp
+
+scripts/install_pulseaudio_sources_apt-wrapper.sh
+
+./bootstrap && ./configure PULSE_DIR=~/pulseaudio.src
+
+make
+
+sudo make install
+
+</code>
+
+<p>Finally perform another reboot, and you should have enhanced session support</p>
