@@ -13,7 +13,13 @@ I looked at multiple blogs, websites, and git repos with methods to enable enhan
 
 <ul>
   <li>https://gist.github.com/ANRCorleone/39322bd9514607b072adaa36d080d96c - The initial script for xrdp was great, but the extra steps to compile all of pulseaudio was not necessary for Ubuntu 22.04</li>
-  <li>https://raw.githubusercontent.com/Hinara/linux-vm-tools/ubuntu20-04/ubuntu/20.04/install.sh - Works great in 22.04 for getting enhanced session base to work with xrdp, but it is not the sound part</li>
+  <li>https://raw.githubusercontent.com/Hinara/linux-vm-tools/ubuntu20-04/ubuntu/20.04/install.sh
+    <ul>
+      <li>Works great in 22.04 for getting enhanced session base to work with xrdp</li>
+      <li>It is not the sound part</li>
+      <li>More secure configuration as it does not enable port 3389 but only uses a loopback listening port for Hyper-V</li>
+    </ul>
+  </li>
   <li>https://c-nergy.be/blog/?p=17734 - There is an all-in-one "product" utility script offered here as well, but it did not work for me on Nov 2023 with Ubuntu 22.04 in Hyper-V. This blog post had just the audio parts assuming you got your xrdp + Hyper-V setup from above already working</li>
   <li>Microsoft's Hyper-V Quick Create for Ubuntu 22.04 did not work out-of-the-box. In fact some important software was missing until I forced an OS apt-get update. Would recommend installing from vanilla OEM (Cananocial) ISO instead of using "Quick Create"</li>
   <li><a href="https://ubuntuforums.org/showthread.php?t=2481545&p=14132611#post14132611">https://ubuntuforums.org/showthread.php?t=2481545&p=14132611#post14132611</a> - The later comment held the easier solution with minimal pulseaudio compile steps</li>
