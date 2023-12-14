@@ -1,0 +1,38 @@
+---
+creation_epoch: 1702570366
+lastmod_epoch: 1702570366
+categories: ['Tech Tricks']
+title: Ubuntu VM with Enhanced Session Hyper-V with Sound
+---
+
+<p>
+I have an Ubuntu 22.04 VM running in Hyper-V with enhanced session support. I wanted a custom resolution when I connected to it because the VMConnect list of options was to restrictive. Since dynamic resizing is not yet supported with the xrdp + vmconnect combo (using wfreerdp didn't work either) I found this workaround.
+</p>
+
+<p>
+No reboot is required. You can leave the VM running and just close any existing connection.
+</p>
+
+<ol>
+  <li>Open a PowerShell terminal with administrator privilege</li>
+  <li>Get-VM</li>
+  <li>Note the name of your VM</li>
+  <li>Get-VM <i>YOUR-VM-NAME-HERE</i> | Select-Object id</li>
+  <li>Notate the Id you get back</li>
+  <li>Open in a text editor %APPDATA%\Microsoft\Windows\Hyper-V\Client\1.0\vmconnect.rdp.<i>INSERT-YOUR-VM-ID-HERE</i>.config</li>
+  <li>Look for setting name="DesktopSize"</li>
+  <li>Change teh value to your desired custom resolution and save</li>
+  <li>Connect... again to get your new custom resolution</li>
+</ol>
+
+<h6>
+Few notes:
+</h6>
+
+<p>
+If you try to maximize it will go full screen, but the usable resolution is only what you put in the .config file.
+</p>
+
+<p>
+If you "Edit Session Settings..." you might have to manually modify your .config file again.
+</p>
