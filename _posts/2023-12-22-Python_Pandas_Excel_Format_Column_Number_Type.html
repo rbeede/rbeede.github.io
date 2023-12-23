@@ -1,0 +1,30 @@
+---
+creation_epoch: 1703297575
+lastmod_epoch: 1703297575
+categories: ['Tech Tricks']
+title: Python Pandas Excel Format Column Number Type
+---
+
+<p>
+  I wanted Pandas to set the entire columnn's font size and cell type. Most examples had to use another library to accomplish some of this, but the latest Pandas library on my Ubuntu 23 with Python 3.11 did have a way to do  this without an extra engine.
+</p>
+
+<p>
+Finding the number-format codes required unzipping (used 7zip) an existing xlsx with the desired style types already in-place. Process of elimination in the numFmts inside the styles.xml gave me the format I wanted which set the type in Excel.
+</p>
+
+<pre>
+    combined_records = combined_records.style.applymap(lambda v: 'number-format: "$"#,##0.00', subset=['Your Column Name Here','Another Column You Want'])
+
+    combined_records.set_properties(**{
+        'font-size': '24pt',
+    })
+
+    # At this point combined_records went from the DataFrame type to the Styler.
+
+
+    # number-format: Not well documented but Excel does this:
+    #   number-format: '@'      Text
+    #   'number-format: "$"#,##0.00'        Currency
+</pre>
+
