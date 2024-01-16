@@ -16,3 +16,215 @@ I wanted to have an OpenWRT configuration that would force a wireless router to 
 <li>OpenWRT 23.05.2</li>
 </ul>
 
+<h3>/etc/config/wireless</h3>
+
+<pre>
+config wifi-device 'radio0'
+        option type 'mac80211'
+        option path 'soc/1b500000.pci/pci0000:00/0000:00:00.0/0000:01:00.0'
+        option channel 'auto'
+        option band '5g'
+        option htmode 'VHT40'
+        option cell_density '0'
+
+config wifi-iface 'default_radio0'
+        option device 'radio0'
+        option network 'lan'
+        option mode 'ap'
+        option ssid 'openwireless.org'
+        option encryption 'none'
+        option key '123456789'
+        option isolate '1'
+        option macaddr 'random'
+
+config wifi-device 'radio1'
+        option type 'mac80211'
+        option path 'soc/1b700000.pci/pci0001:00/0001:00:00.0/0001:01:00.0'
+        option channel 'auto'
+        option band '2g'
+        option htmode 'HT20'
+        option cell_density '0'
+
+config wifi-iface 'default_radio1'
+        option device 'radio1'
+        option network 'lan'
+        option mode 'ap'
+        option ssid 'openwireless.org'
+        option encryption 'none'
+        option key '123456789'
+        option isolate '1'
+        option macaddr 'random'
+</pre>
+
+<h3>/etc/config/network</h3>
+
+<pre>
+config defaults
+        option syn_flood '1'
+        option input 'REJECT'
+        option output 'ACCEPT'
+        option forward 'REJECT'
+
+config zone
+        option name 'lan'
+        list network 'lan'
+        option input 'ACCEPT'
+        option output 'ACCEPT'
+        option forward 'ACCEPT'
+
+config zone
+        option name 'wan'
+        list network 'wan'
+        list network 'wan6'
+        option input 'REJECT'
+        option output 'ACCEPT'
+        option forward 'REJECT'
+        option masq '1'
+        option mtu_fix '1'
+
+config rule
+        option name 'Allow-DHCP-Renew'
+        option src 'wan'
+        option proto 'udp'
+        option dest_port '68'
+        option target 'ACCEPT'
+        option family 'ipv4'
+
+config rule
+        option name 'Allow-Ping'
+        option src 'wan'
+        option proto 'icmp'
+        option icmp_type 'echo-request'
+        option family 'ipv4'
+        option target 'ACCEPT'
+
+config rule
+        option name 'Allow-IGMP'
+        option src 'wan'
+        option proto 'igmp'
+        option family 'ipv4'
+        option target 'ACCEPT'
+
+config rule
+        option name 'Allow-DHCPv6'
+        option src 'wan'
+        option proto 'udp'
+        option dest_port '546'
+        option family 'ipv6'
+        option target 'ACCEPT'
+
+config rule
+        option name 'Allow-MLD'
+        option src 'wan'
+        option proto 'icmp'
+        option src_ip 'fe80::/10'
+        list icmp_type '130/0'
+        list icmp_type '131/0'
+        list icmp_type '132/0'
+        list icmp_type '143/0'
+        option family 'ipv6'
+        option target 'ACCEPT'
+
+config rule
+        option name 'Allow-ICMPv6-Input'
+        option src 'wan'
+        option proto 'icmp'
+        list icmp_type 'echo-request'
+        list icmp_type 'echo-reply'
+        list icmp_type 'destination-unreachable'
+        list icmp_type 'packet-too-big'
+        list icmp_type 'time-exceeded'
+        list icmp_type 'bad-header'
+        list icmp_type 'unknown-header-type'
+        list icmp_type 'router-solicitation'
+        list icmp_type 'neighbour-solicitation'
+        list icmp_type 'router-advertisement'
+        list icmp_type 'neighbour-advertisement'
+        option limit '1000/sec'
+        option family 'ipv6'
+        option target 'ACCEPT'
+
+config rule
+        option name 'Allow-ICMPv6-Forward'
+        option src 'wan'
+        option dest '*'
+        option proto 'icmp'
+        list icmp_type 'echo-request'
+        list icmp_type 'echo-reply'
+        list icmp_type 'destination-unreachable'
+        list icmp_type 'packet-too-big'
+        list icmp_type 'time-exceeded'
+        list icmp_type 'bad-header'
+        list icmp_type 'unknown-header-type'
+        option limit '1000/sec'
+        option family 'ipv6'
+        option target 'ACCEPT'
+
+config rule
+        option name 'Allow-IPSec-ESP'
+        option src 'wan'
+        option dest 'lan'
+        option proto 'esp'
+        option target 'ACCEPT'
+
+config rule
+        option name 'Allow-ISAKMP'
+        option src 'wan'
+        option dest 'lan'
+        option dest_port '500'
+        option proto 'udp'
+        option target 'ACCEPT'
+
+config redirect 'dns_int'
+        option name 'Intercept-DNS'
+        option src 'lan'
+        option src_dport '53'
+        option proto 'tcp udp'
+        option family 'any'
+        option target 'DNAT'
+
+config include 'tor_nft'
+        option path '/etc/nftables.d/tor.sh'
+
+config redirect 'tcp_int'
+        option name 'Intercept-TCP'
+        option src 'lan'
+        option src_dport '0-65535'
+        option dest_port '9040'
+        option proto 'tcp'
+        option family 'any'
+        option target 'DNAT'
+</pre>
+
+<h3>/etc/nftables.d/tor.sh</h3>
+
+<pre>
+TOR_CHAIN="dstnat_$(uci -q get firewall.tcp_int.src)"
+TOR_RULE="$(nft -a list chain inet fw4 ${TOR_CHAIN} \
+| sed -n -e "/Intercept-TCP/p")"
+nft replace rule inet fw4 ${TOR_CHAIN} \
+handle ${TOR_RULE##* } \
+fib daddr type != { local, broadcast } ${TOR_RULE}
+</pre>
+
+<h3>/etc/config/tor</h3>
+
+<pre>
+config tor 'conf'
+        option default '/etc/tor/torrc'
+        option generated '/tmp/torrc'
+        list tail_include '/etc/tor/custom'
+</pre>
+
+<h3>/etc/tor/custom</h3>
+
+<pre>
+AutomapHostsOnResolve 1
+AutomapHostsSuffixes .
+VirtualAddrNetworkIPv4 172.16.0.0/12
+VirtualAddrNetworkIPv6 [fc00::]/8
+DNSPort 0.0.0.0:9053
+DNSPort [::]:9053
+TransPort 0.0.0.0:9040
+TransPort [::]:9040
+</pre>
