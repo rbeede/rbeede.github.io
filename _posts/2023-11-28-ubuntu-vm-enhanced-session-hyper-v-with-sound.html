@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1701228202
-lastmod_epoch: 1702570366
+lastmod_epoch: 1706111812
 categories: ['Tech Tricks']
 title: Ubuntu VM with Enhanced Session Hyper-V with Sound
 ---
@@ -13,7 +13,7 @@ I looked at multiple blogs, websites, and git repos with methods to enable enhan
 
 <ul>
   <li>https://gist.github.com/ANRCorleone/39322bd9514607b072adaa36d080d96c - The initial script for xrdp was great, but the extra steps to compile all of pulseaudio was not necessary for Ubuntu 22.04</li>
-  <li>https://raw.githubusercontent.com/Hinara/linux-vm-tools/ubuntu20-04/ubuntu/20.04/install.sh
+  <li>https://github.com/Hinara/linux-vm-tools/tree/ubuntu20-04/ubuntu
     <ul>
       <li>Works great in 22.04 for getting enhanced session base to work with xrdp</li>
       <li>It is not the sound part</li>
@@ -44,24 +44,26 @@ Set-VM -VMName "The_VM_Name" -EnhancedSessionTransportType HvSocket
 <pre>
 sudo apt update
 
-sudo apt install -y pulseaudio pavucontrol xrdp
+sudo apt install -y xrdp
 
 cd ~/
-# Works for 20.04 or 22.04
-wget https://raw.githubusercontent.com/Hinara/linux-vm-tools/ubuntu20-04/ubuntu/20.04/install.sh 
+# Adjust URL for your Ubuntu version (HWE is the difference)
+wget https://raw.githubusercontent.com/Hinara/linux-vm-tools/5a9e2654c3afa0c58aff139cbba6eff90e088e75/ubuntu/22.04/install.sh
 chmod +x ./install.sh
 
 # May require a reboot then rerun of the command again
 sudo ./install.sh
 
 # Once completed you may need another reboot for everything in the enhanced session to work correctly
-
+sudo /sbin/reboot
 
 
 
 ####################
 # For enabling audio
 
+sudo apt install -y pulseaudio pavucontrol
+  
 sudo apt install -y build-essential dpkg-dev libpulse-dev git autoconf libtool
 
 
@@ -79,4 +81,4 @@ sudo make install
 
 </pre>
 
-<p>Finally perform another reboot, and you should have enhanced session support</p>
+<p>Finally perform another reboot, and you should have enhanced session support with audio</p>
