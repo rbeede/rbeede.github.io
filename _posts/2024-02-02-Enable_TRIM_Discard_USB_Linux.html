@@ -1,0 +1,32 @@
+---
+creation_epoch: 1706902041
+lastmod_epoch: 1706902041
+categories: ['Tech Tricks']
+title: Enable TRIM/Discard on USB for Linux
+---
+
+<p>
+<a href="https://www.guyrutenberg.com/2021/11/20/enable-trim-discard-on-external-ssd/>Enable TRIM/discard on external SSD</a> - 2024-02-02
+</p>
+
+<p>
+In case the link goes 404
+</p>
+
+<pre>
+lsblk --discard
+# DISC-GRAN and DISC-MAX not zero means already good to go
+
+sg_vpd -a /dev/sdX | grep -i unmap
+
+cat /sys/block/sdb/device/scsi_disk/6\:0\:0\:0/provisioning_mode
+# want unmap, not full as response
+
+# vim on /etc/udev/rules.d/90-usb-discard.rules
+ACTION=="add|change", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="1932", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
+
+# get your values for idVendor and idProduct from the command
+lsusb
+
+# Reboot to make sure it sticks after a reboot
+</pre>
