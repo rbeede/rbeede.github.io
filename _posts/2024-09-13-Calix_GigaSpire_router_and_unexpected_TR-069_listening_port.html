@@ -1,0 +1,72 @@
+---
+creation_epoch: 1726286361
+lastmod_epoch: 1726286361
+categories: ['Security']
+title: Calix GigaSpire router and unexpected TR-069 listening port
+---
+
+An ISP controlled Calix GigaSpire BLAST Model: u6.1 GS4220E router (firmware version unknown). Running an Nmap scan I found a single open high-number port with an HTTP web server (no TLS) listening.
+
+<pre>
+curl --include http://the-ip-here:60002/
+  
+HTTP/1.1 404 Not Found
+Server: gSoap 2.8.30 / Dimark client v.4.8 [9347]
+Content—Length: 0
+Connection: close
+</pre>
+
+<p>
+Doing some digging into the headers I found this was a TR-069 service. I tried sending a few TR payloads to it via curl but nothing changed the 404.
+</p>
+
+<p>
+A search on Shodan.io did turn up a number of other devices on the public Internet with this device present.
+</p>
+
+<p>
+I did get an interesting result from downloading <a href="https://github.com/bitfu/sricam-gsoap2.8-dos-exploit/blob/master/Sricam_gSOAP_PoC_exploit.sh">https://github.com/bitfu/sricam-gsoap2.8-dos-exploit/blob/master/Sricam_gSOAP_PoC_exploit.sh</a> for CVE-2019-6973.
+</p>
+
+<pre>
+bash Sricam_gSOAP_PoC_exploit.sh the-ip-here 60002 10000
+</pre>
+
+<p>
+After running the service on port 60002 was still open but no longer responded. Another Nmap scan from inside the LAN (i.e. behind the router) indicated the port was open, but there were also other ports open on the device.
+</p>
+
+<pre>
+nmap the-ip-here -p 60000-60100
+Starting Nmap 7.80 ( https://nmap.org ) at 2024-09-13 22:50 CDT
+Nmap scan report for the-ip-here (the-ip-here)
+Host is up (0.88s latency).
+rDNS record for the-ip-here: the-ip-here.block0.example.com
+Not shown: 98 closed ports
+PORT      STATE SERVICE
+60002/tcp open  unknown
+60004/tcp open  unknown
+60016/tcp open  unknown
+</pre>
+
+<p>
+Connecting to one of the other ports (from the LAN, Internet was blocked) returned an HTTP server response as below. The response corralated with a TR-069 CPE starting a session to the remote ACS.
+</p>
+
+<pre>
+curl -i http://the-ip-here:60004/
+HTTP/1.1 503 Service Unavailable
+Server: gSoap 2.8.30 / Dimark client v.4.8 [9347]
+Content-Length: 0
+Connection: close
+
+curl -i http://the-ip-here:60016
+HTTP/1.1 503 Service Unavailable
+Server: gSoap 2.8.30 / Dimark client v.4.8 [9347]
+Content-Length: 0
+Connection: close
+</pre>
+
+<p>
+At no time did the Internet service incur an interruption.
+</p>
