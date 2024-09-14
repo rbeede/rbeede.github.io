@@ -119,3 +119,29 @@ Export list for 192.168.0.1:
 /ponsfp_usr  169.254.1.1
 /tmp/log/pon 169.254.1.1
 </pre>
+
+<p>
+An Nmap scan from the LAN side (nmap -sn -oA privnet-scan --stats-every 10 169.254.0.0/16) turned up 169.254.2.1 which was another IP address for the router itself.
+</p>
+
+<p>
+Attempting to mount the NFS shares
+</p>
+
+<pre>
+sudo mount 169.254.2.1:/ponsfp_usr /mnt/
+mount.nfs: access denied by server while mounting 169.254.2.1:/ponsfp_usr'
+
+sudo mount 169.254.2.1:/tmp/log/pon /mnt/
+mount.nfs: access denied by server while mounting 169.254.2.1:/tmp/log/pon
+</pre>
+
+<pre>
+sudo ip address add 169.254.1.1/16 dev eth0
+
+sudo mount 169.254.2.1:/tmp/log/pon /mnt/
+
+sudo mount 169.254.2.1:/ponsfp_usr /mnt2/
+</pre>
+
+<p>The mounts never completed successfully but no access denied error was observed.</p>
