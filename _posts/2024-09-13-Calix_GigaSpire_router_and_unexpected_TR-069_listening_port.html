@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1726286361
-lastmod_epoch: 1726432037
+lastmod_epoch: 1726460371
 categories: ['Security']
 title: Calix GigaSpire router and unexpected TR-069 listening port
 ---
@@ -148,4 +148,47 @@ sudo mount 169.254.2.1:/ponsfp_usr /mnt2/
 
 <p>
 This <a href="https://www.reddit.com/r/Calix/comments/1904klc/gigaspire_gs4220e_factory_reset_and_setup/">Reddit thread</a> talked about support user credentials with 12345!5upporT, but I could not get it to work with a provisioned device.
+</p>
+
+<p>
+Setting up a bridge and tcpdump of the router WAN port to the ONT uplink revealed a few interesting traffic patterns:
+</p>
+
+<pre>
+Traffic from an AWS EC2 instance IP range (34.210.116.13) to the router on port 60002.
+
+Hypertext Transfer Protocol
+    GET /3xFyb0AI HTTP/1.1\r\n
+    User-Agent: Calix Consumer Connect\r\n
+    Host: IP-ADDR-OF-ROUTER-WAS-HERE:60002\r\n
+    Accept: */*\r\n
+    \r\n
+
+The response from the router back:
+    HTTP/1.1 401 Unauthorized\r\n
+    WWW-Authenticate: Digest realm="Dimark", qop="auth", nonce="7065d4b300001f2f66e7abbb"\r\n
+    Server: gSoap 2.8.30 / Dimark client v.4.8 [9347]\r\n
+    Content-Type: text/xml; charset=utf-8\r\n
+    Content-Length: 0\r\n
+    Connection: keep-alive\r\n
+    \r\n
+
+The remote EC2 instance sent a follow-up request:
+    GET /3xFyb0AI HTTP/1.1\r\n
+    Authorization: Digest username="admin", realm="Dimark", nonce="7065d4b300001f2f66e7abbb", uri="/3xFyb0AI", response="REDACTED", qop=auth, nc=00000001, cnonce="55d856d1432701ff", algorithm=MD5\r\n
+    User-Agent: Calix Consumer Connect\r\n
+    Host: IP-ADDR-OF-ROUTER-WAS-HERE:60002\r\n
+    Accept: */*\r\n
+    \r\n
+
+The response:
+    HTTP/1.1 200 OK\r\n
+    Server: gSoap 2.8.30 / Dimark client v.4.8 [9347]\r\n
+    Content-Length: 0\r\n
+    Connection: close\r\n
+    \r\n
+</pre>
+
+<p>
+No further traffic on that clear-text port was observed. This likely only triggers the router to then reach out to the ACS for a config update.
 </p>
