@@ -1,0 +1,44 @@
+---
+creation_epoch: 1728048398
+lastmod_epoch: 1728048398
+categories: ['Tech Tricks']
+title: ZeroTier_Setup_on_Raspberry_Pi_4b.html
+---
+
+I wanted to try-out using my Raspberry Pi 4B as an exit node but on a network that may have CGNAT (no port forwarding/DMZ possible). I followed the guide at <a href="https://docs.zerotier.com/exitnode/">https://docs.zerotier.com/exitnode/</a> using a Raspberry Pi 4B with Raspberry Pi OS Lite (64-bit).
+
+<p>
+The new OS version uses nftables instead of iptables. It was actually simpler to setup as I only had the one eth0 interface and did not want any firewall blocking rules (to allow easier remote setup of the device on-site). I used the Red Hat reference at <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/security_guide/sec-configuring_nat_using_nftables#sec-Configuring_destination_NAT_using_nftables">documentation</a> as there were not very many simple nftables for routing via NAT examples.
+</p>
+
+
+
+<pre>
+nft flush ruleset
+
+nft add table nat
+
+nft -- add chain nat prerouting { type nat hook prerouting priority dstnat \; }
+nft add chain nat postrouting { type nat hook postrouting priority srcnat \; }
+
+# WAN interface for exit node to reach the Internet
+export WAN_IF=eth0
+nft add rule nat postrouting oifname "$WAN_IF" masquerade
+
+# Observe that NO deny rules are in-use. If you need them you should add them
+</pre>
+
+<p>
+Don't forget to <a href="https://docs.zerotier.com/exitnode/#enable-ipv4-forwarding-on-the-exit-node">enable ipv4 forwarding</a>
+</p>
+
+<p>
+Save the changes so they persist across reboots
+</p>
+
+<pre>
+echo 'flush ruleset' > /etc/nftables.conf
+echo '' >> /etc/nftables.conf
+
+nft list ruleset >> /etc/nftables.conf
+</pre>
