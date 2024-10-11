@@ -1,0 +1,72 @@
+---
+creation_epoch: 1728651043
+lastmod_epoch: 1728651043
+categories: ['Security']
+title: Report.PDF: The Fax Machine of Security
+---
+
+<h1>Report.PDF: The Fax Machine of Security</h1>
+
+Whether for a network scan, appsec pen test, or vulnerability scan many organizations rely on a results report recorded in PDF format. The deliverable is viewed as a PDF with a report decorated with numerous pretty formatting and presentation elements. However, the use of report.pdf as the final deliverable and end-state of the security process has created an <a href="https://xyproblem.info/">XY problem</a>.
+
+<p>
+Why is the final deliverable and security step the generation of a single artifact in a decades old technology format? What are the actual customers need? Does the security engineer/tester's work end at the report.pdf delivery or would the security of the system be improved by something more?
+</p>
+
+<p>
+Delivering a report.pdf is analogous to fax machines. Health care, governments, legal entities that cannot accept an artifact except via fax. Despite more modern communication technologies and secure conveniences such as DLP file sharing systems (with controlled access lists and retention periods) outdated methods of work products are retained. PDFs, just like the fax, do convey the required information, but they also result in manual labor to translate the information into useful systems already known and used by the end-customer.
+</p>
+
+<h3>Shortcomings of PDF</h3>
+
+<h4>Requires multiple versions for the target audience</h4>
+
+<ul>
+	<li>Executives – Only want a summary</li>
+	<li>Developers – Need easy to reproduce steps, but a long single report.pdf contains too much information and is difficult to search. Also requires sharing all the details with every development team even though some findings are not relevant to a particular team.</li>
+	<li>Auditors – Need to know what was tested when and the findings, but a report.pdf fails to inform on the most crucial information of the current status of vulnerabilities found. This requires yet another report.pdf to parse and correlate manually.</li>
+</ul>
+
+<h4>PDFs are difficult to follow Steps to Reproduce</h4>
+
+<ul>
+	<li>As previously mentioned searching through one large report.pdf for your (a developer's) specific bug to fix is more difficult</li>
+	<li>Developers want bug information in their native ticketing system. They work with tickets, and a PDF does not easy translate into the various number of ticketing systems.</li>
+	<li>The report.pdf will commonly malign characters such as <code>", `, ', and -</code> resulting in hidden failures when trying to copy+paste steps to reproduce a finding in the developers’ test environments. The finding thus takes longer to diagnosis or appears as a false positive discrediting the correctness of the entire report.</li>
+	<li>Report.PDF files are too easy to share via e-mail or other insecure means. While the security professional may know better once handed over to a customer any entity within their numerous organizations could easy attach and insecurely share it.</li>
+</ul>
+
+<h4>Remediation Recommendations</h4>
+
+<ol>
+	<li>
+	Deliver vulnerability findings using your customer's native ticketing system<br />
+	If they do not have one offer a portal of your own or recommend one. There are many free, open-source, and viable commercial ticketing products.
+	</li>
+	<li>
+	Ensure that technical information on how to reproduce a finding are copy+paste friendly
+		<ul>
+			<li>Line wrapping does not cause failures</li>
+			<li>Characters for technical commands (i.e. some-tool --input arg) are translated to correct character codes that result in no errors (e.g. the --input are terminal dash characters)</li>
+			<li>Providing the plain-text steps in the customers native ticketing system can achieve this</li>
+		</ul>
+	</li>
+	<li>
+	Provide an auditor friendly dashboard
+		<ul>
+			<li>Summary of what was tested when</li>
+			<li>Table of vulnerabilities with date found</li>
+			<li>Column called Current Status where each cell links to the customer's ticketing system finding details</li>
+			<li>If the auditor still requires the use of fax pdf provide only two sections with the same as above. The current remediation status of findings should be looked-up live by the auditor referencing the Current Status column to find the ticket.</li>
+		</ul>
+	</li>
+	<li>
+	Provide an Executive Summary
+		<ul>
+			<li>Via a portal if possible</li>
+			<li>Only include relevant summary information (number of findings, highest severity) and not developer/engineering details.</li>
+		</ul>
+	</li>
+	<li>The delivery of the final report should not be the end. An engagement should also include assisting a customer with remediation.</li>
+	<li>Demonstrate proof-of-concept exploits by sharing the finding from the customer's own ticketing system. This includes showing how you follow the steps to reproduce in the finding ticket to the developers.</li>
+</ol>
