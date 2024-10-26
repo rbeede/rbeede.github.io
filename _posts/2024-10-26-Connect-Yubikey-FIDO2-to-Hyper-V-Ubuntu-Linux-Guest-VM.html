@@ -1,0 +1,45 @@
+---
+creation_epoch: 1729959573
+lastmod_epoch: 1729959573
+categories: ['Tech Tricks']
+title: Connect Yubikey FIDO2 to Hyper-V Ubuntu Linux Guest VM
+---
+
+Hyper-V does not support attaching USB devices to guest VMs. Storage devices could be mapped as remote network paths and some RDP clients could do smart cards, but other USB devices are very limited even when the USB device is plugged into the physical machine running the hypervisor. I found a solution with <a href="https://github.com/dorssel/usbipd-win">https://github.com/dorssel/usbipd-win</a>.
+
+<h3>Caveats</h3>
+
+<ol>
+  <li>
+    You must have a TCP/IP network communication path between the device sharing the physical USB and the guest VM with cooperating firewalls
+    <ul><li>The host sharing the USB device does not necessarily have to be the Hyper-V hypervisor.</li></ul>
+  </li>
+  <li>Communication may not be encrypted</li>
+  <li>The sharing host needs the usbipd software installed</li>
+  <li>The guest VM needs the usbip client software installed</li>
+</ol>
+
+<h3>Installation</h3>
+
+Mostly straight forward following the instructions at <a href="https://github.com/dorssel/usbipd-win">https://github.com/dorssel/usbipd-win</a>.
+
+<h3>Yubikey with FIDO2 mode not working</h3>
+
+I ran into an issue where I could not get a web browser nor the Yubikey Manager to access my Yubikey even though it showed up in `lsusb`. If accessed using root then it worked fine so I discovered it was a <a href="https://github.com/dorssel/usbipd-win/issues/1046">permissions issue</a>.
+
+<pre>
+sudo modprobe vhci-hcd
+
+sudo rmmod usbhid && sudo modprobe usbhid
+</pre>
+
+Download <a href="https://github.com/Yubico/libu2f-host/blob/master/70-u2f.rules">70-u2f.rules</a>
+
+<pre>
+sudo cp 70-u2f.rules /usr/lib/udev/rules.d/
+sudo chmod 0644 /usr/lib/udev/rules.d/70-u2f.rules
+sudo udevadm control --reload-rules && sudo udevadm trigger
+</pre>
+
+Remove and reattach the Yubikey USB (usbip attach)<br />
+You may need to clear your web browser cache
