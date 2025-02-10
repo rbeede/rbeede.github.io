@@ -1,0 +1,41 @@
+---
+creation_epoch: 1739230197
+lastmod_epoch: 1739230197
+categories: ['Security']
+title: ESP32 USB Army Knife Tutorial
+---
+
+Wanted to blog about playing with the USB Army Knife on a LilyGo T-Dongle S3 USB device (ESP32-S3) and steps I took to implement it. I did not develop the tool, but I wanted to try out each of the tool features and write about it. Some helpful references to start:
+
+<ul>
+  <li><a href="https://www.mobile-hacker.com/2025/01/24/usb-army-knife-the-ultimate-close-access-penetest-tool/">Mobile Hacker blog</a> - USB Army Knife: The Ultimate Close Access Penetest Tool; January 24, 2025</li>
+  <li><a href="https://github.com/i-am-shodan/USBArmyKnife">GitHub repo with the USB Army Knife software</a></li>
+  <li><a href="https://cyberblogspot.com/how-to-install-esptool-on-windows-10/">How to Install Esptool</a>
+    <code>pip install esptool</code>
+  </li>
+  <li><a href="https://cyberblogspot.com/how-to-save-and-restore-esp8266-and-esp32-firmware/">How to Save and Restore ESP8266 and ESP32 Firmware</a> - Useful for backups before you begin</li>
+</ul>
+
+<p>
+  I used the LilyGo T-Dongle S3 USB device because it was easy to source on Amazon.com for about $25. I also purchased a 32GB microSD card for best compatibility.
+</p>
+
+<p>
+  On windows the command to execute it:
+  <code>python -m esptool version</code>
+</p>
+
+<h4>Backup existing firmware</h4>
+
+<ol>
+  <li>Inserted USB device, did not have to hold down any button on the device</li>
+  <li>python -m esptool flash_id</li>
+  <li>Observed "Detected flash size" of 16MB for the LilyGo
+  <li>python -m esptool --baud 115200 --port COM3 read_flash 0x0 0x1000000 fw-backup-16MiB.bin
+    <ul>
+      <li>Adjust port per previous flash_id</li>
+      <li>16MiB = hex 0x1000000</li>
+    </ul>
+  </li>
+  <li>It may take a little bit for the complete flash to dump</li>
+</ol>
