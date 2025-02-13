@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1739230197
-lastmod_epoch: 1739230197
+lastmod_epoch: 1739415412
 categories: ['Security']
 title: ESP32 USB Army Knife Tutorial
 ---
@@ -40,3 +40,29 @@ Wanted to blog about playing with the USB Army Knife on a LilyGo T-Dongle S3 USB
   </li>
   <li>It may take a little bit for the complete flash to dump</li>
 </ol>
+
+<h4>Getting necessary firmware</h4>
+
+You can use a web browser to flash firmware, but I wanted to have a CLI method. The download files come from <a href="https://github.com/i-am-shodan/USBArmyKnife/wiki/Installation#flashing-with-a-web-browser">the GitHub Wiki instructions.</a>
+
+<ol>
+  <li><a href="https://github.com/i-am-shodan/USBArmyKnife/actions/workflows/main.yml?query=is%3Asuccess+branch%3Amaster" target="_blank" rel="noopener noreferrer">Go to the git commits page</a></li>
+  <li>Click on the title of the first (top-most) result</li>
+  <li>Look under Artifacts</li>
+  <li>Download the LILYGO-T-Dongle-S3 Firmware binaries</li>
+  <li>Extract the zip file</li>
+  <li><a href="https://github.com/espressif/arduino-esp32/raw/refs/heads/master/tools/partitions/boot_app0.bin">Download the raw boot_app0.bin from espressif</a></li>
+</ol>
+
+<h4>Installation</h4>
+
+<a href="https://docs.espressif.com/projects/esptool/en/latest/esp32/esptool/flashing-firmware.html">Pieces of command syntax from https://docs.espressif.com/projects/esptool/en/latest/esp32/esptool/flashing-firmware.html</a>
+
+<ol>
+  <li>Open a terminal/command prompt (admin not necessary)</li>
+  <li>cd into the directory where all the firmware .bin files are located</li>
+  <li>Plug in your device, holding down any boot button that may exist</li>
+  <li><code>python -m esptool </code></li>
+</ol>
+
+You may find <code>python -m esptool flash_id</code> useful for getting your device flash size and Crystal speed (e.g. --flash_freq 40m).
