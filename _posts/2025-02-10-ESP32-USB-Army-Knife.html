@@ -62,7 +62,11 @@ You can use a web browser to flash firmware, but I wanted to have a CLI method. 
   <li>Open a terminal/command prompt (admin not necessary)</li>
   <li>cd into the directory where all the firmware .bin files are located</li>
   <li>Plug in your device, holding down any boot button that may exist</li>
-  <li><code>python -m esptool </code></li>
+  <li><code>python -m esptool --baud 922190 --before default_reset --after hard_reset write_flash 0x0000 bootloader.bin 0x8000 partitions.bin 0xE000 boot_app0.bin</code></li>
+  <li>
+    <code>python -m esptool --baud 922190 --before default_reset --after hard_reset write_flash 0x10000 firmware.bin</code>
+    <ul><li>I'm not sure why, but I had to do this separate to avoid "Detected overlap at address: 0x10000 for file: firmware.bin"</li></ul>
+  </li>
 </ol>
 
-You may find <code>python -m esptool flash_id</code> useful for getting your device flash size and Crystal speed (e.g. --flash_freq 40m).
+You may find <code>python -m esptool flash_id</code> useful for getting your device flash size and Crystal speed (e.g. --flash_freq 40m), but I found leaving it in auto-detect worked fine.
