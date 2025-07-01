@@ -1,11 +1,13 @@
 ---
 creation_epoch: 1739820866
-lastmod_epoch: 1739820866
+lastmod_epoch: 1751383974
 categories: ['Security']
 title: Cheap FIDO2 USB
 ---
 
 I was looking for any way to have a FIDO2 USB security key that cost under $10. I found this project <a href="https://www.picokeys.com/pico-fido/">https://www.picokeys.com/pico-fido/</a> which seemed neat.
+
+<h3>Hardware Option: LilyGo T-Dongle S3 (ESP32-S3)</h3>
 
 <p>
   I tested it with a LilyGo T-Dongle S3 USB device (ESP32-S3) and flashed the firmware. It worked! I could set a PIN on the device and enroll the FIDO2 key. Pressing the button on the device worked to authorize the key to test WebAuthN sites.
@@ -19,26 +21,28 @@ I was looking for any way to have a FIDO2 USB security key that cost under $10. 
   <li>Bluetooth existed but was not an option (no battery power)</li>
 </ol>
 
-<h3>Another Option</h3>
+<h3>Hardware Option: Raspberry Pico 2</h3>
 
-The project also supports the Raspberry Pico 2. I did not have one, but it appears to have Secure Boot and Secure Lock options.
+The project also supports the Raspberry Pico 2. I did purchase some, and it does have Secure Boot and Secure Lock options for the firmware.
 
 <h4>Cons:</h4>
 <ul>
-  <li>The secure enclave is not well vetted yet</li>
-  <li>Requires printing a case</li>
-  <li>OEM version comes with a micro-USB port so a cable would be required</li>
+  <li>The secure enclave is not well vetted yet with security testing</li>
+  <li>Requires getting (or 3D printing) a case with existing push-button notch support/li>
+  <li>OEM version comes with a micro-USB port so a cable or soldered adapter is required</li>
   <li>No NFC support</li>
   <li>Larger form factor</li>
 </ul>
 
 <h4>Cost:</h4>
 <i>Not including shipping + tax</i><br />
-$5 for Pico 2<br />
-$2 for a 3D printed case<br />
-$4 for a cable from micro-USB to lightning or USB-C or USB-A<br />
-<br />
-Adding in shipping pushes over the $10 goal. Also the lack of NFC means more work to connect to tablets or phones.<br />
+<ul>
+  <li>$5 for Pico 2</li>
+  <li>$1 for a 3D self-printed case (<a href="https://www.printables.com/model/243322-raspberry-pi-pico-case/comments">link</a>)</li>
+  <li>$4 for a cable from micro-USB to lightning or USB-C or USB-A</li>
+</ul>
+
+Adding in shipping pushed over the $10 goal. Also the lack of NFC means more work to connect to tablets or phones (OTG adapter). It could be a handy backup key though that you store somewhere safe.
 
 <h3>Summary</h3>
 
