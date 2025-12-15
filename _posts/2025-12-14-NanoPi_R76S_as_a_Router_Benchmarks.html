@@ -154,3 +154,35 @@ Connecting to host 192.168.2.1, port 5201
 
 iperf Done.
 </pre>
+
+
+<hr />
+
+<h2>OpenWRT Snapshot</h2>
+
+Main upstream version of OpenWRT has recently had the NanoPi R76S added to the snapshot feed (still not in the stable build 24.10.4 yet). Important note with the ext4 snapshot image is that it defaults to a 100MB root file system. It does not auto-expand to use the 32GB of eMMC memory available. Additionally, some bugs with resize2fs and the default file system layout require extra steps to resize it. See <a href="https://github.com/openwrt/openwrt/issues/7729#issuecomment-1040336175">FS#2951 - x86_64 ext4 generic: online resizing of root partition fails</a>.
+
+<ul>
+  <li>OpenWrt SNAPSHOT r32308-ff4546093e</li>
+  <li>2025-12-14</li>
+  <li>aarch64_generic</li>
+  <li>rockchip/armv8</li>
+</ul>
+
+<h3>iperf3 -c 192.168.2.1 -i 5 -P 4</h3>
+
+<pre>
+
+</pre>
+
+<h3>iperf3 -c 192.168.2.1 -i 5 -P 4 --reverse</h3>
+
+<pre>
+
+</pre>
+
+<h3>iperf3 -c 192.168.2.1 -i 5 -P 4 --bidir</h3>
+
+<pre>
+
+</pre>
