@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1765768849
-lastmod_epoch: 1765768849
+lastmod_epoch: 1765848964
 categories: ['Tech Tricks']
 title: NanoPi R76S as a Router Benchmarks
 ---
@@ -169,20 +169,135 @@ Main upstream version of OpenWRT has recently had the NanoPi R76S added to the s
   <li>rockchip/armv8</li>
 </ul>
 
-<h3>iperf3 -c 192.168.2.1 -i 5 -P 4</h3>
+<h3>iperf3 -c 192.168.1.1 -i 5 -P 4</h3>
 
 <pre>
+Connecting to host 192.168.1.1, port 5201
+[  5] local 192.168.1.183 port 58624 connected to 192.168.1.1 port 5201
+[  7] local 192.168.1.183 port 58636 connected to 192.168.1.1 port 5201
+[  9] local 192.168.1.183 port 58646 connected to 192.168.1.1 port 5201
+[ 11] local 192.168.1.183 port 58654 connected to 192.168.1.1 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-5.01   sec   352 MBytes   589 Mbits/sec  103    331 KBytes       
+[  7]   0.00-5.01   sec   351 MBytes   589 Mbits/sec   59    335 KBytes       
+[  9]   0.00-5.01   sec   349 MBytes   585 Mbits/sec   89    334 KBytes       
+[ 11]   0.00-5.01   sec   351 MBytes   589 Mbits/sec   36    332 KBytes       
+[SUM]   0.00-5.01   sec  1.37 GBytes  2.35 Gbits/sec  287             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   5.01-10.01  sec   351 MBytes   588 Mbits/sec    0    359 KBytes       
+[  7]   5.01-10.01  sec   350 MBytes   587 Mbits/sec    0    362 KBytes       
+[  9]   5.01-10.01  sec   351 MBytes   588 Mbits/sec    0    352 KBytes       
+[ 11]   5.01-10.01  sec   351 MBytes   589 Mbits/sec    0    359 KBytes       
+[SUM]   5.01-10.01  sec  1.37 GBytes  2.35 Gbits/sec    0             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.01  sec   702 MBytes   589 Mbits/sec  103            sender
+[  5]   0.00-10.01  sec   701 MBytes   588 Mbits/sec                  receiver
+[  7]   0.00-10.01  sec   702 MBytes   588 Mbits/sec   59            sender
+[  7]   0.00-10.01  sec   700 MBytes   586 Mbits/sec                  receiver
+[  9]   0.00-10.01  sec   700 MBytes   586 Mbits/sec   89            sender
+[  9]   0.00-10.01  sec   698 MBytes   585 Mbits/sec                  receiver
+[ 11]   0.00-10.01  sec   702 MBytes   589 Mbits/sec   36            sender
+[ 11]   0.00-10.01  sec   701 MBytes   587 Mbits/sec                  receiver
+[SUM]   0.00-10.01  sec  2.74 GBytes  2.35 Gbits/sec  287             sender
+[SUM]   0.00-10.01  sec  2.73 GBytes  2.35 Gbits/sec                  receiver
 
+iperf Done.
 </pre>
 
-<h3>iperf3 -c 192.168.2.1 -i 5 -P 4 --reverse</h3>
+<h3>iperf3 -c 192.168.1.1 -i 5 -P 4 --reverse</h3>
 
 <pre>
+Connecting to host 192.168.1.1, port 5201
+Reverse mode, remote host 192.168.1.1 is sending
+[  5] local 192.168.1.183 port 36466 connected to 192.168.1.1 port 5201
+[  7] local 192.168.1.183 port 36474 connected to 192.168.1.1 port 5201
+[  9] local 192.168.1.183 port 36478 connected to 192.168.1.1 port 5201
+[ 11] local 192.168.1.183 port 36494 connected to 192.168.1.1 port 5201
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-5.00   sec   352 MBytes   590 Mbits/sec                  
+[  7]   0.00-5.00   sec   351 MBytes   588 Mbits/sec                  
+[  9]   0.00-5.00   sec   351 MBytes   588 Mbits/sec                  
+[ 11]   0.00-5.00   sec   350 MBytes   587 Mbits/sec                  
+[SUM]   0.00-5.00   sec  1.37 GBytes  2.35 Gbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   5.00-10.01  sec   351 MBytes   588 Mbits/sec                  
+[  7]   5.00-10.01  sec   351 MBytes   588 Mbits/sec                  
+[  9]   5.00-10.01  sec   351 MBytes   588 Mbits/sec                  
+[ 11]   5.00-10.01  sec   351 MBytes   588 Mbits/sec                  
+[SUM]   5.00-10.01  sec  1.37 GBytes  2.35 Gbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.01  sec   704 MBytes   590 Mbits/sec    0            sender
+[  5]   0.00-10.01  sec   702 MBytes   589 Mbits/sec                  receiver
+[  7]   0.00-10.01  sec   703 MBytes   590 Mbits/sec    0            sender
+[  7]   0.00-10.01  sec   702 MBytes   588 Mbits/sec                  receiver
+[  9]   0.00-10.01  sec   703 MBytes   589 Mbits/sec    0            sender
+[  9]   0.00-10.01  sec   701 MBytes   588 Mbits/sec                  receiver
+[ 11]   0.00-10.01  sec   702 MBytes   589 Mbits/sec    0            sender
+[ 11]   0.00-10.01  sec   701 MBytes   588 Mbits/sec                  receiver
+[SUM]   0.00-10.01  sec  2.75 GBytes  2.36 Gbits/sec    0             sender
+[SUM]   0.00-10.01  sec  2.74 GBytes  2.35 Gbits/sec                  receiver
 
+iperf Done.
 </pre>
 
-<h3>iperf3 -c 192.168.2.1 -i 5 -P 4 --bidir</h3>
+<h3>iperf3 -c 192.168.1.1 -i 5 -P 4 --bidir</h3>
 
 <pre>
+Connecting to host 192.168.1.1, port 5201
+[  5] local 192.168.1.183 port 60340 connected to 192.168.1.1 port 5201
+[  7] local 192.168.1.183 port 60344 connected to 192.168.1.1 port 5201
+[  9] local 192.168.1.183 port 60354 connected to 192.168.1.1 port 5201
+[ 11] local 192.168.1.183 port 60358 connected to 192.168.1.1 port 5201
+[ 13] local 192.168.1.183 port 60368 connected to 192.168.1.1 port 5201
+[ 15] local 192.168.1.183 port 60378 connected to 192.168.1.1 port 5201
+[ 17] local 192.168.1.183 port 60384 connected to 192.168.1.1 port 5201
+[ 19] local 192.168.1.183 port 60386 connected to 192.168.1.1 port 5201
+[ ID][Role] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5][TX-C]   0.00-5.00   sec   243 MBytes   407 Mbits/sec  870   74.9 KBytes       
+[  7][TX-C]   0.00-5.00   sec   204 MBytes   342 Mbits/sec  809    132 KBytes       
+[  9][TX-C]   0.00-5.00   sec   208 MBytes   349 Mbits/sec  1037   72.1 KBytes       
+[ 11][TX-C]   0.00-5.00   sec   207 MBytes   347 Mbits/sec  753    110 KBytes       
+[SUM][TX-C]   0.00-5.00   sec   862 MBytes  1.45 Gbits/sec  3469             
+[ 13][RX-C]   0.00-5.00   sec   353 MBytes   591 Mbits/sec                  
+[ 15][RX-C]   0.00-5.00   sec   364 MBytes   610 Mbits/sec                  
+[ 17][RX-C]   0.00-5.00   sec   348 MBytes   584 Mbits/sec                  
+[ 19][RX-C]   0.00-5.00   sec   335 MBytes   562 Mbits/sec                  
+[SUM][RX-C]   0.00-5.00   sec  1.37 GBytes  2.35 Gbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5][TX-C]   5.00-10.00  sec   237 MBytes   397 Mbits/sec  849    120 KBytes       
+[  7][TX-C]   5.00-10.00  sec   221 MBytes   371 Mbits/sec  1154   87.7 KBytes       
+[  9][TX-C]   5.00-10.00  sec   194 MBytes   326 Mbits/sec  895   67.9 KBytes       
+[ 11][TX-C]   5.00-10.00  sec   240 MBytes   403 Mbits/sec  918    141 KBytes       
+[SUM][TX-C]   5.00-10.00  sec   893 MBytes  1.50 Gbits/sec  3816             
+[ 13][RX-C]   5.00-10.00  sec   354 MBytes   593 Mbits/sec                  
+[ 15][RX-C]   5.00-10.00  sec   357 MBytes   598 Mbits/sec                  
+[ 17][RX-C]   5.00-10.00  sec   340 MBytes   570 Mbits/sec                  
+[ 19][RX-C]   5.00-10.00  sec   351 MBytes   589 Mbits/sec                  
+[SUM][RX-C]   5.00-10.00  sec  1.37 GBytes  2.35 Gbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID][Role] Interval           Transfer     Bitrate         Retr
+[  5][TX-C]   0.00-10.00  sec   480 MBytes   402 Mbits/sec  1719            sender
+[  5][TX-C]   0.00-10.01  sec   479 MBytes   402 Mbits/sec                  receiver
+[  7][TX-C]   0.00-10.00  sec   425 MBytes   356 Mbits/sec  1963            sender
+[  7][TX-C]   0.00-10.01  sec   424 MBytes   356 Mbits/sec                  receiver
+[  9][TX-C]   0.00-10.00  sec   402 MBytes   338 Mbits/sec  1932            sender
+[  9][TX-C]   0.00-10.01  sec   402 MBytes   337 Mbits/sec                  receiver
+[ 11][TX-C]   0.00-10.00  sec   447 MBytes   375 Mbits/sec  1671            sender
+[ 11][TX-C]   0.00-10.01  sec   447 MBytes   374 Mbits/sec                  receiver
+[SUM][TX-C]   0.00-10.00  sec  1.71 GBytes  1.47 Gbits/sec  7285             sender
+[SUM][TX-C]   0.00-10.01  sec  1.71 GBytes  1.47 Gbits/sec                  receiver
+[ 13][RX-C]   0.00-10.00  sec   709 MBytes   594 Mbits/sec    0            sender
+[ 13][RX-C]   0.00-10.01  sec   706 MBytes   592 Mbits/sec                  receiver
+[ 15][RX-C]   0.00-10.00  sec   724 MBytes   607 Mbits/sec    0            sender
+[ 15][RX-C]   0.00-10.01  sec   720 MBytes   604 Mbits/sec                  receiver
+[ 17][RX-C]   0.00-10.00  sec   692 MBytes   580 Mbits/sec    0            sender
+[ 17][RX-C]   0.00-10.01  sec   688 MBytes   577 Mbits/sec                  receiver
+[ 19][RX-C]   0.00-10.00  sec   690 MBytes   579 Mbits/sec    0            sender
+[ 19][RX-C]   0.00-10.01  sec   686 MBytes   575 Mbits/sec                  receiver
+[SUM][RX-C]   0.00-10.00  sec  2.75 GBytes  2.36 Gbits/sec    0             sender
+[SUM][RX-C]   0.00-10.01  sec  2.74 GBytes  2.35 Gbits/sec                  receiver
 
+iperf Done.
 </pre>
