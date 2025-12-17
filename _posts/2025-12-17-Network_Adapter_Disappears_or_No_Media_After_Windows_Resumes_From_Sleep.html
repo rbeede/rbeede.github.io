@@ -1,0 +1,32 @@
+---
+creation_epoch: 1765976135
+lastmod_epoch: 1765976135
+categories: ['Computer Problems']
+title: Network Adapter Disappears or No Media After Windows Resumes From Sleep
+---
+
+<h4>Issue</h4>
+
+After resuming from sleep the wired Ehternet network adapter was either missing or always reported media disconnected.
+
+<h5>Driver Attempt</h5>
+
+Latest driver (Realtek DNIS or NetAdapterCx, both "Not Support Power Saving" or other) did not help with the issue. The driver from the OEM motherboard website also had the same issue.
+
+<h4>Solutioh</h4>
+
+<ol>
+<li>Device Manager</li>
+<li>Network adapaters</li>
+<li>If needed, Scan for hardware changes</li>
+<li>Right-click for Properties on the network adapter</li>
+<li>Advanced tab</li>
+<li>Advanced EEE = Disabled</li>
+<li>Energy-Efficient Ethernet = Disabled</li>
+<li>Green Ethernet = Disabled
+<ul><li>This was the one I had to change specifically</li></ul>
+</li>
+<li>Power Saving Mode = Disabled</li>
+</ol>
+
+Putting the computer to sleep and then waking it up the network adapter worked normally.
