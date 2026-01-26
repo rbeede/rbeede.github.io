@@ -1,0 +1,37 @@
+---
+creation_epoch: 1769452651
+lastmod_epoch: 1769452651
+categories: ['Computer Problems']
+title: Linux Guest will not Autoresize Display in VMWare Workstation Pro 25H2
+---
+
+Running a Debian/Kali/Xubuntu/Ubuntu 25+ guest VM, you've installed open-vm-tools-desktop but the display refuses to autosize. Multiple known bugs with VMWare 25.0.0.24995812, open-vm-tools, and xf86-video-vmware. Some distros only offer the buggy version of xf86-video-vmware (e.g. Xubuntu 25.10) while others have dropped that driver upstream.
+
+<h5>Workaround</h5>
+<p>
+xautoresize care of <a href="https://gitlab.com/arnaudr/xautoresize">https://gitlab.com/arnaudr/xautoresize</a>. Install openvm-tools-desktop for the copy+paste support as usual.
+</p>
+
+<h6>Example Setup on Xubuntu 25.10</h6>
+<pre>
+sudo apt-get update
+sudo apt-get install -y open-vm-tools-desktop
+sudo apt-get install -y git
+
+
+git clone https://gitlab.com/arnaudr/xautoresize.git
+
+cd xautoresize
+make install
+</pre>
+
+<p>
+Log out and log back in.
+</p>
+
+<h5>References</h5>
+<ul>
+<li>https://gitlab.com/arnaudr/xautoresize</li>
+<li><a href="https://bugs.kali.org/view.php?id=9441">0009441: VMware auto resizing breaks due to missing xserver-xorg-video-vmware</a></li>
+<li><a href="https://gitlab.freedesktop.org/xorg/driver/xf86-video-vmware/-/issues/12">xf86-video-vmware not working on Arch Linux with latest mesa</a></li>
+</ul>
