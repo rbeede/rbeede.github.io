@@ -24,10 +24,13 @@ git clone https://gitlab.com/arnaudr/xautoresize.git
 
 cd xautoresize/
 sudo make install
+
+# Remove the buggy old and unsupported driver
+sudo apt purge xserver-xorg-video-vmware
 </pre>
 
 <p>
-Log out and log back in.
+Reboot
 </p>
 
 <h5>References</h5>
