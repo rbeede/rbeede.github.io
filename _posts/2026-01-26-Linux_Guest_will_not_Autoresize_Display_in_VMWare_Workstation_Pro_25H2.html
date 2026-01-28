@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1769452651
-lastmod_epoch: 1769452651
+lastmod_epoch: 1769572539
 categories: ['Computer Problems']
 title: Linux Guest will not Autoresize Display in VMWare Workstation Pro 25H2
 ---
@@ -17,12 +17,13 @@ xautoresize care of <a href="https://gitlab.com/arnaudr/xautoresize">https://git
 sudo apt-get update
 sudo apt-get install -y open-vm-tools-desktop
 sudo apt-get install -y git
+sudo apt install -y libglib2.0-dev libxcb1-dev libxcb-randr0-dev
 
 
 git clone https://gitlab.com/arnaudr/xautoresize.git
 
-cd xautoresize
-make install
+cd xautoresize/
+sudo make install
 </pre>
 
 <p>
@@ -31,7 +32,7 @@ Log out and log back in.
 
 <h5>References</h5>
 <ul>
-<li>https://gitlab.com/arnaudr/xautoresize</li>
+<li><a href="https://gitlab.com/arnaudr/xautoresize">https://gitlab.com/arnaudr/xautoresize</a></li>
 <li><a href="https://bugs.kali.org/view.php?id=9441">0009441: VMware auto resizing breaks due to missing xserver-xorg-video-vmware</a></li>
 <li><a href="https://gitlab.freedesktop.org/xorg/driver/xf86-video-vmware/-/issues/12">xf86-video-vmware not working on Arch Linux with latest mesa</a></li>
 </ul>
