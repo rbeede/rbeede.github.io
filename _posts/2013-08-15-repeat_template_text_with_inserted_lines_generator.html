@@ -1,10 +1,3 @@
----
-creation_epoch: 1376589744
-lastmod_epoch: 1376589744
-categories: Programming
-title: Repeat template text with inserted lines generator
----
-
 Use this handy utility to text a template text in the Template box and generate an output based on the Line Separated Input box below.  This is all done client-side in JavaScript so large amounts of text may generate slowly.  Tested in Google Chrome.
 
 <p>
@@ -12,25 +5,35 @@ This improved version will let you use delimited text to fill in multiple templa
 </p>
 
 <p>
-<table>
-	<tr>
+</p><table>
+	<tbody><tr>
 		<th>Template:  (Use ~~~MARKER#~~~ for where you want input inserted where # is the line input split index starting at 0 to n-1)</th>
 		<th>Line Separated Input:  (\r\n or \n accepted)</th>
 	</tr>
 	<tr>
-		<td><textarea id="template" cols="80" rows="35"></textarea></td>
+		<td>
+			<table>
+				<td><textarea id="template" cols="80" rows="35"></textarea></td>
+				<td style="vertical-align: top;">
+					<button onclick="insertButtonText(this)" onmousedown="return false;">~~~MARKER0~~~</button><br />
+					<button onclick="insertButtonText(this)" onmousedown="return false;">~~~MARKER1~~~</button><br />
+					<button onclick="insertButtonText(this)" onmousedown="return false;">~~~MARKER2~~~</button><br />
+					<button onclick="insertButtonText(this)" onmousedown="return false;">~~~MARKER3~~~</button><br />
+				</td>
+			</table>
+		</td>
 		<td><textarea id="lineSeparatedInput" cols="80" rows="35"></textarea></td>
 	</tr>
-</table>
-</p>
+</tbody></table>
+<p></p>
 
-<hr />
+<hr>
 
 <p>
-Delimiter character:  <input type="text" id="delimiter" value=":" /> (for tab you have to copy + paste)
+Delimiter character:  <input type="text" id="delimiter" value=":"> (for tab you have to copy + paste)
 </p>
 
-<hr />
+<hr>
 
 <!-- Normally inside the head tags, but this is more portable for blogs -->
 <script type="text/javascript">
@@ -62,11 +65,16 @@ Delimiter character:  <input type="text" id="delimiter" value=":" /> (for tab yo
 		
 		element_output.select();  // select all text for easy copy
 	}
+	
+	function copyToClipboard() {
+		navigator.clipboard.writeText(document.getElementById("output").textContent)
+	}
 </script>
 
 <button onclick="generate()">Generate</button>
+<button onclick="copyToClipboard()">Copy to Clipboard</button>
 
-<hr />
+<hr>
 
 <p>GENERATED OUTPUT</p>
 
