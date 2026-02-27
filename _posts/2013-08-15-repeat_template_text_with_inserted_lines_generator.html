@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1376589744
-lastmod_epoch: 1771962872
+lastmod_epoch: 1772213807
 categories: Programming
 title: Repeat template text with inserted lines generator
 ---
@@ -86,7 +86,7 @@ Delimiter character:  <input type="text" id="delimiter" value=":"> (for tab you 
 	}
 	
 	function copyToClipboard() {
-		navigator.clipboard.writeText(document.getElementById("output").textContent)
+		navigator.clipboard.writeText(document.getElementById("output").value)
 	}
 </script>
 
@@ -100,5 +100,6 @@ Delimiter character:  <input type="text" id="delimiter" value=":"> (for tab you 
 <p>
 <textarea id="output" cols="80" rows="35"></textarea>
 </p>
+
 
 
