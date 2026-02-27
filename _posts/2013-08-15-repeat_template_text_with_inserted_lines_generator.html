@@ -11,6 +11,18 @@ Use this handy utility to text a template text in the Template box and generate 
 This improved version will let you use delimited text to fill in multiple template values.  You can also set the delimited to nothing to just use the entire line of input.  Any \r\n or \n are used for the split and do not show up in the template insert values.
 </p>
 
+<!-- Normally inside the head tags, but this is more portable for blogs -->
+<script type="text/javascript">
+	function insertButtonText(buttonElement) {
+		var textarea = document.getElementById('template');
+		
+		var textToInsert = buttonElement.textContent || buttonElement.innerText;
+		
+		textarea.setRangeText(textToInsert, textarea.selectionStart, textarea.selectionEnd, 'end');
+		textarea.focus();
+	}
+</script>
+
 <p>
 </p><table>
 	<tbody><tr>
@@ -88,4 +100,5 @@ Delimiter character:  <input type="text" id="delimiter" value=":"> (for tab you 
 <p>
 <textarea id="output" cols="80" rows="35"></textarea>
 </p>
+
 
