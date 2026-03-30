@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1761833175
-lastmod_epoch: 1771962772
+lastmod_epoch: 1774891596
 categories: ['Tech Tricks']
 title: Misc Useful Commands
 ---
@@ -16,6 +16,8 @@ MYFILE.7z STUFFTOCOMPRESS
 
 <pre>
 powershell.exe -c 'Write-Host -NoNewLine $env:userprofile' | tr '\\\\' '/' | xargs wslpath
+
+alias cdwin="cd \`powershell.exe -c 'Write-Host -NoNewLine \$env:userprofile' | tr '\\134' '/' | xargs wslpath\`"
 </pre>
 
 <br />
