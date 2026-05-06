@@ -1,6 +1,6 @@
 ---
 creation_epoch: 1769452651
-lastmod_epoch: 1769572539
+lastmod_epoch: 1778099973
 categories: ['Computer Problems']
 title: Linux Guest will not Autoresize Display in VMWare Workstation Pro 25H2
 ---
@@ -23,6 +23,7 @@ sudo apt install -y libglib2.0-dev libxcb1-dev libxcb-randr0-dev
 git clone https://gitlab.com/arnaudr/xautoresize.git
 
 cd xautoresize/
+make
 sudo make install
 
 # Remove the buggy old and unsupported driver
