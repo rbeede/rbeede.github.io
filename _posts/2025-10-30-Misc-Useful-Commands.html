@@ -1,10 +1,11 @@
 ---
 creation_epoch: 1761833175
-lastmod_epoch: 1774891596
+lastmod_epoch: 1783349019
 categories: ['Tech Tricks']
 title: Misc Useful Commands
 ---
 
+<h5>Maximum compression using multiple cores</h5>
 <pre>
 7z a  -mx=9 -myx=9 -ms=on -mhc=on -m0=LZMA2 -mmt=on -mtc=on -t7z     
 MYFILE.7z STUFFTOCOMPRESS
@@ -14,6 +15,7 @@ MYFILE.7z STUFFTOCOMPRESS
 <hr />
 <br />
 
+<h5>WSL2 commands to get Windows user profile (home) directory</h5>
 <pre>
 powershell.exe -c 'Write-Host -NoNewLine $env:userprofile' | tr '\\\\' '/' | xargs wslpath
 
@@ -24,6 +26,7 @@ alias cdwin="cd \`powershell.exe -c 'Write-Host -NoNewLine \$env:userprofile' | 
 <hr />
 <br />
 
+<h5>Set the Linux terminal tab name via CLI</h5>
 <pre>
 echo -ne "\033]0;INSERTTERMTABTITLEHERE\007"
 </pre>
@@ -32,7 +35,7 @@ echo -ne "\033]0;INSERTTERMTABTITLEHERE\007"
 <hr />
 <br />
 
-
+<h5>Useful Metasploit commands for remote shells</h5>
 <pre>
 # STAGELESS
 
@@ -66,19 +69,16 @@ script /dev/null -c bash
 <hr />
 <br />
 
-
+<h5>Capture web page local storage for debugging</h5>
 <pre>
-copy('var data = '+JSON.stringify(localStorage)+';
-
-
-Object.keys(data).forEach(function (k){localStorage.setItem(k, data[k]);});');
+copy("var data = " + JSON.stringify(localStorage) + "; Object.keys(data).forEach(function (k){ localStorage.setItem(k, data[k]); });");
 </pre>
 
 <br />
 <hr />
 <br />
 
-
+<h5>For the current command prefix to turn-off any HTTP proxies</h5>
 <pre>
 https_proxy= NO_PROXY= HTTPS_PROXY= HTTP_PROXY= http_proxy= ALL_PROXY= all_proxy= AWS_CA_BUNDLE=     
 </pre>
@@ -87,7 +87,7 @@ https_proxy= NO_PROXY= HTTPS_PROXY= HTTP_PROXY= http_proxy= ALL_PROXY= all_proxy
 <hr />
 <br />
 
-
+<h5>Remove any env AWS CLI/SDK variables</h5>
 <pre>
 unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
 </pre>
