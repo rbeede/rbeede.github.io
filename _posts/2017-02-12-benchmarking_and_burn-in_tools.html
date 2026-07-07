@@ -1,9 +1,11 @@
 ---
 creation_epoch: 1241793543
-lastmod_epoch: 1741397562
+lastmod_epoch: 1783467807
 categories: ['Tech Tricks']
 title: Benchmarking and Burn-in Tools
 ---
+
+<h2>Disk</h2>
 
 <p>For Windows, Linux, etc a good disk benchmark problem is <a href="http://www.iozone.org/">http://www.iozone.org/</a>.
 </p>
@@ -42,7 +44,7 @@ Another alternative is the 7-zip benchmark command.
 I like to use <a href="http://www.memtest.org/">Memtest86+</a>.  You have to boot into it though.
 
 <p>
-Another good one is <a href="http://hcidesign.com/memtest/">HCI Design's MemTest</a> which you can run from Windows.
+Another good one is <a href="https://www.ocbase.com/download">OCCT</a>.
 </p>
 
 <h2>Graphics</h2>
@@ -59,7 +61,9 @@ If your motherboard and disk drivers have sensors on them you can use <a href="h
 
 <h2>Network</h2>
 
-<a href="https://github.com/esnet/iperf">IPerf 3</a>
+Note that running the Windows version of this typically results in inaccurate measurements. It is best run from a Linux kernel (not wsl).
+
+<p><a href="https://github.com/esnet/iperf">IPerf 3</a></p>
 
 <ul>
 <li>--format k means kilobits</li>
