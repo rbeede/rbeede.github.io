@@ -1,26 +1,24 @@
 ---
 creation_epoch: 1497410699
-lastmod_epoch: 1711988984
+lastmod_epoch: 1784312398
 categories: ['Computer Problems']
 title: Windows Firewall - Block all incoming connections - Breaks IPv6
 ---
 
+<ul>
+  <li><a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/tools#shields-up-mode-for-active-attacks">https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/tools#shields-up-mode-for-active-attacks</a></li>
+  <li><a href="https://superuser.com/questions/1217840/windows-10-firewall-block-all-incoming-connections-breaks-ipv6">https://superuser.com/questions/1217840/windows-10-firewall-block-all-incoming-connections-breaks-ipv6</a></li>
+  <li><a href="https://superuser.com/questions/1777708/what-causes-ipv6-ping-of-linux-guest-to-drop-packets-in-cyclical-fashion-on-win">What causes IPv6 ping of linux guest to drop packets in cyclical fashion on Win 10?</a></li>
+</ul>
+
 <p>
-<a href="https://superuser.com/questions/1217840/windows-10-firewall-block-all-incoming-connections-breaks-ipv6">https://superuser.com/questions/1217840/windows-10-firewall-block-all-incoming-connections-breaks-ipv6</a>
+Customize settings for Windows Firewall with Block all incoming connections, including those in the list of allowed apps. Also known as blockinboundalways.
 </p>
 
 <p>
-<a href="https://superuser.com/questions/1777708/what-causes-ipv6-ping-of-linux-guest-to-drop-packets-in-cyclical-fashion-on-win">What causes IPv6 ping of linux guest to drop packets in cyclical fashion on Win 10?</a>
+A bug in Microsoft Windows 7 & 10 & 11 as the stateful firewall does not keep track of necessary IPv6 traffic with its neighbors.
 </p>
 
 <p>
-Customize settings for Windows Firewall with Block all incoming connections, including those in the list of allowed apps
-</p>
-
-<p>
-A bug in Microsoft Windows 7 & 10 & 11 as the stateful firewall does not keep track of necessary IPv6 traffic.
-</p>
-
-<p>
-Using IPv4 or disabling the OS firewall everything works fine.
+Using IPv4 only (disable IPv6) or disabling the OS firewall traffic works as expected. An alternative is to curtail the inbound firewall list (installing apps can add to this over time) or use GPO for firewall rules.
 </p>
