@@ -1,0 +1,141 @@
+---
+creation_epoch: 1785704902
+lastmod_epoch: 1785704902
+categories: ['Tech Tricks']
+title: GL.iNet GL-MT3600BE Benchmarks
+---
+
+<ul>
+  <li><a href="https://openwrt.org/toh/gl.inet/gl-mt3600be">https://openwrt.org/toh/gl.inet/gl-mt3600be</a></li>
+  <li>Dual-band 2×2 WiFi-7</li>
+  <li>Dual 2.5G Ethernet</li>
+  <li>512MB DDR4 RAM</li>
+</ul>
+
+<ul>
+  <li>OEM Firmware mt3600be-4.9.0_release1-1046-0702-1783003143.bin</li>
+  <li>Customized version of OpenWRT 21 by vendor</li>
+  <li>ARM64 MediaTek MT7987A 4x A53</li>
+</ul>
+
+
+<h3>LAN -> WAN Wired Ethernet</h3>
+<p>
+LAN -> WAN tests were performed with two Linux systems connected with 2.5gbps network adapters. The system on the WAN side served DHCP to the device and iperf3 was ran on both. No QoS or SQM were applied.
+</p>
+
+<pre>
+xubuntu@xubuntu:/$ iperf3 -c 192.168.1.1 -t 5 -R
+Connecting to host 192.168.1.1, port 5201
+Reverse mode, remote host 192.168.1.1 is sending
+[  5] local 192.168.8.201 port 40298 connected to 192.168.1.1 port 5201
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.00   sec   270 MBytes  2.26 Gbits/sec                  
+[  5]   1.00-2.00   sec   281 MBytes  2.35 Gbits/sec                  
+[  5]   2.00-3.00   sec   280 MBytes  2.35 Gbits/sec                  
+[  5]   3.00-4.00   sec   281 MBytes  2.35 Gbits/sec                  
+[  5]   4.00-5.00   sec   280 MBytes  2.35 Gbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-5.00   sec  1.36 GBytes  2.34 Gbits/sec    0            sender
+[  5]   0.00-5.00   sec  1.36 GBytes  2.34 Gbits/sec                  receiver
+
+iperf Done.
+
+
+
+xubuntu@xubuntu:/$ iperf3 -c 192.168.1.1 -t 5
+Connecting to host 192.168.1.1, port 5201
+[  5] local 192.168.8.201 port 34862 connected to 192.168.1.1 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec   282 MBytes  2.37 Gbits/sec    0    792 KBytes       
+[  5]   1.00-2.00   sec   280 MBytes  2.35 Gbits/sec    0    830 KBytes       
+[  5]   2.00-3.00   sec   280 MBytes  2.35 Gbits/sec    0    830 KBytes       
+[  5]   3.00-4.00   sec   280 MBytes  2.35 Gbits/sec    0    830 KBytes       
+[  5]   4.00-5.00   sec   280 MBytes  2.35 Gbits/sec    0    830 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-5.00   sec  1.37 GBytes  2.36 Gbits/sec    0            sender
+[  5]   0.00-5.00   sec  1.37 GBytes  2.35 Gbits/sec                  receiver
+
+iperf Done.
+
+
+
+xubuntu@xubuntu:/$ iperf3 -c 192.168.1.1 -t 5 --bidir
+Connecting to host 192.168.1.1, port 5201
+[  5] local 192.168.8.201 port 37834 connected to 192.168.1.1 port 5201
+[  7] local 192.168.8.201 port 37842 connected to 192.168.1.1 port 5201
+[ ID][Role] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5][TX-C]   0.00-1.00   sec   273 MBytes  2.29 Gbits/sec    0   1.00 MBytes       
+[  7][RX-C]   0.00-1.00   sec   279 MBytes  2.34 Gbits/sec                  
+[  5][TX-C]   1.00-2.00   sec   278 MBytes  2.34 Gbits/sec    0   1.00 MBytes       
+[  7][RX-C]   1.00-2.00   sec   280 MBytes  2.35 Gbits/sec                  
+[  5][TX-C]   2.00-3.00   sec   278 MBytes  2.34 Gbits/sec    0   1.00 MBytes       
+[  7][RX-C]   2.00-3.00   sec   280 MBytes  2.35 Gbits/sec                  
+[  5][TX-C]   3.00-4.00   sec   279 MBytes  2.34 Gbits/sec    0   1.00 MBytes       
+[  7][RX-C]   3.00-4.00   sec   280 MBytes  2.35 Gbits/sec                  
+[  5][TX-C]   4.00-5.00   sec   279 MBytes  2.34 Gbits/sec    0   1.00 MBytes       
+[  7][RX-C]   4.00-5.00   sec   280 MBytes  2.35 Gbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID][Role] Interval           Transfer     Bitrate         Retr
+[  5][TX-C]   0.00-5.00   sec  1.36 GBytes  2.33 Gbits/sec    0            sender
+[  5][TX-C]   0.00-5.00   sec  1.35 GBytes  2.32 Gbits/sec                  receiver
+[  7][RX-C]   0.00-5.00   sec  1.37 GBytes  2.35 Gbits/sec    0            sender
+[  7][RX-C]   0.00-5.00   sec  1.37 GBytes  2.35 Gbits/sec                  receiver
+
+iperf Done.
+
+</pre>
+
+<h3>USB</h3>
+
+<p>
+A 1TB USB NVMe enclosure was used. The NVMe drive had a known 1gbps performance on a PC. The USB 3.0 USB-A port on the router had a raw speed of 5.0gb/s.
+</p>
+
+<pre>
+root@GL-MT3600BE:/tmp/mountd/disk1_part1# hdparm -tT /dev/sda
+
+/dev/sda:
+ Timing cached reads:   1608 MB in  2.00 seconds = 803.78 MB/sec
+ Timing buffered disk reads: 1040 MB in  3.01 seconds = 346.07 MB/sec
+
+# sequential read of 346.07 MB/sec
+
+
+root@GL-MT3600BE:/tmp/mountd/disk1_part1# time dd if=/dev/zero of=test_bench.bin bs=1M count=1024 conv=fsync
+1024+0 records in
+1024+0 records out
+real    0m 3.25s
+user    0m 0.00s
+sys     0m 3.14s
+root@GL-MT3600BE:/tmp/mountd/disk1_part1# time dd if=/dev/zero of=test_bench.bin bs=1M count=1024 oflag=direct
+1024+0 records in
+1024+0 records out
+real    0m 7.10s
+user    0m 0.00s
+sys     0m 4.67s
+ 
+# sequential write of 151.2MB/sec
+</pre>
+
+<h3>Wireless Performance</h3>
+
+<p>Tested from a WiFi 7 client in the same room. Note the router is only dual-band and does not have a tri-band with 6ghz.</p>
+
+<h5>5ghz (160mhz channel configuration)</h5>
+
+<pre>
+1.08 gigabits / sec download
+
+1.07 gigabits / sec upload
+</pre>
+
+<h5>2.4ghz (40mhz channel configuration)</h5>
+
+<pre>
+223 megabits / sec download
+
+162 megabits / sec upload
+</pre>
