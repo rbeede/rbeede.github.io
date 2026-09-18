@@ -1,0 +1,36 @@
+---
+creation_epoch: 1789758588
+lastmod_epoch: 1789758588
+categories: ['Tech Tricks']
+title: Shrink VM Disk Commands
+---
+
+Note if the virtual disk is bitlocker encrypted you must remove the bitlocker encryption first and then re-establish it as Used Space Only. If the Hypervisor (i.e. VMware) encrypted mode (vTPM) is enabled you do not have to remove it as VMware shrink commands will still work. In most cases you do not have to defrag (inside guest OS) unless your workloads created heavy fragmentation.
+
+<ul>
+  <li>Delete all snapshots</li>
+  <li>After wiping disk space make sure to power off</li>
+  <li>Defrag RETRIM is not typically supported or required</li>
+</ul>
+
+<pre>
+dism.exe /online /cleanup-image /startcomponentcleanup
+</pre>
+
+<pre>
+sdelete64.exe -z -nobanner C:
+</pre>
+
+<pre>
+manage-bde -status
+
+manage-bde -on C: -used
+</pre>
+
+<p>
+Note: Do not use <code>manage-bde -wipefreespace</code> as that will cause the virtual disk to expand to its full size instead.
+</p>
+
+<pre>
+"c:\Program Files\VMware\VMware Workstation\vmware-vdiskmanager.exe" -k YOUR_DISK.vmdk
+</pre>
