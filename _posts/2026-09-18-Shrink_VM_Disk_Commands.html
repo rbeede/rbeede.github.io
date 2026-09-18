@@ -50,11 +50,12 @@ dir /a /s /b %windir%\Temp
 </pre>
 
 <pre>
-sdelete64.exe -z -nobanner C:
-
-
 # Might be treated as malware, you can use the GUI "Create a restore point" to manage existing and delete
 vssadmin delete shadows /for=C: /all /quiet
+</pre>
+
+<pre>
+sdelete64.exe -z -nobanner C:
 </pre>
 
 <pre>
