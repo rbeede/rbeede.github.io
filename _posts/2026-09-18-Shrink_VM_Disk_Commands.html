@@ -18,11 +18,7 @@ dism.exe /online /cleanup-image /startcomponentcleanup
 </pre>
 
 <pre>
-sdelete64.exe -z -nobanner C:
-
-
-# Might be treated as malware, you can use the GUI "Create a restore point" to manage existing and delete
-vssadmin delete shadows /for=C: /all /quiet
+cleanmgr.exe
 </pre>
 
 <pre>
@@ -34,6 +30,29 @@ manage-bde -on C: -used
 <p>
 Note: Do not use <code>manage-bde -wipefreespace</code> as that will cause the virtual disk to expand to its full size instead.
 </p>
+
+<pre>
+forfiles /P "%TEMP%" /S /D -1 /C "cmd /c if @isdir==FALSE del /f /q @path"
+
+forfiles /P "%TEMP%" /S /D -1 /C "cmd /c if @isdir==TRUE rmdir @path" 2>nul
+
+dir /a /s /b "%TEMP%"
+
+  
+forfiles /P "%windir%\TEMP" /S /D -1 /C "cmd /c if @isdir==FALSE del /f /q @path"
+
+forfiles /P "%windir%\TEMP" /S /D -1 /C "cmd /c if @isdir==TRUE rmdir @path" 2>nul
+ 
+dir /a /s /b %windir%\Temp
+</pre>
+
+<pre>
+sdelete64.exe -z -nobanner C:
+
+
+# Might be treated as malware, you can use the GUI "Create a restore point" to manage existing and delete
+vssadmin delete shadows /for=C: /all /quiet
+</pre>
 
 <pre>
 "c:\Program Files\VMware\VMware Workstation\vmware-vdiskmanager.exe" -k YOUR_DISK.vmdk
