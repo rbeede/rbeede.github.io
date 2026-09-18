@@ -5,6 +5,41 @@ categories: ['Tech Tricks']
 title: Shrink VM Disk Commands
 ---
 
+<style>
+/* Container for the multi-line code block */
+pre {
+  background-color: #f6f8fa;     /* Light gray background (GitHub style) */
+  color: #24292e;                /* Dark slate charcoal text */
+  border: 1px solid #e1e4e6;     /* Subtle border outline */
+  padding: 1rem;                 /* Internal padding around code */
+  margin: 1.5rem 0;              /* Vertical separation from text paragraphs */
+  border-radius: 6px;            /* Smooth rounded corners */
+  overflow-x: auto;              /* Force horizontal scrollbar for long lines */
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9rem;             /* Highly readable code scale */
+  line-height: 1.5;              /* Clean line spacing */
+}
+
+/* Reset inner code tag behavior to adapt perfectly to the pre container */
+pre code {
+  background-color: transparent; /* Remove any nested background conflicts */
+  padding: 0;                    /* Remove inner spacing overrides */
+  border-radius: 0;              /* Clear conflicting rounded edges */
+  color: inherit;                /* Force inner text to inherit container color */
+  white-space: pre;              /* Enforce horizontal layout without wrapping lines */
+}
+
+/* Optional styling for independent inline <code> snippets inside sentences */
+:not(pre) > code {
+  background-color: #afb8c133;   /* Muted transparent gray pill background */
+  color: #24292e;                /* Clear text contrast matching body */
+  padding: 0.2rem 0.4rem;        /* Tight inner cushion */
+  border-radius: 6px;            /* Standardized rounded pill edge */
+  font-family: monospace;
+  font-size: 0.85em;             /* Slightly smaller to fit in a text sentence */
+}
+</style>
+
 Note if the virtual disk is bitlocker encrypted you must remove the bitlocker encryption first and then re-establish it as Used Space Only. If the Hypervisor (i.e. VMware) encrypted mode (vTPM) is enabled you do not have to remove it as VMware shrink commands will still work. In most cases you do not have to defrag (inside guest OS) unless your workloads created heavy fragmentation.
 
 <ul>
