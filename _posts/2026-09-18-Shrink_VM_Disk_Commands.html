@@ -24,7 +24,10 @@ cleanmgr.exe
 <pre>
 manage-bde -status
 
-manage-bde -on C: -used
+manage-bde -off C:
+
+
+for /L %i in (1,0,2) do @(cls & manage-bde -status C: & timeout /t 5 >nul)
 </pre>
 
 <p>
@@ -56,4 +59,10 @@ vssadmin delete shadows /for=C: /all /quiet
 
 <pre>
 "c:\Program Files\VMware\VMware Workstation\vmware-vdiskmanager.exe" -k YOUR_DISK.vmdk
+</pre>
+
+<pre>
+# If you need BitLocker back on again
+
+manage-bde -on C: -UsedSpaceOnly
 </pre>
