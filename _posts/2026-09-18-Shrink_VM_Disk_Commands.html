@@ -19,6 +19,10 @@ dism.exe /online /cleanup-image /startcomponentcleanup
 
 <pre>
 sdelete64.exe -z -nobanner C:
+
+
+# Might be treated as malware, you can use the GUI "Create a restore point" to manage existing and delete
+vssadmin delete shadows /for=C: /all /quiet
 </pre>
 
 <pre>
