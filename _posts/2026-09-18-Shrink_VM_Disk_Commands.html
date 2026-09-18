@@ -65,4 +65,6 @@ vssadmin delete shadows /for=C: /all /quiet
 # If you need BitLocker back on again
 
 manage-bde -on C: -UsedSpaceOnly
+
+manage-bde -protectors -get C: -type RecoveryPassword
 </pre>
