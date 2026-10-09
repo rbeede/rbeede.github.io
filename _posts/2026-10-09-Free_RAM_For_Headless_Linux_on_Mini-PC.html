@@ -1,0 +1,56 @@
+---
+creation_epoch: 1791552060
+lastmod_epoch: 1791552060
+categories: ['Tech Tricks']
+title: Free RAM For Headless Linux on Mini-PC
+---
+
+If you are using a Mini-PC or other hardware with an iGPU for a headless Linux server there are a few optimizations you can make to free up another 1-2GB of memory. Some memory gets reserved for hardware usage that can be freed up in a server-only scenario.
+
+<h3>AMD Chipsets</h3>
+
+<p>In the firmware BIOS/UEFI settings menus look for UDMA and reduce the reserve size to the smallest allowed (usually 32MB)</p>
+
+<h3>Intel CPUs</h3>
+
+<p>The BIOS/UEFI firmware typically does not give you an option to change the allocation setting. You'll have to do so from the OS instead</p>
+
+<h3>Disabling iGPU</h3>
+
+<p>Unless you have a dedicated GPU option you typically cannot fully disable the iGPU (firmware restriction). Reducing the memory usage or performing the following OS optimizations will still all the iGPU to be used if you end up needing it for troubleshooting or a reinstall though</p>
+
+<h2>OS (Linux) Optimizations</h2>
+
+<pre style="background-color: #f4f4f4; border: 1px solid #ddd; border-left: 3px solid #007acc; color: #333; page-break-inside: avoid; font-family: monospace; font-size: 15px; line-height: 1.6; margin-bottom: 1.6em; max-width: 100%; overflow: auto; padding: 1em 1.5em; display: block; word-wrap: break-word; border-radius: 4px;">
+<code>
+cat >> /etc/modprobe.d/blacklist-intel-igpu.conf <<'EOF'
+# Disable Intel iGPU
+blacklist i915
+blacklist xe
+blacklist intel_agp
+EOF
+</code>
+</pre>
+
+<pre style="background-color: #f4f4f4; border: 1px solid #ddd; border-left: 3px solid #007acc; color: #333; page-break-inside: avoid; font-family: monospace; font-size: 15px; line-height: 1.6; margin-bottom: 1.6em; max-width: 100%; overflow: auto; padding: 1em 1.5em; display: block; word-wrap: break-word; border-radius: 4px;">
+<code>
+sudo tee /etc/modprobe.d/disable-amd-igpu.conf >/dev/null <<'EOF'
+blacklist amdgpu
+blacklist radeon
+install amdgpu /bin/false
+install radeon /bin/false
+EOF
+</code>
+</pre>
+
+<pre style="background-color: #f4f4f4; border: 1px solid #ddd; border-left: 3px solid #007acc; color: #333; page-break-inside: avoid; font-family: monospace; font-size: 15px; line-height: 1.6; margin-bottom: 1.6em; max-width: 100%; overflow: auto; padding: 1em 1.5em; display: block; word-wrap: break-word; border-radius: 4px;">
+<code>
+sudo update-initramfs -u
+
+# Eats 2-4GB of memory, so disable it or reduce if you need it
+mv /etc/default/grub.d/kdump-tools.cfg /etc/default/grub.d/kdump-tools.cfg.DISABLED
+sudo update-grub
+</code>
+</pre>
+
+<p>Don't forget to <code>/sudo/reboot</code></p>
