@@ -1,0 +1,25 @@
+---
+creation_epoch: 1792877638
+lastmod_epoch: 1792877638
+categories: ['Tech Tricks']
+title: Uninstall Edge Win11
+---
+
+<pre>
+takeown /f "C:\Windows\System32\IntegratedServicesRegionPolicySet.json" /a
+icacls "C:\Windows\System32\IntegratedServicesRegionPolicySet.json" /grant Administrators:F
+
+"c:\Program Files\Notepad++\notepad++.exe" "C:\Windows\System32\IntegratedServicesRegionPolicySet.json"
+</pre>
+
+<ul>
+  <li>defaultState to "enabled"</li>
+  <li>allowedRegions add "US"</li>
+  <li>Reboot required</li>
+</ul>
+
+<pre>
+reg add "HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Edge" /v "NoRemove" /t REG_DWORD /d 0 /f
+
+winget uninstall --id Microsoft.Edge --force --accept-source-agreements
+</pre>
