@@ -1,0 +1,191 @@
+---
+creation_epoch: 1793986361
+lastmod_epoch: 1793986361
+categories: ['Tech Tricks']
+title: TPM LUKS Xubuntu
+---
+
+<style>
+.tl-wrap{
+  --bg:#ffffff;--bar:#e3e9f0;--border:#cbd5e1;--text:#1e293b;--muted:#64748b;
+  --comment:#64748b;--string:#0f766e;--var:#7c3aed;--flag:#b45309;--keyword:#1d4ed8;
+  --btn-bg:#1d4ed8;--btn-text:#fff;--btn-ok:#0f766e;--focus:#1d4ed8;
+  background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;
+  overflow:hidden;max-width:56rem;margin:1rem auto;text-align:left;
+}
+@media (prefers-color-scheme: dark){
+  .tl-wrap{
+    --bg:#16212c;--bar:#1d2b39;--border:#2a3a4a;--text:#e2e8f0;--muted:#8294a8;
+    --comment:#8294a8;--string:#5eead4;--var:#c4b5fd;--flag:#fbbf24;--keyword:#7dd3fc;
+    --btn-bg:#7dd3fc;--btn-text:#0f1720;--btn-ok:#5eead4;--focus:#7dd3fc;
+  }
+}
+.tl-wrap *{box-sizing:border-box}
+.tl-wrap .tl-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.5rem .75rem .5rem 1rem;background:var(--bar);border-bottom:1px solid var(--border)}
+.tl-wrap .tl-name{font:600 .85rem ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tl-wrap button.tl-copy{appearance:none;border:0;border-radius:6px;padding:.4rem .9rem;
+  font:600 .85rem system-ui,sans-serif;background:var(--btn-bg);color:var(--btn-text);
+  cursor:pointer;min-width:6.5rem;margin:0}
+.tl-wrap button.tl-copy.done{background:var(--btn-ok)}
+.tl-wrap button.tl-copy:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.tl-wrap pre{margin:0;padding:1rem 1.25rem 1.25rem;overflow-x:auto;tab-size:4;background:transparent;
+  border:0;font:.875rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;color:var(--text)}
+.tl-wrap pre code{font:inherit;white-space:pre;background:transparent;padding:0;color:inherit}
+.tl-wrap .c{color:var(--comment);font-style:italic}
+.tl-wrap .s{color:var(--string)}
+.tl-wrap .v{color:var(--var)}
+.tl-wrap .f{color:var(--flag)}
+.tl-wrap .k{color:var(--keyword);font-weight:600}
+</style>
+<div class="tl-wrap">
+  <div class="tl-bar">
+    <span class="tl-name">tpm2-luks-enroll.sh</span>
+    <button class="tl-copy" id="tl-copy" type="button" aria-describedby="tl-status">Copy code</button>
+  </div>
+<pre><code id="tl-code"># === Xubuntu 26.04 (dracut): LUKS2 auto-unlock via TPM2 with recovery key ===
+# Assumes: LUKS2 on /dev/, TPM present, NO clevis/initramfs-tools installed
+
+DEV=$(lsblk -prno NAME,FSTYPE | awk '$2=="crypto_LUKS"{print $1}')
+echo "Using LUKS device: $DEV"
+
+# --- Pre-flight ---
+ls /dev/tpm0 /dev/tpmrm0
+dpkg -l | grep -E "clevis|initramfs-tools" || echo "clean"
+which lsinitrd dracut
+dracut --list-modules | grep -Ei "crypt|tpm2"
+sudo cryptsetup luksDump "$DEV" | grep -E "Version"      # should say 2
+
+# --- Install tools, back up current initrd ---
+sudo apt update
+sudo apt install -y tpm2-tools
+sudo cp /boot/initrd.img-$(uname -r) /boot/initrd.img-$(uname -r).good
+
+# --- Recovery key (SAVE THE PRINTED KEY OFF THE VM), then test it ---
+sudo systemd-cryptenroll --recovery-key "$DEV"
+sudo cryptsetup open --test-passphrase "$DEV"            # paste recovery key; silent = success
+
+# --- Enroll TPM2 (PCR 7) and list keyslots ---
+sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=7 "$DEV"
+sudo systemd-cryptenroll "$DEV"                          # should show password, recovery, tpm2
+
+# --- Update crypttab to use the TPM ---
+sudo sed -i 's/^\(dm_crypt-0 .* none \)luks.*$/\1luks,tpm2-device=auto/' /etc/crypttab
+cat /etc/crypttab    # expect: dm_crypt-0 UUID=... none luks,tpm2-device=auto
+
+# --- Rebuild initrd with TPM support and verify BEFORE rebooting ---
+echo 'add_dracutmodules+=" tpm2-tss "' | sudo tee /etc/dracut.conf.d/90-tpm2.conf
+sudo dracut --force --kver "$(uname -r)"
+sudo lsinitrd /boot/initrd.img-$(uname -r) | grep -Ei "systemd-cryptsetup|libtss2|tpm2"
+# Must show both systemd-cryptsetup and libtss2*. If not, DON'T reboot; restore:
+#   sudo cp /boot/initrd.img-$(uname -r).good /boot/initrd.img-$(uname -r)
+
+# --- Reboot: should go straight to login with no passphrase prompt ---
+sleep 10
+sudo reboot
+
+# --- Optional, only after TPM boot AND recovery key both verified ---
+# Remove the original password slot (check slot numbers first!):
+#   sudo cryptsetup luksDump "$DEV" | grep -E "^\s+[0-9]+: luks2"
+#   sudo cryptsetup luksKillSlot "$DEV" &lt;password-slot-number&gt;
+
+# --- Optional: back up the LUKS header (store off the VM) ---
+#   sudo cryptsetup luksHeaderBackup "$DEV" --header-backup-file luks-header.img
+
+# --- Optional: If the TPM isn't visible early in boot, add drivers and rebuild ---
+#   echo 'add_drivers+=" tpm_tis tpm_crb "' | sudo tee -a /etc/dracut.conf.d/90-tpm2.conf
+#   sudo dracut --force --kver "$(uname -r)"
+</code></pre>
+  <div id="tl-status" role="status" aria-live="polite" style="position:absolute;left:-9999px">&nbsp;</div>
+</div>
+<script>
+(function () {
+  var codeEl = document.getElementById('tl-code');
+  var btn = document.getElementById('tl-copy');
+  var status = document.getElementById('tl-status');
+
+  // Capture the plain text before highlighting; this is what gets copied.
+  var raw = codeEl.textContent;
+
+  function esc(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  // Highlight an unquoted fragment: sudo, $vars, $(...) markers, flags.
+  function plain(s) {
+    return esc(s)
+      .replace(/(\$\{?[A-Za-z_][A-Za-z0-9_]*\}?|\$\()/g, '<span class="v">$1</span>')
+      .replace(/(^|\s)(--?[A-Za-z][\w-]*)/g, '$1<span class="f">$2</span>')
+      .replace(/\b(sudo)\b/g, '<span class="k">$1</span>');
+  }
+
+  function highlightLine(line) {
+    var out = '', buf = '', quote = null, i, ch;
+    for (i = 0; i < line.length; i++) {
+      ch = line[i];
+      if (quote) {
+        buf += ch;
+        if (ch === quote) {
+          out += '<span class="s">' + esc(buf) + '</span>';
+          buf = ''; quote = null;
+        }
+      } else if (ch === '"' || ch === "'") {
+        out += plain(buf); buf = ch; quote = ch;
+      } else if (ch === '#' && (i === 0 || /\s/.test(line[i - 1]))) {
+        out += plain(buf);
+        out += '<span class="c">' + esc(line.slice(i)) + '</span>';
+        buf = ''; break;
+      } else {
+        buf += ch;
+      }
+    }
+    if (quote) out += '<span class="s">' + esc(buf) + '</span>';
+    else out += plain(buf);
+    return out;
+  }
+
+  codeEl.innerHTML = raw.split('\n').map(highlightLine).join('\n');
+
+  function flash(msg, ok) {
+    btn.textContent = msg;
+    btn.classList.toggle('done', ok);
+    status.textContent = msg;
+    clearTimeout(flash.t);
+    flash.t = setTimeout(function () {
+      btn.textContent = 'Copy code';
+      btn.classList.remove('done');
+      status.textContent = '';
+    }, 2000);
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  btn.addEventListener('click', function () {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(raw).then(
+        function () { flash('Copied', true); },
+        function () {
+          var ok = fallbackCopy(raw);
+          flash(ok ? 'Copied' : 'Copy failed', ok);
+        }
+      );
+    } else {
+      var ok = fallbackCopy(raw);
+      flash(ok ? 'Copied' : 'Copy failed', ok);
+    }
+  });
+})();
+</script>
